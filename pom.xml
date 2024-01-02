@@ -5,6 +5,7 @@
 	<groupId>fr.isika.cda.javaee</groupId>
 	<artifactId>javaee-webapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>javaee-webapp</name>
 	<build>
 		<finalName>${project.artifactId}</finalName>
