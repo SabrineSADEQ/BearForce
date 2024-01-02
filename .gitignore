@@ -20,3 +20,11 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+
+
+# Ignore eclipse files
+.settings/
+/target/
+.project
+.classpath
+.tern-project
