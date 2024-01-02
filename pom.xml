@@ -3,10 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>fr.isika.cda.javaee</groupId>
-	<artifactId>javaee-webapp</artifactId>
+	<artifactId>BearForce</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>javaee-webapp</name>
+	<name>BearForce</name>
+	<properties>
+    	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	</properties>
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
@@ -29,41 +32,40 @@
 	</build>
 
 	<dependencies>
-
+		
+		<!-- Java EE Platform -->
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
 			<version>7.0</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/javax.faces/javax.faces-api -->
+		
+		<!-- Java Server Faces and web dependencies -->
 		<dependency>
 			<groupId>javax.faces</groupId>
 			<artifactId>javax.faces-api</artifactId>
 			<version>2.3</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>4.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-		
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
 			<version>2.3.2</version>
 		</dependency>
-		<!-- Runtime, com.sun.xml.bind module -->
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
 			<version>2.3.2</version>
 		</dependency>
 		
+		<!-- Java Persistence API -->
 		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>javax.persistence-api</artifactId>
@@ -71,12 +73,14 @@
 			<scope>provided</scope>
 		</dependency>
         
+        <!-- Primefaces library (for UI and web) -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>12.0.0</version>
 		</dependency>
 		
+		<!-- Testing --> 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>

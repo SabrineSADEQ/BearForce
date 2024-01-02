@@ -1,8 +1,0 @@
-<datasource jndi-name="java:jboss/datasources/mysql-datasource" pool-name="MySQLDSPool" enabled="true" use-java-context="true" statistics-enabled="${wildfly.datasources.statistics-enabled:${wildfly.statistics-enabled:false}}">
-    <connection-url>jdbc:mysql://localhost:3306/jee_demo_db?createDatabaseIfNotExist=true&amp;useUnicode=true</connection-url>
-    <driver>mysql</driver>
-    <security>
-        <user-name>root</user-name>
-		<password>root</password>
-    </security>
-</datasource>
