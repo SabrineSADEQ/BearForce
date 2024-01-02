@@ -1,13 +1,11 @@
 package fr.isika.cda.javaee.dao;
 
 import java.util.List;
-
 import javax.annotation.PostConstruct;
 import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import fr.isika.cda.javaee.entity.ApplicationEntity;
 
 @Stateless

@@ -1,6 +1,8 @@
 package fr.isika.cda.javaee.entity;
 
 import java.time.LocalDate;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,6 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Yoann FRANCOIS
+ *
+ */
 @Entity
 @Table(name ="profile")
 public class Profile {
@@ -17,12 +24,13 @@ public class Profile {
 	private String firstName;
 	private String lasName;
 	private LocalDate birthDate;
+	@Column(name = "picture_url")
 	private String pictureUrl;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private ProfesionalDetails profesionalDetails;
 	
 	//***************GETTERS & SETTERS***************
@@ -67,6 +75,9 @@ public class Profile {
 	}
 	public void setProfesionalDetails(ProfesionalDetails profesionalDetails) {
 		this.profesionalDetails = profesionalDetails;
+	}
+	public Long getId() {
+		return id;
 	}
 	
 }

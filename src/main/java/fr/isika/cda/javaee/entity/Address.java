@@ -1,28 +1,37 @@
 package fr.isika.cda.javaee.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Yoann FRANCOIS
+ *
+ */
 @Entity
 @Table(name ="address")
 public class Address {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	private String streetNulmber;
+	@Column(name = "street_number")
+	private String streetNumber;
+	@Column(name = "street_name")
 	private String streetName;
+	@Column(name = "postal_code")
 	private String postalCode;
 	private String city;
 	
 	//***************GETTERS & SETTERS***************
 	public String getStreetNulmber() {
-		return streetNulmber;
+		return streetNumber;
 	}
 	public void setStreetNulmber(String streetNulmber) {
-		this.streetNulmber = streetNulmber;
+		this.streetNumber = streetNulmber;
 	}
 	public String getStreetName() {
 		return streetName;
@@ -42,5 +51,14 @@ public class Address {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	public String getStreetNumber() {
+		return streetNumber;
+	}
+	public void setStreetNumber(String streetNumber) {
+		this.streetNumber = streetNumber;
+	}
+	public Long getId() {
+		return id;
+	}	
 	
 }

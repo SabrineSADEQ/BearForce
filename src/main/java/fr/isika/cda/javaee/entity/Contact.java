@@ -6,6 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Yoann FRANCOIS
+ *
+ */
 @Entity
 @Table(name ="contact")
 public class Contact {
@@ -34,6 +39,9 @@ public class Contact {
 	}
 	public void setType(TypeContact type) {
 		this.type = type;
+	}
+	public Long getId() {
+		return id;
 	}
 	
 }

@@ -1,19 +1,28 @@
 package fr.isika.cda.javaee.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Yoann FRANCOIS
+ *
+ */
 @Entity
 @Table(name ="profesional_details")
 public class ProfesionalDetails {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	@Column(name = "coach_certification")
 	private String coachCertification;
+	@Column(name = "coach_form")
 	private String coachForm;
+	@Column(name = "coach_cv")
 	private String coachCV;
 	
 	//***************GETTERS & SETTERS***************
@@ -35,5 +44,8 @@ public class ProfesionalDetails {
 	public void setCoachCV(String coachCV) {
 		this.coachCV = coachCV;
 	}
-
+	public Long getId() {
+		return id;
+	}
+	
 }
