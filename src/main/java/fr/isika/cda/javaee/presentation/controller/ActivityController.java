@@ -16,6 +16,7 @@ public class ActivityController implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private ActivityViewModel activityViewModel;
+	
 	@Inject
 	private ActivityDao activityDao;
 	
