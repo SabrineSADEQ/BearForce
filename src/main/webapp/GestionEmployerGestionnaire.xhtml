@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registration Form</title>
+</head>
+
+<body>
+<h:form>
+        <h2>Créer un compte coach</h2>
+        
+        <h:outputLabel for="email">Email:</h:outputLabel>
+        <h:inputText id="email" value="#{accountController.accountVM.email}" required="true" />
+        <br/>
+
+        <h:outputLabel for="password">Password:</h:outputLabel>
+        <h:inputSecret id="password" value="#{accountController.accountVM.password}" required="true" />
+        <br/>
+
+        <h:outputLabel for="role">Role:</h:outputLabel>
+        <h:selectOneRadio id="role" value="#{accountController.accountVM.role}" required="true">
+            <f:selectItem itemValue="COACH" itemLabel="COACH" />
+            </h:selectOneRadio>
+        <br/>
+
+        <h:commandButton value="valider" action="#{accountController.addAccount}"/>
+    </h:form>
+    </body>
+
+</html>

@@ -48,6 +48,14 @@ public class AccountViewModel {
 	public void setConnected(boolean connected) {
 		this.connected = connected;
 	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("AccountViewModel [role=");
+		builder.append(role);
+		builder.append("]");
+		return builder.toString();
+	}
 	
 	
 

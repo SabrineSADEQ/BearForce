@@ -7,7 +7,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import fr.isika.cda.javaee.entity.platform.Subscription;
 
 @Entity
 public class Account {
@@ -26,6 +29,12 @@ public class Account {
 
 	@OneToOne
 	private Goal goal;
+	
+	@ManyToOne
+	private Subscription subscription;
+	
+	@OneToOne
+	private Profile profile;
 	
 	private boolean connected;
 

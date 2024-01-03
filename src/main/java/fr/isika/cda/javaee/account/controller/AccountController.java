@@ -4,10 +4,14 @@ import java.io.Serializable;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import javax.enterprise.context.SessionScoped;
 import javax.annotation.PostConstruct;
 
 import fr.isika.cda.javaee.dao.accounts.AccountDao;
+import fr.isika.cda.javaee.dao.accounts.LoginDao;
+import fr.isika.cda.javaee.entity.accounts.Account;
+import fr.isika.cda.javaee.utils.SessionUtils;
 import fr.isika.cda.javaee.viewModel.AccountViewModel;
 
 @Named
@@ -29,6 +33,8 @@ public class AccountController implements Serializable {
     public void addAccount() {
         accountDao.createAccount(accountVM);
         accountVM = new AccountViewModel();
+
+
     }
 
 	public AccountViewModel getAccountVM() {
