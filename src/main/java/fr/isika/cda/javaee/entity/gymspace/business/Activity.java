@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
  * Represents an activity (a lesson type without a date and time)
  * @author Floriane D. 
  */
+
 @Entity
 public class Activity {
 	

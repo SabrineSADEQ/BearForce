@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Créer une activité</title>
+</h:head>
+
+<h:body>
+	<h1>Créer une activité</h1>
+	<hr align="center" width="80%" />
+	 <h:form>
+        <h:inputText value="#{activityController.activityViewModel.newActivity.name}" />
+        <h:commandButton value="Ajouter une activité" action="#{activityController.activityViewModel.addActivity}" />
+    </h:form>
+
+    <h:dataTable value="#{activityController.activityViewModel.activities}" var="activity">
+        <h:column>
+            #{activity.name}
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>
