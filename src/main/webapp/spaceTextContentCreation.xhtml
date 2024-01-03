@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Création de l'espace de ma salle de sport</title>
+</h:head>
+
+<h:body>
+	<h1>Création de l'espace de ma salle de sport</h1>
+	<hr align="center" width="100%" />
+	
+	<h:form>        
+        <h:outputLabel for="gymName">Nom de la salle</h:outputLabel>
+        <h:inputText id="gymName" value="#{spaceController.spaceViewModel.spaceName}" required="true" />
+        <br/>
+
+        <h:outputLabel for="motto">Slogan</h:outputLabel>
+        <h:inputText id="motto" value="#{spaceController.spaceViewModel.motto}" />
+        <br/>
+        
+        <h:outputLabel for="description">Description</h:outputLabel>
+        <h:inputTextarea cols="60" rows= "3" id="description" 
+         value="#{spaceController.spaceViewModel.description}" required="true" />
+        <br/>
+        
+        <div>Informations supplémentaires sur la salle : </div>
+        
+        <h:outputLabel for="access">Accès libre</h:outputLabel>
+        <h:selectOneRadio value = "#{spaceController.spaceViewModel.freeAccess}"> 
+			<f:selectItem itemValue = "true" itemLabel = "Oui" /> 
+		 	<f:selectItem itemValue = "false" itemLabel = "Non" />
+		 </h:selectOneRadio> 
+		 
+       	<h:outputLabel for="locker">Vestiaires</h:outputLabel>
+       	<h:selectOneRadio value = "#{spaceController.spaceViewModel.lockerRoom}"> 
+			<f:selectItem itemValue = "true" itemLabel = "Oui" /> 
+		 	<f:selectItem itemValue = "false" itemLabel = "Non" />
+		 </h:selectOneRadio> 
+
+        <h:commandButton value="Suite" action="#{spaceController.createSpaceTextContent}" />
+    </h:form>
+	
+</h:body>
+</html>

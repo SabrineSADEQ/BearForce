@@ -20,10 +20,6 @@ public class VisualIdentity {
 	private String thirdColor;
 	
 	@OneToOne
-	@JoinColumn(name = "space_id")
-	private Space space;
-	
-	@OneToOne
 	private Template template;
 	
 	@OneToOne
@@ -65,12 +61,7 @@ public class VisualIdentity {
 	public void setThirdColor(String thirdColor) {
 		this.thirdColor = thirdColor;
 	}
-	public Space getSpace() {
-		return space;
-	}
-	public void setSpace(Space space) {
-		this.space = space;
-	}
+
 	public Template getTemplate() {
 		return template;
 	}

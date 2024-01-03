@@ -30,7 +30,19 @@ public class IdGym {
 	@OneToOne
 	private AdminInfoGym adminInfoGym;
 	
+	@OneToOne
+	private GymCaracteristics gymCaracteristics;
 	
+	
+	
+	public GymCaracteristics getGymCaracteristics() {
+		return gymCaracteristics;
+	}
+
+	public void setGymCaracteristics(GymCaracteristics gymCaracteristics) {
+		this.gymCaracteristics = gymCaracteristics;
+	}
+
 	public List<Membership> getMemberships() {
 		return memberships;
 	}

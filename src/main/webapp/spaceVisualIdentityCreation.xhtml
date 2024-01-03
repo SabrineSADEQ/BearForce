@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Personnalisation visuelle de mon espace</title>
+</h:head>
+
+<h:body>
+	<h1>Personnalisation visuelle de mon espace</h1>
+	<hr align="center" width="100%" />
+	
+	<h:form>
+		<div>
+			<h:outputLabel for="firstColor">Couleur principale</h:outputLabel>
+			<p:colorPicker value="#{spaceController.spaceViewModel.firstColor}" />	
+		</div>
+		<div>
+		<h:outputLabel for="firstColor">Couleur secondaire</h:outputLabel>
+		<p:colorPicker value="#{spaceController.spaceViewModel.secondColor}" />
+		</div>
+		<div>
+		<h:outputLabel for="firstColor">Couleur tertiaire</h:outputLabel>
+		<p:colorPicker value="#{spaceController.spaceViewModel.thirdColor}" />
+		</div>
+		
+		 <h:commandButton value="Créer mon espace" action="#{spaceController.createSpaceVisualIdentity()}" />
+	</h:form>
+
+	
+</h:body>
+</html>
