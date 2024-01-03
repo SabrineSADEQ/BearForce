@@ -41,5 +41,11 @@
 
         <h:commandButton value="Login" action="#{loginController.validateAccount}" />
     </h:form>
+    <a href="index.xhtml">Test</a>
+    <h:panelGroup rendered="#{loginController.loggedIn}">
+        <div style="width: 100%; height: 100px; background-color: lightblue; text-align: center; line-height: 100px;">
+            Welcome, #{loginController.accountVM.email}!
+        </div>
+    </h:panelGroup>
 </h:body>
 </html>
