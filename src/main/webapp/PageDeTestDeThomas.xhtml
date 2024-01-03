@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Create Account</title>
+</h:head>
+<h:body>
+    <h:form>
+        <h2>Create Account</h2>
+        
+        <h:outputLabel for="email">Email:</h:outputLabel>
+        <h:inputText id="email" value="#{accountController.accountVM.email}" required="true" />
+        <br/>
+
+        <h:outputLabel for="password">Password:</h:outputLabel>
+        <h:inputSecret id="password" value="#{accountController.accountVM.password}" required="true" />
+        <br/>
+
+        <h:outputLabel for="role">Role:</h:outputLabel>
+        <h:selectOneMenu id="role" value="#{accountController.accountVM.role}" required="true">
+            <f:selectItem itemValue="VISITEUR" itemLabel="VISITEUR" />
+            <f:selectItem itemValue="ADHERENT" itemLabel="ADHERENT" />
+        </h:selectOneMenu>
+        <br/>
+
+        <h:commandButton value="Create Account" action="#{accountController.addAccount}" />
+    </h:form>
+</h:body>
+</html>
