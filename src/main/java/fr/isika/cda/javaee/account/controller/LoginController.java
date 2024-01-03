@@ -1,8 +1,6 @@
 package fr.isika.cda.javaee.account.controller;
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -19,6 +17,9 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import fr.isika.cda.javaee.dao.accounts.LoginDao;
+import fr.isika.cda.javaee.entity.accounts.Account;
+import fr.isika.cda.javaee.entity.accounts.Role;
+import fr.isika.cda.javaee.utils.SessionUtils;
 import fr.isika.cda.javaee.viewModel.AccountViewModel;
 
 
@@ -52,48 +53,39 @@ public class LoginController implements Serializable {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("loggedInUser", account);
 			loggedIn = true;
-			// Récupérer l'URL de redirection
-			String redirectionUrl = redirectionDashboard();
-
-			// Recuperer les données de la session
-
-			// SessionUtils.writeInSessionTP(tp.getSiret(), tp.getPhoneNumber(),
-			// tp.getCompanyName());
-			;
-			// TODO Ajouter travel planner dans la session
-
-			if (account.getRole() == RoleUser.TravelPlanner) {
-				String userEmail = SessionUtils.getAccount().getEmail();
-				TravelPlanner tp = loginDao.findTravelPlanner(userEmail);
-				if (tp.getTemplate() != null) {
-					Template userTemplate = tp.getTemplate();
-					HttpSession session1 = SessionUtils.getSession();
-					session1.setAttribute("template", userTemplate);
-					templateControllerBean.setTemplate(userTemplate);
-					templateControllerBean.setSelectedColor(userTemplate.getBackgroundColor());
-				}
-
 			}
 
-			// Effectuer la redirection
-			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-			try {
-				ec.redirect(redirectionUrl);
-			} catch (IOException e) {
-				// Gérer l'exception en cas d'erreur de redirection
-				e.printStackTrace();
-			}
-		} else
+			 else
 
 		{
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Email ou Mot de pass incorrectes", "Merci de saisir les bons identifiants"));
-			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-			try {
-				ec.redirect("signIn.xhtml");
-			} catch (IOException e) {
-				// Gérer l'exception en cas d'erreur de redirection
-				e.printStackTrace();
-			}
+			
 		}
 	}
+
+	public AccountViewModel getAccountVM() {
+		return accountVM;
+	}
+
+	public void setAccountVM(AccountViewModel accountVM) {
+		this.accountVM = accountVM;
+	}
+
+	public LoginDao getLoginDao() {
+		return loginDao;
+	}
+
+	public void setLoginDao(LoginDao loginDao) {
+		this.loginDao = loginDao;
+	}
+
+	public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+	
+}

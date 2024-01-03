@@ -27,5 +27,19 @@
 
         <h:commandButton value="Create Account" action="#{accountController.addAccount}" />
     </h:form>
+    
+    <h:form>
+        <h2>Login</h2>
+        
+        <h:outputLabel for="email">Email:</h:outputLabel>
+        <h:inputText id="email" value="#{loginController.accountVM.email}" required="true" />
+        <br/>
+
+        <h:outputLabel for="password">Password:</h:outputLabel>
+        <h:inputSecret id="password" value="#{loginController.accountVM.password}" required="true" />
+        <br/>
+
+        <h:commandButton value="Login" action="#{loginController.validateAccount}" />
+    </h:form>
 </h:body>
 </html>
