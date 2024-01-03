@@ -9,11 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Admin_Gym")
-public class AdminGym {
+public class AdminInfoGym {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,13 +27,21 @@ public class AdminGym {
 	@Column(name = "location")
 	private String location;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<IdGym> IdsGym;
+	@OneToOne
+	private IdGym idGym;
 
-	public AdminGym() {
+	public IdGym getIdGym() {
+		return idGym;
 	}
 
-	public AdminGym(String owner, String siret, String location) {
+	public void setIdGym(IdGym idGym) {
+		this.idGym = idGym;
+	}
+
+	public AdminInfoGym() {
+	}
+
+	public AdminInfoGym(String owner, String siret, String location) {
 		this.owner = owner;
 		this.siret = siret;
 		this.location = location;

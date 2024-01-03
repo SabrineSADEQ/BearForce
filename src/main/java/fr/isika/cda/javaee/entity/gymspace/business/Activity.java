@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,6 +32,9 @@ public class Activity {
 	private String name ;
 	private String description;
 	
+	@Enumerated(EnumType.STRING)
+	private ActivityCategory category ;
+	
 	@OneToMany(cascade = CascadeType.ALL)
 	@Column(name="training_list")
 	private List<Training> trainingList = new ArrayList<>() ; 
@@ -44,8 +49,25 @@ public class Activity {
 				joinColumns = @JoinColumn(name = "activity_id"),
 				inverseJoinColumns = @JoinColumn(name = "equipment_id"))
 	private List<Equipment> equipmentList = new ArrayList<>() ;
-
 	
+	
+	
+	public ActivityCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(ActivityCategory category) {
+		this.category = category;
+	}
+
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
+	}
+
 	public String getName() {
 		return name;
 	}

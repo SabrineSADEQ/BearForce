@@ -65,6 +65,24 @@ public class VisualIdentity {
 	public void setThirdColor(String thirdColor) {
 		this.thirdColor = thirdColor;
 	}
-
+	public Space getSpace() {
+		return space;
+	}
+	public void setSpace(Space space) {
+		this.space = space;
+	}
+	public Template getTemplate() {
+		return template;
+	}
+	public void setTemplate(Template template) {
+		this.template = template;
+	}
+	public SpaceTextContent getSpaceTextContent() {
+		return spaceTextContent;
+	}
+	public void setSpaceTextContent(SpaceTextContent spaceTextContent) {
+		this.spaceTextContent = spaceTextContent;
+	}
+	
 
 }
