@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Home</title>
+</h:head>
+
+<h:body>
+	<h1>Welcome to Java EE !</h1>
+	<hr align="center" width="80%" />
+	
+	<h2>Liste des Cours</h2>
+	
+	<h:form id="coursesTableForm">
+		<h:commandButton action="#{courseManagedBean.createTestCourses()}" value="Créer des cours de test" />
+	
+		<h:dataTable value="#{courseManagedBean.courseList}" var="course">
+		
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+	            #{course.activity.name}
+	        </h:column>
+	        
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+	            #{course.activity.description}
+	        </h:column>
+	        
+			<h:column>
+				<f:facet name="header">Date de début</f:facet>
+	            #{course.startDate}
+	        </h:column>
+	        
+			<h:column>
+				<f:facet name="header">Date de fin</f:facet>
+	            #{course.endDate}
+	        </h:column>
+	        
+			<!--  D'autres colonnes à ajouter si besoin -->
+			
+			<h:column>
+				<f:facet name="header">Actions</f:facet>
+				<h:commandLink value="Voir les détails"
+					action="#{courseManagedBean.viewDetails(course.id)}"/>
+			</h:column>
+		</h:dataTable>
+	
+	
+		<h:panelGroup>
+			<p>
+				<strong>Titre :</strong>
+				#{courseManagedBean.selectedCourse.activity.name}
+			</p>
+			<p>
+				<strong>Description :</strong>
+				#{courseManagedBean.selectedCourse.activity.description}
+			</p>
+			<p>
+				<strong>Date de début :</strong>
+				#{courseManagedBean.selectedCourse.startDate}
+			</p>
+			<p>
+				<strong>Date de fin :</strong>
+				#{courseManagedBean.selectedCourse.endDate}
+			</p>
+			
+			<h:commandButton value="Editer" />
+			
+			<!-- Ajout possible d'autres informations selon mes besoins -->
+			
+			</h:panelGroup>
+	</h:form>
+	
+</h:body>
+</html>

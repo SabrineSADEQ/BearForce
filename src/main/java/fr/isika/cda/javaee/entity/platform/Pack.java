@@ -12,7 +12,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-
+/**
+ * 
+ *
+ * @author Bitjoka Vincent
+ */
 @Entity
 public class Pack {
 	

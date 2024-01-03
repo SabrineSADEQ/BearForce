@@ -7,7 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import fr.isika.cda.javaee.entity.platform.PlatformConfiguration;
-
+/**
+ * 
+ * @author Bitjoka Vincent
+ */
 @Entity
 public class SuperAdmin {
 	
