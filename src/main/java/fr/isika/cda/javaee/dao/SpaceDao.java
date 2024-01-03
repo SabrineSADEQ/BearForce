@@ -18,7 +18,7 @@ public class SpaceDao {
 	@PersistenceContext
 	private EntityManager em;
 	
-	public Space createSpaceTextContent(SpaceViewModel spaceViewModel) {
+	public Space createSpace(SpaceViewModel spaceViewModel) {
 			
 			SpaceTextContent spaceTextContent = new SpaceTextContent();
 			VisualIdentity visualIdentity = new VisualIdentity();
@@ -33,7 +33,10 @@ public class SpaceDao {
 			gymCaracteristics.setLibreAccess(spaceViewModel.getFreeAccess());
 			gymCaracteristics.setLockerRoom(spaceViewModel.getLockerRoom());
 			
-			//TO DO : add colors and photos to visualIdentity
+			//TO DO : add photos to visualIdentity
+			visualIdentity.setFirstColor(spaceViewModel.getFirstColor());
+			visualIdentity.setSecondColor(spaceViewModel.getSecondColor());
+			visualIdentity.setThirdColor(spaceViewModel.getThirdColor());
 			visualIdentity.setSpaceTextContent(spaceTextContent);
 			
 			gymIdentity.setGymCaracteristics(gymCaracteristics);
@@ -52,7 +55,9 @@ public class SpaceDao {
 			return space; 
 		}
 
-	public void createSpaceVisualIdentity(SpaceViewModel spaceViewModel) {
-		
+	public Space getSpaceById(Long id) {
+		// TODO :
+		return null;
 	}
+
 }

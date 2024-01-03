@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import fr.isika.cda.javaee.dao.SpaceDao;
+import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.presentation.viewmodel.SpaceViewModel;
 
 /**
@@ -32,16 +33,17 @@ public class SpaceController  implements Serializable {
 	        System.out.println("SpaceController bean initialized!");
 	    }
 	 
-	 public String createSpaceTextContent() {
-		 spaceDao.createSpaceTextContent(spaceViewModel);
-		 return "spaceVisualIdentityCreation";
-	 }
-	 
-	 public void createSpaceVisualIdentity() {
-		 spaceDao.createSpaceVisualIdentity(spaceViewModel);
+	 public String createSpace() {
+		 spaceDao.createSpace(spaceViewModel);
 		 spaceViewModel = new SpaceViewModel();
+		 return "spaceIndex";
 	 }
 	 
+	 public Space getSpaceById(Long id) {
+		Space space = spaceDao.getSpaceById(id);
+		 
+		return space ;
+	 }
 
 	public SpaceViewModel getSpaceViewModel() {
 		return spaceViewModel;

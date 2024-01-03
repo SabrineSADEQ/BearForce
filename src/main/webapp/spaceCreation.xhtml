@@ -6,11 +6,11 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Création de l'espace de ma salle de sport</title>
+	<title>Créer l'espace de ma salle de sport</title>
 </h:head>
 
 <h:body>
-	<h1>Création de l'espace de ma salle de sport</h1>
+	<h1>Créer l'espace de ma salle de sport</h1>
 	<hr align="center" width="100%" />
 	
 	<h:form>        
@@ -26,7 +26,7 @@
         <h:inputTextarea cols="60" rows= "3" id="description" 
          value="#{spaceController.spaceViewModel.description}" required="true" />
         <br/>
-        
+        <hr/>
         <div>Informations supplémentaires sur la salle : </div>
         
         <h:outputLabel for="access">Accès libre</h:outputLabel>
@@ -40,8 +40,22 @@
 			<f:selectItem itemValue = "true" itemLabel = "Oui" /> 
 		 	<f:selectItem itemValue = "false" itemLabel = "Non" />
 		 </h:selectOneRadio> 
+		 <hr/>
+		 <div>Personnalisation visuelle de l'espace : </div>
+		 <div>
+			<h:outputLabel for="firstColor">Couleur principale</h:outputLabel>
+			<p:colorPicker value="#{spaceController.spaceViewModel.firstColor}" />	
+		</div>
+		<div>
+		<h:outputLabel for="firstColor">Couleur secondaire</h:outputLabel>
+		<p:colorPicker value="#{spaceController.spaceViewModel.secondColor}" />
+		</div>
+		<div>
+		<h:outputLabel for="firstColor">Couleur tertiaire</h:outputLabel>
+		<p:colorPicker value="#{spaceController.spaceViewModel.thirdColor}" />
+		</div>
 
-        <h:commandButton value="Suite" action="#{spaceController.createSpaceTextContent}" />
+        <h:commandButton value="Créer mon espace" action="#{spaceController.createSpace}" />
     </h:form>
 	
 </h:body>

@@ -6,16 +6,11 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Home</title>
+	<title></title>
 </h:head>
 
 <h:body>
-	<h1>Welcome to Java EE !</h1>
-	<hr align="center" width="80%" />
-	<a href="PageDeTestDeThomas.xhtml">Test</a>
+	<h1>Bienvenue sur #{spaceController.getSpaceById().getVisualIdentity().getSpaceTextContent().getSpaceName()} </h1>
 	
-	<br />
-	
-	<h:link outcome="spaceCreation">Création d'un espace</h:link>
 </h:body>
 </html>
