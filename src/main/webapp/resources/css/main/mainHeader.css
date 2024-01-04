@@ -2,12 +2,14 @@
 
 .header {
 	/* variables définies dans le mainStyle.css */
-	background-color: var(--bleuClair);
+	background-color: var(--grey);
 	height: 15vh;
 	width: 100%;
 	gap: 60px;
 	align-items: center;
 	display: flex;
+	color: var(--blanc);
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .logoContainer {
