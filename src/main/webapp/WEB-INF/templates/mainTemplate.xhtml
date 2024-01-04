@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	<title>
+		<ui:insert name="titleValue"></ui:insert>
+	</title>
+	<h:outputStylesheet library="css" name="main/mainStyle.css" />
+</h:head>
+
+<h:body>
+	
+	<!-- Header commun à toutes les pages -->
+	<ui:insert name="header">
+		<ui:include src="mainHeader.xhtml" />
+	</ui:insert>
+
+	<!-- Contenu des pages de l'application -->
+	<ui:insert name="content">
+		<!-- cet élement sera remplacé par le contenu des pages, dynamiquement --> 
+	</ui:insert>
+	
+	<!-- Footer commun à toutes les pages -->
+	<ui:insert name="footer" >
+		<ui:include src="mainFooter.xhtml" />
+	</ui:insert>
+
+</h:body>
+
+</html>

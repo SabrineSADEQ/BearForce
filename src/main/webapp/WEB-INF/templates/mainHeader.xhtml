@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<h:outputStylesheet library="css" name="main/mainHeader.css" />
+	<link rel="stylesheet" href="FolderCss/CssForForm.css" />
+	
+	<!--             Bootstrap JS and Popper.js CDN (for Bootstrap features like dropdowns, modals, etc.) -->
+	
+
+</h:head>
+
+<h:body>
+	<div class="header">
+		<div class="logoContainer">
+			<p:graphicImage library="images" name="logo_javaee.png" />
+		</div>
+		<div>
+			<h:link outcome="PageTesterConfiguration.xhtml">Creer Configuration</h:link>
+			<h:link outcome="CreationPack.xhtml">Créer Pack</h:link>
+			<h:link outcome="createActivity.xhtml">Créer une activité</h:link>
+			<h:link outcome="createCourse.xhtml">Créer un cours</h:link>
+			<h:link outcome="createEquipment.xhtml">Créer équipement</h:link>
+			<h:link outcome="spaceCreation">Création d'un espace</h:link>
+			<h:link outcome="CreationDeCompte.xhtml">Creation de compte</h:link>
+			<h:link outcome="GestionEmployerGestionnaire.xhtml">employer</h:link>
+		</div>
+	</div>
+</h:body>
+</html>
