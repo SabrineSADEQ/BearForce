@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 
 @Stateless
 //@Startup
+
 public class ApplicationDao {
 
 	@PersistenceContext

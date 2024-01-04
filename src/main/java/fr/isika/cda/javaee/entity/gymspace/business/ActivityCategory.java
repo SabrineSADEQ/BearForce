@@ -1,5 +1,20 @@
 package fr.isika.cda.javaee.entity.gymspace.business;
 
-enum ActivityCategory {
-	CARDIO, FITNESS, FORCE, PISCINE, DETENTE, RELAXATION // TO DO : à compléter si besoin
+public enum ActivityCategory {
+	CARDIO ("Cardio"), 
+	FITNESS ("Fitness"), 
+	FORCE ("Force musculaire"), 
+	PISCINE ("Natation"), 
+	DETENTE ("Détante"), 
+	RELAXATION ("Relax");
+	
+	private String libelle;
+	
+	private ActivityCategory(String libelle) {
+		this.libelle = libelle;
+	}
+	
+	public String getLibelle() {
+		return libelle;
+	}
 }

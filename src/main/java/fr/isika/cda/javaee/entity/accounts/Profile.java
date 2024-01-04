@@ -22,16 +22,29 @@ public class Profile {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String firstName;
-	private String lasName;
+	private String lastName;
 	private LocalDate birthDate;
 	@Column(name = "picture_url")
 	private String pictureUrl;
 	@OneToOne(cascade = CascadeType.ALL)
-	private Contact contact;
+	private Contact contact = new Contact();
 	@OneToOne(cascade = CascadeType.ALL)
-	private Address address;
+	private Address address = new Address();
 	@OneToOne(cascade = CascadeType.ALL)
-	private ProfessionalDetails profesionalDetails;
+	private ProfessionalDetails profesionalDetails = new ProfessionalDetails();
+	
+	@OneToOne
+	  private Account account;
+
+	    public Account getAccount() {
+		return account;
+	}
+
+
+		public void setAccount(Account account) {
+	        this.account = account;
+	    }
+
 	
 	//***************GETTERS & SETTERS***************
 	public String getFirstName() {
@@ -40,11 +53,11 @@ public class Profile {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	public String getLasName() {
-		return lasName;
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLasName(String lasName) {
-		this.lasName = lasName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	public LocalDate getBirthDate() {
 		return birthDate;

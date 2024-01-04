@@ -2,7 +2,6 @@ package fr.isika.cda.javaee.entity.gymspace.business;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,11 +16,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-
 /** 
  * Represents an activity (a lesson type without a date and time)
  * @author Floriane D. 
  */
+
 @Entity
 public class Activity {
 	
@@ -33,8 +32,13 @@ public class Activity {
 	private String description;
 	
 	@Enumerated(EnumType.STRING)
-	private ActivityCategory category ;
+
+
 	
+
+	private ActivityCategory activityCategory;
+		
+
 	@OneToMany(cascade = CascadeType.ALL)
 	@Column(name="training_list")
 	private List<Training> trainingList = new ArrayList<>() ; 
@@ -42,7 +46,6 @@ public class Activity {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "activity")
 	@Column(name="course_list")
 	private List<Course> courseList = new ArrayList<>() ; 
-	
 	
 	@ManyToMany
 	@JoinTable(name = "activity_equipment",
@@ -102,6 +105,14 @@ public class Activity {
 
 	public long getId() {
 		return id;
+	}
+
+	public ActivityCategory getActiviteCategory() {
+		return activityCategory;
+	}
+
+	public void setActiviteCategory(ActivityCategory activiteCategory) {
+		this.activityCategory = activiteCategory;
 	} 
 	
 	

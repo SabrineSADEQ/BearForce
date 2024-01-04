@@ -12,6 +12,7 @@ public class SessionUtils {
 	public SessionUtils() {}
 
 	private static final String ADHERENT = "loggedInUser";
+	
 
 
     public static HttpSession getSession() {
