@@ -7,17 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class GymCarac {
+public class GymCaracteristics {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private boolean libreAccess;
+	private boolean freeAccess;
 	private boolean lockerRoom;
 	private String photoList;
-	
-	@OneToOne
-	private IdGym idGym;
 	
 	public Long getId() {
 		return id;
@@ -26,10 +23,10 @@ public class GymCarac {
 		this.id = id;
 	}
 	public boolean isLibreAccess() {
-		return libreAccess;
+		return freeAccess;
 	}
 	public void setLibreAccess(boolean libreAccess) {
-		this.libreAccess = libreAccess;
+		this.freeAccess = libreAccess;
 	}
 	public boolean isLockerRoom() {
 		return lockerRoom;

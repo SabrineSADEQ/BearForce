@@ -16,6 +16,7 @@ public class AccountDao {
 
 	public Account createAccount(AccountViewModel accountVM) {
 		Account accountbean = new Account();
+
 	    accountbean.setEmail(accountVM.getEmail());
 	    // Hash the password before storing it in the database
 	    String hashedPassword = PasswordUtils.hashPassword(accountVM.getPassword());
@@ -45,6 +46,7 @@ public class AccountDao {
 	    entityManager.flush();
 
 	    return accountbean;
+
 
 	}
 

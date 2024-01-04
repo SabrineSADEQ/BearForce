@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,6 +25,9 @@ public class Catalog {
 	
 	private String name ;
 	
+	@Enumerated(EnumType.STRING)
+	private CatalogCategory category ;
+	
 	@OneToMany
 	@Column(name="activity_list")
 	private List<Activity> activityList = new ArrayList<>() ;
@@ -35,6 +40,14 @@ public class Catalog {
 		return id;
 	}
 	
+	public CatalogCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(CatalogCategory category) {
+		this.category = category;
+	}
+
 	public String getName() {
 		return name;
 	}
