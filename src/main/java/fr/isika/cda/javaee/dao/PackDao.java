@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import fr.isika.cda.javaee.entity.platform.Pack;
-import fr.isika.cda.javaee.entity.platform.Pack;
+
 
 
 /**

@@ -1,14 +1,14 @@
 package fr.isika.cda.javaee.account.controller;
 
+
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import fr.isika.cda.javaee.dao.PackDao;
 import fr.isika.cda.javaee.entity.platform.Pack;
-import fr.isika.cda.javaee.entity.platform.Pack;
+
 
 import java.io.Serializable;
 
