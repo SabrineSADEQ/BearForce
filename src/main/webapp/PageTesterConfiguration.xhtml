@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -9,24 +10,25 @@
 
 	<ui:define name="titleValue">Platform configuration</ui:define>
 	<ui:define name="content">
-		<h:form enctype="multipart/form-data">
-			<h2>Create Platform Configuration</h2>
 
-			<h:outputLabel for="platformName">Platform Name:</h:outputLabel>
-			<h:inputText id="platformName"
-				value="#{platformConfigurationController.platformConfiguration.platformName}" />
-			<br />
-
-			<h:outputLabel for="logo">Select Logo:</h:outputLabel>
-			<h:inputFile id="logo"
-				value="#{platformConfigurationController.platformConfiguration.logoURL}" />
-			<br />
+	
 
 
+    <h:form enctype="multipart/form-data">
+        <h2>Create Platform Configuration</h2>
+        
+        <h:outputLabel for="platformName">Platform Name:</h:outputLabel>
+        <h:inputText id="platformName" value="#{platformConfigurationController.platformConfiguration.platformName}" />
+        <br/>
 
-			<h:commandButton value="Create"
-				action="#{platformConfigurationController.createConfiguration()}" />
-		</h:form>
+        <h:outputLabel for="logo">Select Logo:</h:outputLabel>
+        <h:inputFile id="logo" value="#{platformConfigurationController.platformConfiguration.logoURL}" />
+        <br/>
+
+        
+        
+        <h:commandButton value="Create" action="#{platformConfigurationController.createConfiguration()}" />
+    </h:form>
 	</ui:define>
 </ui:composition>
 
