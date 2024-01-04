@@ -14,22 +14,22 @@ import fr.isika.cda.javaee.viewModel.AccountViewModel;
 @SessionScoped
 public class AccountController implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private AccountViewModel accountVM = new AccountViewModel();
+	private AccountViewModel accountVM = new AccountViewModel();
 
-    @Inject
-    private AccountDao accountDao;
+	@Inject
+	private AccountDao accountDao;
 
-    @PostConstruct
-    public void init() {
-        System.out.println("AccountController bean initialized!");
-    }
+	@PostConstruct
+	public void init() {
+		System.out.println("AccountController bean initialized!");
+	}
 
-    public void addAccount() {
-        accountDao.createAccount(accountVM);
-        accountVM = new AccountViewModel();
-    }
+	public void addAccount() {
+		accountDao.createAccount(accountVM);
+		accountVM = new AccountViewModel();
+	}
 
 	public AccountViewModel getAccountVM() {
 		return accountVM;
@@ -38,6 +38,5 @@ public class AccountController implements Serializable {
 	public void setAccountVM(AccountViewModel accountVM) {
 		this.accountVM = accountVM;
 	}
-    
-    
+
 }

@@ -62,4 +62,13 @@ public class Pack {
 	}
 	private String description;
 
+	@Override
+	public String toString() {
+		return "Pack [id=" + id + ", name=" + name + ", price=" + price + ", subscriptions=" + subscriptions
+				+ ", platformConfiguration=" + platformConfiguration + ", services=" + services + ", description="
+				+ description + "]";
+	}
+
+	
+	
 }
