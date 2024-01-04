@@ -1,16 +1,19 @@
+
 package fr.isika.cda.javaee.dao;
+
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import fr.isika.cda.javaee.entity.accounts.Profile;
+
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
 import fr.isika.cda.javaee.presentation.viewmodel.CourseViewModel;
 
 @Stateless
-public class CourseDao {
+public class CourseDAO {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -38,9 +41,25 @@ public class CourseDao {
 	}
 	
 	//!!!!!!!!!!!!!!ATTENTION CHANGER POUR PROFILEDAO UNE FOIS LE DAO EXPORTE!!!!!!!!!!!!!!
-	private Profile findTrainerById(long trainerId) {
-		return activityDao.findTrainerById(trainerId);
+	
+	public void saveCourse(Course course) {
+		entityManager.persist(course);
 	}
 	
-	
+	public Course getCourseByIdJoinActivity(long courseId) {
+		return entityManager
+				.createQuery("SELECT c FROM Course c LEFT JOIN FETCH c.activity WHERE c.id = :courseIdParam",
+						Course.class)
+				.setParameter("courseIdParam", courseId).getSingleResult();
+	}
+
+	public List<Course> getAllCourses() {
+		return entityManager.createQuery("SELECT c FROM Course c", Course.class).getResultList();
+	}
+
+	public List<Course> getAllCoursesWithActivities() {
+		return entityManager.createQuery("SELECT c FROM Course c LEFT JOIN FETCH c.activity", Course.class)
+				.getResultList();
+	}
+
 }

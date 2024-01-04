@@ -1,5 +1,7 @@
 package fr.isika.cda.javaee.entity.platform;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import javax.persistence.CascadeType;
@@ -22,21 +24,21 @@ public class Subscription {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@Column(name = "start_Date")
-	private LocalTime startDate;
+	private LocalDateTime startDate;
 	@Column(name = "end_Date")
-	private LocalTime endDate;
+	private LocalDateTime endDate;
 	@Column(name = "auto_Renewal")
 	private boolean autoRenewal;
 	@Column(name = "duration")
 	private int duration;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	private Membership membership;
+	private Membership membership = new Membership ();
 
 	public Subscription() {
 	}
 
-	public Subscription(LocalTime startDate, LocalTime endDate, boolean autoRenewal, int duration) {
+	public Subscription(LocalDateTime startDate, LocalDateTime endDate, boolean autoRenewal, int duration) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.autoRenewal = autoRenewal;
@@ -47,20 +49,20 @@ public class Subscription {
 		return id;
 	}
 
-	public LocalTime getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(LocalTime startDate) {
-		this.startDate = startDate;
+	public void setStartDate(LocalDateTime localDateTime) {
+		this.startDate = localDateTime;
 	}
 
-	public LocalTime getEndDate() {
+	public LocalDateTime getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalTime endDate) {
-		this.endDate = endDate;
+	public void setEndDate(LocalDateTime localDateTime) {
+		this.endDate = localDateTime;
 	}
 
 	public boolean isAutoRenewal() {
@@ -78,5 +80,16 @@ public class Subscription {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
+
+	public void setMembership(Membership membershipChoisi) {
+		this.membership = membershipChoisi;
+		
+	}
+
+	
+
+	
+
+	
 
 }

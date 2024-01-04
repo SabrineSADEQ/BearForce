@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Home</title>
+</h:head>
+
+<h:body>
+	<h1>Bienvenue sur BearForce !</h1>
+	<hr align="center" width="80%" />
+	
+	<h2>Liste des Cours</h2>
+	
+	<h:form id="coursesTableForm">
+	
+		<h:dataTable value="#{courseController.getAllCourses()}" var="course">
+		
+			<h:column>
+				<f:facet name="header">Nom</f:facet>
+	            #{course.activity.name}
+	        </h:column>
+	        
+			<h:column>
+				<f:facet name="header">Description</f:facet>
+	            #{course.activity.description}
+	        </h:column>
+	        
+			<h:column>
+				<f:facet name="header">Date de début</f:facet>
+	            #{course.startDate}
+	        </h:column>
+	        
+			<h:column>
+				<f:facet name="header">Date de fin</f:facet>
+	            #{course.endDate}
+	        </h:column>
+	        
+			<!--  D'autres colonnes à ajouter si besoin -->
+			
+			<h:column>
+				<f:facet name="header">Actions</f:facet>
+				<h:commandLink value="Voir les détails" />
+			</h:column>
+		</h:dataTable>
+		
+	</h:form>
+	
+</h:body>
+</html>
