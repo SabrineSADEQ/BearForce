@@ -4,47 +4,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
     <title>Create Pack</title>
-    <style>
-        /* Style pour centrer le contenu */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        /* Style pour la mise en forme du formulaire */
-        .form-container {
-            width: 400px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #add8e6;
-        }
-        /* Style pour les labels et les champs */
-        .form-container label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .form-container input[type="text"] {
-            width: calc(100% - 10px);
-            padding: 5px;
-            margin-bottom: 10px;
-        }
-        .form-container input[type="submit"] {
-            padding: 8px 15px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-    </style>
+    
 </head>
 <body>
     <div class="form-container">
         <h:form enctype="multipart/form-data">
-            <h2>Create Platform Configuration</h2>
+            <h2>Creation Pack</h2>
 
 
         <h:panelGrid columns="2">
@@ -52,7 +17,10 @@
             <h:inputText id="description" value="#{packController.pack.description}" />
             
             <h:outputLabel for="name">Name:</h:outputLabel>
-            <h:inputText id="name" value="#{platformConfigurationController.platformConfiguration.platformName}" />
+            <h:inputText id="name" value="#{packController.pack.name}" />
+            
+            <h:outputLabel for="price">Price:</h:outputLabel>
+            <h:inputText id="price" value="#{packController.pack.price}" />
             
             <h:outputLabel for="platformConfiguration">Platform Configuration:</h:outputLabel>
             
