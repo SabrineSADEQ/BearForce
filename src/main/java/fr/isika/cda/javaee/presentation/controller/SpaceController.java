@@ -4,10 +4,11 @@ package fr.isika.cda.javaee.presentation.controller;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.model.file.UploadedFile;
 
 import fr.isika.cda.javaee.dao.SpaceDao;
 import fr.isika.cda.javaee.entity.gymspace.Space;
@@ -18,13 +19,15 @@ import fr.isika.cda.javaee.presentation.viewmodel.SpaceViewModel;
  * @author Floriane D.
  */
 @Named
-@SessionScoped
+@ViewScoped
 public class SpaceController  implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
     private SpaceViewModel spaceViewModel = new SpaceViewModel();
-	
+    
+  //  private transient UploadedFile uploadedFile;
+    
 	@Inject
 	private SpaceDao spaceDao ;
 	
@@ -38,6 +41,13 @@ public class SpaceController  implements Serializable {
 		 spaceViewModel = new SpaceViewModel();
 		 return "spaceIndex";
 	 }
+	 
+//	 public void upload() {
+////		    String fileName = uploadedFile.getFileName();
+////		    String contentType = uploadedFile.getContentType();
+//		    byte[] contents = uploadedFile.getContent(); 
+//		    spaceViewModel.setGymLogo(contents);
+//		}
 	 
 	 public Space getSpaceById(Long id) {
 		Space space = spaceDao.getSpaceById(id);

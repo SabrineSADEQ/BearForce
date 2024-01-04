@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 @Entity 
@@ -13,8 +14,12 @@ public class VisualIdentity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	private String gymLogoURL;
-	private String bannerURL;
+	
+	@Lob
+	private byte[] gymLogo;
+	
+	@Lob
+	private byte[] bannerURL;
 	private String firstColor;
 	private String secondColor;
 	private String thirdColor;
@@ -31,16 +36,17 @@ public class VisualIdentity {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getGymLogoURL() {
-		return gymLogoURL;
+	
+	public byte[] getGymLogo() {
+		return gymLogo;
 	}
-	public void setGymLogoURL(String gymLogoURL) {
-		this.gymLogoURL = gymLogoURL;
+	public void setGymLogo(byte[] gymLogo) {
+		this.gymLogo = gymLogo;
 	}
-	public String getBannerURL() {
+	public byte[] getBannerURL() {
 		return bannerURL;
 	}
-	public void setBannerURL(String bannerURL) {
+	public void setBannerURL(byte[] bannerURL) {
 		this.bannerURL = bannerURL;
 	}
 	public String getFirstColor() {

@@ -24,7 +24,6 @@ public class AccountDao {
 		entityManager.persist(accountbean);
 		entityManager.flush();
 		return accountbean;
-
 	}
 
 	

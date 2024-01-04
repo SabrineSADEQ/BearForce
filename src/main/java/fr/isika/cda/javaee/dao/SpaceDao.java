@@ -33,12 +33,17 @@ public class SpaceDao {
 			gymCaracteristics.setLibreAccess(spaceViewModel.getFreeAccess());
 			gymCaracteristics.setLockerRoom(spaceViewModel.getLockerRoom());
 			
-			//TO DO : add photos to visualIdentity
+			
 			visualIdentity.setFirstColor(spaceViewModel.getFirstColor());
+			//DEBUG//////
+			System.out.println("First color : " + spaceViewModel.getFirstColor());
 			visualIdentity.setSecondColor(spaceViewModel.getSecondColor());
 			visualIdentity.setThirdColor(spaceViewModel.getThirdColor());
 			visualIdentity.setSpaceTextContent(spaceTextContent);
 			
+			
+			//TO DO : add photos to visualIdentity
+			//visualIdentity.setGymLogo(spaceViewModel.getGymLogo());
 			gymIdentity.setGymCaracteristics(gymCaracteristics);
 			
 			space.setIdGym(gymIdentity);
@@ -46,7 +51,6 @@ public class SpaceDao {
 			space.setVisualIdentity(visualIdentity);
 
 			em.persist(spaceTextContent);
-			System.out.println("spacetextcontent persisté");
 			em.persist(gymCaracteristics);
 			em.persist(visualIdentity);
 			em.persist(gymIdentity);

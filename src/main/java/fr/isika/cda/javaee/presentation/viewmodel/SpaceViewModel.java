@@ -6,11 +6,11 @@ public class SpaceViewModel {
 	private Long id;
 	
 	//VisualIdentity attributes
-	private String gymLogoURL;
-	private String bannerURL;
 	private String firstColor;
 	private String secondColor;
 	private String thirdColor;
+	private byte[] gymLogo ;
+	private byte[] gymBanner ;
 	
 	//SpaceTextContent attributes
 	private String spaceName;
@@ -22,21 +22,20 @@ public class SpaceViewModel {
 	private boolean lockerRoom;
 	private String photoList;
 	
-	public String getGymLogoURL() {
-		return gymLogoURL;
+	
+	public byte[] getGymLogo() {
+		return gymLogo;
 	}
-
-	public void setGymLogoURL(String gymLogoURL) {
-		this.gymLogoURL = gymLogoURL;
+	public void setGymLogo(byte[] gymLogo) {
+		this.gymLogo = gymLogo;
 	}
-
-	public String getBannerURL() {
-		return bannerURL;
+	public byte[] getGymBanner() {
+		return gymBanner;
 	}
-
-	public void setBannerURL(String bannerURL) {
-		this.bannerURL = bannerURL;
+	public void setGymBanner(byte[] gymBanner) {
+		this.gymBanner = gymBanner;
 	}
+	
 
 	public String getFirstColor() {
 		return firstColor;
