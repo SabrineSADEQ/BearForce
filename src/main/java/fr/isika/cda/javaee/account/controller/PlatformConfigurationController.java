@@ -10,6 +10,12 @@ import javax.inject.Named;
 import fr.isika.cda.javaee.dao.PlatformConfigurationDao;
 import fr.isika.cda.javaee.entity.platform.PlatformConfiguration;
 
+/**
+ * 
+ * @author Sabrine SADEQ
+ *
+ */
+
 @Named
 @ViewScoped
 public class PlatformConfigurationController implements Serializable {
