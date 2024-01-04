@@ -47,8 +47,6 @@ public class AccountViewModel {
 	}
 	public void setConnected(boolean connected) {
 		this.connected = connected;
-	}
-	
-	
+	}	
 
 }

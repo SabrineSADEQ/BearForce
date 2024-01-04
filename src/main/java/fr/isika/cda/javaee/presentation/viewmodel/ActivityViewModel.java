@@ -1,54 +1,55 @@
 package fr.isika.cda.javaee.presentation.viewmodel;
 
+import java.util.ArrayList;
 import java.util.List;
-import fr.isika.cda.javaee.dao.ActivityDao;
-import fr.isika.cda.javaee.entity.gymspace.business.Activity;
+import fr.isika.cda.javaee.entity.gymspace.business.ActivityCategory;
+import fr.isika.cda.javaee.entity.gymspace.business.Course;
+import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
+import fr.isika.cda.javaee.entity.gymspace.business.Training;
 
 public class ActivityViewModel {
 	
-	private ActivityDao activityDao;
-	private Activity newActivity = new Activity();
-	private List<Activity> activities;
+	private Long id;
+	private String name;
+	private String description;
+	private ActivityCategory activityCategory;
+	private List<Course> courseList = new ArrayList<>() ;
+	private List<Equipment> equipmentList = new ArrayList<>() ;
 	
-	public ActivityViewModel(ActivityDao activityDao) {
-		this.activityDao = activityDao;
-		refreshActivitiesList();		
+	//***************GETTERS & SETTERS***************
+	public String getName() {
+		return name;
 	}
-	
-	public void addActivity() {
-		newActivity = new Activity();
-		refreshActivitiesList();
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	private void refreshActivitiesList() {
-		activities = activityDao.getAllActivities();
+	public String getDescription() {
+		return description;
 	}
-
-	//***************GETTERS & SETTERS**************
-	public ActivityDao getActivityDao() {
-		return activityDao;
-	}
-
-	public void setActivityDao(ActivityDao activityDao) {
-		this.activityDao = activityDao;
-	}
-
-	public Activity getNewActivity() {
-		return newActivity;
-	}
-
-	public void setNewActivity(Activity newActivity) {
-		this.newActivity = newActivity;
-	}
-
-	public List<Activity> getActivities() {
-		return activities;
-	}
-
-	public void setActivities(List<Activity> activities) {
-		this.activities = activities;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
+	public List<Course> getCourseList() {
+		return courseList;
+	}
+	public void setCourseList(List<Course> courseList) {
+		this.courseList = courseList;
+	}
+	public List<Equipment> getEquipmentList() {
+		return equipmentList;
+	}
+	public void setEquipmentList(List<Equipment> equipmentList) {
+		this.equipmentList = equipmentList;
+	}
+	public Long getId() {
+		return id;
+	}
+	public ActivityCategory getActivityCategory() {
+		return activityCategory;
+	}
+	public void setActivityCategory(ActivityCategory activityCategory) {
+		this.activityCategory = activityCategory;
+	}	
 	
-
 }

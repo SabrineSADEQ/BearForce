@@ -12,15 +12,27 @@
 <h:body>
 	<h1>Créer une activité</h1>
 	<hr align="center" width="80%" />
-	 <h:form>
-        <h:inputText value="#{activityController.activityViewModel.newActivity.name}" />
-        <h:commandButton value="Ajouter une activité" action="#{activityController.activityViewModel.addActivity}" />
-    </h:form>
-
-    <h:dataTable value="#{activityController.activityViewModel.activities}" var="activity">
-        <h:column>
-            #{activity.name}
-        </h:column>
-    </h:dataTable>
+	<h:form>
+		<h:outputLabel for="name">Nom :</h:outputLabel>
+		<h:inputText id="name"
+			value="#{activityController.activityViewModel.name}" />
+		<br />
+		<h:outputLabel for="description">Description :</h:outputLabel>
+		<h:inputText id="description"
+			value="#{activityController.activityViewModel.description}" />
+		<br />
+		<h:outputLabel for="activityCategory">Catégorie :</h:outputLabel>
+		<h:selectOneMenu
+			value="#{activityController.activityViewModel.activityCategory}">
+			<f:selectItem itemLabel="Sélectionnez une catégorie" itemValue="null"
+				noSelectionOption="true" />
+			<f:selectItems value="#{activityController.getActivityCategories()}"
+				var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
+		</h:selectOneMenu>
+		<br />
+		<h:commandButton value="Créer l'activité"
+			action="#{activityController.addActivity()}" />
+	</h:form>
+	<h:link outcome="index" value="Index" />
 </h:body>
 </html>
