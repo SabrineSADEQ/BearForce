@@ -6,7 +6,9 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 <h:head>
-	<title>JSF Templating and styling</title>
+	<title>
+		<ui:insert name="titleValue"></ui:insert>
+	</title>
 	<h:outputStylesheet library="css" name="main/mainStyle.css" />
 </h:head>
 
