@@ -19,19 +19,22 @@ import fr.isika.cda.javaee.viewModel.AccountViewModel;
 @SessionScoped
 public class AccountController implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
+
 
     private AccountViewModel accountVM = new AccountViewModel();
     private int wizardStep = 1; // Initialize the wizard step to 1
     private boolean wizardMode = true; // Set initial wizard mode to true
 
-    @Inject
-    private AccountDao accountDao;
 
-    @PostConstruct
-    public void init() {
-        System.out.println("AccountController bean initialized!");
-    }
+	@Inject
+	private AccountDao accountDao;
+
+	@PostConstruct
+	public void init() {
+		System.out.println("AccountController bean initialized!");
+	}
+
 
     public void addAccount() {
     	 accountDao.createAccount(accountVM);
@@ -67,9 +70,11 @@ public class AccountController implements Serializable {
         accountVM = new AccountViewModel();
     }
 
+
     public AccountViewModel getAccountVM() {
         return accountVM;
     }
+
 
     public void setAccountVM(AccountViewModel accountVM) {
         this.accountVM = accountVM;
@@ -87,3 +92,4 @@ public class AccountController implements Serializable {
         this.wizardMode = wizardMode;
     }
 }
+
