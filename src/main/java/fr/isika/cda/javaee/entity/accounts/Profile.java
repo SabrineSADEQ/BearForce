@@ -27,16 +27,21 @@ public class Profile {
 	@Column(name = "picture_url")
 	private String pictureUrl;
 	@OneToOne(cascade = CascadeType.ALL)
-	private Contact contact;
+	private Contact contact = new Contact();
 	@OneToOne(cascade = CascadeType.ALL)
-	private Address address;
+	private Address address = new Address();
 	@OneToOne(cascade = CascadeType.ALL)
-	private ProfessionalDetails profesionalDetails;
+	private ProfessionalDetails profesionalDetails = new ProfessionalDetails();
 	
 	@OneToOne
 	  private Account account;
 
-	    public void setAccount(Account account) {
+	    public Account getAccount() {
+		return account;
+	}
+
+
+		public void setAccount(Account account) {
 	        this.account = account;
 	    }
 

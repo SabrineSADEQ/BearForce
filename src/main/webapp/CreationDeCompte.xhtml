@@ -37,23 +37,74 @@
             <h:outputLabel for="password">Password:</h:outputLabel>
             <h:inputSecret id="password" value="#{accountController.accountVM.password}" required="true" class="form-control"/>
         </div>
-        
+          <h:outputLabel for="role">Role:</h:outputLabel>
+        <h:selectOneRadio id="role" value="#{accountController.accountVM.role}" required="true">
+         <f:selectItem itemValue="GESTIONNAIRE" itemLabel="Profesionnel" />
+           <f:selectItem itemValue="VISITEUR" itemLabel="Particulier" />
+            </h:selectOneRadio>
         <h:commandButton value="Next" action="#{accountController.nextWizardStep}" class="btn btn-primary"/>
     </h:form>
 
     <!-- Step 2: Collect Name and Firstname -->
-    <h:form rendered="#{accountController.wizardStep == 2}" class="container mt-5">
-        <h:outputLabel value="Step 2: Enter prenom and nom" class="mb-3"/>
+   <h:form rendered="#{accountController.wizardStep == 2}" class="container mt-5">
+    <h:outputLabel value="Step 2: Enter prenom and nom" class="mb-3"/>
+    
+    <div class="form-group">
+        <h:outputLabel for="name">Name:</h:outputLabel>
+        <h:inputText id="nameStep2" value="#{accountController.accountVM.profile.firstName}" required="true" class="form-control"/>
+    </div>
+    
+    <div class="form-group">
+        <h:outputLabel for="firstname">Firstname:</h:outputLabel>
+        <h:inputText id="firstnameStep2" value="#{accountController.accountVM.profile.lastName}" required="true" class="form-control"/>
+    </div>
+    
+    <div class="form-group">
+        <h:outputLabel for="birthDate">Birth Date:</h:outputLabel>
+        <!-- Use HTML5 date input -->
+        <input type="date" id="birthDateStep2" name="birthDate" 
+               value="#{accountController.accountVM.profile.birthDate}" required="true" class="form-control"/>
+    </div>
+    
+    <div class="form-group">
+        <h:outputLabel for="phone">Phone:</h:outputLabel>
+        <h:inputText id="phoneStep2" value="#{accountController.accountVM.profile.contact.phone}" required="true" class="form-control"/>
+    </div>
+    
+    <div class="form-group">
+        <h:outputLabel for="email">Email:</h:outputLabel>
+        <h:inputText id="emailStep2" value="#{accountController.accountVM.profile.contact.email}" required="true" class="form-control"/>
+    </div>
+    
+    <div class="form-group">
+        <h:outputLabel for="typeContact">Type of Contact:</h:outputLabel>
+        <!-- Use h:selectOneMenu for enum dropdown -->
+        <h:selectOneMenu id="typeContactStep2" value="#{accountController.accountVM.profile.contact.type}">
+            <f:selectItem itemValue="PERSO" itemLabel="Personal"/>
+            <f:selectItem itemValue="PRO" itemLabel="Professional"/>
+        </h:selectOneMenu>
+    </div>
+
+    <div class="form-group">
+        <h:outputLabel for="streetNumber">Street Number:</h:outputLabel>
+        <h:inputText id="streetNumberStep2" value="#{accountController.accountVM.profile.address.streetNumber}" required="true" class="form-control"/>
+    </div>
+    
+    <div class="form-group">
+        <h:outputLabel for="streetName">Street Name:</h:outputLabel>
+        <h:inputText id="streetNameStep2" value="#{accountController.accountVM.profile.address.streetName}" required="true" class="form-control"/>
+    </div>
+    
+    <div class="form-group">
+        <h:outputLabel for="postalCode">Postal Code:</h:outputLabel>
+        <h:inputText id="postalCodeStep2" value="#{accountController.accountVM.profile.address.postalCode}" required="true" class="form-control"/>
+    </div><div class="form-group">
+        <h:outputLabel for="city">Ville:</h:outputLabel>
+        <h:inputText id="city" value="#{accountController.accountVM.profile.address.city}" required="true" class="form-control"/>
+    </div>
+    
+    
         
-        <div class="form-group">
-            <h:outputLabel for="name">Name:</h:outputLabel>
-            <h:inputText id="name" value="#{accountController.accountVM.profile.firstName}" required="true" class="form-control"/>
-        </div>
-        
-        <div class="form-group">
-            <h:outputLabel for="firstname">Firstname:</h:outputLabel>
-            <h:inputText id="firstname" value="#{accountController.accountVM.profile.lastName}" required="true" class="form-control"/>
-        </div>
         
         <h:commandButton value="Previous" action="#{accountController.previousWizardStep}" class="btn btn-secondary"/>
         <h:commandButton value="Finish" action="#{accountController.finishWizard}" class="btn btn-primary"/>
@@ -86,7 +137,7 @@
 </h:form>
 
 <!-- Test Link -->
-<a href="index.xhtml" class="container mt-3">Test</a>
+<a href="index.xhtml" class="container mt-3">index</a>
 
 <!-- Welcome Panel -->
 <h:panelGroup rendered="#{loginController.loggedIn}" class="container mt-3">

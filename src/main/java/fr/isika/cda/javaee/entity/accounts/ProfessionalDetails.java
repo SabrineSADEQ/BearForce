@@ -12,21 +12,21 @@ import javax.persistence.Table;
  * 
  * @author Yoann FRANCOIS
  *
- */
-@Entity
-@Table(name ="professional_details")
-public class ProfessionalDetails {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-	@Column(name = "coach_certification")
-	private String coachCertification;
-	@Column(name = "coach_form")
-	private String coachForm;
-	@Column(name = "coach_cv")
-	private String coachCV;
-	@OneToOne
-	private Profile profile;
+	 */
+	@Entity
+	@Table(name ="professional_details")
+	public class ProfessionalDetails {
+		@Id
+		@GeneratedValue(strategy=GenerationType.AUTO)
+		private Long id;
+		@Column(name = "coach_certification")
+		private String coachCertification;
+		@Column(name = "coach_form")
+		private String coachForm;
+		@Column(name = "coach_cv")
+		private String coachCV;
+		@OneToOne
+		private Profile profile;
 	
 	public Profile getProfile() {
 		return profile;

@@ -27,6 +27,11 @@ public class AccountDao {
 	    Profile profile = new Profile();
 	    profile.setFirstName(accountVM.getProfile().getFirstName());
 	    profile.setLastName(accountVM.getProfile().getLastName());
+	    
+	    profile.setBirthDate(accountVM.getProfile().getBirthDate());
+	    profile.setContact(accountVM.getProfile().getContact());
+	    profile.setAddress(accountVM.getProfile().getAddress());
+	    profile.setProfesionalDetails(accountVM.getProfile().getProfesionalDetails());
 	    // Set other profile attributes as needed
 
 	    // Set the profile to the account and vice versa
