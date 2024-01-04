@@ -1,0 +1,293 @@
+.form-link {
+
+    width: 100%;
+
+    text-align: right;
+
+    padding-bottom: 5px;
+
+    padding-right: 5px;
+
+    margin-right: 13px;
+
+}
+
+
+
+
+
+    .form-link a {
+
+        text-decoration: none !important;
+
+        color: var(--blue);
+
+    }
+
+
+
+        .form-link a:hover {
+
+            color: var(--darkColor);
+
+        }
+
+
+
+
+
+.form-table {
+
+    border-collapse: collapse;
+
+    width: 100%;
+
+    border-radius: 15px;
+
+    overflow: hidden; /* Ensure rounded corners are visible */
+
+}
+
+
+
+    .form-table td, #form_table th {
+
+        padding: 8px;
+
+        overflow-x: auto;
+
+        padding-right: 20px;
+
+        padding-left: 20px;
+
+    }
+
+
+
+    .form-table tr:nth-child(even) {
+
+        background-color: #f2f2f2;
+
+    }
+
+
+
+    .form-table tr:hover {
+
+        background-color: var(--lightGrey);
+
+    }
+
+
+
+    .form-table th {
+
+        padding-top: 12px;
+
+        padding-bottom: 12px;
+
+        padding-left:12px;
+
+        padding-right:12px;
+
+        text-align: left;
+
+        background-color: var(--blue);
+
+        color: white;
+
+    }
+
+
+
+
+
+.form-container {
+
+    background-color: var(--white);
+
+    padding: 20px;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+    border-radius: 15px;
+
+}
+
+
+
+
+
+.form-content {
+
+    font-size: 16px;
+
+    padding: 5px;
+
+}
+
+
+
+.form-container-details {
+
+    background-color: var(--white);
+
+    padding: 20px;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+    border-radius: 15px;
+
+    display:block;
+
+}
+
+
+
+.form-content-details {
+
+    font-size: 16px;
+
+}
+
+
+
+.form-label {
+
+    padding-left: 10px; 
+
+    color: var(--blue);
+
+}
+
+
+
+.form-input {
+
+    font-size: 16px;
+
+    color: var(--darkColor);
+
+    font-family: 'Nunito';
+
+    border-radius: 15px;
+
+    padding-left: 8px;
+
+    padding-right: 8px;
+
+    padding-top: 4px;
+
+    padding-bottom: 4px;
+
+    border-color: var(--lightGrey);
+
+    display: table-column;
+
+    width: 100%;
+
+}
+
+
+
+textarea:focus, input:focus {
+
+    outline-color: var(--blue);
+
+}
+
+
+
+.form-error {
+
+    color: red;
+
+}
+
+
+
+.form-button {
+
+    font-family: 'Nunito';
+
+    font-size: 16px;
+
+    border-radius: 15px;
+
+    padding-left: 15px;
+
+    padding-right: 15px;
+
+    padding-top: 4px;
+
+    padding-bottom: 4px;
+
+    margin-top: 10px;
+
+    margin-left: 5px;
+
+    border: hidden;
+
+    color: var(--darkColor);
+
+    background-color: var(--lightGrey);
+
+}
+
+
+
+    .form-button:hover {
+
+        background-color: var(--blue);
+
+        text-decoration: none;
+
+        color: var(--white);
+
+    }
+
+
+
+
+
+.form-dropdown {
+
+    border-radius: 15px;
+
+    padding: 5px;
+
+    border-color: var(--lightGrey);
+
+    font-size: 16px;
+
+    color: var(--darkColor);
+
+    font-family: 'Nunito';
+
+    border-radius: 15px;
+
+    padding-left: 8px;
+
+    padding-right: 8px;
+
+    padding-top: 4px;
+
+    padding-bottom: 4px;
+
+    border-color: var(--lightGrey);
+
+    display: table-column;
+
+    width: 100%;
+
+}
+
+
+
+    .form-dropdown:focus {
+
+        border-color: var(--blue);
+
+        outline-color: var(--blue);
+
+    }

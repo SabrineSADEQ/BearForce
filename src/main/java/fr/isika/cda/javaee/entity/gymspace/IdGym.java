@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,10 +27,38 @@ public class IdGym {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<Membership> memberships;
 	
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<AdminGym> adminsGym;
+	@OneToOne
+	private AdminInfoGym adminInfoGym;
+	
+	@OneToOne
+	private GymCaracteristics gymCaracteristics;
 	
 	
+	
+	public GymCaracteristics getGymCaracteristics() {
+		return gymCaracteristics;
+	}
+
+	public void setGymCaracteristics(GymCaracteristics gymCaracteristics) {
+		this.gymCaracteristics = gymCaracteristics;
+	}
+
+	public List<Membership> getMemberships() {
+		return memberships;
+	}
+
+	public void setMemberships(List<Membership> memberships) {
+		this.memberships = memberships;
+	}
+
+	public AdminInfoGym getAdminInfoGym() {
+		return adminInfoGym;
+	}
+
+	public void setAdminInfoGym(AdminInfoGym adminInfoGym) {
+		this.adminInfoGym = adminInfoGym;
+	}
+
 	public IdGym() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -2,7 +2,6 @@ package fr.isika.cda.javaee.entity.gymspace.business;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,23 +20,25 @@ public class Equipment {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id ;
 	
-	private String type ;
-	private int quantity ;
+	// Eviter le mot clé "condition" apparemment dans mysql
+	@Column(name = "usageCondition")
+	private String condition ;
 	
+	private int quantity ;	
 	@Column(name="equipment_name")
 	private String equipmentName;
 	private String details ;
 	
 	@ManyToMany(mappedBy = "equipmentList")
-	@Column(name="activity_list")
+	//@Column(name="activity_list")
 	private List<Activity> activityList = new ArrayList<>() ;
 
-	public String getType() {
-		return type;
+	public String getCondition() {
+		return condition;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setCondition(String condition) {
+		this.condition = condition;
 	}
 
 	public int getQuantity() {
@@ -75,7 +76,7 @@ public class Equipment {
 	public long getId() {
 		return id;
 	}
-	
+
 	
 	
 }

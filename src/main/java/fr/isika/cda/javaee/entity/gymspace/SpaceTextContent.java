@@ -7,7 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
-
+/**
+ * 
+ * @author Bitjoka Vincent
+ */
 @Entity
 public class SpaceTextContent {
 
@@ -17,12 +20,7 @@ public class SpaceTextContent {
 	private String spaceName;
 	private String motto;
 	@Lob
-	private String textArea;
-	
-	
-	@OneToOne
-	@JoinColumn(name = "visualIdentity_id")
-	private VisualIdentity visualIdentity;
+	private String description;
 
 	public String getMotto() {
 		return motto;
@@ -37,10 +35,6 @@ public class SpaceTextContent {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getSpaceName() {
 		return spaceName;
 	}
@@ -49,12 +43,12 @@ public class SpaceTextContent {
 		this.spaceName = spaceName;
 	}
 
-	public String getTextArea() {
-		return textArea;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setTextArea(String textArea) {
-		this.textArea = textArea;
+	public void setDescription(String textArea) {
+		this.description = textArea;
 	}
 
 }

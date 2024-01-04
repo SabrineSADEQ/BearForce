@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="FolderCss/CssForForm.css"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- Step 1: Collect Email and Password -->
+    <h:form rendered="#{accountController.wizardStep == 1}" >
+        <h:outputLabel value="Step 1: Enter Email"/>
+        
+        <div>
+            <h:outputLabel for="email">Email:</h:outputLabel>
+            <h:inputText id="email" value="#{accountController.accountVM.email}" required="true"/>
+        </div>
+        
+        <div>
+            <h:outputLabel for="password">Password:</h:outputLabel>
+            <h:inputSecret id="password" value="#{accountController.accountVM.password}" required="true"/>
+        </div>
+        
+        <h:outputLabel for="role">Role:</h:outputLabel>
+        <h:selectOneRadio id="role" value="#{accountController.accountVM.role}" required="true">
+            <f:selectItem itemValue="GESTIONNAIRE" itemLabel="Profesionnel" />
+            <f:selectItem itemValue="VISITEUR" itemLabel="Particulier" />
+        </h:selectOneRadio>
+        
+        <h:commandButton value="Next" action="#{accountController.nextWizardStep}"/>
+    </h:form>
+
+    <!-- Step 2: Collect Name and Firstname -->
+    <h:form rendered="#{accountController.wizardStep == 2}">
+        <h:outputLabel value="Step 2: Enter prenom and nom"/>
+        
+        <div>
+            <h:outputLabel for="name">Name:</h:outputLabel>
+            <h:inputText id="nameStep2" value="#{accountController.accountVM.profile.firstName}" required="true"/>
+        </div>
+        
+        <div>
+            <h:outputLabel for="firstname">Firstname:</h:outputLabel>
+            <h:inputText id="firstnameStep2" value="#{accountController.accountVM.profile.lastName}" required="true"/>
+        </div>
+        
+        <div>
+            <h:outputLabel for="birthDate">Birth Date:</h:outputLabel>
+            <!-- Use HTML5 date input -->
+            <input type="date" id="birthDateStep2" name="birthDate" 
+                   value="#{accountController.accountVM.profile.birthDate}" required="true"/>
+        </div>
+        
+        <div>
+            <h:outputLabel for="phone">Phone:</h:outputLabel>
+            <h:inputText id="phoneStep2" value="#{accountController.accountVM.profile.contact.phone}" required="true"/>
+        </div>
+        
+        <div>
+            <h:outputLabel for="email">Email:</h:outputLabel>
+            <h:inputText id="emailStep2" value="#{accountController.accountVM.profile.contact.email}" required="true"/>
+        </div>
+        
+        <div>
+            <h:outputLabel for="typeContact">Type of Contact:</h:outputLabel>
+            <!-- Use h:selectOneMenu for enum dropdown -->
+            <h:selectOneMenu id="typeContactStep2" value="#{accountController.accountVM.profile.contact.type}">
+                <f:selectItem itemValue="PERSO" itemLabel="Personal"/>
+                <f:selectItem itemValue="PRO" itemLabel="Professional"/>
+            </h:selectOneMenu>
+        </div>
+
+        <div>
+            <h:outputLabel for="streetNumber">Street Number:</h:outputLabel>
+            <h:inputText id="streetNumberStep2" value="#{accountController.accountVM.profile.address.streetNumber}" required="true"/>
+        </div>
+        
+        <div>
+            <h:outputLabel for="streetName">Street Name:</h:outputLabel>
+            <h:inputText id="streetNameStep2" value="#{accountController.accountVM.profile.address.streetName}" required="true"/>
+        </div>
+        
+        <div>
+            <h:outputLabel for="postalCode">Postal Code:</h:outputLabel>
+            <h:inputText id="postalCodeStep2" value="#{accountController.accountVM.profile.address.postalCode}" required="true"/>
+        </div>
+        
+        <div>
+            <h:outputLabel for="city">Ville:</h:outputLabel>
+            <h:inputText id="city" value="#{accountController.accountVM.profile.address.city}" required="true"/>
+        </div>
+        
+        <h:commandButton value="Previous" action="#{accountController.previousWizardStep}"/>
+        <h:commandButton value="Finish" action="#{accountController.finishWizard}"/>
+        <h:messages globalOnly="true"/>
+    </h:form>
+
+    <h:form>
+        <h2>Login</h2>
+        
+        <div>
+            <h:outputLabel for="email">Email:</h:outputLabel>
+            <h:inputText id="email" value="#{loginController.accountVM.email}" required="true"/>
+        </div>
+        
+        <div>
+            <h:outputLabel for="password">Password:</h:outputLabel>
+            <h:inputSecret id="password" value="#{loginController.accountVM.password}" required="true"/>
+        </div>
+        
+        <h:commandButton value="Login" action="#{loginController.validateAccount}"/>
+    </h:form>
+
+<!-- Logout Form -->
+<h:form id="logoutForm" class="container mt-3">
+    <ui:fragment rendered="#{loginController.loggedIn}">
+        <h:commandButton value="Logout" action="#{loginController.logout()}" />
+    </ui:fragment>
+</h:form>
+
+<!-- Test Link -->
+<a href="index.xhtml">index</a>
+
+<!-- Welcome Panel -->
+<h:panelGroup rendered="#{loginController.loggedIn}">
+    <div>
+        Welcome, #{loginController.getLoggedAccount().email}!
+        Welcome, #{loginController.getLoggedAccount().role}!
+    </div>
+</h:panelGroup>
+
+    
+</body>
+
+</html>

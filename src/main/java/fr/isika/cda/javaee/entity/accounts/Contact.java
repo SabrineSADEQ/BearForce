@@ -6,6 +6,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,6 +25,9 @@ public class Contact {
 	
 	@Enumerated(EnumType.STRING)
 	private TypeContact type;
+	
+	@OneToOne
+	private Profile profile;
 	
 	//***************GETTERS & SETTERS***************
 	public String getPhone() {

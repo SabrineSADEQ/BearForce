@@ -12,7 +12,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import fr.isika.cda.javaee.entity.accounts.SuperAdmin;
-
+/**
+ * 
+ * @author Bitjoka Vincent
+ */
 @Entity
 public class PlatformConfiguration {
 	
