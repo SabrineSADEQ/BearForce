@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Créer un équipement</title>
+</h:head>
+
+<h:body>
+	<h1>Créer un équipement</h1>
+	<hr align="center" width="80%" />
+	<h:form>
+		<h:outputLabel for="equipmentName">Equipement :</h:outputLabel>
+		<h:inputText id="equipmentName"
+			value="#{equipmentController.equipmentViewModel.equipmentName}" />
+		<br />
+		<h:outputLabel for="quantity">Quantité :</h:outputLabel>
+		<h:inputText id="quantity"
+			value="#{equipmentController.equipmentViewModel.quantity}" />
+		<br />
+		<h:outputLabel for="details">Détails :</h:outputLabel>
+		<h:inputText id="details"
+			value="#{equipmentController.equipmentViewModel.details}" />
+		<br />
+		<h:outputLabel for="type">Etat :</h:outputLabel>
+		<h:inputText id="type"
+			value="#{equipmentController.equipmentViewModel.condition}" />
+			<br />
+		<h:commandButton value="Créer l'equipement"
+			action="#{equipmentController.addEquipement()}" />
+	</h:form>
+	<br />
+	<h:link outcome="index" value="Index" />
+</h:body>
+</html>

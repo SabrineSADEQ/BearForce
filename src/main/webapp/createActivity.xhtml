@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Créer une activité</title>
+</h:head>
+
+<h:body>
+	<h1>Créer une activité</h1>
+	<hr align="center" width="80%" />
+	<h:form>
+		<h:outputLabel for="name">Nom :</h:outputLabel>
+		<h:inputText id="name"
+			value="#{activityController.activityViewModel.name}" />
+		<br />
+		<h:outputLabel for="description">Description :</h:outputLabel>
+		<h:inputText id="description"
+			value="#{activityController.activityViewModel.description}" />
+		<br />
+		<h:outputLabel for="activityCategory">Catégorie :</h:outputLabel>
+		<h:selectOneMenu
+			value="#{activityController.activityViewModel.activityCategory}">
+			<f:selectItem itemLabel="Sélectionnez une catégorie" itemValue="null"
+				noSelectionOption="true" />
+			<f:selectItems value="#{activityController.getActivityCategories()}"
+				var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
+		</h:selectOneMenu>
+		<br />
+		<h:commandButton value="Créer l'activité"
+			action="#{activityController.addActivity()}" />
+	</h:form>
+	<h:link outcome="index" value="Index" />
+</h:body>
+</html>

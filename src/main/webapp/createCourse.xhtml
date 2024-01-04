@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Créer un cours</title>
+</h:head>
+
+<h:body>
+	<h1>Créer un cours</h1>
+	<hr align="center" width="80%" />
+	<h:form id="courseForm">
+		<h:outputLabel for="activity">Activité :</h:outputLabel>
+		<h:selectOneMenu id="activity"
+			value="#{courseController.courseViewModel.activityId}">
+			<f:selectItem itemLabel="Sélectionnez une activité" itemValue="null"
+				noSelectionOption="true" />
+			<f:selectItems value="#{activityController.displayActivitiesList()}"
+				var="act" itemLabel="#{act.name}" itemValue="#{act.id}" />
+		</h:selectOneMenu>
+		<br />
+		<h:outputLabel for="startDate">Début :</h:outputLabel>
+		<p:calendar value="#{courseController.courseViewModel.startDate}"
+			pattern="MM/dd/yyyy HH:mm" showOn="button" />
+		<br />
+		<h:outputLabel for="endDate">Fin :</h:outputLabel>
+		<p:calendar value="#{courseController.courseViewModel.endDate}"
+			pattern="MM/dd/yyyy HH:mm" showOn="button" />
+		<br />
+		<!-- ATTENTION CHANGER POUR PROFILE CONTROLLER 
+		<h:outputLabel for="activity">Coach :</h:outputLabel>
+		<h:selectOneMenu id="trainer"
+			value="#{courseController.courseViewModel.trainerId}">
+			<f:selectItem itemLabel="Sélectionnez un coach" itemValue="null"
+				noSelectionOption="true" />
+			
+			<f:selectItems value="#{activityController.displayTrainersList()}"
+				var="act" itemLabel="#{act.firstName} #{act.lasName}"
+				itemValue="#{act.id}" />
+		</h:selectOneMenu> -->
+		<br />
+		<h:outputLabel for="nbrPlace">Nombre de places :</h:outputLabel>
+		<h:inputText id="nbrPlace"
+			value="#{courseController.courseViewModel.nbPlaces}">
+		</h:inputText>
+		<br />
+		<h:commandButton value="Créer le cours"
+			action="#{courseController.addCourse()}" />
+	</h:form>
+	<h:link outcome="index" value="Index" />
+</h:body>
+</html>
