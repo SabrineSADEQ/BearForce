@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,7 +25,15 @@ public class ProfessionalDetails {
 	private String coachForm;
 	@Column(name = "coach_cv")
 	private String coachCV;
+	@OneToOne
+	private Profile profile;
 	
+	public Profile getProfile() {
+		return profile;
+	}
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
 	//***************GETTERS & SETTERS***************
 	public String getCoachCertification() {
 		return coachCertification;

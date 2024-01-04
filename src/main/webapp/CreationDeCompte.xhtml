@@ -1,68 +1,102 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Registration Form</title>
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
 </head>
 
 <body>
-<h:form>
-        <h2>Créer mon compte</h2>
+    <!-- Step 1: Collect Email and Password -->
+    <h:form rendered="#{accountController.wizardStep == 1}" class="container mt-5">
+        <h:outputLabel value="Step 1: Enter Email" class="mb-3"/>
         
-        <h:outputLabel for="email">Email:</h:outputLabel>
-        <h:inputText id="email" value="#{accountController.accountVM.email}" required="true" />
-        <br/>
-
-        <h:outputLabel for="password">Password:</h:outputLabel>
-        <h:inputSecret id="password" value="#{accountController.accountVM.password}" required="true" />
-        <br/>
-
-        <h:outputLabel for="role">Role:</h:outputLabel>
-        <h:selectOneRadio id="role" value="#{accountController.accountVM.role}" required="true">
-            <f:selectItem itemValue="VISITEUR" itemLabel="PARTICULIER" />
-            <f:selectItem itemValue="GESTIONNAIRE" itemLabel="GESTIONNAIRE" />
-            </h:selectOneRadio>
-        <br/>
-
-        <h:commandButton value="valider" action="#{accountController.addAccount}"/>
-    </h:form>
-     <h:form>
-        <h2>Login</h2>
-        
-        <h:outputLabel for="email">Email:</h:outputLabel>
-        <h:inputText id="email" value="#{loginController.accountVM.email}" required="true" />
-        <br/>
-
-        <h:outputLabel for="password">Password:</h:outputLabel>
-        <h:inputSecret id="password" value="#{loginController.accountVM.password}" required="true" />
-        <br/>
-
-        <h:commandButton value="Login" action="#{loginController.validateAccount}" />
-        
-    </h:form>
-    
-    <h:form id="logoutForm">
-        <ui:fragment rendered="#{loginController.loggedIn}">
-              <h:commandButton value="Logout" action="#{loginController.logout()}" />
-        </ui:fragment>
-    </h:form>
-    
-    
-    <a href="index.xhtml">Test</a>
-    <br/>
-    
-    <h:panelGroup rendered="#{loginController.loggedIn}">
-        <div style="width: 100%; height: 100px; background-color: lightblue; text-align: center; line-height: 100px;">
-            Welcome, #{loginController.getLoggedAccount().email}!
-            Welcome, #{loginController.getLoggedAccount().role}!
+        <div class="form-group">
+            <h:outputLabel for="email">Email:</h:outputLabel>
+            <h:inputText id="email" value="#{accountController.accountVM.email}" required="true" class="form-control"/>
         </div>
-    </h:panelGroup>
+        
+        <div class="form-group">
+            <h:outputLabel for="password">Password:</h:outputLabel>
+            <h:inputSecret id="password" value="#{accountController.accountVM.password}" required="true" class="form-control"/>
+        </div>
+        
+        <h:commandButton value="Next" action="#{accountController.nextWizardStep}" class="btn btn-primary"/>
+    </h:form>
+
+    <!-- Step 2: Collect Name and Firstname -->
+    <h:form rendered="#{accountController.wizardStep == 2}" class="container mt-5">
+        <h:outputLabel value="Step 2: Enter prenom and nom" class="mb-3"/>
+        
+        <div class="form-group">
+            <h:outputLabel for="name">Name:</h:outputLabel>
+            <h:inputText id="name" value="#{accountController.accountVM.profile.firstName}" required="true" class="form-control"/>
+        </div>
+        
+        <div class="form-group">
+            <h:outputLabel for="firstname">Firstname:</h:outputLabel>
+            <h:inputText id="firstname" value="#{accountController.accountVM.profile.lastName}" required="true" class="form-control"/>
+        </div>
+        
+        <h:commandButton value="Previous" action="#{accountController.previousWizardStep}" class="btn btn-secondary"/>
+        <h:commandButton value="Finish" action="#{accountController.finishWizard}" class="btn btn-primary"/>
+   <h:messages globalOnly="true" styleClass="mt-3" />
+    </h:form>
+
+
+
+     <h:form class="container mt-5">
+    <h2>Login</h2>
+    
+    <div class="form-group">
+        <h:outputLabel for="email">Email:</h:outputLabel>
+        <h:inputText id="email" value="#{loginController.accountVM.email}" required="true" class="form-control" />
+    </div>
+    
+    <div class="form-group">
+        <h:outputLabel for="password">Password:</h:outputLabel>
+        <h:inputSecret id="password" value="#{loginController.accountVM.password}" required="true" class="form-control" />
+    </div>
+    
+    <h:commandButton value="Login" action="#{loginController.validateAccount}" class="btn btn-primary" />
+</h:form>
+
+<!-- Logout Form -->
+<h:form id="logoutForm" class="container mt-3">
+    <ui:fragment rendered="#{loginController.loggedIn}">
+        <h:commandButton value="Logout" action="#{loginController.logout()}" class="btn btn-danger" />
+    </ui:fragment>
+</h:form>
+
+<!-- Test Link -->
+<a href="index.xhtml" class="container mt-3">Test</a>
+
+<!-- Welcome Panel -->
+<h:panelGroup rendered="#{loginController.loggedIn}" class="container mt-3">
+    <div class="alert alert-info text-center">
+        Welcome, #{loginController.getLoggedAccount().email}!
+        Welcome, #{loginController.getLoggedAccount().role}!
+    </div>
+</h:panelGroup>
+
+    
 </body>
 
 </html>
