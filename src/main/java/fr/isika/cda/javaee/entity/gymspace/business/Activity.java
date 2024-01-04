@@ -2,6 +2,7 @@ package fr.isika.cda.javaee.entity.gymspace.business;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -56,11 +57,11 @@ public class Activity {
 	
 	
 	public ActivityCategory getCategory() {
-		return category;
+		return activityCategory;
 	}
 
 	public void setCategory(ActivityCategory category) {
-		this.category = category;
+		this.activityCategory = category;
 	}
 
 	public List<Course> getCourseList() {
