@@ -2,8 +2,6 @@ package fr.isika.cda.javaee.presentation.viewmodel;
 
 import java.time.LocalDateTime;
 
-import fr.isika.cda.javaee.entity.accounts.Profile;
-
 public class CourseViewModel {
 	
 	private long id;

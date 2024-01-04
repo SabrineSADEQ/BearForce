@@ -30,10 +30,10 @@ public class Membership {
 	private String description;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	private IdGym idGym;
+	private IdGym idGym = new IdGym();
 
 	@OneToOne(cascade = CascadeType.ALL)
-	private PaymentReceipt paymentReceipt;
+	private PaymentReceipt paymentReceipt = new PaymentReceipt();
 
 	public Membership() {
 	}

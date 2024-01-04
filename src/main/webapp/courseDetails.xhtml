@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Home</title>
+</h:head>
+
+<h:body>
+	<h2>Détails du cours</h2>
+	<hr align="center" width="80%" />
+	
+	<h:form id="courseDetailsForm">
+		<h:panelGroup>
+			<strong>Titre :</strong>
+			<h:inputText value="#{courseManagedBean.selectedCourse.activity.name}" />
+			
+			<strong>Description :</strong>
+			<h:inputText value="#{courseManagedBean.selectedCourse.activity.description}" />
+			
+			<strong>Date de début :</strong>
+			<h:inputText value="#{courseManagedBean.selectedCourse.startDate}" />
+			
+			<strong>Date de fin :</strong>
+			<h:inputText value="#{courseManagedBean.selectedCourse.endDate}" />
+			
+				<h:commandButton value="Save" action="#{courseManagedBean.saveCourse}" />
+			
+			<!-- Ajout possible d'autres informations -->
+			
+		</h:panelGroup>
+	</h:form>
+	<h:link outcome="courses" value=" --- Liste des cours"/>
+</h:body>
+</html>

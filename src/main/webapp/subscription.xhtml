@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Souscription à un abonnement</title>
+</h:head>
+
+<h:body>
+    <h2>Souscription à un abonnement</h2>
+    <hr align="center" width="80%" />
+    <h:form id="subscriptionForm">
+        <p>
+            <label for="startDate">Date de début :</label>
+            <h:inputText id="startDate" value="#{subscriptionBean.nouvelleSubscription.startDate}" />
+        </p>
+        <p>
+            <label for="endDate">Date de fin :</label>
+            <h:inputText id="endDate" value="#{subscriptionBean.nouvelleSubscription.endDate}" />
+        </p>
+        <p>
+            <label for="autoRenewal">Renouvellement automatique :</label>
+            <h:selectBooleanCheckbox id="autoRenewal" value="#{subscriptionBean.nouvelleSubscription.autoRenewal}" />
+        </p>
+        <p>
+            <label for="duration">Durée :</label>
+            <h:inputText id="duration" value="#{subscriptionBean.nouvelleSubscription.duration}" />
+        </p>
+        <p>
+            <label for="membership">Choisir l'adhésion :</label>
+            <h:selectOneMenu id="membership" value="#{subscriptionBean.selectedMembershipId}" >
+                <f:selectItems value="#{subscriptionBean.getAllMemberships()}" 
+                				var="membership" itemLabel="#{membership.name}" itemValue="#{membership.id}"/>
+            </h:selectOneMenu>
+        </p>
+
+        <h:commandButton value="Souscrire" action="#{subscriptionBean.souscrireAbonnement()}" />
+    </h:form>
+</h:body>
+
+</html>
