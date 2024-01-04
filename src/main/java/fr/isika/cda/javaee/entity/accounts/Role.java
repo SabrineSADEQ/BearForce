@@ -5,7 +5,8 @@ public enum Role {
 	SUPER_ADMIN ("Super Administrateur"),
 	GESTIONNAIRE ("Gestionnaire de salle de sport"),
 	ADHERENT ("Adhérent"),
-	VISITEUR ("Visiteur")
+	VISITEUR ("Visiteur"),
+	COACH("Coach")
 	;
 	
 	private String libelle;
@@ -17,4 +18,8 @@ public enum Role {
 	public String getLibelle() {
 		return libelle;
 	}
+	
+	
+	
+	
 }

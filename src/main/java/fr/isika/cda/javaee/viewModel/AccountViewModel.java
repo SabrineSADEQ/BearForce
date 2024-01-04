@@ -1,6 +1,7 @@
 package fr.isika.cda.javaee.viewModel;
 
 import fr.isika.cda.javaee.entity.accounts.Goal;
+import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.accounts.Role;
 
 public class AccountViewModel {
@@ -11,6 +12,8 @@ public class AccountViewModel {
 	private Role role;
 	private Goal goal;
 	private boolean connected;
+	 private int wizardStep;
+	 private Profile profile = new Profile();
 	
 	public Long getId() {
 		return id;
@@ -47,6 +50,32 @@ public class AccountViewModel {
 	}
 	public void setConnected(boolean connected) {
 		this.connected = connected;
-	}	
+
+	}
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("AccountViewModel [role=");
+		builder.append(role);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	 public int getWizardStep() {
+	        return wizardStep;
+	    }
+
+	    public void setWizardStep(int wizardStep) {
+	        this.wizardStep = wizardStep;
+	    }
+		public Profile getProfile() {
+			return profile;
+		}
+		public void setProfile(Profile profile) {
+			this.profile = profile;
+		}
+	
+	
+
 
 }
