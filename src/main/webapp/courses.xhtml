@@ -5,49 +5,51 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<title>Home</title>
-</h:head>
+<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+<ui:define name="titleValue">Liste des cours</ui:define>
 
-<h:body>
-	<h1>Bienvenue sur BearForce !</h1>
-	<hr align="center" width="80%" />
-	
-	<h2>Liste des Cours</h2>
-	
-	<h:form id="coursesTableForm">
-	
-		<h:dataTable value="#{courseController.getAllCourses()}" var="course">
-		
-			<h:column>
-				<f:facet name="header">Nom</f:facet>
+	<ui:define name="content">
+
+		<h1>Bienvenue sur BearForce !</h1>
+		<hr align="center" width="80%" />
+
+		<h2>Liste des Cours</h2>
+
+		<h:form id="coursesTableForm">
+
+			<h:dataTable value="#{courseController.getAllCourses()}" var="course">
+
+				<h:column>
+					<f:facet name="header">Nom</f:facet>
 	            #{course.activity.name}
 	        </h:column>
-	        
-			<h:column>
-				<f:facet name="header">Description</f:facet>
+
+				<h:column>
+					<f:facet name="header">Description</f:facet>
 	            #{course.activity.description}
 	        </h:column>
-	        
-			<h:column>
-				<f:facet name="header">Date de début</f:facet>
+
+				<h:column>
+					<f:facet name="header">Date de début</f:facet>
 	            #{course.startDate}
 	        </h:column>
-	        
-			<h:column>
-				<f:facet name="header">Date de fin</f:facet>
+
+				<h:column>
+					<f:facet name="header">Date de fin</f:facet>
 	            #{course.endDate}
 	        </h:column>
-	        
-			<!--  D'autres colonnes à ajouter si besoin -->
-			
-			<h:column>
-				<f:facet name="header">Actions</f:facet>
-				<h:commandLink value="Voir les détails" />
-			</h:column>
-		</h:dataTable>
-		
-	</h:form>
-	
-</h:body>
+
+				<!--  D'autres colonnes à ajouter si besoin -->
+
+				<h:column>
+					<f:facet name="header">Actions</f:facet>
+					<h:commandLink value="Voir les détails" />
+				</h:column>
+			</h:dataTable>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
 </html>

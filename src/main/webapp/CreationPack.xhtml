@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+	<ui:define name="titleValue">Créer un pack</ui:define>
+	<ui:define name="content">
+		<h:form enctype="multipart/form-data">
+			<h2>Create Platform Configuration</h2>
+
+//ENLEVER HEAD ET BODY (cf template) ET METTRE STYLE EN FICHIER CSS
 <head>
     <title>Create Pack</title>
     <style>
@@ -47,20 +58,28 @@
             <h2>Create Platform Configuration</h2>
 
 
-        <h:panelGrid columns="2">
-            <h:outputLabel for="description">Description:</h:outputLabel>
-            <h:inputText id="description" value="#{packController.pack.description}" />
-            
-            <h:outputLabel for="name">Name:</h:outputLabel>
-            <h:inputText id="name" value="#{platformConfigurationController.platformConfiguration.platformName}" />
-            
-            <h:outputLabel for="platformConfiguration">Platform Configuration:</h:outputLabel>
-            
-        </h:panelGrid>
+			<h:panelGrid columns="2">
+				<h:outputLabel for="description">Description:</h:outputLabel>
+				<h:inputText id="description"
+					value="#{packController.pack.description}" />
 
 
-            <h:commandButton value="Create" action="#{packController.createPack}" />
-        </h:form>
-    </div>
-</body>
+				<h:outputLabel for="name">Name:</h:outputLabel>
+				<h:inputText id="name"
+					value="#{platformConfigurationController.platformConfiguration.platformName}" />
+
+				<h:outputLabel for="platformConfiguration">Platform Configuration:</h:outputLabel>
+
+			</h:panelGrid>
+
+		        <h:commandButton value="Create" action="#{packController.createPack}" />
+		</h:form>  </div>
+	</ui:define>
+
+</ui:composition>
+
+
+  
+
+
 </html>

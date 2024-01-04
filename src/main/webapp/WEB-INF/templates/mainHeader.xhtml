@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<h:outputStylesheet library="css" name="main/mainHeader.css" />
+	<link rel="stylesheet" href="FolderCss/CssForForm.css" />
+	<link rel="stylesheet"
+		href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+		crossorigin="anonymous" />
+	<!--             Bootstrap JS and Popper.js CDN (for Bootstrap features like dropdowns, modals, etc.) -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
+</h:head>
+
+<h:body>
+	<div class="header">
+		<div class="logoContainer">
+			<p:graphicImage library="images" name="logo_javaee.png" />
+		</div>
+		<div>
+			<h:link outcome="PageTesterConfiguration.xhtml">Creer Configuration</h:link>
+			<h:link outcome="CreationPack.xhtml">Créer Pack</h:link>
+			<h:link outcome="createActivity.xhtml">Créer une activité</h:link>
+			<h:link outcome="createCourse.xhtml">Créer un cours</h:link>
+			<h:link outcome="createEquipment.xhtml">Créer équipement</h:link>
+			<h:link outcome="spaceCreation">Création d'un espace</h:link>
+			<h:link outcome="CreationDeCompte.xhtml">Creation de compte</h:link>
+			<h:link outcome="GestionEmployerGestionnaire.xhtml">employer</h:link>
+		</div>
+	</div>
+</h:body>
+</html>
