@@ -1,6 +1,7 @@
 package fr.isika.cda.javaee.presentation.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -8,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import fr.isika.cda.javaee.dao.CourseDAO;
+import fr.isika.cda.javaee.entity.gymspace.business.Course;
 import fr.isika.cda.javaee.presentation.viewmodel.CourseViewModel;
 
 @Named
@@ -27,10 +29,14 @@ public class CourseController implements Serializable{
 	}
 
 	public void addCourse() {
-		//courseDao.createCourse(courseViewModel);
+		courseDao.createCourse(courseViewModel);
 		courseViewModel =  new CourseViewModel();
 	}
 
+	public List<Course> getAllCourses() {
+		return courseDao.getAllCoursesWithActivities();
+	}
+	
 	//***************GETTERS & SETTERS***************
 	
 	public CourseViewModel getCourseViewModel() {

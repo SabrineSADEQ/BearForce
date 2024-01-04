@@ -16,9 +16,8 @@
 	<h2>Liste des Cours</h2>
 	
 	<h:form id="coursesTableForm">
-		<h:commandButton action="#{courseManagedBean.createTestCourses()}" value="Créer des cours de test" />
 	
-		<h:dataTable value="#{courseManagedBean.courseList}" var="course">
+		<h:dataTable value="#{courseController.getAllCourses()}" var="course">
 		
 			<h:column>
 				<f:facet name="header">Nom</f:facet>
@@ -44,8 +43,7 @@
 			
 			<h:column>
 				<f:facet name="header">Actions</f:facet>
-				<h:commandLink value="Voir les détails"
-					action="#{courseManagedBean.viewDetails(course.id)}"/>
+				<h:commandLink value="Voir les détails" />
 			</h:column>
 		</h:dataTable>
 		
