@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -14,12 +14,12 @@ import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class CourseManagedBean implements Serializable {
 
     /**
-	 * 
-	 */
+     * @author Bitjoka Vincent
+     */
 	private static final long serialVersionUID = 6550982393993817037L;
 
 	@Inject
@@ -27,6 +27,7 @@ public class CourseManagedBean implements Serializable {
 
     private List<Course> courseList;
     private Course selectedCourse;
+    
 
     @PostConstruct
     public void init() {
@@ -34,6 +35,8 @@ public class CourseManagedBean implements Serializable {
         this.selectedCourse = null;
     }
 
+    
+    
     public void saveCourse(Course course) {
         courseDAO.saveCourse(course);
         refreshCourseList();
@@ -50,8 +53,8 @@ public class CourseManagedBean implements Serializable {
     }
     
     public String viewDetails(Long courseId) {
-    	this.selectedCourse = courseDAO.getCourseById(courseId);
-    	return "courses";
+    	this.selectedCourse = courseDAO.getCourseByIdJoinActivity(courseId);
+    	return "courseDetails";
     }
     
     public void createTestCourses() {

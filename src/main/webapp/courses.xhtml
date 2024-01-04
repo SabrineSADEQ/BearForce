@@ -10,7 +10,7 @@
 </h:head>
 
 <h:body>
-	<h1>Welcome to Java EE !</h1>
+	<h1>Bienvenue sur BearForce !</h1>
 	<hr align="center" width="80%" />
 	
 	<h2>Liste des Cours</h2>
@@ -48,31 +48,7 @@
 					action="#{courseManagedBean.viewDetails(course.id)}"/>
 			</h:column>
 		</h:dataTable>
-	
-	
-		<h:panelGroup>
-			<p>
-				<strong>Titre :</strong>
-				#{courseManagedBean.selectedCourse.activity.name}
-			</p>
-			<p>
-				<strong>Description :</strong>
-				#{courseManagedBean.selectedCourse.activity.description}
-			</p>
-			<p>
-				<strong>Date de début :</strong>
-				#{courseManagedBean.selectedCourse.startDate}
-			</p>
-			<p>
-				<strong>Date de fin :</strong>
-				#{courseManagedBean.selectedCourse.endDate}
-			</p>
-			
-			<h:commandButton value="Editer" />
-			
-			<!-- Ajout possible d'autres informations selon mes besoins -->
-			
-			</h:panelGroup>
+		
 	</h:form>
 	
 </h:body>

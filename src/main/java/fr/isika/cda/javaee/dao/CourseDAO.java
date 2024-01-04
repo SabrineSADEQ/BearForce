@@ -38,6 +38,11 @@ public class CourseDAO {
     public Course getCourseById(long courseId) {
         return entityManager.find(Course.class, courseId);
     }
+    public Course getCourseByIdJoinActivity(long courseId) {
+    	return entityManager.createQuery("SELECT c FROM Course c LEFT JOIN FETCH c.activity WHERE c.id = :courseIdParam", Course.class)
+    			.setParameter("courseIdParam", courseId)
+    			.getSingleResult();
+    }
 
     public List<Course> getAllCourses() {
         return entityManager.createQuery("SELECT c FROM Course c", Course.class).getResultList();
