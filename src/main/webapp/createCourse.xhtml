@@ -5,11 +5,9 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<title>Créer un cours</title>
-</h:head>
-
-<h:body>
+<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+	<ui:define name="titleValue">Créer un cours</ui:define>
+		<ui:define name="content">
 	<h1>Créer un cours</h1>
 	<hr align="center" width="80%" />
 	<h:form id="courseForm">
@@ -51,5 +49,7 @@
 			action="#{courseController.addCourse()}" />
 	</h:form>
 	<h:link outcome="index" value="Index" />
-</h:body>
+</ui:define>
+			
+	</ui:composition>
 </html>
