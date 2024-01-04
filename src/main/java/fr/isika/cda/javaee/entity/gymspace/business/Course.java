@@ -26,7 +26,7 @@ public class Course {
 	private long id ;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Activity activity ;
+	private Activity activity;
 	
 	@Column(name="start_date")
 	private LocalDateTime startDate ;
@@ -72,10 +72,17 @@ public class Course {
 		this.nbPlaces = nbPlaces;
 	}
 
+	public Profile getTrainer() {
+		return trainer;
+	}
+
+	public void setTrainer(Profile trainer) {
+		this.trainer = trainer;
+	}
+	
 	public long getId() {
 		return id;
 	}
-	
 	
 	
 }

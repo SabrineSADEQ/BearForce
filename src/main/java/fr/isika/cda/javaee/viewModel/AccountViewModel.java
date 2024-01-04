@@ -50,6 +50,7 @@ public class AccountViewModel {
 	}
 	public void setConnected(boolean connected) {
 		this.connected = connected;
+
 	}
 	@Override
 	public String toString() {
@@ -75,5 +76,6 @@ public class AccountViewModel {
 		}
 	
 	
+
 
 }
