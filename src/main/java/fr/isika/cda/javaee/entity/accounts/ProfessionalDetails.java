@@ -5,26 +5,35 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
  * 
  * @author Yoann FRANCOIS
  *
- */
-@Entity
-@Table(name ="professional_details")
-public class ProfessionalDetails {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-	@Column(name = "coach_certification")
-	private String coachCertification;
-	@Column(name = "coach_form")
-	private String coachForm;
-	@Column(name = "coach_cv")
-	private String coachCV;
+	 */
+	@Entity
+	@Table(name ="professional_details")
+	public class ProfessionalDetails {
+		@Id
+		@GeneratedValue(strategy=GenerationType.AUTO)
+		private Long id;
+		@Column(name = "coach_certification")
+		private String coachCertification;
+		@Column(name = "coach_form")
+		private String coachForm;
+		@Column(name = "coach_cv")
+		private String coachCV;
+		@OneToOne
+		private Profile profile;
 	
+	public Profile getProfile() {
+		return profile;
+	}
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
 	//***************GETTERS & SETTERS***************
 	public String getCoachCertification() {
 		return coachCertification;

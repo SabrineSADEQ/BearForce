@@ -7,7 +7,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import fr.isika.cda.javaee.entity.platform.Subscription;
 
 @Entity
 public class Account {
@@ -27,7 +30,25 @@ public class Account {
 	@OneToOne
 	private Goal goal;
 	
+	@ManyToOne
+	private Subscription subscription;
+	
+	@OneToOne
+	private Profile profile;
+	
+	
+	
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
 	private boolean connected;
+	
+	private int wizardStep;
 
 	public Account(String email, String password) {
 		this.email = email;
@@ -90,5 +111,13 @@ public class Account {
 	public void setConnected(boolean connected) {
 		this.connected = connected;
 	}
+	
+	  public int getWizardStep() {
+	        return wizardStep;
+	    }
+
+	    public void setWizardStep(int wizardStep) {
+	        this.wizardStep = wizardStep;
+	    }
 
 }
