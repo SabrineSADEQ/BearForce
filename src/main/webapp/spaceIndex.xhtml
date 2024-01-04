@@ -5,11 +5,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<title></title>
-</h:head>
+<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+	
+		<ui:define name="titleValue">Mon espace</ui:define>
+		<ui:define name="content">
+			<h1>Bienvenue sur votre espace </h1>
+		
+		</ui:define>
+			
+	</ui:composition>
 
-<h:body>
-<h1>Bienvenue sur votre espace </h1>
-</h:body>
 </html>
