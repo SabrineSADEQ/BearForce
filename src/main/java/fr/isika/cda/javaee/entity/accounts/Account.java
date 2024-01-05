@@ -1,5 +1,6 @@
 package fr.isika.cda.javaee.entity.accounts;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -27,7 +28,7 @@ public class Account {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Goal goal;
 	
 	@ManyToOne
