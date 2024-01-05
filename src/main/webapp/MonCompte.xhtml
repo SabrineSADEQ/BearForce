@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+<ui:define name="titleValue">Mon compte</ui:define>
+
+	<ui:define name="content">
+	 <h:panelGrid columns="2">
+            <h:outputText value="Email: " />
+            <h:outputText value="#{loginController.loggedAccount.email}" />
+
+            <h:outputText value="Role: " />
+            <h:outputText value="#{loginController.loggedAccount.role}" />
+        </h:panelGrid>
+	
+	
+	
+	
+	</ui:define>
+
+</ui:composition>
+</html>
+	
