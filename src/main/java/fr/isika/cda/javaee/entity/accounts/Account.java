@@ -31,6 +31,7 @@ public class Account {
 	private Goal goal;
 	
 	@ManyToOne
+	
 	private Subscription subscription;
 	
 	@OneToOne
@@ -119,5 +120,10 @@ public class Account {
 	    public void setWizardStep(int wizardStep) {
 	        this.wizardStep = wizardStep;
 	    }
+
+		public void setSubscription(Subscription subscription2) {
+			this.subscription =  subscription;
+			
+		}
 
 }
