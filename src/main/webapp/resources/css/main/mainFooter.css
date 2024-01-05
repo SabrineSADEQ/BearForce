@@ -1,8 +1,19 @@
 @charset "ISO-8859-1";
 
+
+.footer {
+    
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--lighterGrey); 
+    padding: 10px;
+    
+}
+
+
 /* variables définies dans le mainStyle.css */
 .socialMedia {
-	background-color: var(--bleuFonce);
 	height: 5vh;
 	display: flex;
 	gap: 100px;
