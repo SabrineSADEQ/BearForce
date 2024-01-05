@@ -1,12 +1,16 @@
 package fr.isika.cda.javaee.presentation.controller;
 
 import java.io.Serializable;
-
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import fr.isika.cda.javaee.dao.EquipmentDao;
+import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.presentation.viewmodel.EquipmentViewModel;
 
 @Named
@@ -16,6 +20,7 @@ public class EquipmentController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private EquipmentViewModel equipmentViewModel = new EquipmentViewModel();
+	private List<Long> selectedActivities = new ArrayList<>();
 	
 	@Inject
 	private EquipmentDao equipmentDao;
@@ -24,10 +29,19 @@ public class EquipmentController implements Serializable {
 	public void init() {
 		System.out.println("EquipementController bean initialized!");
 	}
-		
+	//***************METHODS***************
+	//SAVE EQUIPMENT IN DATABASE
 	public void addEquipement() {
-		equipmentDao.createEquipment(equipmentViewModel);
+		equipmentDao.createEquipment(equipmentViewModel, selectedActivities);
+		FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Un nouvel équipement nommé '" + equipmentViewModel.getEquipmentName() + "' a été enregistré."));
 		equipmentViewModel = new EquipmentViewModel();
+		selectedActivities = new ArrayList<>();
+	}
+	
+	//GET FROM DATABASE ACTIVITIES LIST	
+	public List<Activity> getActivitiesList(){
+		return equipmentDao.getAllActivitiesWithEquipements();
 	}
 
 	//***************GETTERS & SETTERS***************
@@ -39,8 +53,11 @@ public class EquipmentController implements Serializable {
 		this.equipmentViewModel = equipmentViewModel;
 	}
 	
-
-	
-	
+	public List<Long> getSelectedActivities() {
+		return selectedActivities;
+	}
+	public void setSelectedActivities(List<Long> selectedActivities) {
+		this.selectedActivities = selectedActivities;
+	}
 	
 }

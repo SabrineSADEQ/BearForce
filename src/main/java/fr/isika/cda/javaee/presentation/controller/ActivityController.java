@@ -3,6 +3,8 @@ package fr.isika.cda.javaee.presentation.controller;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -30,16 +32,19 @@ public class ActivityController implements Serializable{
 
 	public void addActivity() {
 		activityDao.createActivity(activityViewModel);
+		 FacesContext.getCurrentInstance().addMessage(null,
+	                new FacesMessage("Une nouvelle activité nommée '" + activityViewModel.getName() + "' a été enregistrée."));
 		activityViewModel = new ActivityViewModel();
+		
 	}
 	
 	public List<Activity> displayActivitiesList() {
 		return activityDao.getAllActivities();
 	}
 	
-	//!!!!!!!!!!!!!!ATTENTION A METTRE DANS PROFILECONTROLLER!!!!!!!!!!!!!!
+	//DISPLAY COACHS LIST
 	public List<Profile> displayTrainersList() {
-		return activityDao.getAllTrainer();
+		return activityDao.getAllTrainers();
 	}
 
 	//***************GETTERS & SETTERS***************

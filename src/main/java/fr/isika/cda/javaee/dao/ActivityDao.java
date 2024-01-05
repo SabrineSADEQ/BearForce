@@ -25,12 +25,14 @@ public class ActivityDao {
 		return activityBean;		
 	}
 	
+	//SEAK IN DATABASE ALL ACTIVITIES
 	public List<Activity> getAllActivities() {
 		return entityManager
 				.createQuery("SELECT a FROM Activity a", Activity.class)
 				.getResultList();
 	}
 	
+	//SEAK IN DATABASE ACTIVITY BY ID
 	public Activity findActivityById(long activityId) {
 		return entityManager
 				.createQuery("SELECT act FROM Activity act WHERE act.id = :activityIdParam", Activity.class)
@@ -38,7 +40,7 @@ public class ActivityDao {
 				.getSingleResult();
 	}
 	
-	//!!!!!!!!!!!!!!ATTENTION A METTRE DANS PROFILEDAO!!!!!!!!!!!!!!
+	//SEAK IN DATABASE TRAINER BY ID
 	public Profile findTrainerById(long trainerId) {
 		return entityManager
 				.createQuery("SELECT prof FROM Profile prof WHERE prof.id = :profileIdParam", Profile.class)
@@ -46,10 +48,10 @@ public class ActivityDao {
 				.getSingleResult();
 	}
 	
-	//!!!!!!!!!!!!!!ATTENTION A METTRE DANS PROFILEDAO ET AJOUTER WHERE POUR SPECIFIER COACH!!!!!!!!!!!!!!
-	public List<Profile> getAllTrainer(){
+	//SEAK IN DATABASE ALL TRAINERS
+	public List<Profile> getAllTrainers(){
 		return entityManager
-				.createQuery("SELECT p FROM Profile p", Profile.class)
+				.createQuery("SELECT prof FROM Profile prof WHERE prof.account.role = 'COACH'", Profile.class)
 				.getResultList();
 	}
 }

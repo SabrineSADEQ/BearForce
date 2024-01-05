@@ -6,50 +6,92 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
-	<ui:define name="titleValue">Créer un cours</ui:define>
-		<ui:define name="content">
-	<h1>Créer un cours</h1>
-	<hr align="center" width="80%" />
-	<h:form id="courseForm">
-		<h:outputLabel for="activity">Activité :</h:outputLabel>
-		<h:selectOneMenu id="activity"
-			value="#{courseController.courseViewModel.activityId}">
-			<f:selectItem itemLabel="Sélectionnez une activité" itemValue="null"
-				noSelectionOption="true" />
-			<f:selectItems value="#{activityController.displayActivitiesList()}"
-				var="act" itemLabel="#{act.name}" itemValue="#{act.id}" />
-		</h:selectOneMenu>
-		<br />
-		<h:outputLabel for="startDate">Début :</h:outputLabel>
-		<p:calendar value="#{courseController.courseViewModel.startDate}"
-			pattern="MM/dd/yyyy HH:mm" showOn="button" />
-		<br />
-		<h:outputLabel for="endDate">Fin :</h:outputLabel>
-		<p:calendar value="#{courseController.courseViewModel.endDate}"
-			pattern="MM/dd/yyyy HH:mm" showOn="button" />
-		<br />
-		<!-- ATTENTION CHANGER POUR PROFILE CONTROLLER 
-		<h:outputLabel for="activity">Coach :</h:outputLabel>
-		<h:selectOneMenu id="trainer"
-			value="#{courseController.courseViewModel.trainerId}">
-			<f:selectItem itemLabel="Sélectionnez un coach" itemValue="null"
-				noSelectionOption="true" />
-			
-			<f:selectItems value="#{activityController.displayTrainersList()}"
-				var="act" itemLabel="#{act.firstName} #{act.lasName}"
-				itemValue="#{act.id}" />
-		</h:selectOneMenu> -->
-		<br />
-		<h:outputLabel for="nbrPlace">Nombre de places :</h:outputLabel>
-		<h:inputText id="nbrPlace"
-			value="#{courseController.courseViewModel.nbPlaces}">
-		</h:inputText>
-		<br />
-		<h:commandButton value="Créer le cours"
-			action="#{courseController.addCourse()}" />
-	</h:form>
-	<h:link outcome="index" value="Index" />
-</ui:define>
-			
-	</ui:composition>
+	<ui:define name="titleValue">Enregistrer un cours</ui:define>
+	<ui:define name="content">
+		<div>
+			<h:form id="courseForm">
+			<p:messages id="msgs"/>
+				<div class="card">
+					<h5>Enregistrer un nouveau cours</h5>
+					<div class="field grid">
+						<p:outputLabel for="activity" styleClass="col-fixed"
+							style="width:100px" value="Activité : " />
+						<div class="col">
+							<p:selectOneMenu id="activity"
+								value="#{courseController.courseViewModel.activityId}"
+								style="min-width: 14rem">
+								<f:selectItem itemLabel="Sélectionnez une activité"
+									itemValue="null" noSelectionOption="true" />
+								<f:selectItems
+									value="#{activityController.displayActivitiesList()}" var="act"
+									itemLabel="#{act.name}" itemValue="#{act.id}" />
+							</p:selectOneMenu>
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:outputLabel for="startDate" styleClass="col-fixed"
+							style="width:100px" value="Début de l'activité : " />
+						<div class="col">
+							<p:calendar id="startDate"
+								value="#{courseController.courseViewModel.startDate}"
+								pattern="MM/dd/yyyy HH:mm" showOn="button" required="true"/>
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:outputLabel for="endDate" styleClass="col-fixed"
+							style="width:100px" value="Début de l'activité : " />
+						<div class="col">
+							<p:calendar id="endDate"
+								value="#{courseController.courseViewModel.endDate}"
+								pattern="MM/dd/yyyy HH:mm" showOn="button" required="true"/>
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:outputLabel for="trainer" styleClass="col-fixed"
+							style="width:100px" value="Coach : " />
+						<div class="col">
+							<p:selectOneMenu id="trainer"
+								value="#{courseController.courseViewModel.trainerId}"
+								style="min-width: 14rem">
+								<f:selectItem itemLabel="Sélectionnez un coach" itemValue="null"
+									noSelectionOption="true" />
+								<f:selectItems
+									value="#{activityController.displayTrainersList()}" var="prof"
+									itemLabel="#{prof.firstName} #{prof.lastName}"
+									itemValue="#{prof.id}" />
+							</p:selectOneMenu>
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:outputLabel for="nbrPlace" styleClass="col-fixed"
+							style="width:100px" value="Places disponibles : " />
+						<div class="col">
+							<p:inputText id="nbrPlace"
+								value="#{courseController.courseViewModel.nbPlaces}" required="true">
+								 <f:validateLongRange minimum="1"/>
+							</p:inputText>
+						</div>
+					</div>
+					<br />
+					
+					<div class="field grid">
+						<p:commandButton value="Créer le cours" update="@form"
+							action="#{courseController.addCourse()}" icon="pi pi-check"
+							styleClass="rounded-button ui-button-primary" />
+					</div>
+				</div>
+			</h:form>
+			<br/>
+		</div>
+	</ui:define>
+
+</ui:composition>
 </html>

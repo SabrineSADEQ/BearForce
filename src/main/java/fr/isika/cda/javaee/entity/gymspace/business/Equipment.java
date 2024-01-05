@@ -30,7 +30,7 @@ public class Equipment {
 	private String details ;
 	
 	@ManyToMany(mappedBy = "equipmentList")
-	//@Column(name="activity_list")
+	@Column(name="activity_list")
 	private List<Activity> activityList = new ArrayList<>() ;
 
 	public String getCondition() {
