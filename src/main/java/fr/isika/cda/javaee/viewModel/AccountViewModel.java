@@ -10,7 +10,7 @@ public class AccountViewModel {
 	private String email;
 	private String password;
 	private Role role;
-	private Goal goal;
+	private Goal goal = new Goal();
 	private boolean connected;
 	 private int wizardStep;
 	 private Profile profile = new Profile();
