@@ -13,6 +13,7 @@ public class AccountDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	private AccountViewModel AccountViewModel;
 
 	public Account createAccount(AccountViewModel accountVM) {
 		Account accountbean = new Account();
@@ -49,6 +50,11 @@ public class AccountDao {
 	    return accountbean;
 
 
+	}
+
+	public Account getAccountByEmailAndPassword(String email, String password) {
+		
+		return createAccount(AccountViewModel);
 	}
 
 	
