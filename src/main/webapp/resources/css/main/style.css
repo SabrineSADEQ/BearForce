@@ -1,0 +1,48 @@
+@charset "ISO-8859-1";
+
+/* style.css */
+
+/* Style de base pour la table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+   margin-bottom: 200px;
+}
+
+/* Style pour les cellules de la table */
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Style pour la couleur de fond des lignes alternées */
+table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style pour l'en-tête de la table */
+table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Style pour le titre */
+h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+table button {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}

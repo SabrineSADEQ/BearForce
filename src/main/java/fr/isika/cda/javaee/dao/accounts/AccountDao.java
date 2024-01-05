@@ -32,6 +32,7 @@ public class AccountDao {
 	    profile.setContact(accountVM.getProfile().getContact());
 	    profile.setAddress(accountVM.getProfile().getAddress());
 	    profile.setProfesionalDetails(accountVM.getProfile().getProfesionalDetails());
+	    accountbean.setGoal(accountVM.getGoal());
 	    // Set other profile attributes as needed
 
 	    // Set the profile to the account and vice versa

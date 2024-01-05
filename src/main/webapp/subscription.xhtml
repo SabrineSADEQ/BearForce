@@ -6,16 +6,16 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
-	<ui:define name="titleValue">Souscription à un abonnement</ui:define>
+	<ui:define name="titleValue">Create un abonnement</ui:define>
 	<ui:define name="content">
 
-		<h2>Souscription à un abonnement</h2>
+		<h2>Create un abonnement</h2>
 		<hr align="center" width="80%" />
 		<h:form id="subscriptionForm">
 			<p>
-				<label for="startDate">Date de début :</label>
+				<label for="startDate"> Date de début :</label>
 				<h:inputText id="startDate"
-					value="#{subscriptionBean.nouvelleSubscription.startDate}" />
+					value="#{subscriptionController.nouvelleSubscription.startDate}" />
 			</p>
 			<p>
 				<label for="endDate">Date de fin :</label>

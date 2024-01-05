@@ -1,66 +1,66 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+<!-- <!DOCTYPE html>  INUTILISABLE-->
+<!-- <html xmlns="http://www.w3.org/1999/xhtml" -->
+<!-- 	xmlns:ui="http://java.sun.com/jsf/facelets" -->
+<!-- 	xmlns:f="http://java.sun.com/jsf/core" -->
+<!-- 	xmlns:h="http://java.sun.com/jsf/html" -->
+<!-- 	xmlns:p="http://primefaces.org/ui"> -->
 
 
-<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+<!-- <ui:composition template="WEB-INF/templates/mainTemplate.xhtml"> -->
 
-	<ui:define name="titleValue">Créer un compte coach</ui:define>
-	<ui:define name="content">
-		<h:form class="container mt-4">
-			<h2 class="mb-4">Créer un compte coach</h2>
+<!-- 	<ui:define name="titleValue">Créer un compte coach</ui:define> -->
+<!-- 	<ui:define name="content"> -->
+<!-- 		<h:form class="container mt-4"> -->
+<!-- 			<h2 class="mb-4">Créer un compte coach</h2> -->
 
-			<div class="form-group">
-				<label for="email">Email:</label> <input type="text" id="email"
-					class="form-control" value="#{accountController.accountVM.email}"
-					required="true" />
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="email">Email:</label> <input type="text" id="email" -->
+<!-- 					class="form-control" value="#{accountController.accountVM.email}" -->
+<!-- 				 /> -->
+<!-- 			</div> -->
 
-			<div class="form-group">
-				<label for="password">Password:</label> <input type="password"
-					id="password" class="form-control"
-					value="#{accountController.accountVM.password}" required="true" />
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="password">Password:</label> <input type="password" -->
+<!-- 					id="password" class="form-control" -->
+<!-- 					value="#{accountController.accountVM.password}" required="true" /> -->
+<!-- 			</div> -->
 
-			<div class="form-group">
-				<label>Role:</label>
-				<div class="form-check">
-					<input type="radio" id="role" name="role" value="COACH"
-						class="form-check-input" required="true" /> <label for="role"
-						class="form-check-label">COACH</label>
-				</div>
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label>Role:</label> -->
+<!-- 				<div class="form-check"> -->
+<!-- 					<input type="radio" id="role" name="role" value="COACH" -->
+<!-- 						class="form-check-input" required="true" /> <label for="role" -->
+<!-- 						class="form-check-label">COACH</label> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 
-			<div class="form-group">
-				<label for="coachCertification">Coach Certification:</label> <input
-					type="text" id="coachCertification" class="form-control"
-					value="#{accountController.accountVM.profile.profesionalDetails.coachCertification}"
-					required="true" />
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="coachCertification">Coach Certification:</label> <input -->
+<!-- 					type="text" id="coachCertification" class="form-control" -->
+<!-- 					value="#{accountController.accountVM.profile.profesionalDetails.coachCertification}" -->
+<!-- 					 /> -->
+<!-- 			</div> -->
 
-			<div class="form-group">
-				<label for="coachForm">Coach Form:</label> <input type="text"
-					id="coachForm" class="form-control"
-					value="#{accountController.accountVM.profile.profesionalDetails.coachForm}"
-					required="true" />
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="coachForm">Coach Form:</label> <input type="text" -->
+<!-- 					id="coachForm" class="form-control" -->
+<!-- 					value="#{accountController.accountVM.profile.profesionalDetails.coachForm}" -->
+<!-- 					 /> -->
+<!-- 			</div> -->
 
-			<div class="form-group">
-				<label for="coachCV">Coach CV:</label> <input type="text"
-					id="coachCV" class="form-control"
-					value="#{accountController.accountVM.profile.profesionalDetails.coachCV}"
-					required="true" />
-			</div>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="coachCV">Coach CV:</label> <input type="text" -->
+<!-- 					id="coachCV" class="form-control" -->
+<!-- 					value="#{accountController.accountVM.profile.profesionalDetails.coachCV}" -->
+<!-- 					/> -->
+<!-- 			</div> -->
 
-			<button type="submit" class="btn btn-primary">Valider</button>
-			<a href="index.xhtml" class="container mt-3">index</a>
-		</h:form>
+<!-- 			<h:commandButton value="Valider" action="#{accountController.addAccount()}" styleClass="btn btn-primary" /> -->
+<!--     <a href="index.xhtml" class="container mt-3">index</a> -->
+<!-- 		</h:form> -->
 	
-	</ui:define>
+<!-- 	</ui:define> -->
 
-</ui:composition>
+<!-- </ui:composition> -->
 
-</html>
+<!-- </html> -->

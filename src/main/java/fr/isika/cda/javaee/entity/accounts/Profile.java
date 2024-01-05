@@ -30,7 +30,7 @@ public class Profile {
 	private Contact contact = new Contact();
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address = new Address();
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private ProfessionalDetails profesionalDetails = new ProfessionalDetails();
 	
 	@OneToOne
