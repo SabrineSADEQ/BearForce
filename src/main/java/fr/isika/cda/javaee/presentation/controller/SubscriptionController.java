@@ -23,11 +23,12 @@ import fr.isika.cda.javaee.entity.platform.Subscription;
 
 @Named
 @ViewScoped
-public class SubscriptionBean implements Serializable {
+public class SubscriptionController implements Serializable {
 
     /**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 5563550480653977366L;
 	
 	@Inject
@@ -51,7 +52,7 @@ public class SubscriptionBean implements Serializable {
             Membership membershipChoisi = membershipDAO.getMembershipById(selectedMembershipId);
             nouvelleSubscription.setMembership(membershipChoisi);
 
-            subscriptionDAO.saveSubscription(nouvelleSubscription);
+            subscriptionDAO.CreateSubscription(nouvelleSubscription);
 
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Souscription réussie!", null));
             init(); // Réinitialiser les valeurs après la souscription
@@ -108,5 +109,8 @@ public class SubscriptionBean implements Serializable {
     public void setSelectedMembershipId(long selectedMembershipId) {
         this.selectedMembershipId = selectedMembershipId;
     }
+    
 }
+
+
 
