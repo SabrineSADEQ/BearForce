@@ -35,15 +35,11 @@ public class SpaceDao {
 			
 			
 			visualIdentity.setFirstColor(spaceViewModel.getFirstColor());
-			//DEBUG//////
-			System.out.println("First color : " + spaceViewModel.getFirstColor());
 			visualIdentity.setSecondColor(spaceViewModel.getSecondColor());
 			visualIdentity.setThirdColor(spaceViewModel.getThirdColor());
 			visualIdentity.setSpaceTextContent(spaceTextContent);
+			visualIdentity.setGymLogoPath(spaceViewModel.getGymLogoPath());
 			
-			
-			//TO DO : add photos to visualIdentity
-			//visualIdentity.setGymLogo(spaceViewModel.getGymLogo());
 			gymIdentity.setGymCaracteristics(gymCaracteristics);
 			
 			space.setIdGym(gymIdentity);

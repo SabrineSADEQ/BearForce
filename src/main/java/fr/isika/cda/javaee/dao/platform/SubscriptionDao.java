@@ -20,7 +20,7 @@ public class SubscriptionDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void CreateSubscription(Subscription subscription) {
+    public void createSubscription(Subscription subscription) {
         entityManager.persist(subscription);
     }
 

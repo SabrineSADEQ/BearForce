@@ -17,12 +17,9 @@ public class VisualIdentity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
-	@Lob
-	private byte[] gymLogo;
-	
-	@Lob
-	private byte[] bannerURL;
+
+	private String gymLogoPath;
+	private String bannerPath;
 	private String firstColor;
 	private String secondColor;
 	private String thirdColor;
@@ -40,18 +37,19 @@ public class VisualIdentity {
 		this.id = id;
 	}
 	
-	public byte[] getGymLogo() {
-		return gymLogo;
+	public String getGymLogoPath() {
+		return gymLogoPath;
 	}
-	public void setGymLogo(byte[] gymLogo) {
-		this.gymLogo = gymLogo;
+	public void setGymLogoPath(String gymLogoPath) {
+		this.gymLogoPath = gymLogoPath;
 	}
-	public byte[] getBannerURL() {
-		return bannerURL;
+	public String getBannerPath() {
+		return bannerPath;
 	}
-	public void setBannerURL(byte[] bannerURL) {
-		this.bannerURL = bannerURL;
+	public void setBannerPath(String bannerPath) {
+		this.bannerPath = bannerPath;
 	}
+
 	public String getFirstColor() {
 		return firstColor;
 	}

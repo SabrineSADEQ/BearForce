@@ -9,8 +9,8 @@ public class SpaceViewModel {
 	private String firstColor;
 	private String secondColor;
 	private String thirdColor;
-	private byte[] gymLogo ;
-	private byte[] gymBanner ;
+	private String gymLogoPath ;
+	private String gymBannerPath ;
 	
 	//SpaceTextContent attributes
 	private String spaceName;
@@ -22,20 +22,21 @@ public class SpaceViewModel {
 	private boolean lockerRoom;
 	private String photoList;
 	
-	
-	public byte[] getGymLogo() {
-		return gymLogo;
+	public String getGymLogoPath() {
+		return gymLogoPath;
 	}
-	public void setGymLogo(byte[] gymLogo) {
-		this.gymLogo = gymLogo;
+
+	public void setGymLogoPath(String gymLogoPath) {
+		this.gymLogoPath = gymLogoPath;
 	}
-	public byte[] getGymBanner() {
-		return gymBanner;
+
+	public String getGymBannerPath() {
+		return gymBannerPath;
 	}
-	public void setGymBanner(byte[] gymBanner) {
-		this.gymBanner = gymBanner;
+
+	public void setGymBannerPath(String gymBannerPath) {
+		this.gymBannerPath = gymBannerPath;
 	}
-	
 
 	public String getFirstColor() {
 		return firstColor;

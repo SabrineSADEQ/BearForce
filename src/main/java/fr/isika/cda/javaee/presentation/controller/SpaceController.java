@@ -1,6 +1,8 @@
 package fr.isika.cda.javaee.presentation.controller;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -9,12 +11,14 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.model.file.UploadedFile;
 
 import fr.isika.cda.javaee.dao.SpaceDao;
 import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.presentation.viewmodel.SpaceViewModel;
+import fr.isika.cda.javaee.utils.FileUploadUtils;
 
 /**
  * Controller for the gym space creation views for a manager
@@ -30,8 +34,6 @@ public class SpaceController implements Serializable {
 	private SpaceViewModel spaceViewModel = new SpaceViewModel();
 	private boolean skip;
 
-	// private transient UploadedFile uploadedFile;
-
 	@Inject
 	private SpaceDao spaceDao;
 
@@ -40,12 +42,6 @@ public class SpaceController implements Serializable {
 		System.out.println("SpaceController bean initialized!");
 	}
 
-//	 public void upload() {
-////		    String fileName = uploadedFile.getFileName();
-////		    String contentType = uploadedFile.getContentType();
-//		    byte[] contents = uploadedFile.getContent(); 
-//		    spaceViewModel.setGymLogo(contents);
-//		}
 
 	public Space getSpaceById(Long id) {
 		Space space = spaceDao.getSpaceById(id);
@@ -73,6 +69,22 @@ public class SpaceController implements Serializable {
         else {
             return event.getNewStep();
         }
+    }
+    
+    /**
+     * Method for photo upload
+     * @param event
+     * @throws Exception
+     */
+    public void uploadFile(FileUploadEvent event) throws Exception {
+    	String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss"));
+
+    	UploadedFile uploadedFile = event.getFile();
+		String fileName = String.join("_", timestamp, uploadedFile.getFileName());
+        
+		spaceViewModel.setGymLogoPath(fileName);
+
+		FileUploadUtils.uploadFileToApp(uploadedFile, fileName);
     }
 
 
