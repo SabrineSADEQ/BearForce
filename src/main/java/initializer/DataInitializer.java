@@ -178,7 +178,7 @@ public class DataInitializer {
     		equipment.setDetails("barre de traction monté sur support métallique, poids max de 120kg"); 
     		equipmentDao.createEquipment(equipment);
             
-            
+            // incomplet
            SpaceViewModel spaceViewModel = new SpaceViewModel();
            spaceViewModel.setFirstColor("bleu");
            spaceViewModel.setSecondColor("rouge");
