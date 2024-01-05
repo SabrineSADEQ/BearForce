@@ -3,18 +3,20 @@
 .header {
 	/* variables définies dans le mainStyle.css */
 	/* background-color: #6c757d;*/
+	background-color: rgba(4, 4, 5, 0.4);
+	top:0;
 	height: 10vh;
 	width: 100%;
 	gap: 60px;
 	align-items: center;
 	display: flex;
-	color: var(--dark);
+	color: var(--blanc);
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .link-menu{
 	text-decoration: none;
-	color: var(--dark);
+	color: var(--blanc);
 }
 
 .link-menu:visited{
