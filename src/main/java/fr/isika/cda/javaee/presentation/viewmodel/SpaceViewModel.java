@@ -1,5 +1,8 @@
 package fr.isika.cda.javaee.presentation.viewmodel;
 
+import fr.isika.cda.javaee.entity.accounts.Address;
+import fr.isika.cda.javaee.entity.accounts.Contact;
+import fr.isika.cda.javaee.entity.accounts.Profile;
 
 public class SpaceViewModel {
 	
@@ -21,6 +24,13 @@ public class SpaceViewModel {
 	private boolean freeAccess;
 	private boolean lockerRoom;
 	private String photoList;
+	
+	//AdminInfoGym attributes
+//	private String siret;
+//	private Profile owner;
+//	private Address location;
+//	private Contact contactInfo;
+	
 	
 	public String getGymLogoPath() {
 		return gymLogoPath;

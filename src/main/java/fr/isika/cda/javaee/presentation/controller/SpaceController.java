@@ -15,6 +15,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import fr.isika.cda.javaee.account.controller.LoginController;
 import fr.isika.cda.javaee.dao.SpaceDao;
 import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.presentation.viewmodel.SpaceViewModel;

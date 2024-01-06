@@ -1,9 +1,15 @@
 package fr.isika.cda.javaee.dao;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.isika.cda.javaee.entity.accounts.Address;
+import fr.isika.cda.javaee.entity.accounts.Contact;
+import fr.isika.cda.javaee.entity.accounts.Profile;
+import fr.isika.cda.javaee.entity.gymspace.AdminInfoGym;
 import fr.isika.cda.javaee.entity.gymspace.GymCaracteristics;
 import fr.isika.cda.javaee.entity.gymspace.IdGym;
 import fr.isika.cda.javaee.entity.gymspace.Space;
@@ -25,6 +31,10 @@ public class SpaceDao {
 			GymCaracteristics gymCaracteristics = new GymCaracteristics();
 			Space space = new Space();
 			IdGym gymIdentity = new IdGym();
+//			AdminInfoGym adminInfoGym = new AdminInfoGym();
+//			Profile gymOwner = new Profile();
+//			Address gymLocation = new Address();
+//			Contact contactInfo = new Contact();
 			
 			spaceTextContent.setSpaceName(spaceViewModel.getSpaceName());
 			spaceTextContent.setMotto(spaceViewModel.getMotto());
@@ -56,6 +66,11 @@ public class SpaceDao {
 		}
 
 	public Space getSpaceById(Long id) {
+		// TODO :
+		return null;
+	}
+	
+	public List<Space> getAllSpaces() {
 		// TODO :
 		return null;
 	}
