@@ -28,7 +28,7 @@
 							style="width:100px" value="Description : " />
 						<div class="col">
 							<p:inputText id="description"
-								value="#{activityController.activityViewModel.description}" required="true"/>
+								value="#{activityController.activityViewModel.description}"/>
 						</div>
 					</div>
 					<br />
@@ -49,6 +49,21 @@
 						</div>
 					</div>
 					<br />
+					
+					<div class="field grid">
+						<p:outputLabel for="equipments" styleClass="col-fixed"
+							style="width:100px" value="Equipement(s) concerné(s) : " />
+						<div class="col">
+							<p:selectManyCheckbox id="equipments"
+								value="#{activityController.selectedEquipments}"
+								layout="responsive" columns="2">
+								<f:selectItems
+									value="#{activityController.getEquipementsList()}" var="equi"
+									itemLabel="#{equi.equipmentName}" itemValue="#{equi.id}" />
+							</p:selectManyCheckbox>
+						</div>
+					</div>
+					<br />
 
 					<div class="field grid">
 						<p:commandButton value="Créer l'activité" update="@form"
@@ -56,6 +71,7 @@
 							styleClass="rounded-button ui-button-primary" />
 					</div>
 				</div>
+					
 			</h:form>
 		</div>
 		<br />

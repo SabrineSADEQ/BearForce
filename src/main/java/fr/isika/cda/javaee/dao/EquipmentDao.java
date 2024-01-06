@@ -52,4 +52,12 @@ public class EquipmentDao {
 		// associer l'quipement courant aux  activites (lien inverse) 
 		equipmentBean.setActivityList(associated);
 	}
+	
+	//SEAK IN DATABASE EQUIPEMENT BY ID
+		public Equipment findEquipmentById(long equipmentId) {
+			return entityManager
+					.createQuery("SELECT equi FROM Equipment equi WHERE equi.id = :equipementIdParam", Equipment.class)
+					.setParameter("equipementIdParam", equipmentId)
+					.getSingleResult();
+		}
 }

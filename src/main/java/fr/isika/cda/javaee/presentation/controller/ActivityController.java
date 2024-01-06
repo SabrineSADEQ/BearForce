@@ -1,6 +1,7 @@
 package fr.isika.cda.javaee.presentation.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -12,6 +13,7 @@ import fr.isika.cda.javaee.dao.ActivityDao;
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.ActivityCategory;
+import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
 import fr.isika.cda.javaee.presentation.viewmodel.ActivityViewModel;
 
 @Named
@@ -21,6 +23,7 @@ public class ActivityController implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private ActivityViewModel activityViewModel = new ActivityViewModel();
+	private List<Long> selectedEquipments = new ArrayList<>();
 	
 	@Inject
 	private ActivityDao activityDao;
@@ -31,10 +34,11 @@ public class ActivityController implements Serializable{
 	}
 
 	public void addActivity() {
-		activityDao.createActivity(activityViewModel);
+		activityDao.createActivity(activityViewModel, selectedEquipments);
 		 FacesContext.getCurrentInstance().addMessage(null,
 	                new FacesMessage("Une nouvelle activité nommée '" + activityViewModel.getName() + "' a été enregistrée."));
 		activityViewModel = new ActivityViewModel();
+		selectedEquipments = new ArrayList<>();
 		
 	}
 	
@@ -46,6 +50,12 @@ public class ActivityController implements Serializable{
 	public List<Profile> displayTrainersList() {
 		return activityDao.getAllTrainers();
 	}
+	
+	//GET FROM DATABASE EQUIPMENTS LIST	
+		public List<Equipment> getEquipementsList(){
+			return activityDao.getAllEquipmentsWithActivities();
+		}
+	
 
 	//***************GETTERS & SETTERS***************
 	public ActivityViewModel getActivityViewModel() {
@@ -56,6 +66,14 @@ public class ActivityController implements Serializable{
 		this.activityViewModel = activityViewModel;
 	}
 	
+	public List<Long> getSelectedEquipments() {
+		return selectedEquipments;
+	}
+
+	public void setSelectedEquipments(List<Long> selectedEquipments) {
+		this.selectedEquipments = selectedEquipments;
+	}
+
 	//***************FOR ENUM VALUES***************
 	public ActivityCategory[] getActivityCategories() {
 		return ActivityCategory.values();

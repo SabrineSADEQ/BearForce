@@ -60,12 +60,15 @@
 					<div class="field grid">
 						<p:outputLabel for="activities" styleClass="col-fixed"
 							style="width:100px" value="Activitée(s) concernée(s) : " />
-						<p:selectManyCheckbox id="activities"
-							value="#{equipmentController.selectedActivities}"
-							layout="responsive" columns="2">
-							<f:selectItems value="#{equipmentController.getActivitiesList()}"
-								var="act" itemLabel="#{act.name}" itemValue="#{act.id}"/>
-						</p:selectManyCheckbox>
+						<div class="col">
+							<p:selectManyCheckbox id="activities"
+								value="#{equipmentController.selectedActivities}"
+								layout="responsive" columns="2">
+								<f:selectItems
+									value="#{equipmentController.getActivitiesList()}" var="act"
+									itemLabel="#{act.name}" itemValue="#{act.id}" />
+							</p:selectManyCheckbox>
+						</div>
 					</div>
 					<br />
 
@@ -75,6 +78,7 @@
 							icon="pi pi-check" styleClass="rounded-button ui-button-primary" />
 					</div>
 				</div>
+
 			</h:form>
 			<br />
 		</div>
