@@ -1,9 +1,10 @@
 @charset "ISO-8859-1";
 
 .header {
-	/* variables définies dans le mainStyle.css */
-	/* background-color: #6c757d;*/
+	/* variables définies dans le mainStyle.css 
 	background-color: rgba(4, 4, 5, 0.4);
+	background-color: transparent;
+	position:fixed;*/
 	top:0;
 	height: 10vh;
 	width: 100%;

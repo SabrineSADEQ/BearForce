@@ -25,14 +25,12 @@ public class AdminInfoGym {
 	private long id;
 	
 	@OneToOne
-	@Column(name = "owner")
 	private Profile owner;
 	
 	@Column(name = "siret")
 	private String siret;
 	
 	@OneToOne
-	@Column(name = "location")
 	private Address location;
 
 	@OneToOne
