@@ -76,7 +76,7 @@ public class SpaceController implements Serializable {
      * @param event
      * @throws Exception
      */
-    public void uploadFile(FileUploadEvent event) throws Exception {
+    public void uploadFileLogo(FileUploadEvent event) throws Exception {
     	String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss"));
 
     	UploadedFile uploadedFile = event.getFile();
@@ -86,6 +86,18 @@ public class SpaceController implements Serializable {
 
 		FileUploadUtils.uploadFileToApp(uploadedFile, fileName);
     }
+    
+    public void uploadFileBanner(FileUploadEvent event) throws Exception {
+    	String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss"));
+
+    	UploadedFile uploadedFile = event.getFile();
+		String fileName = String.join("_", timestamp, uploadedFile.getFileName());
+        
+		spaceViewModel.setGymBannerPath(fileName);
+
+		FileUploadUtils.uploadFileToApp(uploadedFile, fileName);
+    }
+
 
 
 	public SpaceViewModel getSpaceViewModel() {

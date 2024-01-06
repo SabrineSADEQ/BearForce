@@ -87,11 +87,11 @@
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<h:outputLabel for="logo">Logo</h:outputLabel>
 							<!-- Composant graphique pour le fichier -->
-							<p:fileUpload listener="#{spaceController.uploadFile}"
+							<p:fileUpload listener="#{spaceController.uploadFileLogo}"
 								styleClass="w-100" mode="advanced" dragDropSupport="false" />
-							<br />
 							<h:outputLabel for="banner">Bannière</h:outputLabel>
-							<br />
+							<p:fileUpload listener="#{spaceController.uploadFileBanner}"
+								styleClass="w-100" mode="advanced" dragDropSupport="false" />
 							<h:outputLabel for="imagesCarroussel">Images du carroussel</h:outputLabel>
 							<br />
 						</h:panelGrid>
@@ -139,9 +139,8 @@
 						
 						<h:outputText value="Logo : " />
 						<h:graphicImage library="documents" name="#{spaceController.spaceViewModel.gymLogoPath}" width="50px" height="50px"/>
-						<br />
 						<h:outputText value="Bannière : " />
-						<br />
+						<h:graphicImage library="documents" name="#{spaceController.spaceViewModel.gymBannerPath}" width="50px" height="50px"/>
 						<h:outputText value="Photos :  " />
 						<br />
 

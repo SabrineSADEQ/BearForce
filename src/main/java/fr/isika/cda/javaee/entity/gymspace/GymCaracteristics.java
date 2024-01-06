@@ -1,5 +1,7 @@
 package fr.isika.cda.javaee.entity.gymspace;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +19,7 @@ public class GymCaracteristics {
 	private Long id;
 	private boolean freeAccess;
 	private boolean lockerRoom;
-	private String photoList;
+	private List<String> photoList;
 	
 	public Long getId() {
 		return id;
@@ -37,10 +39,10 @@ public class GymCaracteristics {
 	public void setLockerRoom(boolean lockerRoom) {
 		this.lockerRoom = lockerRoom;
 	}
-	public String getPhotoList() {
+	public List<String> getPhotoList() {
 		return photoList;
 	}
-	public void setPhotoList(String photoList) {
+	public void setPhotoList(List<String> photoList) {
 		this.photoList = photoList;
 	}
 
