@@ -27,6 +27,19 @@
 	flex-direction:column;
 }
 
+
+.highlight-text{
+	color: #9ae6b4;
+    background-color: rgba(104,211,145,.3);
+    border-radius: 5px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-bottom:3px;
+}
+strong {
+    font-weight: 700;
+}
+
 .overlay-computer {
   position: relative;
   z-index: 2;

@@ -48,7 +48,7 @@ html body .ui-button:hover {
 	
 }
 
-#login-button, #logout-button {
+html body .ui-button #logout-button, #login-button {
 	background-color: var(--blanc);
 }
 
@@ -68,6 +68,12 @@ html body .ui-button:hover {
 	text-decoration: none;
 	color: var(--turquoise);
 }
+
+
+.rightButton{
+	margin-left:10px;
+}
+
 
 .logoContainer {
 	height: 80%;
@@ -125,3 +131,4 @@ html body .ui-button:hover {
 		display: none;
 	}*/
 }
+

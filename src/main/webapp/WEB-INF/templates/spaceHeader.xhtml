@@ -25,39 +25,49 @@
 
 			<div id="navLinks">
 				<p:menubar id="spaceMenuBar">
-					<p:menuitem class="link-menu" value="Accueil" outcome="spaceIndex"/>
+					<p:menuitem class="link-menu" value="Accueil" outcome="spaceIndex" />
 					<p:submenu label="Nos services">
 						<p:menuitem value="Nos cours" />
 						<p:menuitem value="Nos coachs" />
 						<p:menuitem value="Nos équipements" />
 					</p:submenu>
-					<p:menuitem class="link-menu" value="Planning" />
+					<p:menuitem class="link-menu" value="Planning des cours" />
 					<p:menuitem class="link-menu" value="Abonnements" />
-					<p:menuitem class="link-menu" value="Contact" outcome="spaceContact"/>
-					<p:menuitem class="link-menu" value="Tableau de bord" outcome="spaceAdminDashboard"
-					rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}"/>
-					<p:menuitem class="link-menu" value="Tableau de bord" outcome="spaceCoachDashboard"
-					rendered="#{loginController.getLoggedAccount().role eq 'COACH'}"/>
-					<p:menuitem class="link-menu" value="Tableau de bord"  outcome="testSpaceTemplate"
-					rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}"/>
+					<p:menuitem class="link-menu" value="Contact"
+						outcome="spaceContact" />
+					
 				</p:menubar>
-				
+				<p:button class="rightButton" value="Tableau de bord"
+					outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
+					iconPos="right"
+					rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
+				<p:button class="rightButton" value="Tableau de bord"
+					outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
+					iconPos="right"
+					rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
+				<p:button class="rightButton" value="Mon espace personnel"
+					outcome="testSpaceTemplate" icon="pi pi-chevron-right"
+					iconPos="right"
+					rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
 			</div>
 		</div>
 		<!-- Login and logout buttons depending on the connexion status of the user -->
 		<div class="right-container">
 			<!-- Login and logout buttons depending on the connexion status of the user -->
 			<h:form>
+				
 				<ui:fragment rendered="#{loginController.loggedIn}">
 					<p:commandButton id="logout-button" value="Déconnexion"
 						action="#{loginController.logout()}" />
 				</ui:fragment>
 				<ui:fragment rendered="#{not loginController.loggedIn}">
-					<p:button id="login-button"  value="Connexion" outcome="CreationDeCompte" />
+					<p:button id="login-button" value="Connexion"
+						outcome="CreationDeCompte" />
 				</ui:fragment>
 			</h:form>
+			<p:button id="BF-button" icon="pi pi-chevron-right" iconPos="right"
+				value="BearForce" outcome="index" />
 
-			<h:link outcome="index" class="link-menu">BearForce</h:link>
 		</div>
 	</div>
 

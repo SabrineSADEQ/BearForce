@@ -60,6 +60,7 @@ html body .ui-button {
 	background-color: var(--turquoise);
 	border-color:transparent;
 	border-radius:20px;
+	margin-left:10px;
 	
 }
 
@@ -71,7 +72,7 @@ html body .ui-button:hover {
 }
 
 html body .ui-button.ui-button-text-only .ui-button-text {
-    padding: 0.5rem;
+
     color: var(--blanc);
 }
 
