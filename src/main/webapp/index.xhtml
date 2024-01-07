@@ -7,19 +7,30 @@
 
 
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
-	
+
 	<ui:define name="titleValue">BearForce :: Accueil</ui:define>
 	<ui:define name="content">
-		<h:outputStylesheet library="css" name="index.css"/>
-		
+		<h:outputStylesheet library="css" name="index.css" />
+
 		<div class="background_image_index_container">
-			
-		</div> 
- 		<div class="content"> <!--The class content ensures the footer stays at the bottom -->
-			<h1>Bienvenue sur BearForce !</h1>
+			<div class="textContainer">
+				<h1 class="indexTitle">Bienvenue sur BearForce !</h1>
+				<h2 class="indexSubtitle">Votre plateforme SaaS de gestion de
+					salle de sport</h2>
+				<div class="computer-container">
+					<p:graphicImage class="overlay-computer" library="images"
+						name="computer_empty.png" />
+				</div>
+			</div>
+		</div>
+		<div class="secondSection"></div>
+		
+		<div class="content">
+			<!--The class content ensures the footer stays at the bottom -->
+
 		</div>
 	</ui:define>
-	
+
 </ui:composition>
 
 </html>
