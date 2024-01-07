@@ -85,15 +85,20 @@
 					<p:panel header="Images et photos de l'espace">
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
+						<div>
 							<h:outputLabel for="logo">Logo</h:outputLabel>
 							<!-- Composant graphique pour le fichier -->
 							<p:fileUpload listener="#{spaceController.uploadFileLogo}"
 								styleClass="w-100" mode="advanced" dragDropSupport="false" />
+							</div>
+							<div>
 							<h:outputLabel for="banner">Bannière</h:outputLabel>
 							<p:fileUpload listener="#{spaceController.uploadFileBanner}"
 								styleClass="w-100" mode="advanced" dragDropSupport="false" />
+							</div>
+							<div>
 							<h:outputLabel for="imagesCarroussel">Images du carroussel</h:outputLabel>
-							<br />
+							</div>
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>

@@ -17,7 +17,8 @@
 
 .link-menu{
 	text-decoration: none;
-	color: var(--blanc);
+	color: var(--dark);
+	margin-right: 10px;
 }
 
 .link-menu:visited{

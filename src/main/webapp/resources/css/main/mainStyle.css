@@ -54,3 +54,58 @@ body {
 .important {
 	font-weight: 800;
 }
+
+/* overrides Primefaces default style*/
+html body .ui-button {
+	background-color: var(--turquoise);
+	border-color:transparent;
+	border-radius:20px;
+	
+}
+
+html body .ui-button:hover {
+	background-color: var(--violet);
+	border-color:transparent;
+	border-radius:20px;
+	
+}
+
+html body .ui-button.ui-button-text-only .ui-button-text {
+    padding: 0.5rem;
+    color: var(--blanc);
+}
+
+html body .ui-selectbooleanbutton.ui-state-active ui-state-focus{
+  	border-color:transparent;
+    color: var(--blanc);
+    background-color: var(--violet);
+}
+
+html body .ui-selectbooleanbutton ui-state-hover{
+  	border-color:transparent;
+    color: var(--blanc);
+    background-color: var(--violet);
+}
+
+html body .ui-selectbooleanbutton.ui-state-focus.ui-state-hover{
+    color: var(--blanc);
+    background-color: var(--violet);
+    border-color:transparent;
+}
+
+html body .ui-selectbooleanbutton.ui-state-active {
+	border-color:transparent;
+    color: var(--blanc);
+    background-color: var(--violet);
+}
+
+html body .ui-fileupload .ui-fileupload-buttonbar {
+	 background-color: transparent;
+	  border-color:transparent;
+	
+}
+
+html body .ui-fileupload .ui-fileupload-content {
+	 border-color:transparent;
+	 
+}

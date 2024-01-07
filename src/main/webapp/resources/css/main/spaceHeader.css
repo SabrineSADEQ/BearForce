@@ -1,0 +1,127 @@
+@charset "ISO-8859-1";
+
+
+/* HEADER */
+.header {
+	background-color: var(--blanc);
+	top: 0;
+	height: 10vh;
+	width: 100%;
+	gap: 60px;
+	align-items: center;
+	display: flex;
+	color: var(--blanc);
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#navLinks {
+	display: flex;
+	align-items: center;
+}
+
+#spaceMenuBar{
+	background-color: transparent;
+	border-color:transparent;
+	color: var(--blanc);
+}
+
+html body .ui-menu .ui-menu-list .ui-menuitem.ui-menuitem-active>.ui-menuitem-link .ui-menuitem-text {
+	color: var(--violet);
+	}
+	
+html body .ui-menu.ui-menubar>.ui-menu-list>.ui-menuitem>.ui-menuitem-link>span {
+	color: var(--turquoise);
+
+	}
+
+html body .ui-button {
+	background-color: var(--turquoise);
+	border-color:transparent;
+	border-radius:20px;
+	
+}
+
+html body .ui-button:hover {
+	background-color: var(--violet);
+	border-color:transparent;
+	border-radius:20px;
+	
+}
+
+#login-button, #logout-button {
+	background-color: var(--blanc);
+}
+
+
+.link-menu {
+	text-decoration: none;
+	color: var(--turquoise);
+	margin-right: 10px;
+	padding: 10px;
+}
+
+.link-menu:visited {
+	text-decoration: none;
+}
+
+.link-menu:hover {
+	text-decoration: none;
+	color: var(--turquoise);
+}
+
+.logoContainer {
+	height: 80%;
+	color: var(--turquoise);
+	width: 120px;
+	margin-left: 50px;
+	margin-right: 20px;
+	margin-top:10px;
+	border-radius: 50%;
+	padding: 10px;
+	align-items: center;
+}
+
+.logoContainer img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+	border-radius: 50px;
+}
+
+.right-container {
+    margin-left: auto; /* Push the container to the right */
+    margin-right:20px;
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Adjust the gap between items */
+    float:right;
+}
+
+.left-container {
+    margin-right: auto; /* Push the container to the right */
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Adjust the gap between items */
+    float:left;
+}
+
+/* Styles for the burger menu button */
+.burger-menu {
+	display: none; /* Hide by default on larger screens */
+}
+
+/* Responsive behavior: */
+/* Media query for screens smaller than 768px (smartphones) */
+@media only screen and (max-width: 767px) {
+	#navLinks {
+		flex-direction: column;
+	}
+	.link-menu {
+		display: block; /* Ensure links are visible on small screens */
+	}
+
+	/* Hide the header links on small screens 
+	.header .link-menu {
+		display: none;
+	}*/
+}

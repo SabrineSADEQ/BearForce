@@ -9,6 +9,7 @@
 </h:head>
 
 <h:body>
+<!-- 	Gym manager sidebar  -->
 	<h:outputStylesheet library="css" name="main/spaceStyle.css" />
 	<p:menu styleClass="dashboard-sidebar"
 		rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}">
@@ -34,7 +35,7 @@
 
 
 	</p:menu>
-
+<!-- 	Gym member sidebar  -->
 	<p:menu styleClass="dashboard-sidebar"
 		rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}">
 		<p:graphicImage library="images" name="bear_user_image.jpg"
@@ -42,23 +43,23 @@
 		<p:menuitem value="Mon planning" icon="pi pi-calendar" />
 		<p:menuitem value="Réserver un cours" icon="pi pi-calendar-plus" />
 		<p:menuitem value="Mon abonnement" icon="pi pi-shopping-cart" />
-		<p:menuitem value="Mon compte" icon="pi pi-cog" />
+		<p:menuitem value="Mon compte" outcome="MonCompte" icon="pi pi-cog" />
 		<p:menuitem class="logout-button" value="Déconnexion"
-			icon="pi pi-sign-out" />
+			action="#{loginController.logout()}" icon="pi pi-sign-out" />
 	</p:menu>
-
+<!-- 	Gym coach sidebar  -->
 	<p:menu styleClass="dashboard-sidebar"
 		rendered="#{loginController.getLoggedAccount().role eq 'COACH'}">
 		<p:graphicImage library="images" name="bear_user_image.jpg"
 			alt="profile-picture" styleClass="profile-image" />
-		<p:menuitem value="Tableau de bord" icon="pi pi-chart-line" />
+		<p:menuitem value="Tableau de bord" outcome="spaceCoachDashboard" icon="pi pi-chart-line" />
 		<p:menuitem value="Mon planning" icon="pi pi-calendar" />
 		<p:menuitem value="Adhérents" icon="pi pi-users" />
 		<p:menuitem value="Réserver un équipement" icon="pi pi-wrench" />
 		<p:menuitem value="Mon profil professionel" icon="pi pi-user" />
-		<p:menuitem value="Mon compte" icon="pi pi-cog" />
+		<p:menuitem value="Mon compte" outcome="MonCompte" icon="pi pi-cog" />
 		<p:menuitem class="logout-button" value="Déconnexion"
-			icon="pi pi-sign-out" />
+			action="#{loginController.logout()}" icon="pi pi-sign-out" />
 	</p:menu>
 
 </h:body>

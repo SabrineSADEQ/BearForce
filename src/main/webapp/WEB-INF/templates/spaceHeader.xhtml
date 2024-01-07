@@ -4,29 +4,64 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<h:outputStylesheet library="css" name="main/spaceStyle.css" />
+	<h:outputStylesheet library="css" name="main/spaceHeader.css" />
 </h:head>
 
 <h:body>
 	<div class="header">
-		<div class="logoContainer">
-			<!-- 			<p:graphicImage library="images" name="" /> -->
-		</div>
-		<div>
-			<h:link outcome="spaceIndex" class="link-menu">Accueil    </h:link>
-			<h:link class="link-menu">Nos services    </h:link>
-			<h:link class="link-menu">Planning    </h:link>
-			<h:link class="link-menu">Abonnements    </h:link>
-			<h:link outcome="spaceContact" class="link-menu">Contact    </h:link>
+		<div class="left-container">
+			<div class="logoContainer">
+				<!-- <p:graphicImage library="images" name="" /> -->
+				LOGO
+			</div>
+			<!-- Burger Menu Button for small screens 
+        <p:commandButton id="burgerMenu" icon="pi pi-bars"
+            styleClass="burger-menu p-d-md-none" />-->
 
-			<h:link outcome="spaceAdminDashboard"
-				rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}"
-				class="link-menu">Tableau de bord    </h:link>
-			<h:link outcome="index" class="link-menu">BearForce    </h:link>
+			<div id="navLinks">
+				<p:menubar id="spaceMenuBar">
+					<p:menuitem class="link-menu" value="Accueil" outcome="spaceIndex"/>
+					<p:submenu label="Nos services">
+						<p:menuitem value="Nos cours" />
+						<p:menuitem value="Nos coachs" />
+						<p:menuitem value="Nos équipements" />
+					</p:submenu>
+					<p:menuitem class="link-menu" value="Planning" />
+					<p:menuitem class="link-menu" value="Abonnements" />
+					<p:menuitem class="link-menu" value="Contact" outcome="spaceContact"/>
+					<p:menuitem class="link-menu" value="Tableau de bord" outcome="spaceAdminDashboard"
+					rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}"/>
+					<p:menuitem class="link-menu" value="Tableau de bord" outcome="spaceCoachDashboard"
+					rendered="#{loginController.getLoggedAccount().role eq 'COACH'}"/>
+					<p:menuitem class="link-menu" value="Tableau de bord"  outcome="testSpaceTemplate"
+					rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}"/>
+				</p:menubar>
+				
+			</div>
+		</div>
+		<!-- Login and logout buttons depending on the connexion status of the user -->
+		<div class="right-container">
+			<!-- Login and logout buttons depending on the connexion status of the user -->
+			<h:form>
+				<ui:fragment rendered="#{loginController.loggedIn}">
+					<p:commandButton id="logout-button" value="Déconnexion"
+						action="#{loginController.logout()}" />
+				</ui:fragment>
+				<ui:fragment rendered="#{not loginController.loggedIn}">
+					<p:button id="login-button"  value="Connexion" outcome="CreationDeCompte" />
+				</ui:fragment>
+			</h:form>
+
+			<h:link outcome="index" class="link-menu">BearForce</h:link>
 		</div>
 	</div>
+
+	<!-- Script for toggling the menu -->
+	<h:outputScript library="js" name="responsive.js" />
 </h:body>
 </html>

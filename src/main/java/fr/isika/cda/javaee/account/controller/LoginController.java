@@ -35,7 +35,7 @@ public class LoginController implements Serializable {
 			session.setAttribute("loggedInUser", account);
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
-					"Email ou Mot de pass incorrects", "Merci de saisir les bons identifiants"));
+					"Email ou Mot de passe incorrects", "Merci de saisir les bons identifiants"));
 			
 		}
 	}
