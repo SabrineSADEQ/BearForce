@@ -13,19 +13,27 @@
 <h:body>
 	<div class="header">
 		<div class="logoContainer">
-			<p:graphicImage library="images" name="logo_with_text_V4_HTP_right_text.png" />
+			<p:graphicImage library="images"
+				name="logo_with_text_V4_HTP_right_text.png" />
 		</div>
 		<div>
 			<h:link outcome="index" class="link-menu">Accueil    </h:link>
-			<h:link outcome="PageTesterConfiguration.xhtml" class="link-menu">Créer Configuration     </h:link>
-			<h:link outcome="CreationPack.xhtml" class="link-menu">Créer Pack     </h:link>
-			<h:link outcome="createActivity.xhtml" class="link-menu">Créer une activité     </h:link>
-			<h:link outcome="createCourse.xhtml" class="link-menu">Créer un cours     </h:link>
-			<h:link outcome="createEquipment.xhtml" class="link-menu">Créer un équipement     </h:link>
+
+			<h:link
+				rendered="#{loginController.getLoggedAccount().role eq 'SUPER_ADMIN'}"
+				outcome="PageTesterConfiguration.xhtml" class="link-menu">Configurer la plateforme     </h:link>
+			<h:link
+				rendered="#{loginController.getLoggedAccount().role eq 'SUPER_ADMIN'}"
+				outcome="CreationPack.xhtml" class="link-menu">Créer Pack     </h:link>
 			<h:link outcome="spaceCreation" class="link-menu">Créer un espace     </h:link>
 			<h:link outcome="CreationDeCompte.xhtml" class="link-menu">Créer un compte     </h:link>
-			<h:link outcome="GestionEmployerGestionnaire.xhtml" class="link-menu">Employés   </h:link>
 			<h:link outcome="testSpaceTemplate" class="link-menu">Template Espace   </h:link>
+			<h:form class="container mt-3">
+				<ui:fragment rendered="#{loginController.loggedIn}">
+					<h:commandButton value="Logout"
+						action="#{loginController.logout()}" />
+				</ui:fragment>
+			</h:form>
 		</div>
 	</div>
 </h:body>

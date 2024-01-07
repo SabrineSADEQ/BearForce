@@ -7,25 +7,25 @@
 <h:head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<h:outputStylesheet library="css" name="main/spaceHeader.css" />
+	<h:outputStylesheet library="css" name="main/spaceStyle.css" />
 </h:head>
 
 <h:body>
 	<div class="header">
 		<div class="logoContainer">
-<!-- 			<p:graphicImage library="images" name="" /> -->
+			<!-- 			<p:graphicImage library="images" name="" /> -->
 		</div>
 		<div>
-			<h:link outcome="index" class="link-menu">Accueil    </h:link>
-			<h:link outcome="PageTesterConfiguration.xhtml" class="link-menu">Créer Configuration     </h:link>
-			<h:link outcome="CreationPack.xhtml" class="link-menu">Créer Pack     </h:link>
-			<h:link outcome="createActivity.xhtml" class="link-menu">Créer une activité     </h:link>
-			<h:link outcome="createCourse.xhtml" class="link-menu">Créer un cours     </h:link>
-			<h:link outcome="createEquipment.xhtml" class="link-menu">Créer un équipement     </h:link>
-			<h:link outcome="spaceCreation" class="link-menu">Créer un espace     </h:link>
-			<h:link outcome="CreationDeCompte.xhtml" class="link-menu">Créer un compte     </h:link>
-			<h:link outcome="GestionEmployerGestionnaire.xhtml" class="link-menu">Employés   </h:link>
-			<h:link outcome="testSpaceTemplate" class="link-menu">Template Espace   </h:link>
+			<h:link outcome="spaceIndex" class="link-menu">Accueil    </h:link>
+			<h:link class="link-menu">Nos services    </h:link>
+			<h:link class="link-menu">Planning    </h:link>
+			<h:link class="link-menu">Abonnements    </h:link>
+			<h:link outcome="spaceContact" class="link-menu">Contact    </h:link>
+
+			<h:link outcome="spaceAdminDashboard"
+				rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}"
+				class="link-menu">Tableau de bord    </h:link>
+			<h:link outcome="index" class="link-menu">BearForce    </h:link>
 		</div>
 	</div>
 </h:body>

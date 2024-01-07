@@ -14,16 +14,25 @@
 		rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}">
 		<p:graphicImage library="images" name="bear_user_image.jpg"
 			alt="profile-picture" styleClass="profile-image" />
-		<p:menuitem value="Tableau de bord" icon="pi pi-chart-line" />
+		<p:menuitem value="Tableau de bord" outcome="spaceAdminDashboard"
+			icon="pi pi-chart-line" />
 		<p:menuitem value="Adhérents" icon="pi pi-users" />
-		<p:menuitem value="Employés" icon="pi pi-briefcase" />
-		<p:menuitem value="Cours" icon="pi pi-calendar" />
-		<p:menuitem value="Equipements" icon="pi pi-wrench" />
-		<p:menuitem value="Abonnements" icon="pi pi-shopping-cart" />
+		<p:menuitem value="Employés" outcome="CreationDeCompte"
+			icon="pi pi-briefcase" />
+		<p:menuitem value="Activités et cours" outcome="createActivity"
+			icon="pi pi-calendar" />
+		<p:menuitem value="Planifier un cours" outcome="createCourse"
+			icon="pi pi-calendar-plus" />
+		<p:menuitem value="Equipements" outcome="createEquipment"
+			icon="pi pi-wrench" />
+		<p:menuitem value="Abonnements" outcome="subscription"
+			icon="pi pi-shopping-cart" />
 		<p:menuitem value="Mon espace" icon="pi pi-palette" />
-		<p:menuitem value="Mon compte" icon="pi pi-cog" />
+		<p:menuitem value="Mon compte" outcome="MonCompte" icon="pi pi-cog" />
 		<p:menuitem class="logout-button" value="Déconnexion"
-			icon="pi pi-sign-out" />
+			action="#{loginController.logout()}" icon="pi pi-sign-out" />
+
+
 	</p:menu>
 
 	<p:menu styleClass="dashboard-sidebar"
@@ -37,7 +46,7 @@
 		<p:menuitem class="logout-button" value="Déconnexion"
 			icon="pi pi-sign-out" />
 	</p:menu>
-	
+
 	<p:menu styleClass="dashboard-sidebar"
 		rendered="#{loginController.getLoggedAccount().role eq 'COACH'}">
 		<p:graphicImage library="images" name="bear_user_image.jpg"
