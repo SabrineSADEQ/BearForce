@@ -67,6 +67,29 @@ public class SubscriptionManagementController implements Serializable {
 		return message;
 	}
 	
+	public String paymentPack() {
+		
+		
+		return "pagePayment.xhtml?faces-redirect=true";	
+		
+	}
+	
+public String confirmationPayment() {
+		
+		
+		return "ConfirmationPayment.xhtml?faces-redirect=true";	
+		
+	}
+
+	
+	public String dirigeVersSpaceCreation() {
+		
+		return "spaceCreation.xhtml?faces-redirect=true";
+		
+	}	
+	
+	
+	
 	public List<Pack> listePacks() {
 		return packDao.getPacksWithSubscriptions();
 	}
