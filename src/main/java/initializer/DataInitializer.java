@@ -171,7 +171,7 @@ public class DataInitializer {
             activity.setDescription("cours de judo avec les meilleurs coachs de la region");
             ActivityCategory activityCategory = ActivityCategory.CARDIO;
             activity.setActivityCategory(activityCategory);
-            activityDao.createActivity(activity);
+//            activityDao.createActivity(activity, null);
             
             Course course = new Course();
       
@@ -185,7 +185,7 @@ public class DataInitializer {
     		equipment.setQuantity(10);       
     		equipment.setEquipmentName("barre de traction"); 
     		equipment.setDetails("barre de traction monté sur support métallique, poids max de 120kg"); 
-    		equipmentDao.createEquipment(equipment);
+//    		equipmentDao.createEquipment(equipment, null);
             
             // incomplet
            SpaceViewModel spaceViewModel = new SpaceViewModel();
