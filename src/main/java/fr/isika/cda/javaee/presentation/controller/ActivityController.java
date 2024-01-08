@@ -32,9 +32,6 @@ public class ActivityController implements Serializable{
 
 	@Inject
 	private ActivityDao activityDao;
-	
-	@Inject
-	private EquipmentDao equipmentDao;
 
 	@PostConstruct
 	public void init() {
@@ -56,7 +53,7 @@ public class ActivityController implements Serializable{
 		selectedEquipments.clear();
 	}
 	
-	public List<Activity> displayActivitiesList() {
+	public List<Activity> act() {
 		return activityDao.getAllActivities();
 	}
 
@@ -64,11 +61,11 @@ public class ActivityController implements Serializable{
 	public List<Profile> displayTrainersList() {
 		return activityDao.getAllTrainers();
 	}
-	
-	public List<Equipment> getEquipmentsList() {
-		return equipmentDao.getAllEquipmentsWithActivities();
-	}
 
+	public List<Activity> displayActivitiesList(){
+		return activityDao.getAllActivities();
+	}
+	
 	//GET FROM DATABASE EQUIPMENTS LIST	
 
 	//DELETE ACTIVITY FROM DATABASE

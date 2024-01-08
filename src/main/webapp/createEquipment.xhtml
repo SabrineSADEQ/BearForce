@@ -58,16 +58,21 @@
 					<br />
 
 					<div class="field grid">
-						<p:outputLabel for="activities" styleClass="col-fixed"
+						<p:outputLabel for="activity" styleClass="col-fixed"
 							style="width:100px" value="Activitée(s) concernée(s) : " />
 						<div class="col">
-							<p:selectManyCheckbox id="activities"
-								value="#{equipmentController.selectedActivities}"
-								layout="responsive" columns="2">
+							<p:selectOneMenu id="activity"
+								value="#{equipmentController.selectedActivity}"
+								style="min-width: 14rem">
+								<f:selectItem itemLabel="Sélectionnez une activité"
+									itemValue="null" noSelectionOption="true" />
 								<f:selectItems
-									value="#{equipmentController.getActivitiesList()}" var="act"
-									itemLabel="#{act.name}" itemValue="#{act.id}" />
-							</p:selectManyCheckbox>
+									value="#{activityController.displayActivitiesList()}" 
+									var="act"
+									itemLabel="#{act.name}"
+									itemValue="#{act.id}" />
+							</p:selectOneMenu>
+
 						</div>
 					</div>
 					<br />

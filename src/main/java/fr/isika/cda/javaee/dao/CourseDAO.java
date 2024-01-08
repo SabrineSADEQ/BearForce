@@ -29,7 +29,6 @@ public class CourseDAO {
 		System.out.println(courseViewModel.getNbPlaces());
 		Profile trainer = findTrainerById(courseViewModel.getTrainerId());
 		courseBean.setTrainer(trainer);
-		System.out.println(courseViewModel.getNbPlaces());
 		entityManager.persist(courseBean);
 		entityManager.flush();
 		return courseBean;	
