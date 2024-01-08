@@ -8,23 +8,42 @@
 
 <ui:composition
 	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
-	
+
 	<ui:define name="titleValue">
 		Space Details
 	</ui:define>
 	<ui:define name="content">
 		<h:outputStylesheet library="css" name="main/spaceStyle.css" />
 		<div class="content">
-			<h1>#{spaceController.getLoadedSpace().getIdGym().getGymName()}</h1>
-			<p>Hello!</p>
-			
-			<h:outputLabel value="Logo : " />
-			<h:graphicImage library="images" 
-				name="#{spaceController.getLoadedSpace().visualIdentity.gymLogoPath}" />
-			
-			<h2 style="color : ##{spaceController.getLoadedSpace().visualIdentity.firstColor}">
-				This is a text with the first color
-			</h2>
+
+			<div class="logoContainer">
+				<h:graphicImage library="images"
+					name="#{spaceController.getLoadedSpace().visualIdentity.gymLogoPath}" />
+			</div>
+
+			<div class="bannerTextContainer">
+				<div class="spaceLeftDiv">
+					<h:graphicImage library="images"
+						name="#{spaceController.getLoadedSpace().visualIdentity.gymBannerPath}" />
+				</div>
+				<div class="spaceRightDiv">
+					<h1>#{spaceController.getLoadedSpace().getIdGym().getGymName()}</h1>
+				</div>
+			</div>
+
+			<div>
+				<h2
+					style="color : ##{spaceController.getLoadedSpace().visualIdentity.firstColor}">
+					This is a text with the first color</h2>
+
+				<h2
+					style="color : ##{spaceController.getLoadedSpace().visualIdentity.secondColor}">
+					This is a text with the second color</h2>
+
+				<h2
+					style="color : ##{spaceController.getLoadedSpace().visualIdentity.thirdColor}">
+					This is a text with the third color</h2>
+			</div>
 		</div>
 
 	</ui:define>

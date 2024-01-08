@@ -24,7 +24,6 @@
 }
 
 /* BODY */
-
 html, body {
     height: 100%;
      margin: 0;
@@ -62,16 +61,48 @@ body {
     align-content: center;
 }
 
-.logout-button {
-	
-}
-
 .dashboard-sidebar .profile-image {
     display: block; 
     margin-bottom: 20px; 
     width: 100%; 
     border-radius: 50%; /* Make the image appear in a circle */
     overflow: hidden; /* Ensure content outside the circle is hidden */
+}
+
+/*Space index style : */
+
+.bannerTextContainer{
+	display:flex;
+	flex-direction: column;
+}
+
+.spaceLeftDiv{
+	float:left;
+	margin-bottom:20px;
+}
+
+.spaceRightDiv{
+	float:right;
+}
+
+.logout-button {
+	
+}
+
+.square .clr-field button, .circle .clr-field button {
+    width: 22px;
+    height: 22px;
+    left: 5px;
+    right: auto;
+    border-radius: 5px;
+}
+
+.square .clr-field input, .circle .clr-field input {
+    padding-left: 36px;
+}
+
+.circle .clr-field button {
+    border-radius: 50%;
 }
 
 

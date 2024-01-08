@@ -14,7 +14,8 @@
 	<div class="header">
 		<div class="left-container">
 			<div class="logoContainer">
-				<p:graphicImage library="platformImages" name="logo_with_text_V8.png" />
+				<p:graphicImage library="platformImages"
+					name="logo_with_text_V8.png" />
 			</div>
 			<!-- Burger Menu Button for small screens 
         <p:commandButton id="burgerMenu" icon="pi pi-bars"
@@ -24,8 +25,9 @@
 				<p:menubar id="spaceMenuBar">
 					<p:menuitem class="link-menu" value="Accueil" outcome="index" />
 					<p:menuitem class="link-menu" value="Fonctionnalités" />
-					<p:menuitem class="link-menu" value="Nos clients" outcome="spacesList" />
-					<p:menuitem class="link-menu" value="Nos offres"/>
+					<p:menuitem class="link-menu" value="Nos clients"
+						outcome="spacesList" />
+					<p:menuitem class="link-menu" value="Nos offres" />
 					<p:menuitem class="link-menu" value="Créer un espace"
 						outcome="spaceCreation" />
 					<p:menuitem class="link-menu" value="Contact" />
@@ -48,39 +50,39 @@
 		<div class="right-container">
 			<!-- Login and logout buttons depending on the connection status of the user -->
 			<h:form>
-				
-					<ui:fragment rendered="#{not loginController.loggedIn}">
-						<p:commandButton value="Connexion" type="button"
-							onclick="PF('dlg3').show()" />
-					</ui:fragment>
-					<ui:fragment rendered="#{loginController.loggedIn}">
-						<p:commandButton id="logout-button" value="Déconnexion"
-							action="#{loginController.logout()}" />
-					</ui:fragment>
-				
+
+				<ui:fragment rendered="#{not loginController.loggedIn}">
+					<p:commandButton value="Connexion" type="button"
+						onclick="PF('dlg3').show()" />
+				</ui:fragment>
+				<ui:fragment rendered="#{loginController.loggedIn}">
+					<p:commandButton id="logout-button" value="Déconnexion"
+						action="#{loginController.logout()}" />
+				</ui:fragment>
+
 				<!-- 				<ui:fragment rendered="#{not loginController.loggedIn}"> -->
 				<!-- 					<p:button id="login-button" value="Connexion" -->
 				<!-- 						outcome="CreationDeCompte" /> -->
 				<!-- 				</ui:fragment> -->
-				
-					<p:button class="rightButton" value="Tableau de bord"
-						outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
-						iconPos="right"
-						rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
-					<p:button class="rightButton" value="Tableau de bord"
-						outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
-						iconPos="right"
-						rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
-					<p:button class="rightButton" value="Mon espace personnel"
-						outcome="testSpaceTemplate" icon="pi pi-chevron-right"
-						iconPos="right"
-						rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
-				
+
+				<p:button class="rightButton" value="Tableau de bord"
+					outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
+					iconPos="right"
+					rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
+				<p:button class="rightButton" value="Tableau de bord"
+					outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
+					iconPos="right"
+					rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
+				<p:commandButton class="rightButton" value="Mon espace personnel"
+					action="#{spaceController.redirectToSpace(loginController.loggedAccount.gymId)}"
+					icon="pi pi-chevron-right" iconPos="right"
+					rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
+
 			</h:form>
-			
+
 			<!-- Login pop up -->
-			<p:dialog header="Connexion" widgetVar="dlg3" minHeight="40" width="350"
-				showEffect="fade">
+			<p:dialog header="Connexion" widgetVar="dlg3" minHeight="40"
+				width="350" showEffect="fade">
 				<p class="m-0">
 					<h:form>
 
@@ -101,11 +103,12 @@
 					</h:form>
 				</p>
 				<f:facet name="footer">
-					<p:commandButton type="button" value="Se connecter" action="#{loginController.validateAccount}" style="width:8rem" />
+					<p:commandButton type="button" value="Se connecter"
+						action="#{loginController.validateAccount}" style="width:8rem" />
 				</f:facet>
 			</p:dialog>
 
-		
+
 		</div>
 	</div>
 

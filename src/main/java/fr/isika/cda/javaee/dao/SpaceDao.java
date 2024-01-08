@@ -51,6 +51,7 @@ public class SpaceDao {
 			visualIdentity.setThirdColor(spaceViewModel.getThirdColor());
 			visualIdentity.setSpaceTextContent(spaceTextContent);
 			visualIdentity.setGymLogoPath(spaceViewModel.getGymLogoPath());
+			visualIdentity.setGymBannerPath(spaceViewModel.getGymBannerPath());
 			
 			gymIdentity.setGymCaracteristics(gymCaracteristics);
 			
