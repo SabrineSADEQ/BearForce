@@ -15,37 +15,33 @@
 			<p>
 				<label for="startDate"> Date de début :</label>
 				<h:inputText id="startDate"
-					value="#{subscriptionController.nouvelleSubscription.startDate}" />
+
+					value="#{subscriptionManagedBean.startDate}" />
+
 			</p>
 			<p>
 				<label for="endDate">Date de fin :</label>
 				<h:inputText id="endDate"
-					value="#{subscriptionBean.nouvelleSubscription.endDate}" />
+					value="#{subscriptionManagedBean.endDate}" />
 			</p>
 			<p>
 				<label for="autoRenewal">Renouvellement automatique :</label>
 				<h:selectBooleanCheckbox id="autoRenewal"
-					value="#{subscriptionBean.nouvelleSubscription.autoRenewal}" />
+					value="#{subscriptionManagedBean.autoRenewal}" />
 			</p>
 			<p>
 				<label for="duration">Durée :</label>
 				<h:inputText id="duration"
-					value="#{subscriptionBean.nouvelleSubscription.duration}" />
+					value="#{subscriptionManagedBean.duration}" />
 			</p>
-			<p>
-				<label for="membership">Choisir l'adhésion :</label>
-				<h:selectOneMenu id="membership"
-					value="#{subscriptionBean.selectedMembershipId}">
-					<f:selectItems value="#{subscriptionBean.getAllMemberships()}"
-						var="membership" itemLabel="#{membership.name}"
-						itemValue="#{membership.id}" />
-				</h:selectOneMenu>
-			</p>
+			
 
 			<h:commandButton value="Souscrire"
-				action="#{subscriptionBean.souscrireAbonnement()}" />
+				action="#{subscriptionManagedBean.subscribe()}" />
 		</h:form>
-
+		
+<!-- 	<h:link outcome="home" value="Retour à la page d'accueil"/> -->
+	
 	</ui:define>
 </ui:composition>
 

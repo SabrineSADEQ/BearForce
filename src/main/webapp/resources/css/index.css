@@ -1,0 +1,10 @@
+@charset "ISO-8859-1";
+
+.background_image_index_container {
+	position: fixed;
+	top: 0;
+    left: 0;
+	width: 100%; /* Ensures the image takes the full width */
+	max-width:100%; 
+	z-index: -1; /* Ensures the image is behind other content */
+}

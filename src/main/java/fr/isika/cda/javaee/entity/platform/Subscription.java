@@ -3,6 +3,8 @@ package fr.isika.cda.javaee.entity.platform;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.gymspace.Membership;
 
 @Entity
@@ -34,6 +37,24 @@ public class Subscription {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Membership membership = new Membership ();
+	
+	
+	//private List<Account>accounts = new ArrayList<>();
+	
+	//private Account Account = new Account();
+	
+	
+	
+	public Membership getMembership() {
+		return membership;
+	}
+//	public Account getAccount() {
+//		return Account;
+//	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public Subscription() {
 	}
@@ -86,10 +107,9 @@ public class Subscription {
 		
 	}
 
-	
-
-	
-
-	
+//	public void setAccount(Account account) {
+//		this.Account  = account;;
+//		
+//	}
 
 }
