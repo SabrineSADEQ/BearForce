@@ -23,12 +23,12 @@ public class Profile {
 	private Long id;
 	private String firstName;
 	private String lastName;
-	private LocalDate birthDate;
+	private LocalDate birthDate = LocalDate.now();
 	@Column(name = "picture_url")
 	private String pictureUrl;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact = new Contact();
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Address address = new Address();
 	@OneToOne(cascade = CascadeType.PERSIST)
 	private ProfessionalDetails profesionalDetails = new ProfessionalDetails();

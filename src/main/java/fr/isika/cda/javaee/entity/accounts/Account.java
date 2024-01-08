@@ -9,8 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import fr.isika.cda.javaee.entity.gymspace.IdGym;
+import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.entity.platform.Subscription;
 
 @Entity
@@ -38,8 +41,21 @@ public class Account {
 	@OneToOne
 	private Profile profile;
 	
+	@Column
+	private int gymId;
 	
 	
+	
+	
+	
+	public int getGymId() {
+		return gymId;
+	}
+
+	public void setGymId(int gymId) {
+		this.gymId = gymId;
+	}
+
 	public Profile getProfile() {
 		return profile;
 	}
@@ -126,5 +142,9 @@ public class Account {
 			this.subscription =  subscription;
 			
 		}
+
+		
+
+
 
 }

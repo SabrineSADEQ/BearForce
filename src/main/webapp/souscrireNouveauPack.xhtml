@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+	<ui:define name="titleValue">Souscrire à un nouveau pack</ui:define>
+	<ui:define name="content">
+		<h:form id="subscribeForm">
+			<p>
+				<h:outputLabel value="#{subscriptionManagementController.message}" />
+			</p>
+			<h:commandButton action="#{subscriptionManagementController.subscribe()}" value="Souscrire" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -123,4 +123,6 @@ public class SubscriptionManagedBean implements Serializable {
 	public void setAccountManagedBean(AccountManagedBean accountManagedBean) {
 		this.accountManagedBean = accountManagedBean;
 	}
+
+   
 }

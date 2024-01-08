@@ -24,24 +24,31 @@
 					value="#{accountController.accountVM.password}" required="true" />
 			</div>
 
-			<h:panelGroup rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}">
-    <h:outputLabel for="role1">Role:</h:outputLabel>
-    <h:selectOneRadio id="role1" value="#{accountController.accountVM.role}" required="true">
-        <f:selectItem itemValue="GESTIONNAIRE" itemLabel="Professionnel" />
-        <f:selectItem itemValue="VISITEUR" itemLabel="Particulier" />
-        <f:selectItem itemValue="COACH" itemLabel="Coach" />
-    </h:selectOneRadio>
-</h:panelGroup>
+			<h:panelGroup
+				rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}">
+				<h:outputLabel for="role1">Role:</h:outputLabel>
+				<h:selectOneRadio id="role1"
+					value="#{accountController.accountVM.role}" required="true">
+					<f:selectItem itemValue="GESTIONNAIRE" itemLabel="Professionnel" />
+					<f:selectItem itemValue="VISITEUR" itemLabel="Particulier" />
+					<f:selectItem itemValue="COACH" itemLabel="Coach" />
+				</h:selectOneRadio>
+			</h:panelGroup>
 
-<h:panelGroup rendered="#{loginController.getLoggedAccount().role ne 'GESTIONNAIRE'}">
-    <h:outputLabel for="role2">Role:</h:outputLabel>
-    <h:selectOneRadio id="role2" value="#{accountController.accountVM.role}" required="true">
-        <f:selectItem itemValue="GESTIONNAIRE" itemLabel="Professionnel" />
-        <f:selectItem itemValue="VISITEUR" itemLabel="Particulier" />
-    </h:selectOneRadio>
-</h:panelGroup>
+			<h:panelGroup
+				rendered="#{loginController.getLoggedAccount().role ne 'GESTIONNAIRE'}">
+				<h:outputLabel for="role2">Role:</h:outputLabel>
+				<h:selectOneRadio id="role2"
+					value="#{accountController.accountVM.role}" required="true">
+					<f:selectItem itemValue="GESTIONNAIRE" itemLabel="Professionnel" />
+					<f:selectItem itemValue="VISITEUR" itemLabel="Particulier" />
+				</h:selectOneRadio>
+			</h:panelGroup>
 
-    
+
+			
+
+
 			<h:commandButton value="Next"
 				action="#{accountController.nextWizardStep}" />
 		</h:form>
@@ -123,35 +130,50 @@
 					value="#{accountController.accountVM.profile.address.city}"
 					required="true" />
 			</div>
-			<h:panelGroup rendered="#{accountController.accountVM.role eq 'COACH'}">
-			<div class="form-group">
-				<label for="coachCertification">Coach Certification:</label> <input
-					type="text" id="coachCertification" class="form-control"
-					value="#{accountController.accountVM.profile.profesionalDetails.coachCertification}"
-					 />
+
+
+			<h:panelGroup
+				rendered="#{accountController.accountVM.role eq 'COACH'}">
+				<div class="form-group">
+					<label for="coachCertification">Coach Certification:</label> <input
+						type="text" id="coachCertification" class="form-control"
+						value="#{accountController.accountVM.profile.profesionalDetails.coachCertification}" />
+				</div>
+
+				<div class="form-group">
+					<label for="coachForm">Coach Form:</label> <input type="text"
+						id="coachForm" class="form-control"
+						value="#{accountController.accountVM.profile.profesionalDetails.coachForm}" />
+				</div>
+
+				<div class="form-group">
+					<label for="coachCV">Coach CV:</label> <input type="text"
+						id="coachCV" class="form-control"
+						value="#{accountController.accountVM.profile.profesionalDetails.coachCV}" />
+				</div>
+
+			</h:panelGroup>
+
+			<h:commandButton value="Previous"
+				action="#{accountController.previousWizardStep}" />
+			<h:commandButton value="Next"
+				action="#{accountController.nextWizardStep}" />
+		</h:form>
+
+		<h:form rendered="#{accountController.wizardStep == 3}">
+			<h:outputLabel value="Step 3: Enter Gym Number" />
+
+			<div>
+				<h:outputLabel for="gymId">gymId:</h:outputLabel>
+				<h:inputText id="gymId" value="#{accountController.accountVM.gymId}"
+					required="true" />
 			</div>
-
-			<div class="form-group">
-				<label for="coachForm">Coach Form:</label> <input type="text"
-					id="coachForm" class="form-control"
-					value="#{accountController.accountVM.profile.profesionalDetails.coachForm}"
-					 />
-			</div>
-
-			<div class="form-group">
-				<label for="coachCV">Coach CV:</label> <input type="text"
-					id="coachCV" class="form-control"
-					value="#{accountController.accountVM.profile.profesionalDetails.coachCV}"
-					/>
-			</div></h:panelGroup>
-
 			<h:commandButton value="Previous"
 				action="#{accountController.previousWizardStep}" />
 			<h:commandButton value="Finish"
 				action="#{accountController.finishWizard}" />
 			<h:messages globalOnly="true" />
 		</h:form>
-
 		<h:form>
 			<h2>Login</h2>
 

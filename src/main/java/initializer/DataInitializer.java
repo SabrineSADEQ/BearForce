@@ -18,8 +18,14 @@ import fr.isika.cda.javaee.dao.CourseDAO;
 import fr.isika.cda.javaee.dao.EquipmentDao;
 import fr.isika.cda.javaee.dao.SpaceDao;
 import fr.isika.cda.javaee.dao.accounts.AccountDao;
+
+
 import fr.isika.cda.javaee.dao.gymspace.MembershipDao;
 import fr.isika.cda.javaee.dao.platform.SubscriptionDao;
+
+
+
+  
 import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.accounts.Address;
 import fr.isika.cda.javaee.entity.accounts.Contact;
@@ -48,8 +54,11 @@ public class DataInitializer {
     @Inject
     private AccountDao accountDao;
     
+
     @Inject
     private SubscriptionDao subscriptionDao;
+
+
     
     @Inject
     private ActivityDao activityDao;
@@ -201,6 +210,7 @@ public class DataInitializer {
        
            membershipDao.saveMembership(membership);
            
+
            
            Subscription subscription = new Subscription();
            subscription.setStartDate(LocalDateTime.now());
@@ -209,6 +219,7 @@ public class DataInitializer {
            subscription.setDuration(6);
            subscriptionDao.saveSubscription(subscription);
             
+
           
             
 
