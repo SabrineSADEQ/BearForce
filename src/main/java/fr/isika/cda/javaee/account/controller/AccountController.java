@@ -2,30 +2,25 @@ package fr.isika.cda.javaee.account.controller;
 
 import java.io.Serializable;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.annotation.PostConstruct;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import fr.isika.cda.javaee.dao.accounts.AccountDao;
-import fr.isika.cda.javaee.dao.accounts.LoginDao;
-import fr.isika.cda.javaee.entity.accounts.Account;
-import fr.isika.cda.javaee.utils.SessionUtils;
 import fr.isika.cda.javaee.viewModel.AccountViewModel;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class AccountController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-
     private AccountViewModel accountVM = new AccountViewModel();
     private int wizardStep = 1; // Initialize the wizard step to 1
     private boolean wizardMode = true; // Set initial wizard mode to true
-
 
 	@Inject
 	private AccountDao accountDao;
@@ -35,15 +30,17 @@ public class AccountController implements Serializable {
 		System.out.println("AccountController bean initialized!");
 	}
 
+    public String addAccount() {
+    	accountDao.createAccount(accountVM);
 
-    public void addAccount() {
-    	 accountDao.createAccount(accountVM);
+	    // Reset the wizard step and mode for the next user
+	    wizardStep = 1;
+	    wizardMode = false;
 
-    	    // Reset the wizard step and mode for the next user
-    	    wizardStep = 1;
-    	    wizardMode = false;
-
-    	    accountVM = new AccountViewModel();	
+	    accountVM = new AccountViewModel();
+    	   
+	    // redirection dynamique vers la page + changement diurl 
+	   return "CreationDeCompte.xhtml?faces-redirect=true";
     }
 
     public void nextWizardStep() {
