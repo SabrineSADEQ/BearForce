@@ -32,6 +32,7 @@ html, body {
 
 body {
     margin: 0;
+    
     display: flex;
     flex-direction: column;
 }
@@ -39,11 +40,13 @@ body {
 /* Main page content */
 .content {
     flex: 1;
-    padding: 20px;
+    padding-bottom: 20px;
+    margin-bottom:50px;
     box-sizing: border-box;
     border-radius: 10px; 
     background-color: #fff; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+ 
 }
 
 /* Contains the sidebar menu + page content */
@@ -73,21 +76,49 @@ body {
 
 .bannerTextContainer{
 	display:flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: space-between;
+	position: relative;
 }
 
 .spaceLeftDiv{
-	float:left;
 	margin-bottom:20px;
+	width:60%;
+	
+}
+
+.spaceLeftDiv {
+	/*transform: translateZ(0);
+	position: absolute;
+    width:50%;
+    height:100%;
+     -webkit-clip-path: polygon(0 0, 75% 0, 30% 100%, 0% 100%);
+    clip-path: polygon(0 0, 55% 0, 40% 100%, 0% 100%);*/
+    
+    
+
 }
 
 .spaceRightDiv{
-	float:right;
+	width:80%;
+	margin-right:50px;
+	z-index: 1;
+	box-sizing: border-box;
+	text-align: justify;
+	text-justify: distribute;
 }
 
-.logout-button {
-	
+.rightDivWrapper {
+    flex: 1; 
+    display: flex;
+    align-items: flex-start; 
+    justify-content:center;
 }
+
+.bottomDiv{
+	 flex-direction: column;
+}
+
 
 .square .clr-field button, .circle .clr-field button {
     width: 22px;

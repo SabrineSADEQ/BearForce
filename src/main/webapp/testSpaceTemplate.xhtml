@@ -22,16 +22,20 @@
 			</div>
 
 			<div class="bannerTextContainer">
-				<div class="spaceLeftDiv">
+				<div class="responsive-image spaceLeftDiv">
 					<h:graphicImage library="images"
 						name="#{spaceController.getLoadedSpace().visualIdentity.gymBannerPath}" />
 				</div>
-				<div class="spaceRightDiv">
-					<h1>#{spaceController.getLoadedSpace().getIdGym().getGymName()}</h1>
+				<div class="rightDivWrapper">
+					<div class="spaceRightDiv">
+						<h1>#{spaceController.getLoadedSpace().visualIdentity.spaceTextContent.spaceName}</h1>
+						<h4>#{spaceController.getLoadedSpace().visualIdentity.spaceTextContent.motto}</h4>
+						<p>#{spaceController.getLoadedSpace().visualIdentity.spaceTextContent.description}</p>
+					</div>
 				</div>
 			</div>
 
-			<div>
+			<div class="bottomDiv">
 				<h2
 					style="color : ##{spaceController.getLoadedSpace().visualIdentity.firstColor}">
 					This is a text with the first color</h2>
