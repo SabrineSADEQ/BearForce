@@ -10,6 +10,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import fr.isika.cda.javaee.dao.accounts.AccountDao;
+import fr.isika.cda.javaee.entity.accounts.Account;
+import fr.isika.cda.javaee.utils.SessionUtils;
 import fr.isika.cda.javaee.viewModel.AccountViewModel;
 
 @Named

@@ -37,16 +37,12 @@ public class Subscription {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Membership membership = new Membership ();
-	private Account Account = new Account();
-	
-	private List<Account>accounts = new ArrayList<>();
+
 	
 	public Membership getMembership() {
 		return membership;
 	}
-	public Account getAccount() {
-		return Account;
-	}
+
 	
 	public void setId(long id) {
 		this.id = id;
@@ -105,9 +101,6 @@ public class Subscription {
 
 	
 
-	public void setAccount(Account account) {
-		this.Account   = account;;
-		
-	}
+	
 
 }
