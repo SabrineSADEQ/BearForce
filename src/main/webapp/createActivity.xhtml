@@ -6,34 +6,76 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
-	<ui:define name="titleValue">Créer une activité</ui:define>
+	<ui:define name="titleValue">Enregister une activité</ui:define>
 	<ui:define name="content">
+		<div>
+			<h:form>
+				<p:messages id="msgs" />
+				<div class="card">
+					<h5>Enregister une nouvelle activité</h5>
+					<div class="field grid">
+						<p:outputLabel for="name" styleClass="col-fixed"
+							style="width:100px" value="Nom : " />
+						<div class="col">
+							<p:inputText id="name"
+								value="#{activityController.activityViewModel.name}"
+								required="true" />
+						</div>
+					</div>
+					<br />
 
-		<h1>Créer une activité</h1>
-		<hr align="center" width="80%" />
-		<h:form>
-			<h:outputLabel for="name">Nom :</h:outputLabel>
-			<h:inputText id="name"
-				value="#{activityController.activityViewModel.name}" />
-			<br />
-			<h:outputLabel for="description">Description :</h:outputLabel>
-			<h:inputText id="description"
-				value="#{activityController.activityViewModel.description}" />
-			<br />
-			<h:outputLabel for="activityCategory">Catégorie :</h:outputLabel>
-			<h:selectOneMenu
-				value="#{activityController.activityViewModel.activityCategory}">
-				<f:selectItem itemLabel="Sélectionnez une catégorie"
-					itemValue="null" noSelectionOption="true" />
-				<f:selectItems value="#{activityController.getActivityCategories()}"
-					var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
-			</h:selectOneMenu>
-			<br />
-			<h:commandButton value="Créer l'activité"
-				action="#{activityController.addActivity()}" />
-		</h:form>
-		<h:link outcome="index" value="Index" />
+					<div class="field grid">
+						<p:outputLabel for="description" styleClass="col-fixed"
+							style="width:100px" value="Description : " />
+						<div class="col">
+							<p:inputText id="description"
+								value="#{activityController.activityViewModel.description}" />
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:outputLabel for="activityCategory" styleClass="col-fixed"
+							style="width:100px" value="Catégorie : " />
+						<div class="col">
+							<p:selectOneMenu id="activityCategory"
+								value="#{activityController.activityViewModel.activityCategory}"
+								style="min-width: 14rem">
+								<f:selectItem itemLabel="Sélectionnez une catégorie"
+									itemValue="null" noSelectionOption="true" />
+								<f:selectItems
+									value="#{activityController.getActivityCategories()}" var="cat"
+									itemLabel="#{cat.libelle}" itemValue="#{cat}" />
+							</p:selectOneMenu>
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:outputLabel for="equipments" styleClass="col-fixed"
+							style="width:100px" value="Equipement(s) concerné(s) : " />
+						<div class="col">
+							<p:selectManyCheckbox id="equipments"
+								value="#{activityController.selectedEquipments}"
+								layout="responsive" columns="2">
+								<f:selectItems
+									value="#{equipmentController.getEquipmentsList()}" var="equi"
+									itemLabel="#{equi.equipmentName}" itemValue="#{equi.id}" />
+							</p:selectManyCheckbox>
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:commandButton value="Créer l'activité" update="@form"
+							action="#{activityController.addActivity()}" icon="pi pi-check"
+							styleClass="rounded-button ui-button-primary" />
+					</div>
+				</div>
+
+			</h:form>
+		</div>
+		<br />
 	</ui:define>
-
 </ui:composition>
 </html>

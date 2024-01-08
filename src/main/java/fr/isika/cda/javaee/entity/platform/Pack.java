@@ -29,8 +29,8 @@ public class Pack {
 	@JoinColumn(name = "subscription")
 	private List<Subscription>subscriptions=new ArrayList<>();
 	
-	@ManyToOne @JoinColumn(name = "PlatformConfiguration")
-	private PlatformConfiguration platformConfiguration;
+	//@ManyToOne @JoinColumn(name = "PlatformConfiguration")
+	//private PlatformConfiguration platformConfiguration;
 
 	@ManyToMany
 	@JoinTable(name ="pack_Service",
@@ -69,7 +69,7 @@ public class Pack {
 	@Override
 	public String toString() {
 		return "Pack [id=" + id + ", name=" + name + ", price=" + price + ", subscriptions=" + subscriptions
-				+ ", platformConfiguration=" + platformConfiguration + ", services=" + services + ", description="
+				+  ", services=" + services + ", description="
 				+ description + "]";
 	}
 

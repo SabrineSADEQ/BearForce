@@ -33,10 +33,15 @@ public class AccountDao {
 	    profile.setLastName(accountVM.getProfile().getLastName());
 	    
 	    profile.setBirthDate(accountVM.getProfile().getBirthDate());
+	    
 	    profile.setContact(accountVM.getProfile().getContact());
 	    profile.setAddress(accountVM.getProfile().getAddress());
 	    profile.setProfesionalDetails(accountVM.getProfile().getProfesionalDetails());
+
+	    
+
 	    accountbean.setGoal(accountVM.getGoal());
+
 	    // Set other profile attributes as needed
 
 	    // Set the profile to the account and vice versa
@@ -55,11 +60,17 @@ public class AccountDao {
 
 	}
 
+
+	public Account getById(Long accountId) {
+		return entityManager.find(Account.class, accountId);
+	}
+
 	public Account getAccountByEmailAndPassword(String email, String password) {
 		
 		return createAccount(AccountViewModel);
 	}
 	
+
 	@Transactional
 	public void update(Account updatedAccount) {
 		// Rechercher le compte dans la base de données avec l'ID
@@ -92,6 +103,9 @@ public class AccountDao {
 			return null;
 		}
 	}
+
+
+
 	
 
 }

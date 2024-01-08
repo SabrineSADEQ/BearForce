@@ -28,7 +28,7 @@ public class Profile {
 	private String pictureUrl;
 	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contact = new Contact();
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Address address = new Address();
 	@OneToOne(cascade = CascadeType.PERSIST)
 	private ProfessionalDetails profesionalDetails = new ProfessionalDetails();

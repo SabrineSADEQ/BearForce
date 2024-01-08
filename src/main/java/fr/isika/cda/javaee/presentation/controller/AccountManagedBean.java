@@ -13,7 +13,12 @@ import java.io.Serializable;
 @SessionScoped
 public class AccountManagedBean implements Serializable {
 
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Inject
     private AccountDao accountDAO;
 
     private Account loggedInAccount;
