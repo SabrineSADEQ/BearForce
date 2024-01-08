@@ -16,7 +16,7 @@ public class PackController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Pack pack = new Pack();
-   //private List<Pack> packs;
+//	private List<Pack> packs;
 
 	@Inject
 	private PackDao packDao;
@@ -36,7 +36,7 @@ public class PackController implements Serializable {
 	}
 
 	public List<Pack> listePacks() {
-		return packDao.getPacksWithSubscriptions();
+		return packDao.getPacks();
 	}
 	
 	public Pack getPack() {

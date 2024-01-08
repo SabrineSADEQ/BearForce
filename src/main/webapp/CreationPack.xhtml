@@ -11,20 +11,27 @@
 	<ui:define name="content">
 		<h:form enctype="multipart/form-data">
 		
-            <h2>Creation Pack</h2>
-       <h:panelGrid columns="2">
-    <h:outputLabel for="description">Description:</h:outputLabel>
-    <h:inputText id="description" value="#{packController.pack.description}" />
 
-    <h:outputLabel for="name">Name:</h:outputLabel>
-    <h:inputText id="name" value="#{packController.pack.name}" />
-
-    <h:outputLabel for="price">Price:</h:outputLabel>
-    <h:inputText id="price" value="#{packController.pack.price}" />
 
    
-</h:panelGrid>
-       
+      
+            <h2>Creation Pack</h2>
+
+
+
+        <h:panelGrid columns="2">
+            <h:outputLabel for="description">Description:</h:outputLabel>
+            <h:inputText id="description" value="#{packController.pack.description}" />
+            
+            <h:outputLabel for="name">Name:</h:outputLabel>
+            <h:inputText id="name" value="#{packController.pack.name}" />
+            
+            <h:outputLabel for="price">Price:</h:outputLabel>
+            <h:inputText id="price" value="#{packController.pack.price}" />
+            
+            <h:outputLabel for="platformConfiguration">Platform Configuration:</h:outputLabel>
+            
+        </h:panelGrid>
 
 			
 		        <h:commandButton value="Create" action="#{packController.createPack}" />
