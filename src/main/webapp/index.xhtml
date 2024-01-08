@@ -7,19 +7,36 @@
 
 
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
-	
-	<ui:define name="titleValue">BearForce :: Home</ui:define>
-	<ui:define name="content">
-		<h:outputStylesheet library="css" name="index.css"/>
-	
-		<div class="background_image_index_container">
-			<p:graphicImage library="images" name="background_image_3_crop.png" />
-		</div> 
-		
-		<h1>Bienvenue sur BearForce !</h1>
 
+	<ui:define name="titleValue">BearForce :: Accueil</ui:define>
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="index.css" />
+
+		<div class="background_image_index_container">
+			<div class="textContainer">
+				<h1 class="indexTitle">
+					Bienvenue sur BearForce <br /> Votre plateforme SaaS de gestion
+					de salle de sport
+				</h1>
+				<h3 class="indexSubtitle">
+					BearForce accompagne votre salle de sport en vous proposant <br /> 
+					<strong class="highlight-text">un outil simple et complet</strong>
+					 pour la gestion de votre activité
+				</h3>
+				<div class="computer-container">
+					<p:graphicImage class="overlay-computer" library="images"
+						name="computer_empty.png" />
+				</div>
+			</div>
+		</div>
+		<div class="secondSection"></div>
+
+		<div class="content">
+			<!--The class content ensures the footer stays at the bottom -->
+
+		</div>
 	</ui:define>
-	
+
 </ui:composition>
 
 </html>

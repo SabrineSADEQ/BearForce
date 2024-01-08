@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+
+	<ui:define name="titleValue">Nos clients</ui:define>
+	<ui:define name="content">
+
+		<div class="content">
+			
+
+				<div class="card">
+					<p:carousel value="#{spaceController.getAllSpaces()}" var="space"
+						numVisible="3" numScroll="3">
+						<f:facet name="header">
+							<h5>Nos clients</h5>
+						</f:facet>
+						<div class="product-item">
+							<div class="product-item-content">
+								<div class="mb-3">
+<!-- 									<p:graphicImage name="demo/images/product/#{product.image}" -->
+<!-- 										styleClass="product-image" /> -->
+								</div>
+								<div>
+									<h4 class="mb-1">#{space.idGym.gymName}</h4>
+									<h6 class="mt-0 mb-3">
+										<h:outputText
+											value="#{space.visualIdentity.spaceTextContent.motto}">
+										</h:outputText>
+									</h6>
+									<span>
+										#{space.visualIdentity.spaceTextContent.description}</span>
+									<div class="mt-5">
+										<h:form id="viewSpaceForm">
+											<p:commandButton icon="pi pi-search"
+												styleClass="rounded-button mr-2" action="#{spaceController.redirectToSpace(space.id)}" />
+										</h:form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</p:carousel>
+				</div>
+
+			
+		</div>
+	</ui:define>
+
+</ui:composition>
+
+</html>

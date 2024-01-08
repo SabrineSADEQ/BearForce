@@ -20,6 +20,8 @@ import fr.isika.cda.javaee.presentation.viewmodel.SubscriptionViewModel;
 @Named
 public class SubscriptionManagedBean implements Serializable {
 
+
+ 
 	private LocalTime startDate;
 	private LocalTime endDate;
 	private boolean autoRenewal;
@@ -125,4 +127,5 @@ public class SubscriptionManagedBean implements Serializable {
 	}
 
    
+
 }

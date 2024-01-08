@@ -17,10 +17,14 @@ public class SubscriptionDao {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+
+    
 	private Subscription saveSubscription = new Subscription();
 	
     
 	public void CreateSubscription(Subscription subscription) {
+
         entityManager.persist(subscription);
     }
 

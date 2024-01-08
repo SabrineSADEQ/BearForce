@@ -1,5 +1,7 @@
 package fr.isika.cda.javaee.entity.gymspace;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +19,10 @@ public class GymCaracteristics {
 	private Long id;
 	private boolean freeAccess;
 	private boolean lockerRoom;
-	private String photoList;
+	
+	
+	//TO DO : create a Photo class if we want to get the photoList attribute
+//	private List<Photo> photoList;
 	
 	public Long getId() {
 		return id;
@@ -37,12 +42,12 @@ public class GymCaracteristics {
 	public void setLockerRoom(boolean lockerRoom) {
 		this.lockerRoom = lockerRoom;
 	}
-	public String getPhotoList() {
-		return photoList;
-	}
-	public void setPhotoList(String photoList) {
-		this.photoList = photoList;
-	}
+//	public List<String> getPhotoList() {
+//		return photoList;
+//	}
+//	public void setPhotoList(List<String> photoList) {
+//		this.photoList = photoList;
+//	}
 
 }
 

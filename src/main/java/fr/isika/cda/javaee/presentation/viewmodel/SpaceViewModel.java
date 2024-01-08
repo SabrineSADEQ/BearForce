@@ -1,5 +1,8 @@
 package fr.isika.cda.javaee.presentation.viewmodel;
 
+import fr.isika.cda.javaee.entity.accounts.Address;
+import fr.isika.cda.javaee.entity.accounts.Contact;
+import fr.isika.cda.javaee.entity.accounts.Profile;
 
 public class SpaceViewModel {
 	
@@ -9,8 +12,8 @@ public class SpaceViewModel {
 	private String firstColor;
 	private String secondColor;
 	private String thirdColor;
-	private byte[] gymLogo ;
-	private byte[] gymBanner ;
+	private String gymLogoPath ;
+	private String gymBannerPath ;
 	
 	//SpaceTextContent attributes
 	private String spaceName;
@@ -22,20 +25,28 @@ public class SpaceViewModel {
 	private boolean lockerRoom;
 	private String photoList;
 	
+	//AdminInfoGym attributes
+//	private String siret;
+//	private Profile owner;
+//	private Address location;
+//	private Contact contactInfo;
 	
-	public byte[] getGymLogo() {
-		return gymLogo;
-	}
-	public void setGymLogo(byte[] gymLogo) {
-		this.gymLogo = gymLogo;
-	}
-	public byte[] getGymBanner() {
-		return gymBanner;
-	}
-	public void setGymBanner(byte[] gymBanner) {
-		this.gymBanner = gymBanner;
-	}
 	
+	public String getGymLogoPath() {
+		return gymLogoPath;
+	}
+
+	public void setGymLogoPath(String gymLogoPath) {
+		this.gymLogoPath = gymLogoPath;
+	}
+
+	public String getGymBannerPath() {
+		return gymBannerPath;
+	}
+
+	public void setGymBannerPath(String gymBannerPath) {
+		this.gymBannerPath = gymBannerPath;
+	}
 
 	public String getFirstColor() {
 		return firstColor;

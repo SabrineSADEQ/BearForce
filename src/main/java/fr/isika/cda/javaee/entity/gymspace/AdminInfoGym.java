@@ -12,23 +12,32 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import fr.isika.cda.javaee.entity.accounts.Address;
+import fr.isika.cda.javaee.entity.accounts.Contact;
+import fr.isika.cda.javaee.entity.accounts.Profile;
+
 @Entity
-@Table(name = "Admin_Gym")
+@Table(name = "Admin_Info_Gym")
 public class AdminInfoGym {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
-	@Column(name = "owner")
-	private String owner;
+	
+	@OneToOne
+	private Profile owner;
+	
 	@Column(name = "siret")
 	private String siret;
-	@Column(name = "location")
-	private String location;
+	
+	@OneToOne
+	private Address location;
 
 	@OneToOne
 	private IdGym idGym;
+	
+	@OneToOne
+	private Contact contactInfo;
 
 	public IdGym getIdGym() {
 		return idGym;
@@ -41,7 +50,7 @@ public class AdminInfoGym {
 	public AdminInfoGym() {
 	}
 
-	public AdminInfoGym(String owner, String siret, String location) {
+	public AdminInfoGym(Profile owner, String siret, Address location) {
 		this.owner = owner;
 		this.siret = siret;
 		this.location = location;
@@ -51,11 +60,11 @@ public class AdminInfoGym {
 		return id;
 	}
 
-	public String getOwner() {
+	public Profile getOwner() {
 		return owner;
 	}
 
-	public void setOwner(String owner) {
+	public void setOwner(Profile owner) {
 		this.owner = owner;
 	}
 
@@ -67,11 +76,11 @@ public class AdminInfoGym {
 		this.siret = siret;
 	}
 
-	public String getLocation() {
+	public Address getLocation() {
 		return location;
 	}
 
-	public void setLocation(String location) {
+	public void setLocation(Address location) {
 		this.location = location;
 	}
 

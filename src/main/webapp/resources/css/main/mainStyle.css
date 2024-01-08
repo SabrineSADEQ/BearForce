@@ -34,8 +34,18 @@ html, body {
   flex-direction: column;
 }
 
+body {
+    min-height: 100vh;
+}
+
 .content {
   flex: 1;
+  padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px; 
+    background-color: #fff; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    margin:20px;
 }
 
 *{
@@ -50,5 +60,77 @@ html, body {
 .important {
 	font-weight: 800;
 }
+
+
+/* style for carrousel */
+ .product-item .product-item-content {
+        border: 1px solid var(--surface-d);
+        border-radius: 3px;
+        margin: .3rem;
+        text-align: center;
+        padding: 2rem 0;
+    }
+
+    .product-item .product-image {
+        width: 50%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+    }
+
+/* overrides Primefaces buttons default style*/
+html body .ui-button {
+	background-color: var(--turquoise);
+	border-color:transparent;
+	border-radius:20px;
+	margin-left:10px;
+	
+}
+
+html body .ui-button:hover {
+	background-color: var(--violet);
+	border-color:transparent;
+	border-radius:20px;
+	
+}
+
+html body .ui-button.ui-button-text-only .ui-button-text {
+
+    color: var(--blanc);
+}
+
+html body .ui-selectbooleanbutton.ui-state-active ui-state-focus{
+  	border-color:transparent;
+    color: var(--blanc);
+    background-color: var(--violet);
+}
+
+html body .ui-selectbooleanbutton ui-state-hover{
+  	border-color:transparent;
+    color: var(--blanc);
+    background-color: var(--violet);
+}
+
+html body .ui-selectbooleanbutton.ui-state-focus.ui-state-hover{
+    color: var(--blanc);
+    background-color: var(--violet);
+    border-color:transparent;
+}
+
+html body .ui-selectbooleanbutton.ui-state-active {
+	border-color:transparent;
+    color: var(--blanc);
+    background-color: var(--violet);
+}
+
+html body .ui-fileupload .ui-fileupload-buttonbar {
+	 background-color: transparent;
+	  border-color:transparent;
+	
+}
+
+html body .ui-fileupload .ui-fileupload-content {
+	 border-color:transparent;
+	 
+}
+
 
 

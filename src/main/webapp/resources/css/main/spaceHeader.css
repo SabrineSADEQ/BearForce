@@ -69,23 +69,29 @@ html body .ui-button #logout-button, #login-button {
 	color: var(--turquoise);
 }
 
+
+.rightButton{
+	margin-left:10px;
+}
+
+
 .logoContainer {
 	height: 80%;
-	width: 200px;
+	color: var(--turquoise);
+	width: 120px;
 	margin-left: 50px;
+	margin-right: 20px;
+	margin-top:10px;
 	border-radius: 50%;
-	margin-top:5px;
-	padding: 25px;
+	padding: 10px;
+	align-items: center;
 }
 
 .logoContainer img {
 	height: 100%;
 	width: 100%;
 	object-fit: contain;
-} 
-
-.rightButton{
-	margin-left:10px;
+	border-radius: 50px;
 }
 
 .right-container {
@@ -125,5 +131,4 @@ html body .ui-button #logout-button, #login-button {
 		display: none;
 	}*/
 }
-
 

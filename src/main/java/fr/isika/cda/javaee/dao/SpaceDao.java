@@ -1,14 +1,21 @@
 package fr.isika.cda.javaee.dao;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.isika.cda.javaee.entity.accounts.Address;
+import fr.isika.cda.javaee.entity.accounts.Contact;
+import fr.isika.cda.javaee.entity.accounts.Profile;
+import fr.isika.cda.javaee.entity.gymspace.AdminInfoGym;
 import fr.isika.cda.javaee.entity.gymspace.GymCaracteristics;
 import fr.isika.cda.javaee.entity.gymspace.IdGym;
 import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.entity.gymspace.SpaceTextContent;
 import fr.isika.cda.javaee.entity.gymspace.VisualIdentity;
+import fr.isika.cda.javaee.entity.gymspace.business.Course;
 import fr.isika.cda.javaee.presentation.viewmodel.SpaceViewModel;
 
 @Stateless
@@ -25,6 +32,11 @@ public class SpaceDao {
 			GymCaracteristics gymCaracteristics = new GymCaracteristics();
 			Space space = new Space();
 			IdGym gymIdentity = new IdGym();
+//			AdminInfoGym adminInfoGym = new AdminInfoGym();
+//			Profile gymOwner = new Profile();
+//			Address gymLocation = new Address();
+//			Contact contactInfo = new Contact();
+			gymIdentity.setGymName(spaceViewModel.getSpaceName());
 			
 			spaceTextContent.setSpaceName(spaceViewModel.getSpaceName());
 			spaceTextContent.setMotto(spaceViewModel.getMotto());
@@ -35,15 +47,11 @@ public class SpaceDao {
 			
 			
 			visualIdentity.setFirstColor(spaceViewModel.getFirstColor());
-			//DEBUG//////
-			System.out.println("First color : " + spaceViewModel.getFirstColor());
 			visualIdentity.setSecondColor(spaceViewModel.getSecondColor());
 			visualIdentity.setThirdColor(spaceViewModel.getThirdColor());
 			visualIdentity.setSpaceTextContent(spaceTextContent);
+			visualIdentity.setGymLogoPath(spaceViewModel.getGymLogoPath());
 			
-			
-			//TO DO : add photos to visualIdentity
-			//visualIdentity.setGymLogo(spaceViewModel.getGymLogo());
 			gymIdentity.setGymCaracteristics(gymCaracteristics);
 			
 			space.setIdGym(gymIdentity);
@@ -59,9 +67,17 @@ public class SpaceDao {
 			return space; 
 		}
 
-	public Space getSpaceById(Long id) {
-		// TODO :
-		return null;
+	public Space getSpaceById(Long spaceId) {
+		return em
+				.createQuery("SELECT space FROM Space space WHERE space.id = :spaceIdParam", Space.class)
+				.setParameter("spaceIdParam", spaceId)
+				.getSingleResult();
 	}
+	
+	public List<Space> getAllSpaces() {
+	
+		return em.createQuery("SELECT s FROM Space s", Space.class).getResultList();
+	}
+
 
 }

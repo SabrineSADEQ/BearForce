@@ -8,29 +8,108 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<h:outputStylesheet library="css" name="main/mainHeader.css" />
-	<link rel="stylesheet" href="FolderCss/CssForForm.css" />
-
-
 </h:head>
 
 <h:body>
 	<div class="header">
-		<div class="logoContainer">
-			<p:graphicImage library="images" name="logo_with_text_V4_HTP_right_text.png" />
+		<div class="left-container">
+			<div class="logoContainer">
+				<p:graphicImage library="platformImages" name="logo_with_text_V8.png" />
+			</div>
+			<!-- Burger Menu Button for small screens 
+        <p:commandButton id="burgerMenu" icon="pi pi-bars"
+            styleClass="burger-menu p-d-md-none" />-->
+
+			<div id="navLinks">
+				<p:menubar id="spaceMenuBar">
+					<p:menuitem class="link-menu" value="Accueil" outcome="index" />
+					<p:menuitem class="link-menu" value="Fonctionnalités" />
+					<p:menuitem class="link-menu" value="Nos clients" outcome="spacesList" />
+					<p:menuitem class="link-menu" value="Nos offres" outcome="ConsulterListePackages" />
+					<p:menuitem class="link-menu" value="Créer un espace"
+						outcome="spaceCreation" />
+					<p:menuitem class="link-menu" value="Contact" />
+					<p:submenu class="link-menu" label="ADMINISTRATION PLATEFORME"
+						rendered="#{loginController.getLoggedAccount().role eq 'SUPER_ADMIN'}">
+						<p:menuitem value="Configurer la plateforme"
+							outcome="PageTesterConfiguration.xhtml"
+							rendered="#{loginController.getLoggedAccount().role eq 'SUPER_ADMIN'}" />
+						<p:menuitem value="Gérer les packages"
+							rendered="#{loginController.getLoggedAccount().role eq 'SUPER_ADMIN'}"
+							outcome="CreationPack.xhtml" />
+						<p:menuitem value="Gérer les espaces" />
+					</p:submenu>
+				</p:menubar>
+
+			</div>
 		</div>
-		<div>
 
-			<h:link outcome="index" class="link-menu">Accueil    </h:link>
-			<h:link outcome="PageTesterConfiguration.xhtml" class="link-menu">Créer Configuration     </h:link>
-			<h:link outcome="CreationPack.xhtml" class="link-menu">Créer Pack     </h:link>
-			<h:link outcome="createActivity.xhtml" class="link-menu">Créer une activité     </h:link>
-			<h:link outcome="createCourse.xhtml" class="link-menu">Créer un cours     </h:link>
-			<h:link outcome="createEquipment.xhtml" class="link-menu">Créer un équipement     </h:link>
-			<h:link outcome="spaceCreation" class="link-menu">Créer un espace     </h:link>
-			<h:link outcome="CreationDeCompte.xhtml" class="link-menu">Créer un compte     </h:link>
-			<h:link outcome="GestionEmployerGestionnaire.xhtml" class="link-menu">Employés   </h:link>
+		<!-- Login and logout buttons depending on the connection status of the user -->
+		<div class="right-container">
+			<!-- Login and logout buttons depending on the connection status of the user -->
+			<h:form>
+				
+					<ui:fragment rendered="#{not loginController.loggedIn}">
+						<p:commandButton value="Connexion" type="button"
+							onclick="PF('dlg3').show()" />
+					</ui:fragment>
+					<ui:fragment rendered="#{loginController.loggedIn}">
+						<p:commandButton id="logout-button" value="Déconnexion"
+							action="#{loginController.logout()}" />
+					</ui:fragment>
+				
+				<!-- 				<ui:fragment rendered="#{not loginController.loggedIn}"> -->
+				<!-- 					<p:button id="login-button" value="Connexion" -->
+				<!-- 						outcome="CreationDeCompte" /> -->
+				<!-- 				</ui:fragment> -->
+				
+					<p:button class="rightButton" value="Tableau de bord"
+						outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
+						iconPos="right"
+						rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
+					<p:button class="rightButton" value="Tableau de bord"
+						outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
+						iconPos="right"
+						rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
+					<p:button class="rightButton" value="Mon espace personnel"
+						outcome="testSpaceTemplate" icon="pi pi-chevron-right"
+						iconPos="right"
+						rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
+				
+			</h:form>
+			
+			<!-- Login pop up -->
+			<p:dialog header="Connexion" widgetVar="dlg3" minHeight="40" width="350"
+				showEffect="fade">
+				<p class="m-0">
+					<h:form>
 
+						<div>
+							<h:outputLabel for="email">Email</h:outputLabel>
+							<h:inputText id="email"
+								value="#{loginController.accountVM.email}" required="true" />
+						</div>
+
+						<div>
+							<h:outputLabel for="password">Mot de passe</h:outputLabel>
+							<h:inputSecret id="password"
+								value="#{loginController.accountVM.password}" required="true" />
+						</div>
+
+						<h:commandButton value="Login"
+							action="#{loginController.validateAccount}" />
+					</h:form>
+				</p>
+				<f:facet name="footer">
+					<p:commandButton type="button" value="Se connecter" action="#{loginController.validateAccount}" style="width:8rem" />
+				</f:facet>
+			</p:dialog>
+
+		
 		</div>
 	</div>
+
+	<!-- Script for toggling the menu -->
+	<h:outputScript library="js" name="responsive.js" />
 </h:body>
 </html>
