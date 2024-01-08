@@ -1,92 +1,126 @@
 package fr.isika.cda.javaee.presentation.controller;
 
-import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
+import java.io.Serializable;
+import java.time.LocalTime;
+import java.util.List;
+
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import fr.isika.cda.javaee.dao.platform.SubscriptionDao;
 import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.gymspace.Membership;
+import fr.isika.cda.javaee.entity.platform.Pack;
 import fr.isika.cda.javaee.entity.platform.Subscription;
-import java.io.Serializable;
-import java.time.LocalTime;
+import fr.isika.cda.javaee.presentation.viewmodel.EquipmentViewModel;
+import fr.isika.cda.javaee.presentation.viewmodel.MembershipViewModel;
+import fr.isika.cda.javaee.presentation.viewmodel.SubscriptionViewModel;
 
-@ManagedBean
-@SessionScoped
+@Named
 public class SubscriptionManagedBean implements Serializable {
 
-    @Inject
-    private SubscriptionDao subscriptionDAO;
+	private LocalTime startDate;
+	private LocalTime endDate;
+	private boolean autoRenewal;
+	private int duration;
+	private SubscriptionViewModel subscriptionViewModel = new SubscriptionViewModel();
+	private MembershipViewModel membershipViewModel = new MembershipViewModel();
+	private MembershipManagedBean membershipManagedBean;
+	private AccountManagedBean accountManagedBean;
+	@Inject
+	private SubscriptionDao subscriptionDao;
+	
+	public List<Subscription> subscriptionList() {
+		return subscriptionDao.getAllSubscriptions();
+	}
 
-    @ManagedProperty(value = "#{membershipManagedBean}")
-    private MembershipManagedBean membershipManagedBean;
+	public SubscriptionViewModel getSubscriptionViewModel() {
+		return subscriptionViewModel;
+	}
 
-    @ManagedProperty(value = "#{accountManagedBean}")
-    private AccountManagedBean accountManagedBean;
+	public void setSubscriptionViewModel(SubscriptionViewModel subscriptionViewModel) {
+		this.subscriptionViewModel = subscriptionViewModel;
+	}
 
-    private LocalTime startDate;
-    private LocalTime endDate;
-    private boolean autoRenewal;
-    private int duration;
+	public MembershipViewModel getMembershipViewModel() {
+		return membershipViewModel;
+	}
 
-    public void subscribe() {
-    	System.out.println("msg");
-        Membership membership = membershipManagedBean.getSelectedMembership();
-        Account account = accountManagedBean.getLoggedInAccount();
+	public void setMembershipViewModel(MembershipViewModel membershipViewModel) {
+		this.membershipViewModel = membershipViewModel;
+	}
 
-        if (membership != null && account != null) {
-            Subscription subscription = new Subscription();
-            subscription.setMembership(membership);
+	public SubscriptionDao getSubscriptionDao() {
+		return subscriptionDao;
+	}
 
-            account.setSubscription(subscription);
-//            subscription.setAccount(account);
+	public void setSubscriptionDao(SubscriptionDao subscriptionDao) {
+		this.subscriptionDao = subscriptionDao;
+	}
 
-          SubscriptionDao subscriptionDao2 = new SubscriptionDao();
-          subscriptionDao2.saveSubscription(subscription);
-       }
-    }
+	public MembershipManagedBean getMembershipManagedBean() {
+		return membershipManagedBean;
+	}
 
-    
-    public LocalTime getStartDate() {
-        return startDate;
-    }
+	public AccountManagedBean getAccountManagedBean() {
+		return accountManagedBean;
+	}
 
-    public void setStartDate(LocalTime startDate) {
-        this.startDate = startDate;
-    }
+	public void subscribe() {
+		Membership membership = membershipManagedBean.getSelectedMembership();
 
-    public LocalTime getEndDate() {
-        return endDate;
-    }
+		Account account = accountManagedBean.getLoggedInAccount();
 
-    public void setEndDate(LocalTime endDate) {
-        this.endDate = endDate;
-    }
+		if (membership != null && account != null) {
+			Subscription subscription = new Subscription();
+			subscription.setMembership(membership);
 
-    public boolean isAutoRenewal() {
-        return autoRenewal;
-    }
+			account.setSubscription(subscription);
+			subscription.setAccount(account);
 
-    public void setAutoRenewal(boolean autoRenewal) {
-        this.autoRenewal = autoRenewal;
-    }
+			SubscriptionDao subscriptionDao = new SubscriptionDao();
+			subscriptionDao.saveSubscription(subscription);
+		}
+	}
 
-    public int getDuration() {
-        return duration;
-    }
+	public LocalTime getStartDate() {
+		return startDate;
+	}
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
+	public void setStartDate(LocalTime startDate) {
+		this.startDate = startDate;
+	}
 
-    public void setMembershipManagedBean(MembershipManagedBean membershipManagedBean) {
-        this.membershipManagedBean = membershipManagedBean;
-    }
+	public LocalTime getEndDate() {
+		return endDate;
+	}
 
-    public void setAccountManagedBean(AccountManagedBean accountManagedBean) {
-        this.accountManagedBean = accountManagedBean;
-    }
+	public void setEndDate(LocalTime endDate) {
+		this.endDate = endDate;
+	}
+
+	public boolean isAutoRenewal() {
+		return autoRenewal;
+	}
+
+	public void setAutoRenewal(boolean autoRenewal) {
+		this.autoRenewal = autoRenewal;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public void setMembershipManagedBean(MembershipManagedBean membershipManagedBean) {
+		this.membershipManagedBean = membershipManagedBean;
+	}
+
+	public void setAccountManagedBean(AccountManagedBean accountManagedBean) {
+		this.accountManagedBean = accountManagedBean;
+	}
 }
-

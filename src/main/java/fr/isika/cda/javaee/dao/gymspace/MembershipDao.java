@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 	@Stateless
-	public class MembershipDAO {
+	public class MembershipDao {
 
 	    @PersistenceContext
 	    private EntityManager entityManager;
