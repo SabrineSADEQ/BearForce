@@ -2,10 +2,9 @@ package fr.isika.cda.javaee.presentation.viewmodel;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import fr.isika.cda.javaee.entity.gymspace.business.ActivityCategory;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
-import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
-import fr.isika.cda.javaee.entity.gymspace.business.Training;
 
 public class ActivityViewModel {
 	
@@ -14,7 +13,6 @@ public class ActivityViewModel {
 	private String description;
 	private ActivityCategory activityCategory;
 	private List<Course> courseList = new ArrayList<>() ;
-	private List<Equipment> equipmentList = new ArrayList<>() ;
 	
 	//***************GETTERS & SETTERS***************
 	public String getName() {
@@ -35,12 +33,6 @@ public class ActivityViewModel {
 	}
 	public void setCourseList(List<Course> courseList) {
 		this.courseList = courseList;
-	}
-	public List<Equipment> getEquipmentList() {
-		return equipmentList;
-	}
-	public void setEquipmentList(List<Equipment> equipmentList) {
-		this.equipmentList = equipmentList;
 	}
 	public Long getId() {
 		return id;

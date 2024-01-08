@@ -23,23 +23,18 @@ public class Course {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id ;
-	
+	private long id ;	
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Activity activity;
-	
+	private Activity activity;	
 	@Column(name="start_date")
-	private LocalDateTime startDate ;
-	
+	private LocalDateTime startDate ;	
 	@Column(name="end_date")
-	private LocalDateTime endDate ;
-	
+	private LocalDateTime endDate ;	
 	@OneToOne
-	private Profile trainer;
-	
+	private Profile trainer;	
 	@Column(name="nb_places")
 	private int nbPlaces ;
-
+	
 	public Activity getActivity() {
 		return activity;
 	}

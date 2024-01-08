@@ -13,6 +13,7 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 
 import fr.isika.cda.javaee.dao.ActivityDao;
+import fr.isika.cda.javaee.dao.EquipmentDao;
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.ActivityCategory;
@@ -31,6 +32,9 @@ public class ActivityController implements Serializable{
 
 	@Inject
 	private ActivityDao activityDao;
+	
+	@Inject
+	private EquipmentDao equipmentDao;
 
 	@PostConstruct
 	public void init() {
@@ -43,23 +47,14 @@ public class ActivityController implements Serializable{
 				new FacesMessage("Une nouvelle activité nommée '" + activityViewModel.getName() + "' a été enregistrée."));
 		PrimeFaces.current().executeScript("PF('manageActivityDialog').hide()");
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Activité mise à jour"));
-		activityViewModel = new ActivityViewModel();
-		selectedEquipments = new ArrayList<>();
+		
+		resetInputData();
 	}
 
-
-	// REFAIRE UNE METHODE POUR UPDATER UNE ACTIVITE :
-	//	 public void updateEntity(Long entityId, String newName) {
-	//	        Entity entityToUpdate = entityManager.find(Entity.class, entityId);
-	//
-	//	        if (entityToUpdate != null) {
-	//	            entityToUpdate.setName(newName);
-	//	            // Si vous utilisez persist(), assurez-vous que l'entité n'est pas déjà dans le contexte de persistance.
-	//	            // entityManager.persist(entityToUpdate);
-	//	            // Si vous utilisez merge(), l'entité peut être attachée ou détachée.
-	//	            entityManager.merge(entityToUpdate);
-	//	        }
-	//	    }
+	private void resetInputData() {
+		activityViewModel = new ActivityViewModel();
+		selectedEquipments.clear();
+	}
 	
 	public List<Activity> displayActivitiesList() {
 		return activityDao.getAllActivities();
@@ -69,11 +64,12 @@ public class ActivityController implements Serializable{
 	public List<Profile> displayTrainersList() {
 		return activityDao.getAllTrainers();
 	}
+	
+	public List<Equipment> getEquipmentsList() {
+		return equipmentDao.getAllEquipmentsWithActivities();
+	}
 
 	//GET FROM DATABASE EQUIPMENTS LIST	
-	public List<Equipment> getEquipementsList(){
-		return activityDao.getAllEquipmentsWithActivities();
-	}
 
 	//DELETE ACTIVITY FROM DATABASE
 	public void deleteSelectedActivity() {
@@ -111,4 +107,17 @@ public class ActivityController implements Serializable{
 		return ActivityCategory.values();
 	}
 
+
+	// REFAIRE UNE METHODE POUR UPDATER UNE ACTIVITE :
+	//	 public void updateEntity(Long entityId, String newName) {
+	//	        Entity entityToUpdate = entityManager.find(Entity.class, entityId);
+	//
+	//	        if (entityToUpdate != null) {
+	//	            entityToUpdate.setName(newName);
+	//	            // Si vous utilisez persist(), assurez-vous que l'entité n'est pas déjà dans le contexte de persistance.
+	//	            // entityManager.persist(entityToUpdate);
+	//	            // Si vous utilisez merge(), l'entité peut être attachée ou détachée.
+	//	            entityManager.merge(entityToUpdate);
+	//	        }
+	//	    }
 }

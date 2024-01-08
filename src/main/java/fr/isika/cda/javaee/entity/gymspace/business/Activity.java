@@ -32,13 +32,10 @@ public class Activity {
 	private String description;	
 	@Enumerated(EnumType.STRING)
 	private ActivityCategory activityCategory;	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "activity")
-	@Column(name="course_list")
-	private List<Course> courseList = new ArrayList<>() ; 	
-	@ManyToMany
-	@JoinTable(name = "activity_equipment",
-	joinColumns = @JoinColumn(name = "activity_id"),
-	inverseJoinColumns = @JoinColumn(name = "equipment_id"))
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
+	private List<Course> courseList = new ArrayList<>() ;
+	
+	@OneToMany(mappedBy = "activity")
 	private List<Equipment> equipmentList = new ArrayList<>() ;
 
 	//***************GETTERS & SETTERS***************

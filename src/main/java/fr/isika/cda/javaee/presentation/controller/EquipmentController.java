@@ -9,6 +9,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import fr.isika.cda.javaee.dao.ActivityDao;
 import fr.isika.cda.javaee.dao.EquipmentDao;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.presentation.viewmodel.EquipmentViewModel;
@@ -25,6 +27,9 @@ public class EquipmentController implements Serializable {
 	@Inject
 	private EquipmentDao equipmentDao;
 	
+	@Inject
+	private ActivityDao activityDao;
+	
 	@PostConstruct
 	public void init() {
 		System.out.println("EquipementController bean initialized!");
@@ -32,16 +37,15 @@ public class EquipmentController implements Serializable {
 	//***************METHODS***************
 	//SAVE EQUIPMENT IN DATABASE
 	public void addEquipement() {
-		equipmentDao.createEquipment(equipmentViewModel, selectedActivities);
+		equipmentDao.createEquipment(equipmentViewModel);
 		FacesContext.getCurrentInstance().addMessage(null,
                 new FacesMessage("Un nouvel équipement nommé '" + equipmentViewModel.getEquipmentName() + "' a été enregistré."));
 		equipmentViewModel = new EquipmentViewModel();
-		selectedActivities = new ArrayList<>();
 	}
 	
 	//GET FROM DATABASE ACTIVITIES LIST	
 	public List<Activity> getActivitiesList(){
-		return equipmentDao.getAllActivitiesWithEquipements();
+		return activityDao.getAllActivitiesWithEquipements();
 	}
 
 	//***************GETTERS & SETTERS***************
