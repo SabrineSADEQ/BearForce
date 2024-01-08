@@ -29,9 +29,11 @@ public class AccountDao {
 	    profile.setLastName(accountVM.getProfile().getLastName());
 	    
 	    profile.setBirthDate(accountVM.getProfile().getBirthDate());
+	    
 	    profile.setContact(accountVM.getProfile().getContact());
 	    profile.setAddress(accountVM.getProfile().getAddress());
 	    profile.setProfesionalDetails(accountVM.getProfile().getProfesionalDetails());
+	    
 	    // Set other profile attributes as needed
 
 	    // Set the profile to the account and vice versa
@@ -50,7 +52,9 @@ public class AccountDao {
 
 	}
 
-	
+	public Account getById(Long accountId) {
+		return entityManager.find(Account.class, accountId);
+	}
 	
 
 }
