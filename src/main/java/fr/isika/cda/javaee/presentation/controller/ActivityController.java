@@ -38,8 +38,7 @@ public class ActivityController implements Serializable{
 		activityDao.createActivity(activityViewModel, selectedEquipments);
 		FacesContext.getCurrentInstance().addMessage(null,
 				new FacesMessage("Une nouvelle activité nommée '" + activityViewModel.getName() + "' a été enregistrée."));
-		PrimeFaces.current().executeScript("PF('manageActivityDialog').hide()");
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Activité mise à jour"));
+		
 		
 		resetInputData();
 	}
@@ -62,6 +61,13 @@ public class ActivityController implements Serializable{
 	public void deleteSelectedActivity() {
 		activityDao.deleteActivity(selectedActivity.getId());
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Activité supprimée"));
+	}
+	
+	//MODIFIE ACTIVITY IN DATABASE
+	public void modifieSelectedActivity() {
+		activityDao.updateActivity(selectedActivity);
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Activité mise à jour"));
+		PrimeFaces.current().executeScript("PF('manageActivityDialog').hide()");
 	}
 
 	//***************GETTERS & SETTERS***************

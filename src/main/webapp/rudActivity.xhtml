@@ -13,10 +13,22 @@
 				<h:form id="form">
 					<p:growl id="messages" showDetail="true" />
 
+					<p:toolbar>
+						<p:toolbarGroup>
+							<p:commandButton value="Ajouter une activité" icon="pi pi-plus"
+								oncomplete="PF('addActivityDialog').show()"
+								styleClass="ui-button-success" style="margin-right: .5rem"
+								update=":dialogs:add-activity-content">
+								<p:resetInput target=":dialogs:add-activity-content" />
+							</p:commandButton>
+						</p:toolbarGroup>
+					</p:toolbar>
+
+
 					<p:dataTable id="rud-activity" widgetVar="dtActivities" var="act"
-						value="#{activityController.displayActivitiesList()}" reflow="true"
-						styleClass="products-table" paginator="true" rows="10"
-						rowSelectMode="add" paginatorPosition="bottom">
+						value="#{activityController.displayActivitiesList()}"
+						reflow="true" styleClass="products-table" paginator="true"
+						rows="10" rowSelectMode="add" paginatorPosition="bottom">
 
 						<f:facet name="header">
 							<div class="products-table-header">
@@ -28,7 +40,8 @@
 							</div>
 						</f:facet>
 
-						<p:column headerText="Activité" sortBy="#{act.name}">
+						<p:column headerText="Activité" sortBy="#{act.name}"
+							filterBy="#{act.category}">
 							<p:outputLabel>#{act.name}</p:outputLabel>
 						</p:column>
 
@@ -73,6 +86,60 @@
 				</h:form>
 
 				<h:form id="dialogs">
+					<!-- CA COMMENCE ICI POUR LA CREATION D'UNE ACTIVITE -->
+					<p:dialog header="Enregister une nouvelle activité"
+						showEffect="fade" modal="true" widgetVar="addActivityDialog"
+						responsive="true">
+						<p:outputPanel id="add-activity-content" class="ui-fluid">
+							<p:outputPanel>
+								<div class="field">
+									<p:outputLabel for="add-name" value="Nom : " />
+									<p:inputText id="add-name"
+										value="#{activityController.activityViewModel.name}"
+										required="true" />
+								</div>
+								<div class="field">
+									<p:outputLabel for="add-description" value="Description : " />
+									<p:inputText id="add-description"
+										value="#{activityController.activityViewModel.description}" />
+								</div>
+								<div class="field">
+									<p:outputLabel for="add-activityCategory" value="Catégorie : " />
+									<p:selectOneMenu id="add-activityCategory"
+										value="#{activityController.activityViewModel.activityCategory}"
+										style="min-width: 14rem">
+										<f:selectItem itemLabel="Sélectionnez une catégorie"
+											itemValue="null" noSelectionOption="true" />
+										<f:selectItems
+											value="#{activityController.getActivityCategories()}"
+											var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
+									</p:selectOneMenu>
+								</div>
+								<div class="field">
+									<p:outputLabel for="add-equipments" value="Equipement(s) concerné(s) : " />
+									<p:selectManyCheckbox id="add-equipments"
+										value="#{activityController.selectedEquipments}"
+										layout="responsive" columns="2">
+										<f:selectItems
+											value="#{equipmentController.getEquipmentsList()}" var="equi"
+											itemLabel="#{equi.equipmentName}" itemValue="#{equi.id}" />
+									</p:selectManyCheckbox>
+								</div>
+							</p:outputPanel>
+						</p:outputPanel>
+
+						<f:facet name="footer">
+							<p:commandButton value="Ajouter" icon="pi pi-check"
+								actionListener="#{activityController.addActivity()}"
+								update=":form:" process="add-activity-content @this" 
+								oncomplete="PF('addActivityDialog').hide()"/>
+							<p:commandButton value="Annuler" icon="pi pi-times"
+								onclick="PF('addActivityDialog').hide()"
+								class="ui-button-secondary" type="button" />
+						</f:facet>
+					</p:dialog>
+					<!-- CA FINI ICI POUR LA CREATION D'UNE ACTIVITE -->
+
 					<p:dialog header="Détails de l'activité" showEffect="fade"
 						modal="true" widgetVar="manageActivityDialog" responsive="true">
 						<p:outputPanel id="manage-activity-content" class="ui-fluid">
@@ -98,15 +165,13 @@
 											var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
 									</p:selectOneMenu>
 								</div>
-
 							</p:outputPanel>
 						</p:outputPanel>
 
 						<f:facet name="footer">
-							<p:commandButton value="Sauvegarder" icon="pi pi-check"
-								actionListener="#{activityController.addActivity()}"
-								update="manage-activity-content"
-								process="manage-activity-content @this" />
+							<p:commandButton value="Mettre à jour" icon="pi pi-check"
+								actionListener="#{activityController.modifieSelectedActivity()}"
+								update=":form:" process="manage-activity-content @this" />
 							<p:commandButton value="Annuler" icon="pi pi-times"
 								onclick="PF('manageActivityDialog').hide()"
 								class="ui-button-secondary" type="button" />
@@ -118,9 +183,8 @@
 						severity="warn">
 						<p:commandButton value="Oui" icon="pi pi-check"
 							actionListener="#{activityController.deleteSelectedActivity()}"
-							oncomplete="PF('deleteActivityDialog').hide()" 
-							update=":form:"/>
-						<p:commandButton value="No" type="button"
+							oncomplete="PF('deleteActivityDialog').hide()" update=":form:" />
+						<p:commandButton value="Non" type="button"
 							styleClass="ui-button-secondary" icon="pi pi-times"
 							onclick="PF('deleteActivityDialog').hide()" />
 					</p:confirmDialog>

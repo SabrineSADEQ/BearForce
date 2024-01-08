@@ -54,12 +54,9 @@ public class DataInitializer {
     @Inject
     private AccountDao accountDao;
     
-
     @Inject
     private SubscriptionDao subscriptionDao;
 
-
-    
     @Inject
     private ActivityDao activityDao;
     

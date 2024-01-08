@@ -39,6 +39,14 @@ public class ActivityDao {
 		return activityBean;		
 	}
 	
+	public void updateActivity(Activity updateActivity) {
+		Activity existingActivity = entityManager.find(Activity.class, updateActivity.getId());
+		existingActivity.setName(updateActivity.getName());
+		existingActivity.setDescription(updateActivity.getDescription());
+		existingActivity.setActiviteCategory(updateActivity.getActiviteCategory());
+		entityManager.merge(existingActivity);
+	}
+	
 	public void deleteActivity(Long activityToDeleteId) {
 		Activity activitiToDelete = entityManager
 				.createQuery("SELECT act FROM Activity act LEFT JOIN FETCH act.equipmentList WHERE act.id = :activityIdParam", Activity.class)
