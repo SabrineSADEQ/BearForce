@@ -6,33 +6,87 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
-	<ui:define name="titleValue">Créer un équipement</ui:define>
+	<ui:define name="titleValue">Enregister un équipement</ui:define>
 	<ui:define name="content">
-		<h1>Créer un équipement</h1>
-		<hr align="center" width="80%" />
-		<h:form>
-			<h:outputLabel for="equipmentName">Equipement :</h:outputLabel>
-			<h:inputText id="equipmentName"
-				value="#{equipmentController.equipmentViewModel.equipmentName}" />
-			<br />
-			<h:outputLabel for="quantity">Quantité :</h:outputLabel>
-			<h:inputText id="quantity"
-				value="#{equipmentController.equipmentViewModel.quantity}" />
-			<br />
-			<h:outputLabel for="details">Détails :</h:outputLabel>
-			<h:inputText id="details"
-				value="#{equipmentController.equipmentViewModel.details}" />
-			<br />
-			<h:outputLabel for="type">Etat :</h:outputLabel>
-			<h:inputText id="type"
-				value="#{equipmentController.equipmentViewModel.condition}" />
-			<br />
-			<h:commandButton value="Créer l'equipement"
-				action="#{equipmentController.addEquipement()}" />
-		</h:form>
-		<br />
-		<h:link outcome="index" value="Index" />
-	</ui:define>
+		<div>
+			<h:form>
+				<p:messages id="msgs" />
+				<div class="card">
+					<h5>Enregistrer un nouvel équipement</h5>
+					<div class="field grid">
+						<p:outputLabel for="equipmentName" styleClass="col-fixed"
+							style="width:100px" value="Equipement : " />
+						<div class="col">
+							<p:inputText id="equipmentName"
+								value="#{equipmentController.equipmentViewModel.equipmentName}"
+								required="true" />
+						</div>
+					</div>
+					<br />
 
+					<div class="field grid">
+						<p:outputLabel for="quantity" styleClass="col-fixed"
+							style="width:100px" value="Quantité : " />
+						<div class="col">
+							<p:inputText id="quantity"
+								value="#{equipmentController.equipmentViewModel.quantity}"
+								required="true">
+								<f:validateLongRange minimum="1" />
+							</p:inputText>
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:outputLabel for="details" styleClass="col-fixed"
+							style="width:100px" value="Détails : " />
+						<div class="col">
+							<p:inputText id="details"
+								value="#{equipmentController.equipmentViewModel.details}" />
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:outputLabel for="condition" styleClass="col-fixed"
+							style="width:100px" value="Etat : " />
+						<div class="col">
+							<p:inputText id="condition"
+								value="#{equipmentController.equipmentViewModel.condition}" />
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:outputLabel for="activity" styleClass="col-fixed"
+							style="width:100px" value="Activitée(s) concernée(s) : " />
+						<div class="col">
+							<p:selectOneMenu id="activity"
+								value="#{equipmentController.selectedActivity}"
+								style="min-width: 14rem">
+								<f:selectItem itemLabel="Sélectionnez une activité"
+									itemValue="null" noSelectionOption="true" />
+								<f:selectItems
+									value="#{activityController.displayActivitiesList()}" 
+									var="act"
+									itemLabel="#{act.name}"
+									itemValue="#{act.id}" />
+							</p:selectOneMenu>
+
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:commandButton value="Créer l'équipement" update="@form"
+							action="#{equipmentController.addEquipement()}"
+							icon="pi pi-check" styleClass="rounded-button ui-button-primary" />
+					</div>
+				</div>
+
+			</h:form>
+			<br />
+		</div>
+	</ui:define>
 </ui:composition>
 </html>

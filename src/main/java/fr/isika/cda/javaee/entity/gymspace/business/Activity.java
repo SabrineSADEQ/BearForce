@@ -24,38 +24,20 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Activity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id ;
-	
+	private long id ;	
 	private String name ;
-	private String description;
-	
+	private String description;	
 	@Enumerated(EnumType.STRING)
-
-
-	
-
-	private ActivityCategory activityCategory;
-		
-
-	@OneToMany(cascade = CascadeType.ALL)
-	@Column(name="training_list")
-	private List<Training> trainingList = new ArrayList<>() ; 
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "activity")
-	@Column(name="course_list")
-	private List<Course> courseList = new ArrayList<>() ; 
-	
-	@ManyToMany
-	@JoinTable(name = "activity_equipment",
-				joinColumns = @JoinColumn(name = "activity_id"),
-				inverseJoinColumns = @JoinColumn(name = "equipment_id"))
+	private ActivityCategory activityCategory;	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
+	private List<Course> courseList = new ArrayList<>() ;	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
 	private List<Equipment> equipmentList = new ArrayList<>() ;
-	
-	
-	
+
+	//***************GETTERS & SETTERS***************
 	public ActivityCategory getCategory() {
 		return activityCategory;
 	}
@@ -88,14 +70,6 @@ public class Activity {
 		this.description = description;
 	}
 
-	public List<Training> getTrainingList() {
-		return trainingList;
-	}
-
-	public void setTrainingList(List<Training> trainingList) {
-		this.trainingList = trainingList;
-	}
-
 	public List<Equipment> getEquipmentList() {
 		return equipmentList;
 	}
@@ -115,6 +89,5 @@ public class Activity {
 	public void setActiviteCategory(ActivityCategory activiteCategory) {
 		this.activityCategory = activiteCategory;
 	} 
-	
-	
+
 }

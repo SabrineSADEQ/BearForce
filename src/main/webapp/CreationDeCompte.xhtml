@@ -24,6 +24,7 @@
 					value="#{accountController.accountVM.password}" required="true" />
 			</div>
 
+
 			<h:panelGroup rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}">
     <h:outputLabel for="role1">Role:</h:outputLabel>
     <h:selectOneRadio id="role1" value="#{accountController.accountVM.role}" required="true">
@@ -42,6 +43,7 @@
 </h:panelGroup>
 
     
+
 			<h:commandButton value="Next"
 				action="#{accountController.nextWizardStep}" />
 		</h:form>
