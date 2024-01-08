@@ -14,7 +14,7 @@
 					<p:growl id="messages" showDetail="true" />
 
 					<p:dataTable id="rud-activity" widgetVar="dtActivities" var="act"
-						value="#{equipmentController.getActivitiesList()}" reflow="true"
+						value="#{activityController.displayActivitiesList()}" reflow="true"
 						styleClass="products-table" paginator="true" rows="10"
 						rowSelectMode="add" paginatorPosition="bottom">
 
@@ -28,8 +28,7 @@
 							</div>
 						</f:facet>
 
-						<p:column headerText="Activité" sortBy="#{act.name}"
-							filterBy="#{act.name}">
+						<p:column headerText="Activité" sortBy="#{act.name}">
 							<p:outputLabel>#{act.name}</p:outputLabel>
 						</p:column>
 
@@ -100,22 +99,15 @@
 									</p:selectOneMenu>
 								</div>
 
-								<p:selectManyCheckbox id="equipments"
-									value="#{activityController.selectedActivity.equipmentList}"
-									layout="responsive" columns="2">
-									<f:selectItems
-										value="#{activityController.getEquipmentsList()}" var="equi"
-										itemLabel="#{equi.equipmentName}" itemValue="#{equi.id}" />
-								</p:selectManyCheckbox>
 							</p:outputPanel>
 						</p:outputPanel>
 
 						<f:facet name="footer">
-							<p:commandButton value="Save" icon="pi pi-check"
+							<p:commandButton value="Sauvegarder" icon="pi pi-check"
 								actionListener="#{activityController.addActivity()}"
 								update="manage-activity-content"
 								process="manage-activity-content @this" />
-							<p:commandButton value="Cancel" icon="pi pi-times"
+							<p:commandButton value="Annuler" icon="pi pi-times"
 								onclick="PF('manageActivityDialog').hide()"
 								class="ui-button-secondary" type="button" />
 						</f:facet>
@@ -126,18 +118,11 @@
 						severity="warn">
 						<p:commandButton value="Oui" icon="pi pi-check"
 							actionListener="#{activityController.deleteSelectedActivity()}"
-							oncomplete="PF('deleteActivityDialog').hide()" />
+							oncomplete="PF('deleteActivityDialog').hide()" 
+							update=":form:"/>
 						<p:commandButton value="No" type="button"
 							styleClass="ui-button-secondary" icon="pi pi-times"
 							onclick="PF('deleteActivityDialog').hide()" />
-					</p:confirmDialog>
-
-					<p:confirmDialog global="true" showEffect="fade" width="300">
-						<p:commandButton value="Yes" type="button"
-							styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-						<p:commandButton value="No" type="button"
-							styleClass="ui-confirmdialog-no ui-button-secondary"
-							icon="pi pi-times" />
 					</p:confirmDialog>
 				</h:form>
 				<br />

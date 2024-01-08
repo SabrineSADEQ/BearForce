@@ -9,15 +9,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import org.primefaces.PrimeFaces;
-
 import fr.isika.cda.javaee.dao.ActivityDao;
-import fr.isika.cda.javaee.dao.EquipmentDao;
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.ActivityCategory;
-import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
 import fr.isika.cda.javaee.presentation.viewmodel.ActivityViewModel;
 
 @Named
@@ -53,10 +49,6 @@ public class ActivityController implements Serializable{
 		selectedEquipments.clear();
 	}
 	
-	public List<Activity> act() {
-		return activityDao.getAllActivities();
-	}
-
 	//DISPLAY COACHS LIST
 	public List<Profile> displayTrainersList() {
 		return activityDao.getAllTrainers();
@@ -65,12 +57,10 @@ public class ActivityController implements Serializable{
 	public List<Activity> displayActivitiesList(){
 		return activityDao.getAllActivities();
 	}
-	
-	//GET FROM DATABASE EQUIPMENTS LIST	
 
 	//DELETE ACTIVITY FROM DATABASE
 	public void deleteSelectedActivity() {
-		activityDao.deleteActivity(selectedActivity);
+		activityDao.deleteActivity(selectedActivity.getId());
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Activité supprimée"));
 	}
 
@@ -104,17 +94,4 @@ public class ActivityController implements Serializable{
 		return ActivityCategory.values();
 	}
 
-
-	// REFAIRE UNE METHODE POUR UPDATER UNE ACTIVITE :
-	//	 public void updateEntity(Long entityId, String newName) {
-	//	        Entity entityToUpdate = entityManager.find(Entity.class, entityId);
-	//
-	//	        if (entityToUpdate != null) {
-	//	            entityToUpdate.setName(newName);
-	//	            // Si vous utilisez persist(), assurez-vous que l'entité n'est pas déjà dans le contexte de persistance.
-	//	            // entityManager.persist(entityToUpdate);
-	//	            // Si vous utilisez merge(), l'entité peut être attachée ou détachée.
-	//	            entityManager.merge(entityToUpdate);
-	//	        }
-	//	    }
 }

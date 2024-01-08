@@ -26,7 +26,6 @@ public class ActivityDao {
 		activityBean.setName(activityViewModel.getName());
 		activityBean.setDescription(activityViewModel.getDescription());
 		activityBean.setActiviteCategory(activityViewModel.getActivityCategory());	
-		// Associer les equipements selectionnes avec l'activité et inversement
 		selectedEquipments
 		.stream()
 		.map(id -> equipmentDao.findEquipmentById(id))
@@ -40,33 +39,22 @@ public class ActivityDao {
 		return activityBean;		
 	}
 	
-	public void deleteActivity(Activity activityToDelete) {
-		entityManager.remove(activityToDelete);
+	public void deleteActivity(Long activityToDeleteId) {
+		Activity activitiToDelete = entityManager
+				.createQuery("SELECT act FROM Activity act LEFT JOIN FETCH act.equipmentList WHERE act.id = :activityIdParam", Activity.class)
+				.setParameter("activityIdParam", activityToDeleteId)
+				.getSingleResult();
+		entityManager.remove(activitiToDelete);
 	}
 	
 	public List<Activity> getAllActivitiesWithEquipements() {
 		return entityManager.createQuery("SELECT act FROM Activity act LEFT JOIN FETCH act.equipmentList", Activity.class).getResultList();
 	}
 	
-//	private void associateActivitiesWithEquipments(List<Long> equipmentsIds, Activity activityBean) {
-//		List<Equipment> associated = new ArrayList<Equipment>();
-//		
-//		equipmentsIds
-//			.stream()
-//			.map(id -> equipmentDao.findEquipmentById(id))
-//			.forEach(equipment -> {
-//				equipment.getActivityList().add(activityBean);
-//				associated.add(equipment);
-//			});
-//		
-//		// associer l'equipement courant aux  activites (lien inverse) 
-//		activityBean.setEquipmentList(associated);
-//	}
-	
 	//SEAK IN DATABASE ALL ACTIVITIES
 	public List<Activity> getAllActivities() {
 		return entityManager
-				.createQuery("SELECT a FROM Activity a", Activity.class)
+				.createQuery("SELECT a FROM Activity a LEFT JOIN FETCH a.equipmentList", Activity.class)
 				.getResultList();
 	}
 	

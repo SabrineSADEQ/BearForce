@@ -33,9 +33,8 @@ public class Activity {
 	@Enumerated(EnumType.STRING)
 	private ActivityCategory activityCategory;	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
-	private List<Course> courseList = new ArrayList<>() ;
-	
-	@OneToMany(mappedBy = "activity")
+	private List<Course> courseList = new ArrayList<>() ;	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
 	private List<Equipment> equipmentList = new ArrayList<>() ;
 
 	//***************GETTERS & SETTERS***************
