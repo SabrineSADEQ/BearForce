@@ -69,6 +69,38 @@ public class AccountController implements Serializable {
 
         accountVM = new AccountViewModel();
     }
+    
+    public void updateAccount() {
+        Account account = SessionUtils.getAccount();
+        // Vérifier si l'utilisateur est connecté (authentifié)
+        Long accountId = account.getId();
+
+        if (accountId != null) {
+            // Retrieve the existing account from the database
+            Account existingAccount = accountDao.getAccountById(accountId);
+
+            if (existingAccount != null) {
+                // Update the profile attributes
+                existingAccount.getProfile().setFirstName(accountVM.getProfile().getFirstName());
+                existingAccount.getProfile().setLastName(accountVM.getProfile().getLastName());
+                
+                existingAccount.getProfile().setBirthDate(accountVM.getProfile().getBirthDate());
+    			existingAccount.getProfile().setContact(accountVM.getProfile().getContact());
+    			existingAccount.getProfile().setAddress(accountVM.getProfile().getAddress());
+    			existingAccount.getProfile().setProfesionalDetails(accountVM.getProfile().getProfesionalDetails());
+    			
+                // Update other account attributes if needed
+                existingAccount.setEmail(accountVM.getEmail());
+
+                // Appeler la méthode de mise à jour dans le DAO pour mettre à jour le compte
+                accountDao.update(existingAccount);
+            } else {
+                System.out.println("Compte introuvable pour l'ID : " + accountId);
+            }
+        } else {
+            System.out.println("L'utilisateur n'est pas connecté.");
+        }
+    }
 
 
     public AccountViewModel getAccountVM() {

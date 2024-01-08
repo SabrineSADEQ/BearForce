@@ -3,6 +3,8 @@ package fr.isika.cda.javaee.dao.accounts;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
 import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.utils.PasswordUtils;
@@ -23,6 +25,7 @@ public class AccountDao {
 	    String hashedPassword = PasswordUtils.hashPassword(accountVM.getPassword());
 	    accountbean.setPassword(hashedPassword);
 	    accountbean.setRole(accountVM.getRole());
+	    accountbean.setGymId(accountVM.getGymId());
 
 	    // Create and set the profile
 	    Profile profile = new Profile();
@@ -56,8 +59,39 @@ public class AccountDao {
 		
 		return createAccount(AccountViewModel);
 	}
-
 	
+	@Transactional
+	public void update(Account updatedAccount) {
+		// Rechercher le compte dans la base de données avec l'ID
+		Account existingAccount = entityManager.find(Account.class, updatedAccount.getId());
+
+		// Vérifier si le compte existe dans la base de données
+		if (existingAccount != null) {
+			// Mettre à jour les champs du compte avec les nouvelles valeurs
+			existingAccount.getProfile().setFirstName(updatedAccount.getProfile().getFirstName());
+			existingAccount.setEmail(updatedAccount.getEmail());
+			existingAccount.getProfile().setLastName(updatedAccount.getProfile().getLastName());
+			
+			existingAccount.getProfile().setBirthDate(updatedAccount.getProfile().getBirthDate());
+			existingAccount.getProfile().setContact(updatedAccount.getProfile().getContact());
+			existingAccount.getProfile().setAddress(updatedAccount.getProfile().getAddress());
+			existingAccount.getProfile().setProfesionalDetails(updatedAccount.getProfile().getProfesionalDetails());
+			
+			// Enregistrer les modifications dans la base de données
+			entityManager.merge(existingAccount);
+		} else {
+			System.out.println("Compte introuvable pour l'ID : " + updatedAccount.getId());
+		}
+
+	}
+	public Account getAccountById(Long accountId) {
+		try {
+			return entityManager.find(Account.class, accountId);
+		} catch (Exception e) {
+			e.printStackTrace(); // Gérez les exceptions de manière appropriée
+			return null;
+		}
+	}
 	
 
 }
