@@ -61,6 +61,7 @@ body {
 	font-weight: 800;
 }
 
+
 /* style for carrousel */
  .product-item .product-item-content {
         border: 1px solid var(--surface-d);
@@ -130,3 +131,6 @@ html body .ui-fileupload .ui-fileupload-content {
 	 border-color:transparent;
 	 
 }
+
+
+

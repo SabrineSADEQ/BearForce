@@ -1,13 +1,11 @@
-
 package fr.isika.cda.javaee.dao;
 
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
+import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
 import fr.isika.cda.javaee.presentation.viewmodel.CourseViewModel;
@@ -28,9 +26,9 @@ public class CourseDAO {
 		courseBean.setStartDate(courseViewModel.getStartDate());
 		courseBean.setEndDate(courseViewModel.getEndDate());
 		courseBean.setNbPlaces(courseViewModel.getNbPlaces());
-		//!!!!!!!!!!!!!!ATTENTION RELIER AU PROFIL UNE FOIS LE MERGE FAIT!!!!!!!!!!!!!!
-		//Profile trainer = findTrainerById(courseViewModel.getTrainerId());
-		//courseBean.setTrainer(trainer);
+		System.out.println(courseViewModel.getNbPlaces());
+		Profile trainer = findTrainerById(courseViewModel.getTrainerId());
+		courseBean.setTrainer(trainer);
 		entityManager.persist(courseBean);
 		entityManager.flush();
 		return courseBean;	
@@ -40,7 +38,9 @@ public class CourseDAO {
 		return activityDao.findActivityById(activityId);
 	}
 	
-	//!!!!!!!!!!!!!!ATTENTION CHANGER POUR PROFILEDAO UNE FOIS LE DAO EXPORTE!!!!!!!!!!!!!!
+	private Profile findTrainerById(long trainerId) {
+		return activityDao.findTrainerById(trainerId);
+	}
 	
 	public void saveCourse(Course course) {
 		entityManager.persist(course);

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+	<ui:define name="titleValue">Souscrire à un nouveau pack</ui:define>
+	<ui:define name="content">
+
+		<h:head>
+			<h:outputStylesheet library="css" name="main/style.css" />
+		</h:head>
+
+		<h:form id="subscribeForm">
+			<h2>Liste des packs</h2>
+			<h:dataTable value="#{subscriptionManagementController.listePacks()}" var="pack">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					<h:outputText value="#{pack.id}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{pack.name}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Price</f:facet>
+					<h:outputText value="#{pack.price}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Description</f:facet>
+					<h:outputText value="#{pack.description}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Souscrire</f:facet>
+					<h:commandButton value="Souscrire"
+						action="#{subscriptionManagementController.paymentPack()}" />
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

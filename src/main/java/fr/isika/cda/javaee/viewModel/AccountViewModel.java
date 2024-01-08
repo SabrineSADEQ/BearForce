@@ -14,7 +14,7 @@ public class AccountViewModel {
 	private boolean connected;
 	 private int wizardStep;
 	 private Profile profile = new Profile();
-	
+	private int gymId;
 	public Long getId() {
 		return id;
 	}
@@ -73,6 +73,14 @@ public class AccountViewModel {
 		}
 		public void setProfile(Profile profile) {
 			this.profile = profile;
+		}
+		
+		
+		public int getGymId() {
+			return gymId;
+		}
+		public void setGymId(int gymId) {
+			this.gymId = gymId;
 		}
 	
 	

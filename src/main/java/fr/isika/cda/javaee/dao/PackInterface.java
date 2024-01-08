@@ -14,6 +14,8 @@ public interface PackInterface {
 	List<Pack> getPacks();
 	
 	void createPack(Pack Pack);
+
+	List<Pack> getPacksWithSubscriptions();
 	
 	//void updatePack(Pack Pack);
 	

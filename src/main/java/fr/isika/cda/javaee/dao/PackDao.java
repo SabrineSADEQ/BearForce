@@ -9,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import fr.isika.cda.javaee.entity.platform.Pack;
-import fr.isika.cda.javaee.entity.platform.Subscription;
 
 
 
@@ -42,6 +41,14 @@ public class PackDao implements PackInterface{
 		
 		return entityManager.createQuery("SELECT p FROM Pack p", Pack.class)
                 .getResultList();
+		
+	}
+	
+	@Override
+	public List<Pack> getPacksWithSubscriptions() {
+		
+		return entityManager.createQuery("SELECT p FROM Pack p LEFT JOIN FETCH p.subscriptions", Pack.class)
+				.getResultList();
 		
 	}
 	

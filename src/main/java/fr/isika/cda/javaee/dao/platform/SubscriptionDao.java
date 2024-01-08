@@ -3,9 +3,7 @@ package fr.isika.cda.javaee.dao.platform;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import fr.isika.cda.javaee.entity.platform.Subscription;
-
 import java.util.List;
 
 /**
@@ -20,7 +18,13 @@ public class SubscriptionDao {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void createSubscription(Subscription subscription) {
+
+    
+	private Subscription saveSubscription = new Subscription();
+	
+    
+	public void CreateSubscription(Subscription subscription) {
+
         entityManager.persist(subscription);
     }
 
@@ -42,7 +46,11 @@ public class SubscriptionDao {
     public List<Subscription> getAllSubscriptions() {
         return entityManager.createQuery("SELECT s FROM Subscription s", Subscription.class).getResultList();
     }
+
+	public void saveSubscription(Subscription subscription) {
+		this.saveSubscription = subscription;
+	}
     
-    // Ajout eventuel d'autres méthodes
+   
 }
 
