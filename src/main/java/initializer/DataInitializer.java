@@ -18,8 +18,14 @@ import fr.isika.cda.javaee.dao.CourseDAO;
 import fr.isika.cda.javaee.dao.EquipmentDao;
 import fr.isika.cda.javaee.dao.SpaceDao;
 import fr.isika.cda.javaee.dao.accounts.AccountDao;
-import fr.isika.cda.javaee.dao.gymspace.MembershipDAO;
-//import fr.isika.cda.javaee.dao.platform.SubscriptionDAO;
+
+
+import fr.isika.cda.javaee.dao.gymspace.MembershipDao;
+import fr.isika.cda.javaee.dao.platform.SubscriptionDao;
+
+
+
+  
 import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.accounts.Address;
 import fr.isika.cda.javaee.entity.accounts.Contact;
@@ -48,6 +54,11 @@ public class DataInitializer {
     @Inject
     private AccountDao accountDao;
     
+
+    @Inject
+    private SubscriptionDao subscriptionDao;
+
+
     
     @Inject
     private ActivityDao activityDao;
@@ -61,7 +72,7 @@ public class DataInitializer {
     @Inject
     private SpaceDao spaceDao;
     
-    @Inject MembershipDAO membershipDAO;
+    @Inject MembershipDao membershipDao;
 
     @PostConstruct
     public void initialize() {
@@ -197,16 +208,18 @@ public class DataInitializer {
            membership.setDescription("10 activités par jour, pour les plus grands sportfis");
 
        
-           membershipDAO.saveMembership(membership);
+           membershipDao.saveMembership(membership);
            
-//           
-//           Subscription subscription = new Subscription();
-//           subscription.setStartDate(LocalDateTime.now());
-//           subscription.setEndDate(LocalDateTime.now().plusMonths(6));
-//        	subscription.setAutoRenewal(true);
-//        	subscription.setDuration(6);
-//        		subscriptionDAO.saveSubscription(subscription);
-//            
+
+           
+           Subscription subscription = new Subscription();
+           subscription.setStartDate(LocalDateTime.now());
+           subscription.setEndDate(LocalDateTime.now().plusMonths(6));
+           subscription.setAutoRenewal(true);
+           subscription.setDuration(6);
+           subscriptionDao.saveSubscription(subscription);
+            
+
           
             
 
