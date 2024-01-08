@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+	<ui:define name="titleValue">Souscrire à un nouveau pack</ui:define>
+	<ui:define name="content">
+
+ <h:head>
+			<h:outputStylesheet library="css" name="main/CssPayment.css" />
+</h:head>
+
+
+    <h:form id="subscribeForm">
+        <h2>Informations de votre compte bancaire</h2>
+        
+        <h:panelGrid columns="3">
+        
+        <h:outputLabel for="inputNom">Nom:</h:outputLabel>
+        <h:inputText id="inputNom"  required="true" />
+        <br/>
+        
+        <h:outputLabel for="inputPrenom">Prénom:</h:outputLabel>
+        <h:inputText id="inputPrenom"  required="true" />
+        <br/>
+        
+        <h:outputLabel for="inputNumeroCarte">Numéro de carte bancaire:</h:outputLabel>
+        <h:inputText id="inputNumeroCarte"  required="true" />
+        <br/>
+        
+        <h:outputLabel for="inputDateExpiration">Date d'expiration:</h:outputLabel>
+        <h:inputText id="inputDateExpiration"  required="true" />
+        <br/>
+        
+        <h:outputLabel for="inputCode">Code CVV:</h:outputLabel>
+        <h:inputSecret id="inputCode"  required="true" />
+        <br/>
+       </h:panelGrid>
+        
+        <h:commandButton value="Valider" action="#{subscriptionManagementController.confirmationPayment()}" />
+        <br/>
+        <br/>
+        
+    </h:form>
+</ui:define>
+</ui:composition>
+</html>

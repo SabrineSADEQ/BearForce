@@ -44,7 +44,7 @@ public class SubscriptionManagedBean implements Serializable {
 //            subscription.setAccount(account);
 
           SubscriptionDao subscriptionDao2 = new SubscriptionDao();
-          subscriptionDao2.saveSubscription(subscription);
+          subscriptionDao2.CreateSubscription(subscription);
        }
     }
 
