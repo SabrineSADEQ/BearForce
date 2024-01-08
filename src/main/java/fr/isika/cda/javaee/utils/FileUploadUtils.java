@@ -23,7 +23,7 @@ public class FileUploadUtils {
 		String resourcesDir = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/");
 		
 		// => webapp/resources/documents
-		String documentsDir = resourcesDir + "/" + "documents";
+		String documentsDir = resourcesDir + "/" + "images";
 		
 		// Check if /../documents exists , create the dir if not !!
 		File documentsDirFile = new File(documentsDir);

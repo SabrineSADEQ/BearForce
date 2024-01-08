@@ -15,6 +15,7 @@ import fr.isika.cda.javaee.entity.gymspace.IdGym;
 import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.entity.gymspace.SpaceTextContent;
 import fr.isika.cda.javaee.entity.gymspace.VisualIdentity;
+import fr.isika.cda.javaee.entity.gymspace.business.Course;
 import fr.isika.cda.javaee.presentation.viewmodel.SpaceViewModel;
 
 @Stateless
@@ -35,6 +36,7 @@ public class SpaceDao {
 //			Profile gymOwner = new Profile();
 //			Address gymLocation = new Address();
 //			Contact contactInfo = new Contact();
+			gymIdentity.setGymName(spaceViewModel.getSpaceName());
 			
 			spaceTextContent.setSpaceName(spaceViewModel.getSpaceName());
 			spaceTextContent.setMotto(spaceViewModel.getMotto());
@@ -65,14 +67,17 @@ public class SpaceDao {
 			return space; 
 		}
 
-	public Space getSpaceById(Long id) {
-		// TODO :
-		return null;
+	public Space getSpaceById(Long spaceId) {
+		return em
+				.createQuery("SELECT space FROM Space space WHERE space.id = :spaceIdParam", Space.class)
+				.setParameter("spaceIdParam", spaceId)
+				.getSingleResult();
 	}
 	
 	public List<Space> getAllSpaces() {
-		// TODO :
-		return null;
+	
+		return em.createQuery("SELECT s FROM Space s", Space.class).getResultList();
 	}
+
 
 }

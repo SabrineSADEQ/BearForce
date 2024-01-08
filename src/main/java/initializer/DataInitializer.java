@@ -178,17 +178,21 @@ public class DataInitializer {
             
             // incomplet
            SpaceViewModel spaceViewModel = new SpaceViewModel();
-           spaceViewModel.setFirstColor("bleu");
-           spaceViewModel.setSecondColor("rouge");
-           spaceViewModel.setThirdColor("vert");
-           spaceViewModel.setMotto("ici pour le sport");
-           spaceViewModel.setSpaceName("les sportifs");
-           spaceViewModel.setDescription("le sport c'est pas que pour les sportifs");
+           spaceViewModel.setFirstColor("845EC2");
+           spaceViewModel.setSecondColor("00C9A7");
+           spaceViewModel.setThirdColor("131B23");
+           spaceViewModel.setMotto("Ensemble pour le sport");
+           spaceViewModel.setSpaceName("FitClub");
+           spaceViewModel.setDescription("Le sport, pas que pour les sportifs");
            spaceViewModel.setFreeAccess(false);
            spaceViewModel.setLockerRoom(false);
-           spaceViewModel.setPhotoList("des belles photos ici");
            
+           // Ici le chemin n'est autre que ne lom du fichier car 
+           // le chamin est relatif en plus est géré à l'upload par JSF 
+           spaceViewModel.setGymLogoPath("goGym_logo.png");
            spaceDao.createSpace(spaceViewModel);
+           
+           
            
            Membership membership = new Membership();
            membership.setName("abonnement or");

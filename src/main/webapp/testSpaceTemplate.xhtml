@@ -6,19 +6,29 @@
 	xmlns:p="http://primefaces.org/ui">
 
 
-<ui:composition template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+<ui:composition
+	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
 	
-	<ui:define name="titleValue">INSERER NOM ESPACE ICI</ui:define>
+	<ui:define name="titleValue">
+		Space Details
+	</ui:define>
 	<ui:define name="content">
-		<h:outputStylesheet library="css" name="main/spaceStyle.css"/>
+		<h:outputStylesheet library="css" name="main/spaceStyle.css" />
 		<div class="content">
-        	<!-- Main content goes here -->
-	        <h1>Test</h1>
-	        <p>Hello!</p>
-    	</div>
+			<h1>#{spaceController.getLoadedSpace().getIdGym().getGymName()}</h1>
+			<p>Hello!</p>
+			
+			<h:outputLabel value="Logo : " />
+			<h:graphicImage library="images" 
+				name="#{spaceController.getLoadedSpace().visualIdentity.gymLogoPath}" />
+			
+			<h2 style="color : ##{spaceController.getLoadedSpace().visualIdentity.firstColor}">
+				This is a text with the first color
+			</h2>
+		</div>
 
 	</ui:define>
-	
+
 </ui:composition>
 
 </html>
