@@ -6,27 +6,26 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-
+<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+	<ui:define name="titleValue">Créer un pack</ui:define>
+	<ui:define name="content">
 <h:head>
     <title>Confirmation de votre paiement</title>
     <h:outputStylesheet library="css" name="main/CssPayment.css" />
 </h:head>
 
-<h:body>
-
  <h:form id="subscribeForm">
     <h2>Paiement effectué avec succès!</h2>
-    
    <div class="img">
    <p:graphicImage library="images" name="paymentSuccessful.png" />
    </div>
     <br/>
     <br/>
-    
-    
-   
-        <h:commandButton value=" Créer votre espace" action="#{subscriptionManagementController.dirigeVersSpaceCreation()}" />
+     <h:commandButton value=" Créer votre espace" action="#{subscriptionManagementController.dirigeVersSpaceCreation()}" />
     </h:form>
-</h:body>
+    </ui:define>
+
+</ui:composition>
+
 
 </html>
