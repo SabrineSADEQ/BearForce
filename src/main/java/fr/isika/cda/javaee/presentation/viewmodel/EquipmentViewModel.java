@@ -1,11 +1,17 @@
 package fr.isika.cda.javaee.presentation.viewmodel;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import fr.isika.cda.javaee.entity.gymspace.business.Activity;
+
 public class EquipmentViewModel {
 	private long id ;
 	private String condition ;
 	private int quantity ;
 	private String equipmentName;
 	private String details ;
+	private List<Activity> activityList = new ArrayList<>();
 	
 	//***************GETTERS & SETTERS***************
 	public String getCondition() {
@@ -34,6 +40,12 @@ public class EquipmentViewModel {
 	}
 	public long getId() {
 		return id;
+	}
+	public List<Activity> getActivityList() {
+		return activityList;
+	}
+	public void setActivityList(List<Activity> activityList) {
+		this.activityList = activityList;
 	}
 		
 }

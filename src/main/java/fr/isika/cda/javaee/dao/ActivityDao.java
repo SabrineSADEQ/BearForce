@@ -25,11 +25,15 @@ public class ActivityDao {
 		activityBean.setName(activityViewModel.getName());
 		activityBean.setDescription(activityViewModel.getDescription());
 		activityBean.setActiviteCategory(activityViewModel.getActivityCategory());
-		activityBean.setEquipmentList(activityViewModel.getEquipmentList());
+		//activityBean.setEquipmentList(activityViewModel.getEquipmentList());
 		associateActivitiesWithEquipments(equipementsIdsForGivenactivity, activityBean);
 		entityManager.persist(activityBean);
 		entityManager.flush();
 		return activityBean;		
+	}
+	
+	public void deleteActivity(Activity activityToDelete) {
+		entityManager.remove(activityToDelete);
 	}
 	
 	public List<Equipment> getAllEquipmentsWithActivities() {
@@ -47,7 +51,7 @@ public class ActivityDao {
 				associated.add(equipment);
 			});
 		
-		// associer l'quipement courant aux  activites (lien inverse) 
+		// associer l'equipement courant aux  activites (lien inverse) 
 		activityBean.setEquipmentList(associated);
 	}
 	
@@ -80,4 +84,5 @@ public class ActivityDao {
 				.createQuery("SELECT prof FROM Profile prof WHERE prof.account.role = 'COACH'", Profile.class)
 				.getResultList();
 	}
+
 }

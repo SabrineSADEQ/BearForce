@@ -27,6 +27,7 @@ public class EquipmentDao {
 		equipmentBean.setQuantity(equipmentViewModel.getQuantity());
 		equipmentBean.setCondition(equipmentViewModel.getCondition());
 		equipmentBean.setDetails(equipmentViewModel.getDetails());
+		//equipmentBean.setActivityList(equipmentViewModel.getActivityList());
 		associateEquipementWithActivities(activitiesIdsForGivenEquipement, equipmentBean);
 		entityManager.persist(equipmentBean);
 		entityManager.flush();
