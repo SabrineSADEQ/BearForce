@@ -32,7 +32,7 @@
 						<p:menuitem value="Nos équipements" />
 					</p:submenu>
 					<p:menuitem class="link-menu" value="Planning des cours" />
-					<p:menuitem class="link-menu" value="Abonnements" />
+					<p:menuitem class="link-menu" value="Abonnements" outcome="listeMembership" />
 					<p:menuitem class="link-menu" value="Contact"
 						outcome="spaceContact" />
 
@@ -46,7 +46,7 @@
 					iconPos="right"
 					rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
 				<p:button class="rightButton" value="Mon espace personnel"
-					outcome="testSpaceTemplate" icon="pi pi-chevron-right"
+					outcome="#{spaceController.redirectToSpace(loginController.loggedAccount.gymId)}" icon="pi pi-chevron-right"
 					iconPos="right"
 					rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
 			</div>
