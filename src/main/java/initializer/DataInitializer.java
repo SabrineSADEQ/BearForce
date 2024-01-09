@@ -90,7 +90,7 @@ public class DataInitializer {
             AccountViewModel Adherent = new AccountViewModel();
             Adherent.setEmail("adherent");
             Adherent.setPassword("adherent");
-            Adherent.setGymId(30);
+            Adherent.setGymId((long) 30);
             Adherent.setRole(Role.ADHERENT);
             Profile profileAdherent = new Profile();
             profileAdherent.setFirstName("yoann");

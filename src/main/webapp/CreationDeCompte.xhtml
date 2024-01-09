@@ -179,7 +179,7 @@
     <h:outputLabel for="gymId2" styleClass="form-label" style="margin-left: 10px;">Choisir: </h:outputLabel>
     <h:selectOneMenu id="gymId2" value="#{accountController.accountVM.gymId}" required="true" styleClass="form-input">
         <f:selectItems value="#{spaceController.allSpaces}" var="space"
-            itemLabel="#{space.idGym.gymName}" itemValue="#{space.idGym.id}" />
+            itemLabel="#{space.idGym.gymName}" itemValue="#{space.id}" />
     </h:selectOneMenu>
 </div>
 

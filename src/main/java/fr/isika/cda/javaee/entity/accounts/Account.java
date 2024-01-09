@@ -42,17 +42,17 @@ public class Account {
 	private Profile profile;
 	
 	@Column
-	private int gymId;
+	private Long gymId;
 	
 	
 	
 	
 	
-	public int getGymId() {
+	public Long getGymId() {
 		return gymId;
 	}
 
-	public void setGymId(int gymId) {
+	public void setGymId(Long gymId) {
 		this.gymId = gymId;
 	}
 
