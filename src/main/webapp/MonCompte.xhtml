@@ -12,10 +12,12 @@
 		<h2>Modifier le compte</h2>
 		<h:form>
 
-<!-- 			<p:avatar styleClass="mr-2" size="xlarge" shape="circle"> -->
-<!-- 				<p:graphicImage library="images" -->
-<!-- 					name="#{accountController.accountVM.profile.pictureUrl}" /> -->
-<!-- 			</p:avatar> -->
+			<p:avatar styleClass="mr-2" size="xlarge" shape="circle">
+				<h:graphicImage library="images"
+					name="#{accountController.accountVM.profile.pictureUrl}" />
+			</p:avatar>
+			<br/>
+			
 			<p:outputLabel value="Prénom" />
 			<p:inputText value="#{accountController.accountVM.profile.firstName}"
 				required="true"
@@ -64,7 +66,7 @@
 				<p:inputText id="streetNumberStep2"
 					value="#{accountController.accountVM.profile.address.streetNumber}"
 					required="true"
-					placeholder="#{loginController.getLoggedAccount().profile.address.streetNulmber}" />
+					placeholder="#{loginController.getLoggedAccount().profile.address.streetNumber}" />
 			</div>
 
 			<div>
