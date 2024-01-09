@@ -107,6 +107,7 @@ public class DataInitializer {
             gestionnaire.setEmail("gestionnaire");
             gestionnaire.setPassword("gestionnaire");
             gestionnaire.setRole(Role.GESTIONNAIRE);
+            gestionnaire.setGymId((long) 30);
 
             Profile profileGestionnaire = new Profile();
             profileGestionnaire.setFirstName("John");
@@ -130,6 +131,7 @@ public class DataInitializer {
             AccountViewModel coach = new AccountViewModel();
             coach.setEmail("coach");
             coach.setPassword("coach");
+            coach.setGymId((long) 30);
             coach.setRole(Role.COACH);
 
             Goal goal2 = new Goal();
