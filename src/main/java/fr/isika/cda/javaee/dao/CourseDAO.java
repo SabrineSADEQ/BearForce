@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
+import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
 import fr.isika.cda.javaee.presentation.viewmodel.CourseViewModel;
 
 @Stateless
@@ -32,6 +33,26 @@ public class CourseDAO {
 		entityManager.persist(courseBean);
 		entityManager.flush();
 		return courseBean;	
+	}
+	
+	public void updateCourse(Course updateCourse, Long selectedActivity, Long selectedProfile) {
+		Course existingCourse = entityManager.find(Course.class, updateCourse.getId());
+		Activity activity = activityDao.findActivityById(selectedActivity);
+		existingCourse.setActivity(activity);
+		existingCourse.setStartDate(updateCourse.getStartDate());
+		existingCourse.setEndDate(updateCourse.getEndDate());
+		Profile trainer = activityDao.findTrainerById(selectedProfile);
+		existingCourse.setNbPlaces(updateCourse.getNbPlaces());
+		existingCourse.setTrainer(trainer);
+		entityManager.merge(existingCourse);
+	}
+	
+	public void deleteCourse(Long courseToDeleteId) {
+		Course courseToDelete = entityManager
+				.createQuery("SELECT c FROM Course c LEFT JOIN FETCH c.activity WHERE c.id = :courseIdParam", Course.class)
+				.setParameter("courseIdParam", courseToDeleteId)
+				.getSingleResult();
+		entityManager.remove(courseToDelete);
 	}
 
 	private Activity findActivityById(long activityId) {

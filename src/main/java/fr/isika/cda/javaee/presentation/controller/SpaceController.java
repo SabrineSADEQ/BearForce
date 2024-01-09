@@ -17,6 +17,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import fr.isika.cda.javaee.account.controller.LoginController;
 import fr.isika.cda.javaee.dao.SpaceDao;
 import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.presentation.viewmodel.SpaceViewModel;
@@ -69,7 +70,10 @@ public class SpaceController implements Serializable {
 	}
 
 	public void createSpace() {
+		LoginController test = new LoginController();
+	
 		Long spaceId = spaceDao.createSpace(spaceViewModel).getId();
+		test.getLoggedAccount().setGymId(spaceId);
 		spaceViewModel = new SpaceViewModel();
 		redirectToSpace(spaceId);
 	}

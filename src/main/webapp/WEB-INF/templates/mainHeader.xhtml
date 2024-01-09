@@ -65,48 +65,57 @@
 				<!-- 						outcome="CreationDeCompte" /> -->
 				<!-- 				</ui:fragment> -->
 
-				<p:button class="rightButton" value="Tableau de bord"
-					outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
-					iconPos="right"
-					rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
-				<p:button class="rightButton" value="Tableau de bord"
-					outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
-					iconPos="right"
-					rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
-				<p:commandButton class="rightButton" value="Mon espace personnel"
-					action="#{spaceController.redirectToSpace(loginController.loggedAccount.gymId)}"
-					icon="pi pi-chevron-right" iconPos="right"
-					rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
+				
+					<p:button class="rightButton" value="Tableau de bord"
+						outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
+						iconPos="right"
+						rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
+					<p:button class="rightButton" value="Tableau de bord"
+						outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
+						iconPos="right"
+						rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
+						
+					<p:commandButton class="rightButton" value="Mon espace personnel"
+						action="#{spaceController.redirectToSpace(loginController.loggedAccount.gymId)}" icon="pi pi-chevron-right"
+						iconPos="right"
+						rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
 
 			</h:form>
 
 			<!-- Login pop up -->
-			<p:dialog header="Connexion" widgetVar="dlg3" minHeight="40"
-				width="350" showEffect="fade">
+
+			<h:form>
+			
+			<p:dialog header="Connexion" widgetVar="dlg3" minHeight="40" width="350"
+				showEffect="fade">
+
 				<p class="m-0">
-					<h:form>
+					
+						<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+    <h:outputLabel for="email">Email</h:outputLabel>
+    <h:inputText id="email" value="#{loginController.accountVM.email}" required="true" />
+</div>
 
-						<div>
-							<h:outputLabel for="email">Email</h:outputLabel>
-							<h:inputText id="email"
-								value="#{loginController.accountVM.email}" required="true" />
-						</div>
+<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
+    <h:outputLabel for="password">Mot de passe</h:outputLabel>
+    <h:inputSecret id="password" value="#{loginController.accountVM.password}" required="true" />
+</div>
 
-						<div>
-							<h:outputLabel for="password">Mot de passe</h:outputLabel>
-							<h:inputSecret id="password"
-								value="#{loginController.accountVM.password}" required="true" />
-						</div>
-
-						<h:commandButton value="Login"
+					<f:facet name="footer">
+						<p:commandButton value="Me connecter"
 							action="#{loginController.validateAccount}" />
-					</h:form>
-				</p>
-				<f:facet name="footer">
-					<p:commandButton type="button" value="Se connecter"
-						action="#{loginController.validateAccount}" style="width:8rem" />
-				</f:facet>
-			</p:dialog>
+
+					</f:facet>
+					<f:facet name="footer">
+						<p:commandButton value="Créer un compte"
+							action="#{loginController.redirectToCreateAccount}" />
+					</f:facet>
+					
+
+					</p>
+
+				</p:dialog></h:form>
+
 
 
 		</div>

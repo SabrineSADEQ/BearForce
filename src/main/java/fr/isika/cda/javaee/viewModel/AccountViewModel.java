@@ -12,9 +12,10 @@ public class AccountViewModel {
 	private Role role;
 	private Goal goal = new Goal();
 	private boolean connected;
-	private int wizardStep;
-	private Profile profile = new Profile();
-	private int gymId;
+
+	 private int wizardStep;
+	 private Profile profile = new Profile();
+	private Long gymId;
 
 	public Long getId() {
 		return id;
@@ -74,6 +75,32 @@ public class AccountViewModel {
 		return builder.toString();
 	}
 
+	
+	 public int getWizardStep() {
+	        return wizardStep;
+	    }
+
+	    public void setWizardStep(int wizardStep) {
+	        this.wizardStep = wizardStep;
+	    }
+		public Profile getProfile() {
+			return profile;
+		}
+		public void setProfile(Profile profile) {
+			this.profile = profile;
+		}
+		
+		
+		public Long getGymId() {
+			return gymId;
+		}
+		public void setGymId(Long gymId) {
+			this.gymId = gymId;
+		}
+	
+	
+
+
 	public int getWizardStep() {
 		return wizardStep;
 	}
@@ -90,12 +117,6 @@ public class AccountViewModel {
 		this.profile = profile;
 	}
 
-	public int getGymId() {
-		return gymId;
-	}
 
-	public void setGymId(int gymId) {
-		this.gymId = gymId;
-	}
 
 }
