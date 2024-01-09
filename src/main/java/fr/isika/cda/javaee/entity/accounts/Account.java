@@ -41,16 +41,24 @@ public class Account {
 	private Profile profile;
 
 	@Column
-	private int gymId;
+
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
 	private List<Booking> accountsList = new ArrayList<>();
 
-	public int getGymId() {
+
+	private Long gymId;
+	
+	
+	
+	
+	
+	public Long getGymId() {
+
 		return gymId;
 	}
 
-	public void setGymId(int gymId) {
+	public void setGymId(Long gymId) {
 		this.gymId = gymId;
 	}
 
