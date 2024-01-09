@@ -86,14 +86,17 @@ public class DataInitializer {
 		Adherent.setEmail("adherent");
 		Adherent.setPassword("adherent");
 		Adherent.setRole(Role.ADHERENT);
+		Adherent.setGymId((long) 34);
 		Profile profileAdherent = new Profile();
 		profileAdherent.setFirstName("Yoann");
 		profileAdherent.setLastName("François");
 		Address addressAdherent = new Address();
-		addressAdherent.setCity("paris");
-		addressAdherent.setStreetName("le lieu");
+		addressAdherent.setCity("Paris");
+		addressAdherent.setStreetNumber("1");
+		addressAdherent.setStreetName("avenue des Champs-Elysées");
+		addressAdherent.setPostalCode("75008");
 		Contact contact = new Contact();
-		contact.setPhone("12212321");
+		contact.setPhone("01 22 12 32 11");
 		profileAdherent.setPictureUrl("bear_user_image.jpg");
 		profileAdherent.setAddress(addressAdherent);
 		profileAdherent.setContact(contact);
@@ -103,7 +106,7 @@ public class DataInitializer {
 		gestionnaire.setEmail("gestionnaire");
 		gestionnaire.setPassword("gestionnaire");
 		gestionnaire.setRole(Role.GESTIONNAIRE);
-
+		gestionnaire.setGymId((long) 34);
 		Profile profileGestionnaire = new Profile();
 		profileGestionnaire.setFirstName("Jean");
 		profileGestionnaire.setLastName("Dupont");
@@ -129,7 +132,7 @@ public class DataInitializer {
 		coach.setEmail("coach");
 		coach.setPassword("coach");
 		coach.setRole(Role.COACH);
-
+		coach.setGymId((long)34);
 		Goal goal2 = new Goal();
 		goal2.setGoalName("Perte de poids");
 		goal2.setGoalDate(LocalDate.of(2024, Month.FEBRUARY, 28));
@@ -241,11 +244,11 @@ public class DataInitializer {
            AccountViewModel Adherent2 = new AccountViewModel();
            Adherent2.setEmail("leroymerlin@gmail.com");
            Adherent2.setPassword("adherent2");
-           Adherent2.setGymId((long) 30);
+           Adherent2.setGymId((long) 34);
            Adherent2.setRole(Role.ADHERENT);
            Profile profileAdherent2 = new Profile();
-           profileAdherent2.setFirstName("quentin");
-           profileAdherent2.setLastName("garcia");
+           profileAdherent2.setFirstName("Quentin");
+           profileAdherent2.setLastName("Garcia");
            Contact contact2 = new Contact();
            contact2.setPhone("0699851235");
            profileAdherent2.setContact(contact2);
@@ -255,11 +258,11 @@ public class DataInitializer {
            AccountViewModel Adherent3 = new AccountViewModel();
            Adherent3.setEmail("adherent3@gmail.com");
            Adherent3.setPassword("adherent3");
-           Adherent3.setGymId((long) 30);
+           Adherent3.setGymId((long) 34);
            Adherent3.setRole(Role.ADHERENT);
            Profile profileAdherent3 = new Profile();
-           profileAdherent3.setFirstName("theo");
-           profileAdherent3.setLastName("hamad");
+           profileAdherent3.setFirstName("Theo");
+           profileAdherent3.setLastName("Hamad");
            Contact contact3 = new Contact();
            contact3.setPhone("0655487945");
            profileAdherent3.setContact(contact3);

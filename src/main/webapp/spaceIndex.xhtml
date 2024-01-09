@@ -5,14 +5,26 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/spaceGeneralViewsTemplate.xhtml">
-	
-		<ui:define name="titleValue">Mon espace</ui:define>
-		<ui:define name="content">
-			<h1>Bienvenue sur votre espace </h1>
-		
-		</ui:define>
-			
-	</ui:composition>
+<ui:composition
+	template="WEB-INF/templates/spaceGeneralViewsTemplate.xhtml">
+
+	<ui:define name="titleValue">Mon espace</ui:define>
+	<ui:define name="content">
+		<h1>Bienvenue sur #{spaceIDController.getLoadedSpace().visualIdentity.spaceTextContent.spaceName}</h1>
+
+		<h2>#{spaceIDController.getLoadedSpace().visualIdentity.spaceTextContent.motto}</h2>
+		<span>#{spaceIDController.getLoadedSpace().visualIdentity.spaceTextContent.description}</span>
+		<h:form>
+			<h:outputLabel value="Space ID: " />
+			<h:inputText value="#{spaceIDController.spaceId}" />
+			<h:commandButton value="Enregistrer"
+				action="#{spaceIDController.saveSpaceIdToCookie}" />
+				
+				
+				
+		</h:form>
+	</ui:define>
+
+</ui:composition>
 
 </html>
