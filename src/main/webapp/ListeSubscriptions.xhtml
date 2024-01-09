@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
-	<ui:define name="titleValue">Liste subscriptions</ui:define>
+	<ui:define name="titleValue">Liste Abonnements</ui:define>
 	<ui:define name="content">
 
 <h:head>	
@@ -15,7 +15,7 @@
 </h:head>
 
 		<h:form enctype="multipart/form-data">
-            <h2>Liste des subscriptions</h2>
+            <h2>Liste des Abonnements</h2>
     <h:dataTable value="#{subscriptionManagedBean.subscriptionList()} " var="subscription">
         <h:column>
             <f:facet name="header">ID</f:facet>

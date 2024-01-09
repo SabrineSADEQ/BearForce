@@ -77,10 +77,9 @@ public class SubscriptionManagedBean implements Serializable {
 		if (membership != null && account != null) {
 			Subscription subscription = new Subscription();
 			subscription.setMembership(membership);
-
 			account.setSubscription(subscription);
-			subscription.setAccount(account);
-
+			//subscription.setAccount(account);
+			
 			SubscriptionDao subscriptionDao = new SubscriptionDao();
 			subscriptionDao.saveSubscription(subscription);
 		}
@@ -126,6 +125,11 @@ public class SubscriptionManagedBean implements Serializable {
 		this.accountManagedBean = accountManagedBean;
 	}
 
-   
+public String paymentSubscription() {
+		
+		
+		return "pagePayment.xhtml?faces-redirect=true";	
+		
+	}
 
 }
