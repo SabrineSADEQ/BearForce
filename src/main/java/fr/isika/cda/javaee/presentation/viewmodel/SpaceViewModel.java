@@ -5,33 +5,56 @@ import fr.isika.cda.javaee.entity.accounts.Contact;
 import fr.isika.cda.javaee.entity.accounts.Profile;
 
 public class SpaceViewModel {
-	
+
 	private Long id;
-	
-	//VisualIdentity attributes
+
+	// VisualIdentity attributes
 	private String firstColor;
 	private String secondColor;
 	private String thirdColor;
-	private String gymLogoPath ;
-	private String gymBannerPath ;
-	
-	//SpaceTextContent attributes
+	private String gymLogoPath;
+	private String gymBannerPath;
+
+	// SpaceTextContent attributes
 	private String spaceName;
 	private String motto;
 	private String description;
 
-	//GymCaracteristics attributes
+	// GymCaracteristics attributes
 	private boolean freeAccess;
 	private boolean lockerRoom;
 	private String photoList;
-	
-	//AdminInfoGym attributes
-//	private String siret;
-//	private Profile owner;
-//	private Address location;
-//	private Contact contactInfo;
-	
-	
+
+	// AdminInfoGym attributes
+	private String siret;
+	private Address location = new Address();
+	private Contact contactInfo = new Contact();
+
+	public String getSiret() {
+		return siret;
+	}
+
+	public void setSiret(String siret) {
+		this.siret = siret;
+	}
+
+
+	public Address getLocation() {
+		return location;
+	}
+
+	public void setLocation(Address location) {
+		this.location = location;
+	}
+
+	public Contact getContactInfo() {
+		return contactInfo;
+	}
+
+	public void setContactInfo(Contact contactInfo) {
+		this.contactInfo = contactInfo;
+	}
+
 	public String getGymLogoPath() {
 		return gymLogoPath;
 	}
@@ -95,7 +118,7 @@ public class SpaceViewModel {
 	public void setDescription(String textArea) {
 		this.description = textArea;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -123,8 +146,5 @@ public class SpaceViewModel {
 	public void setPhotoList(String photoList) {
 		this.photoList = photoList;
 	}
-	
-	
-	
-	
+
 }

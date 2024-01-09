@@ -28,6 +28,7 @@ import fr.isika.cda.javaee.entity.accounts.Goal;
 import fr.isika.cda.javaee.entity.accounts.ProfessionalDetails;
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.accounts.Role;
+import fr.isika.cda.javaee.entity.accounts.TypeContact;
 import fr.isika.cda.javaee.entity.gymspace.Membership;
 import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
@@ -85,7 +86,8 @@ public class DataInitializer {
 		Adherent.setPassword("adherent");
 		Adherent.setRole(Role.ADHERENT);
 		Profile profileAdherent = new Profile();
-		profileAdherent.setFirstName("yoann");
+		profileAdherent.setFirstName("Yoann");
+		profileAdherent.setLastName("François");
 		Address addressAdherent = new Address();
 		addressAdherent.setCity("paris");
 		addressAdherent.setStreetName("le lieu");
@@ -102,18 +104,19 @@ public class DataInitializer {
 		gestionnaire.setRole(Role.GESTIONNAIRE);
 
 		Profile profileGestionnaire = new Profile();
-		profileGestionnaire.setFirstName("John");
-		profileGestionnaire.setLastName("Doe");
+		profileGestionnaire.setFirstName("Jean");
+		profileGestionnaire.setLastName("Dupont");
 		profileGestionnaire.setPictureUrl("bear_user_image.jpg");
-		
+
 		Address addressGestionnaire = new Address();
-		addressGestionnaire.setCity("Paris");
+		addressGestionnaire.setStreetNumber("5");
 		addressGestionnaire.setStreetName("Rue de la Paix");
 		addressGestionnaire.setPostalCode("75001");
+		addressGestionnaire.setCity("Paris");
 
 		Contact contactGestionnaire = new Contact();
-		contactGestionnaire.setPhone("123456789");
-		contactGestionnaire.setEmail("john.doe@example.com");
+		contactGestionnaire.setPhone("0623456789");
+		contactGestionnaire.setEmail("jean.dupont@gmail.com");
 
 		profileGestionnaire.setAddress(addressGestionnaire);
 		profileGestionnaire.setContact(contactGestionnaire);
@@ -138,9 +141,10 @@ public class DataInitializer {
 		profileCoach.setPictureUrl("bear_user_image.jpg");
 
 		Address addressCoach = new Address();
-		addressCoach.setCity("New York");
-		addressCoach.setStreetName("Broadway");
-		addressCoach.setPostalCode("10001");
+		addressCoach.setCity("Paris");
+		addressCoach.setStreetName("rue de la Soif");
+		addressCoach.setStreetNumber("2");
+		addressCoach.setPostalCode("75005");
 
 		Contact contactCoach = new Contact();
 		contactCoach.setPhone("987654321");
@@ -186,17 +190,33 @@ public class DataInitializer {
 		spaceViewModel.setFirstColor("845EC2");
 		spaceViewModel.setSecondColor("00C9A7");
 		spaceViewModel.setThirdColor("131B23");
-		spaceViewModel.setMotto("Ensemble en route pour le sport");
-		spaceViewModel.setSpaceName("Go Gym");
-		spaceViewModel.setDescription(
-				"Notre salle, idéalement située au coeur de Melun, vous permettra d'accéder à de nombreux cours pour tous les goûts et toutes les envies. Nos équipements dernier cri satisferont les sportifs les plus exigeants.");
-		spaceViewModel.setFreeAccess(false);
-		spaceViewModel.setLockerRoom(false);
-
-		// Ici le chemin n'est autre que ne lom du fichier car
+		// Ici le chemin n'est autre que le nom du fichier car
 		// le chamin est relatif en plus est géré à l'upload par JSF
 		spaceViewModel.setGymLogoPath("goGym_logo.png");
 		spaceViewModel.setGymBannerPath("banner_2.png");
+		spaceViewModel.setMotto("Ensemble, en route vers le sport !");
+		spaceViewModel.setSpaceName("Go Gym");
+		spaceViewModel.setDescription(
+				"Notre salle, idéalement située au coeur de Melun, vous permettra d'accéder à de nombreux cours pour tous les goûts et toutes les envies. Nos équipements dernier cri satisferont les sportifs les plus exigeants.");
+		spaceViewModel.setFreeAccess(true);
+		spaceViewModel.setLockerRoom(true);
+
+		// AdminInfoGym
+		spaceViewModel.setSiret("50073189800192");
+
+		Address addressGym = new Address();
+		addressGym.setStreetNumber("30");
+		addressGym.setStreetName("rue Pierre Leroux");
+		addressGym.setPostalCode("75007");
+		addressGym.setCity("Paris");
+		spaceViewModel.setLocation(addressGym);
+
+		Contact contactGym = new Contact();
+		contactGym.setPhone("01 41 50 06 53");
+		contactGym.setEmail("contact@gogym.com");
+		contactGym.setType(TypeContact.PRO);
+		spaceViewModel.setContactInfo(contactGym);
+
 		spaceDao.createSpace(spaceViewModel);
 
 		Membership membership = new Membership();

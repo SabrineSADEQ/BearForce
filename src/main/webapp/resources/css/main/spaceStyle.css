@@ -21,6 +21,11 @@
 	--grey: #131B23;
 	--lighterGrey: #272727;
 	--accentRed: #DB2955;
+	
+	/*Space color palette that is getting customized*/
+	--firstColor: #00C9A7;
+	--secondColor: #845EC2;
+	--thirdColor: #ffffff;
 }
 
 /* BODY */

@@ -10,153 +10,217 @@
 
 	<ui:define name="titleValue">Créer mon espace</ui:define>
 	<ui:define name="content">
-		<h:outputStylesheet library="css" name="wizardForm.css" />
 
-		<h1>Créer l'espace de ma salle de sport</h1>
-		<hr align="center" width="100%" />
+		<div class="content">
+			<h:outputStylesheet library="css" name="wizardForm.css" />
+			<!-- Script for updating colors dynamically -->
+			<h:outputScript library="js" name="colorChange.js" />
 
-		<h:form>
+			<h1>Créer l'espace de ma salle de sport</h1>
+			<hr align="center" width="100%" />
 
-			<p:wizard flowListener="#{spaceController.onFlowProcess}">
-				<p:tab id="infos" title="Informations">
+			<h:form>
 
-					<p:panel header="Informations principales de la page d'accueil">
-						
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputLabel for="gymName">Nom de la salle</h:outputLabel>
-							<p:inputText id="gymName"
-								value="#{spaceController.spaceViewModel.spaceName}"
-								required="true" />
+				<p:wizard flowListener="#{spaceController.onFlowProcess}">
+					<p:tab id="infos" title="Informations">
 
-							<h:outputLabel for="motto">Slogan</h:outputLabel>
-							<p:inputText id="motto"
-								value="#{spaceController.spaceViewModel.motto}" required="true" />
+						<p:panel header="Informations principales de la page d'accueil">
 
-							<h:outputLabel for="description">Description</h:outputLabel>
-							<p:inputTextarea cols="60" rows="3" id="description"
+							<h:panelGrid columns="2" columnClasses="label, value">
+
+								<h:outputLabel for="gymName">Nom de la salle</h:outputLabel>
+								<p:inputText id="gymName"
+									value="#{spaceController.spaceViewModel.spaceName}"
+									required="true" />
+
+								<h:outputLabel for="motto">Slogan</h:outputLabel>
+								<p:inputText id="motto"
+									value="#{spaceController.spaceViewModel.motto}" required="true" />
+
+								<h:outputLabel for="description">Description</h:outputLabel>
+								<p:inputTextarea cols="60" rows="3" id="description"
+									value="#{spaceController.spaceViewModel.description}"
+									required="true"></p:inputTextarea>
+
+								<h:outputLabel for="access">Accès libre</h:outputLabel>
+								<p:selectBooleanButton id="access"
+									value="#{spaceController.spaceViewModel.freeAccess}"
+									onLabel="Oui" offLabel="Non" style="width:60px" />
+
+								<h:outputLabel for="locker">Vestiaires</h:outputLabel>
+								<p:selectBooleanButton id="locker"
+									value="#{spaceController.spaceViewModel.lockerRoom}"
+									onLabel="Oui" offLabel="Non" style="width:60px" />
+
+							</h:panelGrid>
+						</p:panel>
+					</p:tab>
+
+					<p:tab id="infosAdmin" title="Contact">
+
+						<p:panel header="Informations de contact de votre salle de sport ">
+
+							<h:panelGrid columns="2" columnClasses="label, value">
+
+								<h:outputLabel for="siret">SIRET</h:outputLabel>
+								<p:inputText id="siret"
+									value="#{spaceController.spaceViewModel.siret}" />
+
+								<h:outputLabel for="gymEmail">Email de la salle</h:outputLabel>
+								<p:inputText id="gymEmail"
+									value="#{spaceController.spaceViewModel.contactInfo.email}" />
+
+								<h:outputLabel for="gymPhone">Téléphone de la salle</h:outputLabel>
+								<p:inputText id="gymPhone"
+									value="#{spaceController.spaceViewModel.contactInfo.phone}" />
+
+								<h:outputLabel for="streetNumber">N°</h:outputLabel>
+								<p:inputText id="streetNumber"
+									value="#{spaceController.spaceViewModel.location.streetNumber}" />
+
+								<h:outputLabel for="streetName">Rue</h:outputLabel>
+								<p:inputText id="streetName"
+									value="#{spaceController.spaceViewModel.location.streetName}" />
+
+								<h:outputLabel for="cityCode">Code postal</h:outputLabel>
+								<p:inputText id="cityCode"
+									value="#{spaceController.spaceViewModel.location.postalCode}" />
+
+								<h:outputLabel for="city">Ville</h:outputLabel>
+								<p:inputText id="city"
+									value="#{spaceController.spaceViewModel.location.city}" />
+
+							</h:panelGrid>
+						</p:panel>
+					</p:tab>
+
+					<p:tab id="colors" title="Couleurs">
+
+						<p:panel header="Personnalisation des couleurs de l'espace">
+
+							<h:panelGrid columns="2" columnClasses="label, value">
+								<h:outputLabel for="firstColor">Couleur principale</h:outputLabel>
+								<p:colorPicker id="firstColorPicker"
+									value="#{spaceController.spaceViewModel.firstColor}"
+									clearButton="true" closeButton="true" alpha="true"
+									forceAlpha="true">
+								</p:colorPicker>
+
+								<h:outputLabel for="secondColor">Couleur secondaire</h:outputLabel>
+								<p:colorPicker id="secondColor"
+									value="#{spaceController.spaceViewModel.secondColor}"
+									clearButton="true" closeButton="true" alpha="true"
+									forceAlpha="true">
+								</p:colorPicker>
+
+								<h:outputLabel for="thirdColor">Couleur tertiaire</h:outputLabel>
+								<p:colorPicker id="thirdColor"
+									value="#{spaceController.spaceViewModel.thirdColor}"
+									clearButton="true" closeButton="true" alpha="true"
+									forceAlpha="true">
+								</p:colorPicker>
+
+							</h:panelGrid>
+						</p:panel>
+					</p:tab>
+
+					<p:tab id="photos" title="Images">
+						<p:panel header="Images et photos de l'espace">
+
+								<h:outputLabel for="logo">Logo</h:outputLabel>
+								<!-- Composant graphique pour le fichier -->
+								<p:fileUpload listener="#{spaceController.uploadFileLogo}"
+									styleClass="w-100" mode="advanced" dragDropSupport="false" />
+								<br />
+								<h:outputLabel for="banner">Bannière</h:outputLabel>
+								<p:fileUpload listener="#{spaceController.uploadFileBanner}"
+									styleClass="w-100" mode="advanced" dragDropSupport="false" />
+
+						</p:panel>
+					</p:tab>
+
+					<p:tab id="confirm" title="Confirmation">
+						<p:panel header="Confirmation">
+
+							<h:outputText value="Nom de la salle : " />
+							<h:outputText value="#{spaceController.spaceViewModel.spaceName}"
+								styleClass="outputLabel" />
+							<br />
+							<h:outputText value="Slogan : " />
+							<h:outputText value="#{spaceController.spaceViewModel.motto}"
+								styleClass="outputLabel" />
+							<br />
+							<h:outputText value="Description : " />
+							<h:outputText
 								value="#{spaceController.spaceViewModel.description}"
-								required="true"></p:inputTextarea>
-
-							<h:outputLabel for="access">Accès libre</h:outputLabel>
-							<p:selectBooleanButton id="access"
+								styleClass="outputLabel" />
+							<br />
+							<h:outputText value="Accès libre : " />
+							<h:outputText
 								value="#{spaceController.spaceViewModel.freeAccess}"
-								onLabel="Oui" offLabel="Non" style="width:60px" />
-
-							<h:outputLabel for="locker">Vestiaires</h:outputLabel>
-							<p:selectBooleanButton id="locker"
+								styleClass="outputLabel" />
+							<br />
+							<h:outputText value="Vestiaires : " />
+							<h:outputText
 								value="#{spaceController.spaceViewModel.lockerRoom}"
-								onLabel="Oui" offLabel="Non" style="width:60px" />
+								styleClass="outputLabel" />
+							<br />
+							<h:outputText value="SIRET : " />
+							<h:outputText value="#{spaceController.spaceViewModel.siret}"
+								styleClass="outputLabel" />
+							<br />
+							<h:outputText value="Email de la salle : " />
+							<h:outputText
+								value="#{spaceController.spaceViewModel.contactInfo.email}"
+								styleClass="outputLabel" />
+							<br />
+							<h:outputText value="Téléphone : " />
+							<h:outputText
+								value="#{spaceController.spaceViewModel.contactInfo.phone}"
+								styleClass="outputLabel" />
+							<br />
+							<h:outputText value="Adresse : " />
+							<h:outputText
+								value="#{spaceController.spaceViewModel.location.streetNumber} 
+								#{spaceController.spaceViewModel.location.streetName} 
+								#{spaceController.spaceViewModel.location.postalCode} 
+								#{spaceController.spaceViewModel.location.city}"
+								styleClass="outputLabel" />
 
-						</h:panelGrid>
-					</p:panel>
-				</p:tab>
+							<br />
+							<h:panelGrid columns="2" columnClasses="label, value">
+								<h:outputText value="Couleur primaire : " />
+								<div class="color-box"
+									style="background-color:##{spaceController.spaceViewModel.firstColor}"></div>
 
-				<p:tab id="colors" title="Couleurs">
+								<h:outputText value="Couleur secondaire : " />
+								<div class="color-box"
+									style="background-color:##{spaceController.spaceViewModel.secondColor}"></div>
 
-					<p:panel header="Personnalisation des couleurs de l'espace">
-					
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputLabel for="firstColor">Couleur principale</h:outputLabel>
-							<p:colorPicker id="firstColor"
-								value="#{spaceController.spaceViewModel.firstColor}"
-								clearButton="true" closeButton="true" alpha="true"
-								forceAlpha="true">
-							</p:colorPicker>
+								<h:outputText value="Couleur tertiaire : " />
+								<div class="color-box"
+									style="background-color:##{spaceController.spaceViewModel.thirdColor}"></div>
+							</h:panelGrid>
+							
+							<h:outputText value="Logo : " />
+							<h:graphicImage library="images"
+								name="#{spaceController.spaceViewModel.gymLogoPath}"
+								width="50px" height="50px" />
+							<br/>
+							<h:outputText value="Bannière : " />
+							<h:graphicImage library="images"
+								name="#{spaceController.spaceViewModel.gymBannerPath}"
+								width="50px" height="50px" />
+							<br />
+							<br />
+							<p:commandButton value="Créer mon espace"
+								action="#{spaceController.createSpace}" process="@this" />
+						</p:panel>
+					</p:tab>
+				</p:wizard>
 
-							<h:outputLabel for="secondColor">Couleur secondaire</h:outputLabel>
-							<p:colorPicker id="secondColor"
-								value="#{spaceController.spaceViewModel.secondColor}"
-								clearButton="true" closeButton="true" alpha="true"
-								forceAlpha="true">
-							</p:colorPicker>
-
-							<h:outputLabel for="thirdColor">Couleur tertiaire</h:outputLabel>
-							<p:colorPicker id="thirdColor"
-								value="#{spaceController.spaceViewModel.thirdColor}"
-								clearButton="true" closeButton="true" alpha="true"
-								forceAlpha="true">
-							</p:colorPicker>
-
-						</h:panelGrid>
-					</p:panel>
-				</p:tab>
-
-				<p:tab id="photos" title="Images">
-					<p:panel header="Images et photos de l'espace">
-						
-						<h:panelGrid columns="2" columnClasses="label, value">
-						<div>
-							<h:outputLabel for="logo">Logo</h:outputLabel>
-							<!-- Composant graphique pour le fichier -->
-							<p:fileUpload listener="#{spaceController.uploadFileLogo}"
-								styleClass="w-100" mode="advanced" dragDropSupport="false" />
-							</div>
-							<div>
-							<h:outputLabel for="banner">Bannière</h:outputLabel>
-							<p:fileUpload listener="#{spaceController.uploadFileBanner}"
-								styleClass="w-100" mode="advanced" dragDropSupport="false" />
-							</div>
-							<div>
-							<h:outputLabel for="imagesCarroussel">Images du carroussel</h:outputLabel>
-							</div>
-						</h:panelGrid>
-					</p:panel>
-				</p:tab>
-
-				<p:tab id="confirm" title="Confirmation">
-					<p:panel header="Confirmation">
-
-						<h:outputText value="Nom de la salle : " />
-						<h:outputText value="#{spaceController.spaceViewModel.spaceName}"
-							styleClass="outputLabel" />
-						<br />
-						<h:outputText value="Slogan : " />
-						<h:outputText value="#{spaceController.spaceViewModel.motto}"
-							styleClass="outputLabel" />
-						<br />
-						<h:outputText value="Description : " />
-						<h:outputText
-							value="#{spaceController.spaceViewModel.description}"
-							styleClass="outputLabel" />
-						<br />
-						<h:outputText value="Accès libre : " />
-						<h:outputText value="#{spaceController.spaceViewModel.freeAccess}"
-							styleClass="outputLabel" />
-						<br />
-						<h:outputText value="Vestiaires : " />
-						<h:outputText value="#{spaceController.spaceViewModel.lockerRoom}"
-							styleClass="outputLabel" />
-
-						<br />
-						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="Couleur primaire : " />
-							<div class="color-box"
-								style="background-color:##{spaceController.spaceViewModel.firstColor}"></div>
-
-							<h:outputText value="Couleur secondaire : " />
-							<div class="color-box"
-								style="background-color:##{spaceController.spaceViewModel.secondColor}"></div>
-
-							<h:outputText value="Couleur tertiaire : " />
-							<div class="color-box"
-								style="background-color:##{spaceController.spaceViewModel.thirdColor}"></div>
-						</h:panelGrid>
-						
-						<h:outputText value="Logo : " />
-						<h:graphicImage library="images" name="#{spaceController.spaceViewModel.gymLogoPath}" width="50px" height="50px"/>
-						<h:outputText value="Bannière : " />
-						<h:graphicImage library="images" name="#{spaceController.spaceViewModel.gymBannerPath}" width="50px" height="50px"/>
-						<h:outputText value="Photos :  " />
-						<br />
-
-						<p:commandButton value="Créer mon espace"
-							action="#{spaceController.createSpace}" process="@this" />
-					</p:panel>
-				</p:tab>
-			</p:wizard>
-
-		</h:form>
-
+			</h:form>
+		</div>
 	</ui:define>
 
 </ui:composition>

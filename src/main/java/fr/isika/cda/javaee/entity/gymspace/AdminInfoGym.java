@@ -24,48 +24,28 @@ public class AdminInfoGym {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@OneToOne
-	private Profile owner;
 	
 	@Column(name = "siret")
 	private String siret;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address location;
 
-	@OneToOne
-	private IdGym idGym;
-	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Contact contactInfo;
 
-	public IdGym getIdGym() {
-		return idGym;
-	}
-
-	public void setIdGym(IdGym idGym) {
-		this.idGym = idGym;
-	}
 
 	public AdminInfoGym() {
 	}
 
-	public AdminInfoGym(Profile owner, String siret, Address location) {
-		this.owner = owner;
+	public AdminInfoGym(String siret, Address location, Contact contact) {
 		this.siret = siret;
 		this.location = location;
+		this.contactInfo = contact;
 	}
 
 	public long getId() {
 		return id;
-	}
-
-	public Profile getOwner() {
-		return owner;
-	}
-
-	public void setOwner(Profile owner) {
-		this.owner = owner;
 	}
 
 	public String getSiret() {
@@ -82,6 +62,14 @@ public class AdminInfoGym {
 
 	public void setLocation(Address location) {
 		this.location = location;
+	}
+
+	public Contact getContactInfo() {
+		return contactInfo;
+	}
+
+	public void setContactInfo(Contact contactInfo) {
+		this.contactInfo = contactInfo;
 	}
 
 }
