@@ -49,13 +49,8 @@ public class AccountViewModel {
 		this.role = role;
 	}
 
-	public Goal getGoal() {
-		return goal;
-	}
-
-	public void setGoal(Goal goal) {
-		this.goal = goal;
-	}
+	
+	
 
 	public boolean isConnected() {
 		return connected;
@@ -101,21 +96,7 @@ public class AccountViewModel {
 	
 
 
-	public int getWizardStep() {
-		return wizardStep;
-	}
-
-	public void setWizardStep(int wizardStep) {
-		this.wizardStep = wizardStep;
-	}
-
-	public Profile getProfile() {
-		return profile;
-	}
-
-	public void setProfile(Profile profile) {
-		this.profile = profile;
-	}
+	
 
 
 
