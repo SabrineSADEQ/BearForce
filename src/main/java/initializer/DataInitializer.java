@@ -90,6 +90,7 @@ public class DataInitializer {
             AccountViewModel Adherent = new AccountViewModel();
             Adherent.setEmail("adherent");
             Adherent.setPassword("adherent");
+            Adherent.setGymId(30);
             Adherent.setRole(Role.ADHERENT);
             Profile profileAdherent = new Profile();
             profileAdherent.setFirstName("yoann");
@@ -202,6 +203,21 @@ public class DataInitializer {
            // le chamin est relatif en plus est géré à l'upload par JSF 
            spaceViewModel.setGymLogoPath("goGym_logo.png");
            spaceDao.createSpace(spaceViewModel);
+           
+           SpaceViewModel spaceViewModel2 = new SpaceViewModel();
+           spaceViewModel2.setFirstColor("845EC2");
+           spaceViewModel2.setSecondColor("00C9A7");
+           spaceViewModel2.setThirdColor("131B23");
+           spaceViewModel2.setMotto("Le sport en douceur");
+           spaceViewModel2.setSpaceName("SportFit");
+           spaceViewModel2.setDescription("Ici, on se relaxe et apres on court");
+           spaceViewModel2.setFreeAccess(false);
+           spaceViewModel2.setLockerRoom(false);
+           
+           // Ici le chemin n'est autre que ne lom du fichier car 
+           // le chamin est relatif en plus est géré à l'upload par JSF 
+           spaceViewModel2.setGymLogoPath("goGym_logo.png");
+           spaceDao.createSpace(spaceViewModel2);
            
            
            
