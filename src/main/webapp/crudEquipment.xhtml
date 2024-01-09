@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+	<ui:define name="titleValue">Gestion des activités</ui:define>
+	<ui:define name="content">
+		<div>
+			<div class="card crud-demo">
+				<h:form id="form">
+					<p:growl id="messages" showDetail="true" />
+
+					<p:toolbar>
+						<p:toolbarGroup>
+							<p:commandButton value="Ajouter un équipement" icon="pi pi-plus"
+								oncomplete="PF('addEquipmentDialog').show()"
+								styleClass="ui-button-success" style="margin-right: .5rem"
+								update=":dialogs:add-equipment-content">
+								<p:resetInput target=":dialogs:add-equipment-content" />
+							</p:commandButton>
+						</p:toolbarGroup>
+					</p:toolbar>
+
+
+					<p:dataTable id="crud-equipment" widgetVar="dtEquipments"
+						var="equi" value="#{equipmentController.displayEquipmentsList()}"
+						reflow="true" styleClass="products-table" paginator="true"
+						rows="10" rowSelectMode="add" paginatorPosition="bottom">
+
+						<f:facet name="header">
+							<div class="products-table-header">
+								<span style="font-weight: bold">LES EQUIPEMENTS</span> <span
+									class="filter-container ui-input-icon-left"> <i
+									class="pi pi-search"></i> <p:inputText id="globalFilter"
+										onkeyup="PF('dtEquipments').filter()" placeholder="Recherche" />
+								</span>
+							</div>
+						</f:facet>
+
+						<p:column headerText="Equipement" sortBy="#{equi.equipmentName}"
+							filterBy="#{equi.equipmentName}">
+							<p:outputLabel>#{equi.equipmentName}</p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Détails" sortBy="#{equi.details}"
+							filterBy="#{equi.details}">
+							<p:outputLabel>#{equi.details}</p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Quantité" sortBy="#{equi.quantity}"
+							filterBy="#{equi.quantity}">
+							<p:outputLabel>#{equi.quantity}</p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Etat" sortBy="#{equi.condition}"
+							filterBy="#{equi.condition}">
+							<p:outputLabel>#{equi.condition}</p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Activité liée"
+							sortBy="#{equi.activity.name}" filterBy="#{equi.activity.name}">
+							<p:outputLabel>#{equi.activity.name}</p:outputLabel>
+						</p:column>
+
+						<p:column exportable="false">
+							<p:commandButton icon="pi pi-pencil"
+								update=":dialogs:manage-equipment-content"
+								oncomplete="PF('manageEquipmentDialog').show()"
+								styleClass="edit-button rounded-button ui-button-success"
+								process="@this">
+								<f:setPropertyActionListener value="#{equi}"
+									target="#{equipmentController.selectedEquipment}" />
+								<p:resetInput target=":dialogs:manage-equipment-content" />
+							</p:commandButton>
+							<p:commandButton class="ui-button-warning rounded-button"
+								icon="pi pi-trash" process="@this"
+								oncomplete="PF('deleteEquipmentDialog').show()">
+								<f:setPropertyActionListener value="#{equi}"
+									target="#{equipmentController.selectedEquipment}" />
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+
+				<h:form id="dialogs">
+					<p:dialog header="Enregister un nouvel équipement"
+						showEffect="fade" modal="true" widgetVar="addEquipmentDialog"
+						responsive="true">
+						<p:outputPanel id="add-equipment-content" class="ui-fluid">
+							<p:outputPanel>
+								<div class="field">
+									<p:outputLabel for="add-name" value="Dénomination : " />
+									<p:inputText id="add-name"
+										value="#{equipmentController.equipmentViewModel.equipmentName}"
+										required="true" />
+								</div>
+								<div class="field">
+									<p:outputLabel for="add-details" value="Description : " />
+									<p:inputText id="add-details"
+										value="#{equipmentController.equipmentViewModel.details}"/>
+								</div>
+								<div class="field">
+									<p:outputLabel for="add-quantity" value="Quantité : " />
+									<p:inputText id="add-quantity"
+										value="#{equipmentController.equipmentViewModel.quantity}"
+										required="true">
+										<f:validateLongRange minimum="1" />
+									</p:inputText>
+								</div>
+								<div class="field">
+									<p:outputLabel for="add-condition" value="Etat : " />
+									<p:inputText id="add-condition"
+										value="#{equipmentController.equipmentViewModel.condition}" />
+								</div>
+								<div class="field">
+									<p:outputLabel for="add-activity" value="Activité concernée : " />
+									<p:selectOneMenu id="add-activity"
+										value="#{equipmentController.selectedActivity}"
+										style="min-width: 14rem">
+										<f:selectItems itemLabel="Sélectionnez une activité"
+											itemValue="null" noSelectionOption="true" />
+										<f:selectItems
+											value="#{activityController.displayActivitiesList()}"
+											var="act" itemLabel="#{act.name}" itemValue="#{act.id}" />
+									</p:selectOneMenu>
+								</div>
+							</p:outputPanel>
+						</p:outputPanel>
+
+						<f:facet name="footer">
+							<p:commandButton value="Ajouter" icon="pi pi-check"
+								actionListener="#{equipmentController.addEquipement()}"
+								update=":form:" process="add-equipment-content @this"
+								oncomplete="PF('addEquipmentDialog').hide()" />
+							<p:commandButton value="Annuler" icon="pi pi-times"
+								onclick="PF('addEquipmentDialog').hide()"
+								class="ui-button-secondary" type="button" />
+						</f:facet>
+					</p:dialog>
+
+					<p:dialog header="Détails de l'équipement" showEffect="fade"
+						modal="true" widgetVar="manageEquipmentDialog" responsive="true">
+						<p:outputPanel id="manage-equipment-content" class="ui-fluid">
+							<p:outputPanel
+								rendered="#{not empty equipmentController.selectedEquipment}">
+								<div class="field">
+									<p:outputLabel for="update-name">Dénomination</p:outputLabel>
+									<p:inputText id="update-name"
+										value="#{equipmentController.selectedEquipment.equipmentName}"
+										required="true" />
+								</div>
+								<div class="field">
+									<p:outputLabel for="update-description">Description</p:outputLabel>
+									<p:inputTextarea id="update-description"
+										value="#{equipmentController.selectedEquipment.details}" />
+								</div>
+								<div class="field">
+									<p:outputLabel for="update-quantity">Quantité</p:outputLabel>
+									<p:inputTextarea id="update-quantity"
+										value="#{equipmentController.selectedEquipment.quantity}" />
+								</div>
+								<div class="field">
+									<p:outputLabel for="update-condition">Etat</p:outputLabel>
+									<p:inputTextarea id="update-condition"
+										value="#{equipmentController.selectedEquipment.condition}" />
+								</div>
+
+								<p:outputLabel for="update-activity"
+									value="Activité concernée : " />
+								<p:selectOneMenu id="update-activity"
+									value="#{equipmentController.selectedActivity}"
+									style="min-width: 14rem">
+									<f:selectItems itemLabel="Sélectionnez une activité"
+										itemValue="null" noSelectionOption="true" />
+									<f:selectItems
+										value="#{activityController.displayActivitiesList()}"
+										var="act" itemLabel="#{act.name}" itemValue="#{act.id}" />
+								</p:selectOneMenu>
+							</p:outputPanel>
+						</p:outputPanel>
+
+						<f:facet name="footer">
+							<p:commandButton value="Mettre à jour" icon="pi pi-check"
+								actionListener="#{equipmentController.modifieSelectedEquipment()}"
+								update=":form:" process="manage-equipment-content @this" />
+							<p:commandButton value="Annuler" icon="pi pi-times"
+								onclick="PF('manageEquipmentDialog').hide()"
+								class="ui-button-secondary" type="button" />
+						</f:facet>
+					</p:dialog>
+
+					<p:confirmDialog widgetVar="deleteEquipmentDialog"
+						showEffect="fade" width="300" message="Supprimer l'équipement ?"
+						header="Confirm" severity="warn">
+						<p:commandButton value="Oui" icon="pi pi-check"
+							actionListener="#{equipmentController.deleteSelectedEquipment()}"
+							oncomplete="PF('deleteEquipmentDialog').hide()" update=":form:" />
+						<p:commandButton value="Non" type="button"
+							styleClass="ui-button-secondary" icon="pi pi-times"
+							onclick="PF('deleteEquipmentDialog').hide()" />
+					</p:confirmDialog>
+				</h:form>
+				<br />
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

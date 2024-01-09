@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 
 import fr.isika.cda.javaee.entity.gymspace.IdGym;
 import fr.isika.cda.javaee.entity.gymspace.Space;
+import fr.isika.cda.javaee.entity.gymspace.business.Booking;
 import fr.isika.cda.javaee.entity.platform.Subscription;
 
 @Entity
@@ -35,7 +36,6 @@ public class Account {
 	private Goal goal;
 	
 	@ManyToOne
-	
 	private Subscription subscription;
 	
 	@OneToOne
@@ -44,9 +44,8 @@ public class Account {
 	@Column
 	private int gymId;
 	
-	
-	
-	
+	@ManyToOne
+	private Booking booking;
 	
 	public int getGymId() {
 		return gymId;

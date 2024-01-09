@@ -24,7 +24,7 @@ public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id ;	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private Activity activity;	
 	@Column(name="start_date")
 	private LocalDateTime startDate ;	
@@ -34,6 +34,8 @@ public class Course {
 	private Profile trainer;	
 	@Column(name="nb_places")
 	private int nbPlaces ;
+	@ManyToOne
+	private Booking booking;
 	
 	public Activity getActivity() {
 		return activity;

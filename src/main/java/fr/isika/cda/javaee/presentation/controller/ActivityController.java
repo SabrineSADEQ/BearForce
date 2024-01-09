@@ -37,9 +37,7 @@ public class ActivityController implements Serializable{
 	public void addActivity() {
 		activityDao.createActivity(activityViewModel, selectedEquipments);
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("Une nouvelle activité nommée '" + activityViewModel.getName() + "' a été enregistrée."));
-		
-		
+				new FacesMessage("Une nouvelle activité nommée '" + activityViewModel.getName() + "' a été enregistrée."));	
 		resetInputData();
 	}
 

@@ -44,6 +44,7 @@ public class ActivityDao {
 		existingActivity.setName(updateActivity.getName());
 		existingActivity.setDescription(updateActivity.getDescription());
 		existingActivity.setActiviteCategory(updateActivity.getActiviteCategory());
+		//existingActivity.setEquipmentList(updateActivity.getEquipmentList());
 		entityManager.merge(existingActivity);
 	}
 	
