@@ -41,12 +41,9 @@
 				<h:selectOneRadio id="role2"
 					value="#{accountController.accountVM.role}" required="true">
 					<f:selectItem itemValue="GESTIONNAIRE" itemLabel="Professionnel" />
-					<f:selectItem itemValue="VISITEUR" itemLabel="Particulier" />
+					<f:selectItem itemValue="ADHERENT" itemLabel="Particulier" />
 				</h:selectOneRadio>
 			</h:panelGroup>
-
-
-			
 
 
 			<h:commandButton value="Next"
@@ -131,7 +128,13 @@
 					required="true" />
 			</div>
 
-
+			<div>
+				<h:outputLabel for="profilePicture">Photo de profil</h:outputLabel>
+				<!-- Composant graphique pour le fichier -->
+				<p:fileUpload listener="#{accountController.uploadFileLogo}"
+					styleClass="w-100" mode="advanced" dragDropSupport="false" />
+			</div>
+		
 			<h:panelGroup
 				rendered="#{accountController.accountVM.role eq 'COACH'}">
 				<div class="form-group">

@@ -20,56 +20,50 @@ public class AccountDao {
 	public Account createAccount(AccountViewModel accountVM) {
 		Account accountbean = new Account();
 
-	    accountbean.setEmail(accountVM.getEmail());
-	    // Hash the password before storing it in the database
-	    String hashedPassword = PasswordUtils.hashPassword(accountVM.getPassword());
-	    accountbean.setPassword(hashedPassword);
-	    accountbean.setRole(accountVM.getRole());
-	    accountbean.setGymId(accountVM.getGymId());
+		accountbean.setEmail(accountVM.getEmail());
+		// Hash the password before storing it in the database
+		String hashedPassword = PasswordUtils.hashPassword(accountVM.getPassword());
+		accountbean.setPassword(hashedPassword);
+		accountbean.setRole(accountVM.getRole());
+		accountbean.setGymId(accountVM.getGymId());
 
-	    // Create and set the profile
-	    Profile profile = new Profile();
-	    profile.setFirstName(accountVM.getProfile().getFirstName());
-	    profile.setLastName(accountVM.getProfile().getLastName());
-	    
-	    profile.setBirthDate(accountVM.getProfile().getBirthDate());
-	    
-	    profile.setContact(accountVM.getProfile().getContact());
-	    profile.setAddress(accountVM.getProfile().getAddress());
-	    profile.setProfesionalDetails(accountVM.getProfile().getProfesionalDetails());
+		// Create and set the profile
+		Profile profile = new Profile();
+		profile.setFirstName(accountVM.getProfile().getFirstName());
+		profile.setLastName(accountVM.getProfile().getLastName());
+		profile.setBirthDate(accountVM.getProfile().getBirthDate());
+		profile.setPictureUrl(accountVM.getProfile().getPictureUrl());
+		profile.setContact(accountVM.getProfile().getContact());
+		profile.setAddress(accountVM.getProfile().getAddress());
+		profile.setProfesionalDetails(accountVM.getProfile().getProfesionalDetails());
 
-	    
+		accountbean.setGoal(accountVM.getGoal());
 
-	    accountbean.setGoal(accountVM.getGoal());
+		// Set other profile attributes as needed
 
-	    // Set other profile attributes as needed
+		// Set the profile to the account and vice versa
+		accountbean.setProfile(profile);
+		profile.setAccount(accountbean);
 
-	    // Set the profile to the account and vice versa
-	    accountbean.setProfile(profile);
-	    profile.setAccount(accountbean);
+		// Persist the account and profile
+		entityManager.persist(accountbean);
+		entityManager.persist(profile);
 
-	    // Persist the account and profile
-	    entityManager.persist(accountbean);
-	    entityManager.persist(profile);
+		// Flush the changes to the database
+		entityManager.flush();
 
-	    // Flush the changes to the database
-	    entityManager.flush();
-
-	    return accountbean;
-
+		return accountbean;
 
 	}
-
 
 	public Account getById(Long accountId) {
 		return entityManager.find(Account.class, accountId);
 	}
 
 	public Account getAccountByEmailAndPassword(String email, String password) {
-		
+
 		return createAccount(AccountViewModel);
 	}
-	
 
 	@Transactional
 	public void update(Account updatedAccount) {
@@ -82,12 +76,12 @@ public class AccountDao {
 			existingAccount.getProfile().setFirstName(updatedAccount.getProfile().getFirstName());
 			existingAccount.setEmail(updatedAccount.getEmail());
 			existingAccount.getProfile().setLastName(updatedAccount.getProfile().getLastName());
-			
+
 			existingAccount.getProfile().setBirthDate(updatedAccount.getProfile().getBirthDate());
 			existingAccount.getProfile().setContact(updatedAccount.getProfile().getContact());
 			existingAccount.getProfile().setAddress(updatedAccount.getProfile().getAddress());
 			existingAccount.getProfile().setProfesionalDetails(updatedAccount.getProfile().getProfesionalDetails());
-			
+
 			// Enregistrer les modifications dans la base de données
 			entityManager.merge(existingAccount);
 		} else {
@@ -95,6 +89,7 @@ public class AccountDao {
 		}
 
 	}
+
 	public Account getAccountById(Long accountId) {
 		try {
 			return entityManager.find(Account.class, accountId);
@@ -103,9 +98,5 @@ public class AccountDao {
 			return null;
 		}
 	}
-
-
-
-	
 
 }

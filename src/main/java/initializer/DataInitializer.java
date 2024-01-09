@@ -91,6 +91,7 @@ public class DataInitializer {
 		addressAdherent.setStreetName("le lieu");
 		Contact contact = new Contact();
 		contact.setPhone("12212321");
+		profileAdherent.setPictureUrl("bear_user_image.jpg");
 		profileAdherent.setAddress(addressAdherent);
 		profileAdherent.setContact(contact);
 		Adherent.setProfile(profileAdherent);
@@ -103,7 +104,8 @@ public class DataInitializer {
 		Profile profileGestionnaire = new Profile();
 		profileGestionnaire.setFirstName("John");
 		profileGestionnaire.setLastName("Doe");
-
+		profileGestionnaire.setPictureUrl("bear_user_image.jpg");
+		
 		Address addressGestionnaire = new Address();
 		addressGestionnaire.setCity("Paris");
 		addressGestionnaire.setStreetName("Rue de la Paix");
@@ -133,6 +135,7 @@ public class DataInitializer {
 		Profile profileCoach = new Profile();
 		profileCoach.setFirstName("Alice");
 		profileCoach.setLastName("Smith");
+		profileCoach.setPictureUrl("bear_user_image.jpg");
 
 		Address addressCoach = new Address();
 		addressCoach.setCity("New York");
