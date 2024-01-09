@@ -1,6 +1,7 @@
 package fr.isika.cda.javaee.account.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -11,6 +12,7 @@ import javax.inject.Named;
 
 import fr.isika.cda.javaee.dao.accounts.AccountDao;
 import fr.isika.cda.javaee.entity.accounts.Account;
+import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.utils.SessionUtils;
 import fr.isika.cda.javaee.viewModel.AccountViewModel;
 
@@ -105,6 +107,11 @@ public class AccountController implements Serializable {
     public AccountViewModel getAccountVM() {
         return accountVM;
     }
+    
+    public List<Account> AllAccounts() {
+		List<Account> accounts = accountDao.getAllAccounts();
+		return accounts;
+	}
 
 
     public void setAccountVM(AccountViewModel accountVM) {

@@ -51,7 +51,7 @@
         </thead>
         <tbody>
             <ui:repeat value="#{accountController.AllAccounts()}" var="account">
-            <ui:fragment rendered="#{account.gymId eq loginController.loggedAccount.gymId and account.role eq 'COACH'}">
+            <ui:fragment rendered="#{account.gymId eq loginController.loggedAccount.gymId and account.role eq 'ADHERENT'}">
                 <tr>
                     <td>#{account.email}</td>
                       <td>#{account.profile.firstName}</td>

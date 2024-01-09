@@ -1,5 +1,7 @@
 package fr.isika.cda.javaee.dao.accounts;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -7,6 +9,7 @@ import javax.transaction.Transactional;
 
 import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.accounts.Profile;
+import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.utils.PasswordUtils;
 import fr.isika.cda.javaee.viewModel.AccountViewModel;
 
@@ -102,6 +105,12 @@ public class AccountDao {
 			e.printStackTrace(); // Gérez les exceptions de manière appropriée
 			return null;
 		}
+	}
+	
+	public List<Account> getAllAccounts() {
+		
+			return entityManager.createQuery("SELECT s FROM Account s", Account.class).getResultList();
+		
 	}
 
 
