@@ -26,7 +26,7 @@ public class Equipment {
 	private String details ;	
 	@ManyToOne
 	private Activity activity;
-
+	
 	public String getCondition() {
 		return condition;
 	}

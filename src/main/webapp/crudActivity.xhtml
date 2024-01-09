@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+	<ui:define name="titleValue">Gestion des activités</ui:define>
+	<ui:define name="content">
+		<div>
+			<div class="card crud-demo">
+				<h:form id="form">
+					<p:growl id="messages" showDetail="true" />
+
+					<p:toolbar>
+						<p:toolbarGroup>
+							<p:commandButton value="Ajouter une activité" icon="pi pi-plus"
+								oncomplete="PF('addActivityDialog').show()"
+								styleClass="ui-button-success" style="margin-right: .5rem"
+								update=":dialogs:add-activity-content">
+								<p:resetInput target=":dialogs:add-activity-content" />
+							</p:commandButton>
+						</p:toolbarGroup>
+					</p:toolbar>
+
+
+					<p:dataTable id="rud-activity" widgetVar="dtActivities" var="act"
+						value="#{activityController.displayActivitiesList()}"
+						reflow="true" styleClass="products-table" paginator="true"
+						rows="10" rowSelectMode="add" paginatorPosition="bottom">
+
+						<f:facet name="header">
+							<div class="products-table-header">
+								<span style="font-weight: bold">LES ACTIVITES</span> <span
+									class="filter-container ui-input-icon-left"> <i
+									class="pi pi-search"></i> <p:inputText id="globalFilter"
+										onkeyup="PF('dtActivities').filter()" placeholder="Recherche" />
+								</span>
+							</div>
+						</f:facet>
+
+						<p:column headerText="Activité" sortBy="#{act.name}"
+							filterBy="#{act.category}">
+							<p:outputLabel>#{act.name}</p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Détails" sortBy="#{act.description}"
+							filterBy="#{act.description}">
+							<p:outputLabel>#{act.description}</p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Catégorie" sortBy="#{act.category}"
+							filterBy="#{act.category}">
+							<f:facet name="header">Catégorie</f:facet>
+							<p:outputLabel>#{act.category}</p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Equipement">
+							<ul>
+								<ui:repeat value="#{act.equipmentList}" var="equi">
+									<li><p:outputLabel>#{equi.equipmentName}</p:outputLabel></li>
+								</ui:repeat>
+							</ul>
+						</p:column>
+
+						<p:column exportable="false">
+							<p:commandButton icon="pi pi-pencil"
+								update=":dialogs:manage-activity-content"
+								oncomplete="PF('manageActivityDialog').show()"
+								styleClass="edit-button rounded-button ui-button-success"
+								process="@this">
+								<f:setPropertyActionListener value="#{act}"
+									target="#{activityController.selectedActivity}" />
+								<p:resetInput target=":dialogs:manage-activity-content" />
+							</p:commandButton>
+							<p:commandButton class="ui-button-warning rounded-button"
+								icon="pi pi-trash" process="@this"
+								oncomplete="PF('deleteActivityDialog').show()">
+								<f:setPropertyActionListener value="#{act}"
+									target="#{activityController.selectedActivity}" />
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+
+				<h:form id="dialogs">
+					<p:dialog header="Enregister une nouvelle activité"
+						showEffect="fade" modal="true" widgetVar="addActivityDialog"
+						responsive="true">
+						<p:outputPanel id="add-activity-content" class="ui-fluid">
+							<p:outputPanel>
+								<div class="field">
+									<p:outputLabel for="add-name" value="Nom : " />
+									<p:inputText id="add-name"
+										value="#{activityController.activityViewModel.name}"
+										required="true" />
+								</div>
+								<div class="field">
+									<p:outputLabel for="add-description" value="Description : " />
+									<p:inputText id="add-description"
+										value="#{activityController.activityViewModel.description}" />
+								</div>
+								<div class="field">
+									<p:outputLabel for="add-activityCategory" value="Catégorie : " />
+									<p:selectOneMenu id="add-activityCategory"
+										value="#{activityController.activityViewModel.activityCategory}"
+										style="min-width: 14rem">
+										<f:selectItem itemLabel="Sélectionnez une catégorie"
+											itemValue="null" noSelectionOption="true" />
+										<f:selectItems
+											value="#{activityController.getActivityCategories()}"
+											var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
+									</p:selectOneMenu>
+								</div>
+								<div class="field">
+									<p:outputLabel for="add-equipments" value="Equipement(s) concerné(s) : " />
+									<p:selectManyCheckbox id="add-equipments"
+										value="#{activityController.selectedEquipments}"
+										layout="responsive" columns="2">
+										<f:selectItems
+											value="#{equipmentController.getEquipmentsList()}" var="equi"
+											itemLabel="#{equi.equipmentName}" itemValue="#{equi.id}" />
+									</p:selectManyCheckbox>
+								</div>
+							</p:outputPanel>
+						</p:outputPanel>
+
+						<f:facet name="footer">
+							<p:commandButton value="Ajouter" icon="pi pi-check"
+								actionListener="#{activityController.addActivity()}"
+								update=":form:" process="add-activity-content @this" 
+								oncomplete="PF('addActivityDialog').hide()"/>
+							<p:commandButton value="Annuler" icon="pi pi-times"
+								onclick="PF('addActivityDialog').hide()"
+								class="ui-button-secondary" type="button" />
+						</f:facet>
+					</p:dialog>
+
+					<p:dialog header="Détails de l'activité" showEffect="fade"
+						modal="true" widgetVar="manageActivityDialog" responsive="true">
+						<p:outputPanel id="manage-activity-content" class="ui-fluid">
+							<p:outputPanel
+								rendered="#{not empty activityController.selectedActivity}">
+								<div class="field">
+									<p:outputLabel for="update-name">Name</p:outputLabel>
+									<p:inputText id="update-name"
+										value="#{activityController.selectedActivity.name}"
+										required="true" />
+								</div>
+								<div class="field">
+									<p:outputLabel for="update-description">Description</p:outputLabel>
+									<p:inputTextarea id="update-description"
+										value="#{activityController.selectedActivity.description}" />
+								</div>
+								<div class="field">
+									<p:outputLabel for="update-category">Categorie</p:outputLabel>
+									<p:selectOneMenu id="update-category"
+										value="#{activityController.selectedActivity.category}">
+										<f:selectItems
+											value="#{activityController.getActivityCategories()}"
+											var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
+									</p:selectOneMenu>
+								</div>
+<!-- 								!!!ATTENTION CELA NE FONCTIONNE PAS CONCERNANT LA MODIFICATION D'EQUIPEMNT -->
+								<div class="field">
+									<p:outputLabel for="update-equipments" value="Equipement(s) concerné(s) : " />
+									<p:selectManyCheckbox id="update-equipments"
+										value="#{activityController.selectedEquipments}"
+										layout="responsive" columns="2">
+										<f:selectItems
+											value="#{equipmentController.getEquipmentsList()}" var="equi"
+											itemLabel="#{equi.equipmentName}" itemValue="#{equi.id}" />
+									</p:selectManyCheckbox>
+								</div>
+							</p:outputPanel>
+						</p:outputPanel>
+
+						<f:facet name="footer">
+							<p:commandButton value="Mettre à jour" icon="pi pi-check"
+								actionListener="#{activityController.modifieSelectedActivity()}"
+								update=":form:" process="manage-activity-content @this" />
+							<p:commandButton value="Annuler" icon="pi pi-times"
+								onclick="PF('manageActivityDialog').hide()"
+								class="ui-button-secondary" type="button" />
+						</f:facet>
+					</p:dialog>
+
+					<p:confirmDialog widgetVar="deleteActivityDialog" showEffect="fade"
+						width="300" message="Supprimer l'activité ?" header="Confirm"
+						severity="warn">
+						<p:commandButton value="Oui" icon="pi pi-check"
+							actionListener="#{activityController.deleteSelectedActivity()}"
+							oncomplete="PF('deleteActivityDialog').hide()" update=":form:" />
+						<p:commandButton value="Non" type="button"
+							styleClass="ui-button-secondary" icon="pi pi-times"
+							onclick="PF('deleteActivityDialog').hide()" />
+					</p:confirmDialog>
+				</h:form>
+				<br />
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
