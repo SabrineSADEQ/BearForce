@@ -21,10 +21,14 @@
 	--grey: #131B23;
 	--lighterGrey: #272727;
 	--accentRed: #DB2955;
+	
+	/*Space color palette that is getting customized*/
+	--firstColor: #00C9A7;
+	--secondColor: #845EC2;
+	--thirdColor: #ffffff;
 }
 
 /* BODY */
-
 html, body {
     height: 100%;
      margin: 0;
@@ -33,6 +37,7 @@ html, body {
 
 body {
     margin: 0;
+    
     display: flex;
     flex-direction: column;
 }
@@ -40,11 +45,13 @@ body {
 /* Main page content */
 .content {
     flex: 1;
-    padding: 20px;
+    padding-bottom: 20px;
+    margin-bottom:50px;
     box-sizing: border-box;
     border-radius: 10px; 
     background-color: #fff; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+ 
 }
 
 /* Contains the sidebar menu + page content */
@@ -62,16 +69,74 @@ body {
     align-content: center;
 }
 
-.logout-button {
-	
-}
-
 .dashboard-sidebar .profile-image {
     display: block; 
     margin-bottom: 20px; 
     width: 100%; 
     border-radius: 50%; /* Make the image appear in a circle */
     overflow: hidden; /* Ensure content outside the circle is hidden */
+}
+
+/*Space index style : */
+
+.bannerTextContainer{
+	display:flex;
+	flex-direction: row;
+	justify-content: space-between;
+	position: relative;
+}
+
+.spaceLeftDiv{
+	margin-bottom:20px;
+	width:60%;
+	
+}
+
+.spaceLeftDiv {
+	/*transform: translateZ(0);
+	position: absolute;
+    width:50%;
+    height:100%;
+     -webkit-clip-path: polygon(0 0, 75% 0, 30% 100%, 0% 100%);
+    clip-path: polygon(0 0, 55% 0, 40% 100%, 0% 100%);*/
+    
+}
+
+.spaceRightDiv{
+	width:80%;
+	margin-right:50px;
+	z-index: 1;
+	box-sizing: border-box;
+	text-align: justify;
+	text-justify: distribute;
+}
+
+.rightDivWrapper {
+    flex: 1; 
+    display: flex;
+    align-items: flex-start; 
+    justify-content:center;
+}
+
+.bottomDiv{
+	 flex-direction: column;
+}
+
+
+.square .clr-field button, .circle .clr-field button {
+    width: 22px;
+    height: 22px;
+    left: 5px;
+    right: auto;
+    border-radius: 5px;
+}
+
+.square .clr-field input, .circle .clr-field input {
+    padding-left: 36px;
+}
+
+.circle .clr-field button {
+    border-radius: 50%;
 }
 
 

@@ -41,17 +41,19 @@ public class SpaceController implements Serializable {
 	@Inject
 	private SpaceDao spaceDao;
 
+
 	@PostConstruct
 	public void init() {
 		System.out.println("SpaceController bean initialized!");
 	}
 
 	public Space getLoadedSpace() throws Exception {
-		
+
 		// Get param from url
-		Map<String,String> parameterMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		Map<String, String> parameterMap = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap();
 		String spaceIdParam = parameterMap.get("spaceId");
-		if(spaceIdParam !=null) {
+		if (spaceIdParam != null) {
 			Space space = spaceDao.getSpaceById(Long.valueOf(spaceIdParam));
 			return space;
 		}

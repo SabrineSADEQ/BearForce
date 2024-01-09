@@ -30,12 +30,7 @@ public class Address {
 	private Profile profile;
 	
 	//***************GETTERS & SETTERS***************
-	public String getStreetNulmber() {
-		return streetNumber;
-	}
-	public void setStreetNulmber(String streetNulmber) {
-		this.streetNumber = streetNulmber;
-	}
+
 	public String getStreetName() {
 		return streetName;
 	}

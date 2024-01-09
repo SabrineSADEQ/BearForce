@@ -62,7 +62,7 @@ body {
 }
 
 
-/* style for carrousel */
+/* style for carrousel of clients*/
  .product-item .product-item-content {
         border: 1px solid var(--surface-d);
         border-radius: 3px;
@@ -72,9 +72,29 @@ body {
     }
 
     .product-item .product-image {
-        width: 50%;
+        width: 100px;
+        height:100px;
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
     }
+
+.grow { 
+transition: all .2s ease-in-out; 
+}
+
+.grow:hover { 
+transform: scale(1.02); 
+}
+
+.descriptionSpan{
+	justify-content:center;
+	margin:25px;
+}
+
+.titleH1{
+	display:flex;
+	justify-content:center;
+	color:var(--violet);
+}
 
 /* overrides Primefaces buttons default style*/
 html body .ui-button {

@@ -19,7 +19,7 @@ public class VisualIdentity {
 	private long id;
 
 	private String gymLogoPath;
-	private String bannerPath;
+	private String gymBannerPath;
 	private String firstColor;
 	private String secondColor;
 	private String thirdColor;
@@ -43,11 +43,11 @@ public class VisualIdentity {
 	public void setGymLogoPath(String gymLogoPath) {
 		this.gymLogoPath = gymLogoPath;
 	}
-	public String getBannerPath() {
-		return bannerPath;
+	public String getGymBannerPath() {
+		return gymBannerPath;
 	}
-	public void setBannerPath(String bannerPath) {
-		this.bannerPath = bannerPath;
+	public void setGymBannerPath(String gymBannerPath) {
+		this.gymBannerPath = gymBannerPath;
 	}
 
 	public String getFirstColor() {

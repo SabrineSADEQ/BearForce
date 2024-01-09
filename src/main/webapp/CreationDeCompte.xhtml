@@ -45,12 +45,14 @@
 
 	
 		<!-- Step 1: Collect Email and Password -->
+
 <h:form rendered="#{accountController.wizardStep == 1}" styleClass="form-step">
    <h:outputLabel value="Créer votre compte" styleClass="step-label" />
 
     <h:panelGrid columns="2" styleClass="ui-g form-grid">
     <h:outputLabel for="email" value="Email:" style="display: block; margin-bottom: 25px;" />
 <p:inputText id="email" value="#{accountController.accountVM.email}" required="true" styleClass="ui-inputfield input-field" style="margin-bottom: 25px"/>
+
 
 <h:outputLabel for="password" value="Password:" style="display: block; margin-bottom: 25px;" />
 <p:password id="password" value="#{accountController.accountVM.password}" required="true" styleClass="ui-inputfield input-field" style="margin-bottom: 25px" />
@@ -124,6 +126,12 @@
     <h:outputLabel for="city" value="Ville:" styleClass="field-label" />
     <h:inputText id="city" value="#{accountController.accountVM.profile.address.city}" styleClass="ui-inputfield input-field" />
 
+        <div>
+				<h:outputLabel for="profilePicture">Photo de profil</h:outputLabel>
+				<!-- Composant graphique pour le fichier -->
+				<p:fileUpload listener="#{accountController.uploadFileLogo}"
+					styleClass="w-100" mode="advanced" dragDropSupport="false" />
+			</div>
 
     <h:panelGroup rendered="#{accountController.accountVM.role eq 'COACH'}">
         <h:outputLabel for="coachCertification" value="Certification:" styleClass="field-label" />
