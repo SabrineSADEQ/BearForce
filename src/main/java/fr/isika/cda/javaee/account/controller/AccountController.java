@@ -2,6 +2,11 @@ package fr.isika.cda.javaee.account.controller;
 
 import java.io.Serializable;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -9,8 +14,16 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
+
 import fr.isika.cda.javaee.dao.accounts.AccountDao;
 import fr.isika.cda.javaee.entity.accounts.Account;
+
+import fr.isika.cda.javaee.utils.FileUploadUtils;
+
+import fr.isika.cda.javaee.entity.gymspace.Space;
+
 import fr.isika.cda.javaee.utils.SessionUtils;
 import fr.isika.cda.javaee.viewModel.AccountViewModel;
 
@@ -69,6 +82,23 @@ public class AccountController implements Serializable {
         accountVM = new AccountViewModel();
     }
     
+    /**
+	 * Method for photo upload
+	 * 
+	 * @param event
+	 * @throws Exception
+	 */
+	public void uploadFileLogo(FileUploadEvent event) throws Exception {
+		String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss"));
+
+		UploadedFile uploadedFile = event.getFile();
+		String fileName = String.join("_", timestamp, uploadedFile.getFileName());
+
+		accountVM.getProfile().setPictureUrl(fileName);
+
+		FileUploadUtils.uploadFileToApp(uploadedFile, fileName);
+	}
+    
     public void updateAccount() {
         Account account = SessionUtils.getAccount();
         // Vérifier si l'utilisateur est connecté (authentifié)
@@ -83,6 +113,8 @@ public class AccountController implements Serializable {
                 existingAccount.getProfile().setFirstName(accountVM.getProfile().getFirstName());
                 existingAccount.getProfile().setLastName(accountVM.getProfile().getLastName());
                 
+                existingAccount.getProfile().setPictureUrl(accountVM.getProfile().getPictureUrl());
+      
                 existingAccount.getProfile().setBirthDate(accountVM.getProfile().getBirthDate());
     			existingAccount.getProfile().setContact(accountVM.getProfile().getContact());
     			existingAccount.getProfile().setAddress(accountVM.getProfile().getAddress());
@@ -105,6 +137,11 @@ public class AccountController implements Serializable {
     public AccountViewModel getAccountVM() {
         return accountVM;
     }
+    
+    public List<Account> AllAccounts() {
+		List<Account> accounts = accountDao.getAllAccounts();
+		return accounts;
+	}
 
 
     public void setAccountVM(AccountViewModel accountVM) {

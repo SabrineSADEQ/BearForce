@@ -5,43 +5,53 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
-	<ui:define name="titleValue">Create un abonnement</ui:define>
+<ui:composition
+	template="WEB-INF/templates/spaceGeneralViewsTemplate.xhtml">
+	<ui:define name="titleValue">souscrire un abonnement</ui:define>
 	<ui:define name="content">
+		<h:head>
+			<h:outputStylesheet library="css" name="styleSubscription.css" />
+		</h:head>
 
-		<h2>Create un abonnement</h2>
-		<hr align="center" width="80%" />
-		<h:form id="subscriptionForm">
-			<p>
-				<label for="startDate"> Date de début :</label>
-				<h:inputText id="startDate"
+		<h:body>
+			<h:form>
 
-					value="#{subscriptionManagedBean.startDate}" />
+				<div class="container">
+					<p:panel header="Souscrire un abonnement">
 
-			</p>
-			<p>
-				<label for="endDate">Date de fin :</label>
-				<h:inputText id="endDate"
-					value="#{subscriptionManagedBean.endDate}" />
-			</p>
-			<p>
-				<label for="autoRenewal">Renouvellement automatique :</label>
-				<h:selectBooleanCheckbox id="autoRenewal"
-					value="#{subscriptionManagedBean.autoRenewal}" />
-			</p>
-			<p>
-				<label for="duration">Durée :</label>
-				<h:inputText id="duration"
-					value="#{subscriptionManagedBean.duration}" />
-			</p>
-			
 
-			<h:commandButton value="Souscrire"
-				action="#{subscriptionManagedBean.subscribe()}" />
-		</h:form>
-		
-<!-- 	<h:link outcome="home" value="Retour à la page d'accueil"/> -->
-	
+
+						<h:panelGrid class ="panelsub" columns="2">
+
+
+							<label for="startDate"> Date de début :</label>
+							<h:inputText id="startDate"
+								value="#{subscriptionManagedBean.startDate}" />
+
+
+							<label for="endDate">Date de fin :</label>
+							<h:inputText id="endDate"
+								value="#{subscriptionManagedBean.endDate}" />
+
+
+							<label for="autoRenewal">Renouvellement automatique :</label>
+							<h:selectBooleanCheckbox id="autoRenewal"
+								value="#{subscriptionManagedBean.autoRenewal}" />
+
+							<label for="duration">Durée :</label>
+							<h:inputText id="duration"
+								value="#{subscriptionManagedBean.duration}" />
+						</h:panelGrid>
+						<br />
+
+
+						<h:commandButton value="payer"
+							action="#{subscriptionManagedBean.paymentSubscription()}" />
+					</p:panel>
+				</div>
+			</h:form>
+		</h:body>
+
 	</ui:define>
 </ui:composition>
 

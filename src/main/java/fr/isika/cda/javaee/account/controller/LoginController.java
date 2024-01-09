@@ -1,7 +1,9 @@
 package fr.isika.cda.javaee.account.controller;
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import fr.isika.cda.javaee.dao.accounts.LoginDao;
 import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.accounts.Role;
+import fr.isika.cda.javaee.presentation.controller.SpaceController;
 import fr.isika.cda.javaee.utils.SessionUtils;
 import fr.isika.cda.javaee.viewModel.AccountViewModel;
 
@@ -33,11 +36,32 @@ public class LoginController implements Serializable {
 			Account account = loginDao.findAccountByEmailAndPassword(accountVM, accountVM.getEmail(), accountVM.getPassword());
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("loggedInUser", account);
+			
+			 FacesContext facesContext = FacesContext.getCurrentInstance();
+		        ExternalContext externalContext = facesContext.getExternalContext();
+		        try {
+					externalContext.redirect(externalContext.getRequestContextPath() + "/index.xhtml");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    
 		} else {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Email ou Mot de passe incorrects", "Merci de saisir les bons identifiants"));
 			
 		}
+	}
+	
+	public void redirectToCreateAccount() {
+		 FacesContext facesContext = FacesContext.getCurrentInstance();
+	        ExternalContext externalContext = facesContext.getExternalContext();
+	        try {
+				externalContext.redirect(externalContext.getRequestContextPath() + "/CreationDeCompte.xhtml");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 	public AccountViewModel getAccountVM() {

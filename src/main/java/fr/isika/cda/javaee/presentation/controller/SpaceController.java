@@ -17,6 +17,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.model.file.UploadedFile;
 
+import fr.isika.cda.javaee.account.controller.LoginController;
 import fr.isika.cda.javaee.dao.SpaceDao;
 import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.presentation.viewmodel.SpaceViewModel;
@@ -40,17 +41,19 @@ public class SpaceController implements Serializable {
 	@Inject
 	private SpaceDao spaceDao;
 
+
 	@PostConstruct
 	public void init() {
 		System.out.println("SpaceController bean initialized!");
 	}
 
 	public Space getLoadedSpace() throws Exception {
-		
+
 		// Get param from url
-		Map<String,String> parameterMap = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+		Map<String, String> parameterMap = FacesContext.getCurrentInstance().getExternalContext()
+				.getRequestParameterMap();
 		String spaceIdParam = parameterMap.get("spaceId");
-		if(spaceIdParam !=null) {
+		if (spaceIdParam != null) {
 			Space space = spaceDao.getSpaceById(Long.valueOf(spaceIdParam));
 			return space;
 		}
@@ -67,7 +70,10 @@ public class SpaceController implements Serializable {
 	}
 
 	public void createSpace() {
+		LoginController test = new LoginController();
+	
 		Long spaceId = spaceDao.createSpace(spaceViewModel).getId();
+		test.getLoggedAccount().setGymId(spaceId);
 		spaceViewModel = new SpaceViewModel();
 		redirectToSpace(spaceId);
 	}
