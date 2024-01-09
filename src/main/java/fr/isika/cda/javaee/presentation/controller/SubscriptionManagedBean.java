@@ -79,7 +79,7 @@ public class SubscriptionManagedBean implements Serializable {
 			subscription.setMembership(membership);
 			account.setSubscription(subscription);
 			//subscription.setAccount(account);
-			
+
 			SubscriptionDao subscriptionDao = new SubscriptionDao();
 			subscriptionDao.saveSubscription(subscription);
 		}

@@ -1,5 +1,7 @@
 package fr.isika.cda.javaee.entity.accounts;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import fr.isika.cda.javaee.entity.gymspace.IdGym;
-import fr.isika.cda.javaee.entity.gymspace.Space;
+import fr.isika.cda.javaee.entity.gymspace.business.Booking;
 import fr.isika.cda.javaee.entity.platform.Subscription;
 
 @Entity
@@ -25,34 +25,40 @@ public class Account {
 
 	@Column(length = 150, unique = true, nullable = false)
 	private String email;
-	
+
 	private String password;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Goal goal;
-	
+
 	@ManyToOne
-	
 	private Subscription subscription;
-	
+
 	@OneToOne
 	private Profile profile;
-	
+
 	@Column
-	private int gymId;
+
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
+	private List<Booking> accountsList = new ArrayList<>();
+
+
+	private Long gymId;
 	
 	
 	
 	
 	
-	public int getGymId() {
+	public Long getGymId() {
+
 		return gymId;
 	}
 
-	public void setGymId(int gymId) {
+	public void setGymId(Long gymId) {
 		this.gymId = gymId;
 	}
 
@@ -65,7 +71,7 @@ public class Account {
 	}
 
 	private boolean connected;
-	
+
 	private int wizardStep;
 
 	public Account(String email, String password) {
@@ -129,22 +135,25 @@ public class Account {
 	public void setConnected(boolean connected) {
 		this.connected = connected;
 	}
-	
-	  public int getWizardStep() {
-	        return wizardStep;
-	    }
 
-	    public void setWizardStep(int wizardStep) {
-	        this.wizardStep = wizardStep;
-	    }
+	public int getWizardStep() {
+		return wizardStep;
+	}
 
-		public void setSubscription(Subscription subscription2) {
-			this.subscription =  subscription;
-			
-		}
+	public void setWizardStep(int wizardStep) {
+		this.wizardStep = wizardStep;
+	}
 
-		
+	public void setSubscription(Subscription subscription2) {
+		this.subscription =  subscription;
+	}
 
+	public List<Booking> getAccountsList() {
+		return accountsList;
+	}
 
+	public void setAccountsList(List<Booking> accountsList) {
+		this.accountsList = accountsList;
+	}
 
 }

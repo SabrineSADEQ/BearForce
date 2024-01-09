@@ -54,12 +54,9 @@ public class DataInitializer {
     @Inject
     private AccountDao accountDao;
     
-
     @Inject
     private SubscriptionDao subscriptionDao;
 
-
-    
     @Inject
     private ActivityDao activityDao;
     
@@ -88,16 +85,18 @@ public class DataInitializer {
             defaultUser.setRole(Role.SUPER_ADMIN);
             accountDao.createAccount(defaultUser);
             AccountViewModel Adherent = new AccountViewModel();
-            Adherent.setEmail("adherent");
+            Adherent.setEmail("magnus.carlsen@gmail.com");
             Adherent.setPassword("adherent");
+            Adherent.setGymId((long) 30);
             Adherent.setRole(Role.ADHERENT);
             Profile profileAdherent = new Profile();
-            profileAdherent.setFirstName("yoann");
+            profileAdherent.setFirstName("magnus");
+            profileAdherent.setLastName("carlsen");
             Address addressAdherent = new Address();
             addressAdherent.setCity("paris");
             addressAdherent.setStreetName("le lieu");
             Contact contact = new Contact();
-            contact.setPhone("12212321");
+            contact.setPhone("0647853666");
             profileAdherent.setAddress(addressAdherent);
             profileAdherent.setContact(contact);
             Adherent.setProfile(profileAdherent);
@@ -106,6 +105,7 @@ public class DataInitializer {
             gestionnaire.setEmail("gestionnaire");
             gestionnaire.setPassword("gestionnaire");
             gestionnaire.setRole(Role.GESTIONNAIRE);
+            gestionnaire.setGymId((long) 30);
 
             Profile profileGestionnaire = new Profile();
             profileGestionnaire.setFirstName("John");
@@ -129,6 +129,7 @@ public class DataInitializer {
             AccountViewModel coach = new AccountViewModel();
             coach.setEmail("coach");
             coach.setPassword("coach");
+            coach.setGymId((long) 30);
             coach.setRole(Role.COACH);
 
             Goal goal2 = new Goal();
@@ -203,6 +204,21 @@ public class DataInitializer {
            spaceViewModel.setGymLogoPath("goGym_logo.png");
            spaceDao.createSpace(spaceViewModel);
            
+           SpaceViewModel spaceViewModel2 = new SpaceViewModel();
+           spaceViewModel2.setFirstColor("845EC2");
+           spaceViewModel2.setSecondColor("00C9A7");
+           spaceViewModel2.setThirdColor("131B23");
+           spaceViewModel2.setMotto("Le sport en douceur");
+           spaceViewModel2.setSpaceName("SportFit");
+           spaceViewModel2.setDescription("Ici, on se relaxe et apres on court");
+           spaceViewModel2.setFreeAccess(false);
+           spaceViewModel2.setLockerRoom(false);
+           
+           // Ici le chemin n'est autre que ne lom du fichier car 
+           // le chamin est relatif en plus est géré à l'upload par JSF 
+           spaceViewModel2.setGymLogoPath("goGym_logo.png");
+           spaceDao.createSpace(spaceViewModel2);
+           
            
            
            Membership membership = new Membership();
@@ -223,7 +239,34 @@ public class DataInitializer {
            subscription.setDuration(6);
            subscriptionDao.saveSubscription(subscription);
             
-
+           AccountViewModel Adherent2 = new AccountViewModel();
+           Adherent2.setEmail("leroymerlin@gmail.com");
+           Adherent2.setPassword("adherent2");
+           Adherent2.setGymId((long) 30);
+           Adherent2.setRole(Role.ADHERENT);
+           Profile profileAdherent2 = new Profile();
+           profileAdherent2.setFirstName("quentin");
+           profileAdherent2.setLastName("garcia");
+           Contact contact2 = new Contact();
+           contact2.setPhone("0699851235");
+           profileAdherent2.setContact(contact2);
+           Adherent2.setProfile(profileAdherent2);
+           accountDao.createAccount(Adherent2);
+           
+           AccountViewModel Adherent3 = new AccountViewModel();
+           Adherent3.setEmail("adherent3@gmail.com");
+           Adherent3.setPassword("adherent3");
+           Adherent3.setGymId((long) 30);
+           Adherent3.setRole(Role.ADHERENT);
+           Profile profileAdherent3 = new Profile();
+           profileAdherent3.setFirstName("theo");
+           profileAdherent3.setLastName("hamad");
+           Contact contact3 = new Contact();
+           contact3.setPhone("0655487945");
+           profileAdherent3.setContact(contact3);
+           Adherent3.setProfile(profileAdherent3);
+           accountDao.createAccount(Adherent3);
+           
           
             
 

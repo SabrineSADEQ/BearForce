@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition
+	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+	<ui:define name="titleValue">Gestion des cours</ui:define>
+	<ui:define name="content">
+		<div>
+			<div class="card crud-demo">
+				<h:form id="form">
+					<p:growl id="messages" showDetail="true" />
+
+					<p:toolbar>
+						<p:toolbarGroup>
+							<p:commandButton value="Programmer un cours" icon="pi pi-plus"
+								oncomplete="PF('addCourseDialog').show()"
+								styleClass="ui-button-success" style="margin-right: .5rem"
+								update=":dialogs:add-course-content">
+								<p:resetInput target=":dialogs:add-course-content" />
+							</p:commandButton>
+						</p:toolbarGroup>
+					</p:toolbar>
+
+
+					<p:dataTable id="crud-cours" widgetVar="dtCourses" var="cou"
+						value="#{courseController.displayCoursesList()}" reflow="true"
+						styleClass="products-table" paginator="true" rows="10"
+						rowSelectMode="add" paginatorPosition="bottom">
+
+						<f:facet name="header">
+							<div class="products-table-header">
+								<span style="font-weight: bold">LES COURS</span> <span
+									class="filter-container ui-input-icon-left"> <i
+									class="pi pi-search"></i> <p:inputText id="globalFilter"
+										onkeyup="PF('dtCourses').filter()" placeholder="Recherche" />
+								</span>
+							</div>
+						</f:facet>
+
+						<p:column headerText="Cours" sortBy="#{cou.activity.name}"
+							filterBy="#{cou.activity.name}">
+							<p:outputLabel>#{cou.activity.name}</p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Début" sortBy="#{cou.startDate}"
+							filterBy="#{cou.startDate}">
+							<p:outputLabel>#{cou.startDate}</p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Fin" sortBy="#{cou.endDate}"
+							filterBy="#{cou.endDate}">
+							<p:outputLabel>#{cou.endDate}</p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Nom du coach"
+							sortBy="#{cou.trainer.firstName}"
+							filterBy="#{cou.trainer.firstName}">
+							<p:outputLabel>#{cou.trainer.firstName}</p:outputLabel>
+						</p:column>
+
+						<p:column headerText="Prénom du coach"
+							sortBy="#{cou.trainer.lastName}"
+							filterBy="#{cou.trainer.lastName}">
+							<p:outputLabel>#{cou.trainer.lastName}</p:outputLabel>
+						</p:column>
+
+
+						<p:column headerText="Nombre de place" sortBy="#{cou.nbPlaces}"
+							filterBy="#{cou.nbPlaces}">
+							<p:outputLabel>#{cou.nbPlaces}</p:outputLabel>
+						</p:column>
+
+						<p:column exportable="false">
+							<p:commandButton icon="pi pi-pencil"
+								update=":dialogs:manage-course-content"
+								oncomplete="PF('manageCourseDialog').show()"
+								styleClass="edit-button rounded-button ui-button-success"
+								process="@this">
+								<f:setPropertyActionListener value="#{cou}"
+									target="#{courseController.selectedCourse}" />
+								<p:resetInput target=":dialogs:manage-course-content" />
+							</p:commandButton>
+							<p:commandButton class="ui-button-warning rounded-button"
+								icon="pi pi-trash" process="@this"
+								oncomplete="PF('deleteCourseDialog').show()">
+								<f:setPropertyActionListener value="#{cou}"
+									target="#{courseController.selectedCourse}" />
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+
+				<h:form id="dialogs">
+					<p:dialog header="Programmer un nouveau cours" showEffect="fade"
+						modal="true" widgetVar="addCourseDialog" responsive="true">
+						<p:outputPanel id="add-course-content" class="ui-fluid">
+							<p:outputPanel>
+
+								<div class="field">
+									<p:outputLabel for="add-activity" value="Activité : " />
+									<p:selectOneMenu id="add-activity"
+										value="#{courseController.courseViewModel.activityId}"
+										style="min-width: 14rem">
+										<f:selectItems itemLabel="Sélectionnez une activité"
+											itemValue="null" noSelectionOption="true" />
+										<f:selectItems
+											value="#{activityController.displayActivitiesList()}"
+											var="act" itemLabel="#{act.name}" itemValue="#{act.id}" />
+									</p:selectOneMenu>
+								</div>
+
+								<div class="field">
+									<p:outputLabel for="add-start-date" value="Début: " />
+									<p:calendar id="add-start-date"
+										value="#{courseController.courseViewModel.startDate}"
+										pattern="MM/dd/yyyy HH:mm" showOn="button" required="true" />
+								</div>
+
+								<div class="field">
+									<p:outputLabel for="add-end-date" value="Fin: " />
+									<p:calendar id="add-end-date"
+										value="#{courseController.courseViewModel.endDate}"
+										pattern="MM/dd/yyyy HH:mm" showOn="button" required="true" />
+								</div>
+
+								<div class="field">
+									<p:outputLabel for="add-trainer" value="Coach assigné : " />
+									<p:selectOneMenu id="add-trainer"
+										value="#{courseController.courseViewModel.trainerId}"
+										style="min-width: 14rem">
+										<f:selectItems itemLabel="Sélectionnez un coach"
+											itemValue="null" noSelectionOption="true" />
+										<f:selectItems
+											value="#{activityController.displayTrainersList()}"
+											var="prof" itemLabel="#{prof.firstName} #{prof.lastName}"
+											itemValue="#{prof.id}" />
+									</p:selectOneMenu>
+								</div>
+
+								<div class="field">
+									<p:outputLabel for="add-nbr-place" value="Nombre de place(s): " />
+									<p:inputText id="add-nbr-place"
+										value="#{courseController.courseViewModel.nbPlaces}">
+										<f:validateLongRange minimum="1" />
+									</p:inputText>
+								</div>
+							</p:outputPanel>
+						</p:outputPanel>
+
+						<f:facet name="footer">
+							<p:commandButton value="Programmer" icon="pi pi-check"
+								actionListener="#{courseController.addCourse()}" update=":form:"
+								process="add-course-content @this"
+								oncomplete="PF('addCourseDialog').hide()" />
+							<p:commandButton value="Annuler" icon="pi pi-times"
+								onclick="PF('addCourseDialog').hide()"
+								class="ui-button-secondary" type="button" />
+						</f:facet>
+					</p:dialog>
+
+					<p:dialog header="Détails du cours" showEffect="fade" modal="true"
+						widgetVar="manageCourseDialog" responsive="true">
+						<p:outputPanel id="manage-course-content" class="ui-fluid">
+							<p:outputPanel
+								rendered="#{not empty courseController.selectedCourse}">
+
+								<p:outputLabel for="update-activity"
+									value="Activité concernée : " />
+								<p:selectOneMenu id="update-activity"
+									value="#{courseController.selectedActivity}"
+									style="min-width: 14rem">
+									<f:selectItems itemLabel="Sélectionnez une activité"
+										itemValue="null" noSelectionOption="true" />
+									<f:selectItems
+										value="#{activityController.displayActivitiesList()}"
+										var="act" itemLabel="#{act.name}" itemValue="#{act.id}" />
+								</p:selectOneMenu>
+
+								<div class="field">
+									<p:outputLabel for="update-start-date">Début</p:outputLabel>
+									<p:calendar id="update-start-date"
+										value="#{courseController.selectedCourse.startDate}"
+										pattern="MM/dd/yyyy HH:mm" showOn="button" required="true" />
+								</div>
+
+								<div class="field">
+									<p:outputLabel for="update-end-date">Début</p:outputLabel>
+									<p:calendar id="update-end-date"
+										value="#{courseController.selectedCourse.endDate}"
+										pattern="MM/dd/yyyy HH:mm" showOn="button" required="true" />
+								</div>
+
+								<p:outputLabel for="update-trainer" value="Coach assigné : " />
+								<p:selectOneMenu id="update-trainer"
+									value="#{courseController.selectedProfile}"
+									style="min-width: 14rem">
+									<f:selectItems itemLabel="Sélectionnez un coach"
+										itemValue="null" noSelectionOption="true" />
+									<f:selectItems
+										value="#{activityController.displayTrainersList()}" var="prof"
+										itemLabel="#{prof.firstName} #{prof.lastName}"
+										itemValue="#{prof.id}" />
+								</p:selectOneMenu>
+
+								<div class="field">
+									<p:outputLabel for="update-nbr-place">Nombre de place(s)</p:outputLabel>
+									<p:inputText id="update-nbr-place"
+										value="#{courseController.selectedCourse.nbPlaces}">
+										<f:validateLongRange minimum="1" />
+									</p:inputText>
+								</div>
+							</p:outputPanel>
+						</p:outputPanel>
+
+						<f:facet name="footer">
+							<p:commandButton value="Mettre à jour" icon="pi pi-check"
+								actionListener="#{courseController.modifieSelectedCourse()}"
+								update=":form:" process="manage-course-content @this" />
+							<p:commandButton value="Annuler" icon="pi pi-times"
+								onclick="PF('manageCourseDialog').hide()"
+								class="ui-button-secondary" type="button" />
+						</f:facet>
+					</p:dialog>
+
+					<p:confirmDialog widgetVar="deleteCourseDialog" showEffect="fade"
+						width="300" message="Annuler le cours ?" header="Confirm"
+						severity="warn">
+						<p:commandButton value="Oui" icon="pi pi-check"
+							actionListener="#{courseController.deleteSelectedCourse()}"
+							oncomplete="PF('deleteCourseDialog').hide()" update=":form:" />
+						<p:commandButton value="Non" type="button"
+							styleClass="ui-button-secondary" icon="pi pi-times"
+							onclick="PF('deleteCourseDialog').hide()" />
+					</p:confirmDialog>
+				</h:form>
+				<br />
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>

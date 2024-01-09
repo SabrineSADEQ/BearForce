@@ -31,12 +31,35 @@ public class EquipmentDao {
 		return equipmentBean;
 	}
 	
-	public List<Equipment> getAllEquipmentsWithActivities() {
-		 return entityManager.createQuery("SELECT equi FROM Equipment equi LEFT JOIN FETCH equi.activity WHERE equi.activity IS NULL", Equipment.class)
+	public void updateEquipment(Equipment updateEquipment, Long selectedActivity) {
+		Equipment existingEquipment = entityManager.find(Equipment.class, updateEquipment.getId());
+		existingEquipment.setEquipmentName(updateEquipment.getEquipmentName());
+		existingEquipment.setDetails(updateEquipment.getDetails());
+		existingEquipment.setQuantity(updateEquipment.getQuantity());
+		existingEquipment.setCondition(updateEquipment.getCondition());
+		Activity activity = activityDao.findActivityById(selectedActivity);
+		existingEquipment.setActivity(activity);
+		entityManager.merge(existingEquipment);
+	}
+	
+	public void deleteEquipment(Long equipmentToDeleteId) {
+		Equipment equipmentToDelete = entityManager
+				.createQuery("SELECT e FROM Equipment e LEFT JOIN FETCH e.activity WHERE e.id = :equipmentIdParam", Equipment.class)
+				.setParameter("equipmentIdParam", equipmentToDeleteId)
+				.getSingleResult();
+		entityManager.remove(equipmentToDelete);
+	}
+	
+	public List<Equipment> getAllUnavailableEquipmentsWithActivities() {
+		 return entityManager.createQuery("SELECT e FROM Equipment e LEFT JOIN FETCH e.activity WHERE e.activity IS NULL", Equipment.class)
 		            .getResultList();
 	}
-
-//	}
+	
+	public List<Equipment> getAllEquipmentsWithActivities() {
+		return entityManager
+				.createQuery("SELECT e FROM Equipment e LEFT JOIN FETCH e.activity", Equipment.class)
+				.getResultList();
+	}
 	
 	//SEAK IN DATABASE EQUIPEMENT BY ID
 		public Equipment findEquipmentById(long equipmentId) {
