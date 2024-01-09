@@ -1,15 +1,10 @@
 package fr.isika.cda.javaee.entity.gymspace.business;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
+import javax.persistence.ManyToOne;
 import fr.isika.cda.javaee.entity.accounts.Account;
 
 @Entity
@@ -18,9 +13,31 @@ public class Booking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "booking")
-	private List<Course> coursesList = new ArrayList<>();
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "booking")
-	private List<Account> accountsList = new ArrayList<>();
+	@ManyToOne
+	private Course course;
+	@ManyToOne
+	private Account account;
 	
+	
+	//**************GETTERS & SETTERS**************
+	public long getId() {
+		return id;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+		
 }

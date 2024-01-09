@@ -1,14 +1,17 @@
 package fr.isika.cda.javaee.entity.gymspace.business;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import fr.isika.cda.javaee.entity.accounts.Profile;
@@ -34,9 +37,10 @@ public class Course {
 	private Profile trainer;	
 	@Column(name="nb_places")
 	private int nbPlaces ;
-	@ManyToOne
-	private Booking booking;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "course")
+	private List<Booking> bookingList = new ArrayList<>();
 	
+	//**************GETTERS & SETTERS**************
 	public Activity getActivity() {
 		return activity;
 	}
@@ -80,6 +84,13 @@ public class Course {
 	public long getId() {
 		return id;
 	}
-	
-	
+
+	public List<Booking> getBookingList() {
+		return bookingList;
+	}
+
+	public void setBookingList(List<Booking> bookingList) {
+		this.bookingList = bookingList;
+	}
+
 }

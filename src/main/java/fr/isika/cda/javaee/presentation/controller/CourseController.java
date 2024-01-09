@@ -28,7 +28,6 @@ public class CourseController implements Serializable{
 	private Long selectedProfile;
 	private Course selectedCourse;
 	
-
 	@Inject
 	private CourseDAO courseDao;
 
@@ -37,6 +36,7 @@ public class CourseController implements Serializable{
 		System.out.println("CourseController bean initialized!");
 	}
 
+	//CREATE NEW COURSE IN DATABASE
 	public void addCourse() {
 		courseDao.createCourse(courseViewModel);
 		FacesContext.getCurrentInstance().addMessage(null,
@@ -51,7 +51,7 @@ public class CourseController implements Serializable{
 			PrimeFaces.current().executeScript("PF('manageCourseDialog').hide()");
 		}
 		
-		//DELETE COURSE FROM DATABASE
+		//DELETE SELECTED COURSE IN DATABASE
 		public void deleteSelectedCourse() {
 			courseDao.deleteCourse(selectedCourse.getId());
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Cours annulé"));
