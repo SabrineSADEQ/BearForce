@@ -5,100 +5,108 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+
+<ui:composition
+	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+
 	<ui:define name="titleValue">Mon compte</ui:define>
 
 	<ui:define name="content">
-		<h2>Modifier le compte</h2>
-		<h:form>
 
-			<p:avatar styleClass="mr-2" size="xlarge" shape="circle">
+		<h:head>
+			<h:outputStylesheet library="css" name="main/contactStyle.css" />
+		</h:head>
+		<h:body>
+			<h:form>
+
+				<div class="container2">
+ <div class="grid1">
+					<p:panel header="Modifier le compte">
+         
+            <p:avatar styleClass="mr-2" size="xlarge" shape="circle">
 				<h:graphicImage library="images"
 					name="#{accountController.accountVM.profile.pictureUrl}" />
 			</p:avatar>
 			<br/>
-			
-			<p:outputLabel value="Prénom" />
-			<p:inputText value="#{accountController.accountVM.profile.firstName}"
-				required="true"
-				placeholder="#{loginController.getLoggedAccount().profile.firstName}" />
-			<br />
-			<br />
-			<p:outputLabel value="Nom" />
-			<p:inputText value="#{accountController.accountVM.profile.lastName}"
-				required="true"
-				placeholder="#{loginController.getLoggedAccount().profile.lastName}" />
-			<br />
-			<br />
-			<p:outputLabel value="Email" />
-			<p:inputText value="#{accountController.accountVM.email}"
-				required="true"
-				placeholder="#{loginController.getLoggedAccount().profile.firstName}" />
-			<br />
-			<div>
-				<h:outputLabel for="birthDate">Date de naissance :</h:outputLabel>
-				<!-- Use HTML5 date input -->
-				<input type="datetime-local" id="birthDateStep2" name="birthDate"
-					value="#{accountController.accountVM.profile.birthDate}"
-					required="true" />
-			</div>
+						<h:panelGrid columns="2">
 
-			<div>
-				<h:outputLabel for="phone">Téléphone :</h:outputLabel>
-				<p:inputText id="phoneStep2"
-					value="#{accountController.accountVM.profile.contact.phone}"
-					required="true"
-					placeholder="#{loginController.getLoggedAccount().profile.contact.phone}" />
-			</div>
+							<p:outputLabel value="Prénom" />
+							<p:inputText
+								value="#{accountController.accountVM.profile.firstName}"
+								required="true"
+								placeholder="#{loginController.getLoggedAccount().profile.firstName}" />
 
-			<div>
-				<h:outputLabel for="typeContact">Type de Contact :</h:outputLabel>
-				<!-- Use h:selectOneMenu for enum dropdown -->
-				<h:selectOneMenu id="typeContactStep2"
-					value="#{accountController.accountVM.profile.contact.type}">
-					<f:selectItem itemValue="PERSO" itemLabel="Personnel" />
-					<f:selectItem itemValue="PRO" itemLabel="Professionnel" />
-				</h:selectOneMenu>
-			</div>
+							<p:outputLabel value="Nom" />
+							<p:inputText
+								value="#{accountController.accountVM.profile.lastName}"
+								required="true"
+								placeholder="#{loginController.getLoggedAccount().profile.lastName}" />
 
-			<div>
-				<h:outputLabel for="streetNumber">Numéro de Rue :</h:outputLabel>
-				<p:inputText id="streetNumberStep2"
-					value="#{accountController.accountVM.profile.address.streetNumber}"
-					required="true"
-					placeholder="#{loginController.getLoggedAccount().profile.address.streetNumber}" />
-			</div>
+							<p:outputLabel value="Email" />
+							<p:inputText value="#{accountController.accountVM.email}"
+								required="true"
+								placeholder="#{loginController.getLoggedAccount().profile.firstName}" />
 
-			<div>
-				<h:outputLabel for="streetName">Nom de Rue :</h:outputLabel>
-				<p:inputText id="streetNameStep2"
-					value="#{accountController.accountVM.profile.address.streetName}"
-					required="true"
-					placeholder="#{loginController.getLoggedAccount().profile.address.streetName}" />
-			</div>
+							<h:outputLabel for="birthDate">Date de naissance </h:outputLabel>
+							<input type="datetime-local" id="birthDateStep2" name="birthDate"
+								value="#{accountController.accountVM.profile.birthDate}"
+								required="true" />
 
-			<div>
-				<h:outputLabel for="postalCode">Code Postal :</h:outputLabel>
-				<p:inputText id="postalCodeStep2"
-					value="#{accountController.accountVM.profile.address.postalCode}"
-					required="true"
-					placeholder="#{loginController.getLoggedAccount().profile.address.postalCode}" />
-			</div>
+							<h:outputLabel for="phone">Téléphone </h:outputLabel>
+							<p:inputText id="phoneStep2"
+								value="#{accountController.accountVM.profile.contact.phone}"
+								required="true"
+								placeholder="#{loginController.getLoggedAccount().profile.contact.phone}" />
 
-			<div>
-				<h:outputLabel for="city">Ville :</h:outputLabel>
-				<p:inputText id="city"
-					value="#{accountController.accountVM.profile.address.city}"
-					required="true"
-					placeholder="#{loginController.getLoggedAccount().profile.address.city}" />
-			</div>
+							<h:outputLabel for="typeContact">Type de Contact </h:outputLabel>
+
+							<h:selectOneMenu id="typeContactStep2"
+								value="#{accountController.accountVM.profile.contact.type}">
+								<f:selectItem itemValue="PERSO" itemLabel="Personnel" />
+								<f:selectItem itemValue="PRO" itemLabel="Professionnel" />
+							</h:selectOneMenu>
 
 
 
-			<h:commandButton value="Mettre à jour"
-				action="#{accountController.updateAccount}" />
-		</h:form>
+							<h:outputLabel for="streetNumber">Numéro de Rue </h:outputLabel>
+							<p:inputText id="streetNumberStep2"
+								value="#{accountController.accountVM.profile.address.streetNumber}"
+								required="true"
+								placeholder="#{loginController.getLoggedAccount().profile.address.streetNulmber}" />
+
+							<h:outputLabel for="streetName">Nom de Rue </h:outputLabel>
+							<p:inputText id="streetNameStep2"
+								value="#{accountController.accountVM.profile.address.streetName}"
+								required="true"
+								placeholder="#{loginController.getLoggedAccount().profile.address.streetName}" />
+
+							<h:outputLabel for="postalCode">Code Postal </h:outputLabel>
+							<p:inputText id="postalCodeStep2"
+								value="#{accountController.accountVM.profile.address.postalCode}"
+								required="true"
+								placeholder="#{loginController.getLoggedAccount().profile.address.postalCode}" />
+
+							<h:outputLabel for="city">Ville </h:outputLabel>
+							<p:inputText id="city"
+								value="#{accountController.accountVM.profile.address.city}"
+								required="true"
+								placeholder="#{loginController.getLoggedAccount().profile.address.city}" />
+
+
+
+						</h:panelGrid>
+						<br />
+						<h:commandButton value="Mettre à jour"
+							action="#{accountController.updateAccount}" />
+					</p:panel>
+					</div>
+				</div>
+			</h:form>
+		</h:body>
+
 	</ui:define>
 
 </ui:composition>
+
+
 </html>

@@ -24,13 +24,14 @@
 			<div id="navLinks">
 				<p:menubar id="spaceMenuBar">
 					<p:menuitem class="link-menu" value="Accueil" outcome="index" />
-					<p:menuitem class="link-menu" value="Fonctionnalités" />
-					<p:menuitem class="link-menu" value="Nos clients"
-						outcome="spacesList" />
-					<p:menuitem class="link-menu" value="Nos offres" />
+
+					<p:menuitem class="link-menu" value="Fonctionnalités" outcome="PageFonctionnalites" />
+					<p:menuitem class="link-menu" value="Nos clients" outcome="spacesList" />
+					<p:menuitem class="link-menu" value="Nos offres"/>
+
 					<p:menuitem class="link-menu" value="Créer un espace"
 						outcome="spaceCreation" />
-					<p:menuitem class="link-menu" value="Contact" />
+					<p:menuitem class="link-menu" value="Contact" outcome="Contact"/>
 					<p:submenu class="link-menu" label="ADMINISTRATION PLATEFORME"
 						rendered="#{loginController.getLoggedAccount().role eq 'SUPER_ADMIN'}">
 						<p:menuitem value="Configurer la plateforme"
