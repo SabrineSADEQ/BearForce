@@ -48,6 +48,8 @@ public class SpaceController implements Serializable {
 
 	@Inject
 	private AccountDao accountDao;
+	
+	private EntityManager entityManager;
 
 	@PostConstruct
 	public void init() {
@@ -83,20 +85,21 @@ public class SpaceController implements Serializable {
 	public void createSpace() {
 
 		Long spaceId = spaceDao.createSpace(spaceViewModel).getId();
-		injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(spaceId);
+		//injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(spaceId);
 		spaceViewModel = new SpaceViewModel();
 		redirectToSpace(spaceId);
 	}
 	
-	public void injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(long spaceId) {
-
-		
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
-		logged.setGymId(spaceId);
-
-		//accountDao.update(logged);
-	}
+//	public void injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(long spaceId) {
+//
+//		
+//		LoginController controller = new LoginController();
+//		Account logged = controller.getLoggedAccount();
+//		Account account = entityManager.find(Account.class, logged.getId());
+//		account.setGymId(spaceId);
+//		entityManager.merge(account);
+//		
+//	}
 
 	public void save() {
 		FacesMessage msg = new FacesMessage("Espace de " + spaceViewModel.getSpaceName());

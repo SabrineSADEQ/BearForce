@@ -87,6 +87,7 @@ public class AccountDao {
 			existingAccount.setGymId(updatedAccount.getGymId());
 			// Enregistrer les modifications dans la base de données
 			entityManager.merge(existingAccount);
+			entityManager.flush();
 		} else {
 			System.out.println("Compte introuvable pour l'ID : " + updatedAccount.getId());
 		}
