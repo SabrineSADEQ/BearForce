@@ -105,6 +105,9 @@ public class SpaceDao {
 			oldSpace.getVisualIdentity().setFirstColor(updatedSpace.getVisualIdentity().getFirstColor());
 			oldSpace.getVisualIdentity().setSecondColor(updatedSpace.getVisualIdentity().getSecondColor());
 			oldSpace.getVisualIdentity().setThirdColor(updatedSpace.getVisualIdentity().getThirdColor());
+			oldSpace.getVisualIdentity().setGymLogoPath(updatedSpace.getVisualIdentity().getGymLogoPath());
+			oldSpace.getVisualIdentity().setGymBannerPath(updatedSpace.getVisualIdentity().getGymBannerPath());
+			
 			//Save modifications
 			em.merge(oldSpace);
 			

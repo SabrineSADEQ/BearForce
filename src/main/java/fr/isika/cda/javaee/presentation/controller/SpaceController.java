@@ -193,9 +193,8 @@ public class SpaceController implements Serializable {
 				oldSpace.getVisualIdentity().setFirstColor(spaceViewModel.getFirstColor());
 				oldSpace.getVisualIdentity().setSecondColor(spaceViewModel.getSecondColor());
 				oldSpace.getVisualIdentity().setThirdColor(spaceViewModel.getThirdColor());
-				
-				//TODO : 
-				//add images update
+				oldSpace.getVisualIdentity().setGymLogoPath(spaceViewModel.getGymLogoPath());
+				oldSpace.getVisualIdentity().setGymBannerPath(spaceViewModel.getGymBannerPath());
 				
 				// call the update method from spaceDao to persist in database
 				spaceDao.update(oldSpace);
