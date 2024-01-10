@@ -22,18 +22,19 @@ public class CourseDAO {
 	
 	public Course createCourse (CourseViewModel courseViewModel) {
 		Course courseBean = new Course();
-		Activity act = findActivityById(courseViewModel.getActivityId());
+		Activity act = activityDao.findActivityById(courseViewModel.getActivityId());
 		courseBean.setActivity(act);
 		courseBean.setStartDate(courseViewModel.getStartDate());
 		courseBean.setEndDate(courseViewModel.getEndDate());
 		courseBean.setNbPlaces(courseViewModel.getNbPlaces());
-		System.out.println(courseViewModel.getNbPlaces());
-		Profile trainer = findTrainerById(courseViewModel.getTrainerId());
+
+		Profile trainer = activityDao.findTrainerById(courseViewModel.getTrainerId());
 		courseBean.setTrainer(trainer);
 		entityManager.persist(courseBean);
 		entityManager.flush();
 		return courseBean;	
 	}
+	
 	
 	public void updateCourse(Course updateCourse, Long selectedActivity, Long selectedProfile) {
 		Course existingCourse = entityManager.find(Course.class, updateCourse.getId());
@@ -53,14 +54,6 @@ public class CourseDAO {
 				.setParameter("courseIdParam", courseToDeleteId)
 				.getSingleResult();
 		entityManager.remove(courseToDelete);
-	}
-
-	private Activity findActivityById(long activityId) {
-		return activityDao.findActivityById(activityId);
-	}
-	
-	private Profile findTrainerById(long trainerId) {
-		return activityDao.findTrainerById(trainerId);
 	}
 	
 	public void saveCourse(Course course) {
