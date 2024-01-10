@@ -11,7 +11,7 @@ public class MembershipViewModel {
 	
 	private String name;
 	private int price;
-	private int nbreOActivities;
+	private int nbrOfActivities;
 	private String description;
 	
 	private List<Subscription> subscriptionsList = new ArrayList<>() ;
@@ -42,11 +42,11 @@ public class MembershipViewModel {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int getNbreOActivities() {
-		return nbreOActivities;
+	public int getNbrOfActivities() {
+		return nbrOfActivities;
 	}
-	public void setNbreOActivities(int nbreOActivities) {
-		this.nbreOActivities = nbreOActivities;
+	public void setNbreOActivities(int nbrOfActivities) {
+		this.nbrOfActivities = nbrOfActivities;
 	}
 	public String getDescription() {
 		return description;

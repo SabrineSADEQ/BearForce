@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
@@ -43,6 +44,18 @@ public class AccountController implements Serializable {
 	@PostConstruct
 	public void init() {
 		System.out.println("AccountController bean initialized!");
+		
+		// Check if user is in session
+		HttpSession session = SessionUtils.getSession();
+		Account account = (Account) session.getAttribute("loggedInUser");
+		if(account != null) {
+			// TODO : charger toutes les infos du compte connecté et les copier dans le accountVM, coimme ci-dessous
+			accountVM.getProfile().setFirstName(account.getProfile().getFirstName());
+			accountVM.getProfile().setPictureUrl(account.getProfile().getPictureUrl());
+		} else {
+			System.out.println("Attention ! pas de compte dans la session");
+		}
+		
 	}
 
     public String addAccount() {
@@ -119,7 +132,7 @@ public class AccountController implements Serializable {
     			existingAccount.getProfile().setContact(accountVM.getProfile().getContact());
     			existingAccount.getProfile().setAddress(accountVM.getProfile().getAddress());
     			existingAccount.getProfile().setProfesionalDetails(accountVM.getProfile().getProfesionalDetails());
-    			
+    			existingAccount.setGymId(accountVM.getGymId());
                 // Update other account attributes if needed
                 existingAccount.setEmail(accountVM.getEmail());
 

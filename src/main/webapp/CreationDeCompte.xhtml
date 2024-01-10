@@ -147,8 +147,8 @@
 
 
 			 <h:commandButton value="Previous" action="#{accountController.previousWizardStep}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only next-button" />
-        <h:commandButton value="Next" rendered="#{accountController.accountVM.role eq 'ADHERENT'}" action="#{accountController.nextWizardStep}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only next-button" />
-        <h:commandButton value="Finish" action="#{accountController.finishWizard}" rendered="#{accountController.accountVM.role ne 'ADHERENT'}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only next-button" />
+        <h:commandButton value="Next" action="#{accountController.nextWizardStep}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only next-button" />
+       
         <h:messages globalOnly="true" />
 		</h:form>
 

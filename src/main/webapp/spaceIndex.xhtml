@@ -5,14 +5,27 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/spaceGeneralViewsTemplate.xhtml">
+<ui:composition
+	template="WEB-INF/templates/spaceGeneralViewsTemplate.xhtml">
+
+	<ui:define name="titleValue">Mon espace</ui:define>
+
+	<ui:define name="content">
 	
-		<ui:define name="titleValue">Mon espace</ui:define>
-		<ui:define name="content">
-			<h1>Bienvenue sur votre espace </h1>
 		
-		</ui:define>
-			
-	</ui:composition>
+<h1>Bienvenue sur votre espace</h1>
+
+		<h:outputScript library="javax.faces" name="jsf.js" />
+		<h:outputScript name="js/userColors.js" />
+		<h:form>
+			<!-- Invoke the method to fetch user colors when the page loads -->
+			<h:commandButton action="#{spaceVisualController.fetchSpaceColors(34)}"
+				style="display:none;">
+				<f:ajax execute="@this" render="@this" />
+			</h:commandButton>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
 
 </html>

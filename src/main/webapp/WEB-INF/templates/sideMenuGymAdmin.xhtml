@@ -29,9 +29,11 @@
 			icon="pi pi-calendar-plus" />
 		<p:menuitem value="Equipements" outcome="crudEquipment"
 			icon="pi pi-wrench" />
-		<p:menuitem value="Abonnements" outcome="subscription"
+			<p:menuitem value="Réserver un cours" outcome="crudBooking"
+			icon="pi pi-time" />
+		<p:menuitem value="Abonnements" outcome="CreateMembership"
 			icon="pi pi-shopping-cart" />
-		<p:menuitem value="Mon espace" icon="pi pi-palette" />
+		<p:menuitem value="Modifier mon espace" icon="pi pi-palette" outcome="spaceUpdate" />
 		<p:menuitem value="Mon compte" outcome="MonCompte" icon="pi pi-cog" />
 		<p:menuitem class="logout-button" value="Déconnexion"
 			action="#{loginController.logout()}" icon="pi pi-sign-out" />
