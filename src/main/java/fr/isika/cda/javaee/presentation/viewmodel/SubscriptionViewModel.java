@@ -2,6 +2,12 @@ package fr.isika.cda.javaee.presentation.viewmodel;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author Bitjoka Vincent
+ *
+ * @param <DateTime>
+ */
 public class SubscriptionViewModel<DateTime> {
 	private Long id;
 	private DateTime startDate;

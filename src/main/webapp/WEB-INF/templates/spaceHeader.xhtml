@@ -29,8 +29,10 @@
 						<p:menuitem value="Nos équipements" />
 					</p:submenu>
 					<p:menuitem class="link-menu" value="Planning des cours" />
-					<p:menuitem class="link-menu" value="Abonnements"
-						outcome="listeMembership" />
+					<p:menuitem class="link-menu" value="Abonnements" 
+						outcome="listeMembership.xhtml?faces-redirect=true&amp;spaceId=#{spaceController.loadedSpace.id}"
+						/>
+
 					<p:menuitem class="link-menu" value="Contact"
 						outcome="spaceContact" />
 

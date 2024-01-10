@@ -92,6 +92,7 @@ public class DataInitializer {
 		AccountViewModel Adherent = new AccountViewModel();
 		Adherent.setEmail("adherent");
 		Adherent.setPassword("adherent");
+		Adherent.setGymId((long) 34);
 		Adherent.setRole(Role.ADHERENT);
 		Adherent.setGymId((long) 45);
 		Profile profileAdherent = new Profile();
@@ -113,7 +114,9 @@ public class DataInitializer {
 		gestionnaire.setEmail("gestionnaire");
 		gestionnaire.setPassword("gestionnaire");
 		gestionnaire.setRole(Role.GESTIONNAIRE);
+
 		gestionnaire.setGymId((long) 45);
+
 		Profile profileGestionnaire = new Profile();
 		profileGestionnaire.setFirstName("Jean");
 		profileGestionnaire.setLastName("Dupont");
@@ -284,6 +287,7 @@ public class DataInitializer {
 		subscription.setMembership(membership);
 		subscriptionDao.saveSubscription(subscription);
 
+
 		AccountViewModel Adherent2 = new AccountViewModel();
 		Adherent2.setEmail("leroymerlin@gmail.com");
 		Adherent2.setPassword("adherent2");
@@ -313,5 +317,6 @@ public class DataInitializer {
 		accountDao.createAccount(Adherent3);
 
 	}
+
 
 }
