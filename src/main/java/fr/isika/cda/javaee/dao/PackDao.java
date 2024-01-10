@@ -23,23 +23,37 @@ public class PackDao implements PackInterface {
 
 	@Override
 	public Pack getPack(Long id) {
+
 		return entityManager.find(Pack.class, id);
 	}
 
+	
+
 	@Override
 	public List<Pack> getPacks() {
+
 		return entityManager.createQuery("SELECT p FROM Pack p", Pack.class).getResultList();
+
+
 	}
 
 	@Override
 	public List<Pack> getPacksWithSubscriptions() {
+
 		return entityManager.createQuery("SELECT p FROM Pack p LEFT JOIN FETCH p.subscriptions", Pack.class)
 				.getResultList();
+
+
+		
 	}
 
 	@Override
 	public void createPack(Pack pack) {
+
+
 		entityManager.persist(pack);
+
+
 	}
 
 }

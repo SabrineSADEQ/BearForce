@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition
+	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+
+	<ui:define name="titleValue">Modifier mon espace</ui:define>
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="spaceStyle.css" />
+		<div class="subcontent">
+			<h1 class="titleH1">Modifier mon espace</h1>
+			<div class="update-space-container">
+				<h:form>
+					<div class="update-text-content">
+						<div class="field grid">
+							<p:outputLabel for="name" styleClass="col-fixed"
+								style="width:100px" value="Nom de la salle " />
+							<div class="col">
+								<p:inputText id="name"
+									value="#{spaceController.spaceViewModel.spaceName}"
+									required="true" placeholder="Nom de votre salle" />
+							</div>
+						</div>
+						<div class="field grid">
+							<p:outputLabel for="motto" styleClass="col-fixed"
+								style="width:100px" value="Slogan " />
+							<div class="col">
+								<p:inputTextarea id="motto" cols="60" rows="1"
+									value="#{spaceController.spaceViewModel.motto}" required="true"
+									placeholder="Slogan" />
+							</div>
+						</div>
+						<div class="field grid">
+							<p:outputLabel for="description" styleClass="col-fixed"
+								style="width:100px" value="Description " />
+							<div class="col">
+								<p:inputTextarea id="description" cols="60" rows="3"
+									value="#{spaceController.spaceViewModel.description}"
+									required="true"
+									placeholder="Description affichée sur la page d'accueil">
+								</p:inputTextarea>
+							</div>
+						</div>
+						<div class="field grid">
+							<p:outputLabel for="email" styleClass="col-fixed"
+								style="width:100px" value="Email de la salle " />
+							<div class="col">
+								<p:inputText id="email"
+									value="#{spaceController.spaceViewModel.contactInfo.email}"
+									required="true" placeholder="Email" />
+							</div>
+						</div>
+
+						<div class="field grid">
+							<p:outputLabel for="phone" styleClass="col-fixed"
+								style="width:100px" value="Téléphone " />
+							<div class="col">
+								<p:inputText id="phone"
+									value="#{spaceController.spaceViewModel.contactInfo.phone}"
+									required="true" placeholder="Téléphone" />
+							</div>
+						</div>
+					</div>
+					<div class="update-visual-content">
+
+						<div>
+							<h:outputLabel for="firstColor">Couleur principale</h:outputLabel>
+							<p:colorPicker id="firstColorPicker" theme="polaroid"
+								formatToggle="true"
+								value="#{spaceController.spaceViewModel.firstColor}"
+								clearButton="true" closeButton="true" alpha="false">
+							</p:colorPicker>
+						</div>
+
+						<div>
+							<h:outputLabel for="secondColor">Couleur secondaire</h:outputLabel>
+							<p:colorPicker id="secondColor" theme="polaroid"
+								formatToggle="true"
+								value="#{spaceController.spaceViewModel.secondColor}"
+								clearButton="true" closeButton="true" alpha="false"
+								forceAlpha="true">
+							</p:colorPicker>
+						</div>
+						<div>
+							<h:outputLabel for="thirdColor">Couleur tertiaire</h:outputLabel>
+							<p:colorPicker id="thirdColor" theme="polaroid"
+								formatToggle="true"
+								value="#{spaceController.spaceViewModel.thirdColor}"
+								clearButton="true" closeButton="true" alpha="false"
+								forceAlpha="true">
+							</p:colorPicker>
+						</div>
+
+						<div>
+
+							<h:outputLabel for="logo">Logo</h:outputLabel>
+							<p:graphicImage library="images" height="100px"
+								name="#{spaceController.spaceViewModel.gymLogoPath}" />
+							<p:fileUpload listener="#{spaceController.uploadFileLogo}"
+								styleClass="w-100" mode="advanced" dragDropSupport="false" />
+						</div>
+						<div>
+
+							<h:outputLabel for="banner">Bannière</h:outputLabel>
+							<p:fileUpload listener="#{spaceController.uploadFileBanner}"
+								styleClass="w-100" mode="advanced" dragDropSupport="false" />
+							<p:graphicImage library="images" width="400px"
+								name="#{spaceController.spaceViewModel.gymBannerPath}" />
+						</div>
+
+					</div>
+
+					<p:commandButton value="Modifier mon espace"
+						action="#{spaceController.updateSpace}" />
+				</h:form>
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
