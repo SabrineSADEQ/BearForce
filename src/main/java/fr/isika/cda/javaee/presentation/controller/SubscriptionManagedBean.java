@@ -17,11 +17,20 @@ import fr.isika.cda.javaee.presentation.viewmodel.EquipmentViewModel;
 import fr.isika.cda.javaee.presentation.viewmodel.MembershipViewModel;
 import fr.isika.cda.javaee.presentation.viewmodel.SubscriptionViewModel;
 
+/**
+ * Ce bean gère les opérations liées aux souscriptions de application Java EE.
+ * Il utilise l'injection de dépendances pour accéder au DAO (SubscriptionDao),
+ * interagit avecles beans (MembershipManagedBean et AccountManagedBean), et
+ * propose des méthodes pour effectuer des opérations telles que l'inscription
+ * et la récupération de la liste des souscriptions.
+ * 
+ *
+ * @author Bitjoka Vincent
+ *
+ */
 @Named
 public class SubscriptionManagedBean implements Serializable {
 
-
- 
 	private LocalTime startDate;
 	private LocalTime endDate;
 	private boolean autoRenewal;
@@ -32,7 +41,7 @@ public class SubscriptionManagedBean implements Serializable {
 	private AccountManagedBean accountManagedBean;
 	@Inject
 	private SubscriptionDao subscriptionDao;
-	
+
 	public List<Subscription> subscriptionList() {
 		return subscriptionDao.getAllSubscriptions();
 	}
@@ -78,7 +87,6 @@ public class SubscriptionManagedBean implements Serializable {
 			Subscription subscription = new Subscription();
 			subscription.setMembership(membership);
 			account.setSubscription(subscription);
-			//subscription.setAccount(account);
 
 			SubscriptionDao subscriptionDao = new SubscriptionDao();
 			subscriptionDao.saveSubscription(subscription);
@@ -125,11 +133,10 @@ public class SubscriptionManagedBean implements Serializable {
 		this.accountManagedBean = accountManagedBean;
 	}
 
-public String paymentSubscription() {
-		
-		
-		return "pagePayment.xhtml?faces-redirect=true";	
-		
+	public String paymentSubscription() {
+
+		return "pagePayment.xhtml?faces-redirect=true";
+
 	}
 
 }
