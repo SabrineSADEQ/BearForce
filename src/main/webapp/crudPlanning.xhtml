@@ -17,9 +17,9 @@
 				<p:schedule id="schedule"
 					value="#{planningCourseController.eventModel}"
 					widgetVar="myschedule">
-					<p:ajax event="dateSelect" listener="#{planningCourseController.onDateSelect}" 
-						update="eventDetails"
-                    	oncomplete="PF('eventDialog').show();"/>
+					<p:ajax event="dateSelect"
+						listener="#{planningCourseController.onDateSelect}"
+						update="eventDetails" oncomplete="PF('eventDialog').show();" />
 					<p:ajax event="eventSelect"
 						listener="#{planningCourseController.onEventSelect}"
 						update="eventDetails" oncomplete="PF('eventDialog').show();" />
@@ -30,7 +30,8 @@
 					<h:panelGrid id="eventDetails" columns="2" cellpadding="7">
 						<p:outputLabel for="update-activity" value="Activité concernée : " />
 						<p:selectOneMenu id="update-activity"
-							value="#{planningCourseController.selectedActivityId}" style="min-width: 14rem">
+							value="#{planningCourseController.selectedActivityId}"
+							style="min-width: 14rem">
 							<f:selectItems itemLabel="Sélectionnez une activité"
 								itemValue="null" noSelectionOption="true" />
 							<f:selectItems
@@ -49,9 +50,9 @@
 							pattern="dd/MM/yyyy HH:mm" showOn="button" required="true" />
 
 						<p:outputLabel for="update-nb-places">Nb. Places</p:outputLabel>
-						<p:inputText id="update-nb-places" 
-							value="#{planningCourseController.nbPlacesCount}"/>
-						
+						<p:inputText id="update-nb-places"
+							value="#{planningCourseController.nbPlacesCount}" />
+
 						<p:outputLabel for="update-trainer" value="Coach assigné : " />
 						<p:selectOneMenu id="update-trainer"
 							value="#{planningCourseController.selectedCoachProfileId}"

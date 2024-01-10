@@ -21,9 +21,13 @@ import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
 import fr.isika.cda.javaee.dao.ActivityDao;
+import fr.isika.cda.javaee.dao.BookingDao;
 import fr.isika.cda.javaee.dao.CourseDAO;
+import fr.isika.cda.javaee.dao.accounts.AccountDao;
+import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
+import fr.isika.cda.javaee.entity.gymspace.business.Booking;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
 
 @Named
@@ -40,6 +44,12 @@ public class PlanningCourseController implements Serializable {
 	
 	@Inject
 	private ActivityDao activityDao;
+	
+	@Inject
+	private BookingDao bookingDao;
+	
+	@Inject
+	private AccountDao accountDao;
 	
 	/*
 	 * Schedule properties
@@ -84,6 +94,7 @@ public class PlanningCourseController implements Serializable {
 	 */
 	private Long selectedActivityId;
 	private Long selectedCoachProfileId;
+	private Long selectedCourseId;
 	private Integer nbPlacesCount;
 	
 	
@@ -147,6 +158,22 @@ public class PlanningCourseController implements Serializable {
 		refreshModel();
 		event = new DefaultScheduleEvent<>();
 
+	}
+	
+	public void bookingEvent() {
+		addBooking();
+		refreshModel();
+		event = new DefaultScheduleEvent<>();
+	}
+	
+	private void addBooking() {	
+		Booking bookingToCreate = new Booking();
+		Course courseToBook = courseDao.getCourseByIdJoinActivity(Long.valueOf(event.getId()));
+		//A ADAPTER !!!
+		Account bookingAccount = accountDao.getAccountById(Long.valueOf(1));
+		bookingToCreate.setAccount(bookingAccount);
+		bookingToCreate.setCourse(courseToBook);		
+		bookingDao.saveBooking(bookingToCreate);	
 	}
 
 	private void createNewEvent() {	
@@ -511,6 +538,16 @@ public class PlanningCourseController implements Serializable {
 	public void setNbPlacesCount(Integer nbPlacesCount) {
 		this.nbPlacesCount = nbPlacesCount;
 	}
+
+	public Long getSelectedCourseId() {
+		return selectedCourseId;
+	}
+
+	public void setSelectedCourseId(Long selectedCourseId) {
+		this.selectedCourseId = selectedCourseId;
+	}
 	
+	
+
 }
 

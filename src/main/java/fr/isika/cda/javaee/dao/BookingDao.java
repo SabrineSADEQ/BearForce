@@ -3,11 +3,14 @@ package fr.isika.cda.javaee.dao;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.print.attribute.standard.DialogOwner;
 
+import fr.isika.cda.javaee.account.controller.LoginController;
 import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.gymspace.business.Booking;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
 import fr.isika.cda.javaee.presentation.viewmodel.BookingViewModel;
+import fr.isika.cda.javaee.utils.SessionUtils;
 
 @Stateless
 public class BookingDao {
@@ -17,7 +20,8 @@ public class BookingDao {
 	
 	public Booking createBooking (BookingViewModel bookingViewModel) {
 		Booking bookingBean = new Booking();
-		Account acnt = findAccountById(bookingViewModel.getAccountId());
+		Account acnt = findAccountById(1);
+		//Account acnt = findAccountById(bookingViewModel.getAccountId());
 		bookingBean.setAccount(acnt);
 		Course crs = findCourseById(bookingViewModel.getCourseId());
 		bookingBean.setCourse(crs);
@@ -32,6 +36,10 @@ public class BookingDao {
 				.setParameter("bookingIdParam", bookingToDeleteId)
 				.getSingleResult();
 		entityManager.remove(bookingToDelete);
+	}
+	
+	public void saveBooking(Booking booking) {
+		entityManager.persist(booking);
 	}
 	
 	public Account findAccountById(long accountId) {
