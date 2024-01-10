@@ -8,7 +8,12 @@ import fr.isika.cda.javaee.entity.gymspace.Membership;
 
 import java.util.List;
 /**
- * 
+ * Cette classe gère l'accès aux données pour l'entité Membership dans notre application.
+ * Les principales fonctionnalités incluent la sauvegarde, la mise à jour, la suppression, 
+ * la récupération par ID et la récupération de tous les abonnements en utilisant JPA.
+ * La classe utilise l'injection d'EntityManager pour interagir avec la base de données et bénéficie de
+ *  la gestion automatique des transactions dans le contexte Java EE
+ *  
  * @author Bitjoka Vincent
  *
  */
@@ -41,7 +46,12 @@ import java.util.List;
 	    public List<Membership> getAllMemberships() {
 	        return entityManager.createQuery("SELECT m FROM Membership m", Membership.class).getResultList();
 	    }
+
+		public void addMembership(Membership newMembership) {
+			entityManager.persist(newMembership);
+			
+		}
 	    
-	    // Ajout possible d'autres méthodes au besoin...
+	    
 	}
 

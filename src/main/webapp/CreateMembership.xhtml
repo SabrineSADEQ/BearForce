@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/spaceDashboardTemplate.xhtml">
+	<ui:define name="titleValue">Créer un Abonnement</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<div>
+			
+				<div class="card">
+					<h5>Créer un nouvel abonnement</h5>
+
+					<div class="field grid">
+						<p:outputLabel for="membershipName" styleClass="col-fixed"
+							style="width:100px" value="Nom de l'abonnement : " />
+						<div class="col">
+							<p:inputText id="membershipName"
+								value="#{membershipManagedBean.membershipViewModel.name}" />
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:outputLabel for="nbrOfActivities" styleClass="col-fixed"
+							style="width:100px" value="Nombre d'activités par semaine: " />
+						<div class="col">
+							<p:inputText id="nbrOfActivities"
+								value="#{membershipManagedBean.membershipViewModel.nbrOfActivities}">
+								<f:validateLongRange minimum="1" />
+							</p:inputText>
+						</div>
+					</div>
+					<br />
+
+					<div class="field grid">
+						<p:outputLabel for="price" styleClass="col-fixed"
+							style="width:100px" value="Prix : " />
+						<div class="col">
+							<p:inputText id="price"
+								value="#{membershipManagedBean.membershipViewModel.price}" />
+						</div>
+					</div>
+					<br />
+
+				
+
+					<div class="field grid">
+						<p:commandButton value="Créer un abonnement" update="@form"
+							action="#{membershipManagedBean.createMembership}"
+							icon="pi pi-check" styleClass="rounded-button ui-button-primary" />
+					</div>
+				</div>
+				<br />
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+
+</html>
