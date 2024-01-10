@@ -6,45 +6,68 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
-	<ui:define name="titleValue">Souscrire à un nouveau pack</ui:define>
+	<ui:define name="titleValue">Paiement de votre abonnement</ui:define>
 	<ui:define name="content">
 
- <h:head>
+		<h:head>
 			<h:outputStylesheet library="css" name="main/CssPayment.css" />
-</h:head>
+		</h:head>
+
+		<div class="body-platform">
+			<div class="content">
+				<h:form id="subscribeForm">
+					<h2>Informations de paiement</h2>
+
+					<h:panelGrid columns="3">
+
+						<h:outputLabel for="inputNom">Nom :</h:outputLabel>
+						<h:inputText id="inputNom" required="true" />
+						<br />
+
+						<h:outputLabel for="inputPrenom">Prénom :</h:outputLabel>
+						<h:inputText id="inputPrenom" required="true" />
+						<br />
+
+						<h:outputLabel for="inputNumeroCarte">Numéro de carte bancaire :</h:outputLabel>
+						<h:inputText id="inputNumeroCarte" required="true" />
+						<br />
+
+						<h:outputLabel for="inputDateExpiration">Date d'expiration :</h:outputLabel>
+						<h:inputText id="inputDateExpiration" required="true" />
+						<br />
+
+						<h:outputLabel for="inputCode">Code CVV :</h:outputLabel>
+						<h:inputSecret id="inputCode" required="true" />
+						<br />
+					</h:panelGrid>
+					
+					<input type="button" id="validate-button" onclick="PF('dlgPaiement').show()" value="Valider" />
+
+					<br />
+					<br />
+
+				</h:form>
+			</div>
+		</div>
+
+		<p:dialog header="Paiement réussi" widgetVar="dlgPaiement"
+			minHeight="40" width="350" showEffect="fade">
+			<h:form>
+				<h2>Paiement effectué avec succès!</h2>
+
+				<div class="img">
+					<p:graphicImage library="images" name="paymentSuccessful.png" />
+				</div>
+				<br />
+
+				<p:commandButton value=" Créer votre espace"
+					action="#{subscriptionManagementController.dirigeVersSpaceCreation()}" />
 
 
-    <h:form id="subscribeForm">
-        <h2>Informations de paiement</h2>
-        
-        <h:panelGrid columns="3">
-        
-        <h:outputLabel for="inputNom">Nom:</h:outputLabel>
-        <h:inputText id="inputNom"  required="true" />
-        <br/>
-        
-        <h:outputLabel for="inputPrenom">Prénom:</h:outputLabel>
-        <h:inputText id="inputPrenom"  required="true" />
-        <br/>
-        
-        <h:outputLabel for="inputNumeroCarte">Numéro de carte bancaire:</h:outputLabel>
-        <h:inputText id="inputNumeroCarte"  required="true" />
-        <br/>
-        
-        <h:outputLabel for="inputDateExpiration">Date d'expiration:</h:outputLabel>
-        <h:inputText id="inputDateExpiration"  required="true" />
-        <br/>
-        
-        <h:outputLabel for="inputCode">Code CVV:</h:outputLabel>
-        <h:inputSecret id="inputCode"  required="true" />
-        <br/>
-       </h:panelGrid>
-        
-        <h:commandButton value="Valider" action="#{subscriptionManagementController.confirmationPayment()}" />
-        <br/>
-        <br/>
-        
-    </h:form>
-</ui:define>
+			</h:form>
+
+		</p:dialog>
+
+	</ui:define>
 </ui:composition>
 </html>

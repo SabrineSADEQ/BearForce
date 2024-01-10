@@ -10,48 +10,49 @@
 
 	<ui:define name="titleValue">Nos clients</ui:define>
 	<ui:define name="content">
+		<div class="body-platform">
+			<div class="content">
+				<div class="card">
+					<p:carousel value="#{spaceController.getAllSpaces()}" var="space"
+						numVisible="3" numScroll="3">
+						<f:facet name="header">
+							<h1 class="titleH1">Nos clients</h1>
 
-		<div class="content">
-			<div class="card">
-				<p:carousel value="#{spaceController.getAllSpaces()}" var="space"
-					numVisible="3" numScroll="3">
-					<f:facet name="header">
-						<h1 class="titleH1">Nos clients</h1>
-
-					</f:facet>
-					<div class="product-item grow">
-						<div class="product-item-content">
-							<div class="mb-3">
-								<h:graphicImage library="images"
-									name="#{space.visualIdentity.gymLogoPath}"
-									styleClass="product-image" />
-							</div>
-							<div>
-								<h3 class="mb-1"
-									style="color : ##{space.visualIdentity.firstColor}">#{space.idGym.gymName}</h3>
-								<h4 class="mt-0 mb-3">
-									<h:outputText
-										value="#{space.visualIdentity.spaceTextContent.motto}">
-									</h:outputText>
-								</h4>
-								<h5>#{space.idGym.adminInfoGym.location.city}</h5>
-								<!-- 								<div class="descriptionSpan"> -->
-								<!-- 									#{space.visualIdentity.spaceTextContent.description}</div>  -->
-								<!-- 									<br /> -->
-								<div class="mt-5">
-									<h:form id="viewSpaceForm">
-										<p:commandButton icon="pi pi-search"
-											styleClass="rounded-button mr-2"
-											action="#{spaceController.redirectToSpace(space.id)}" />
-									</h:form>
+						</f:facet>
+						<div class="product-item grow">
+							<div class="product-item-content">
+								<div class="mb-3">
+									<h:graphicImage library="images"
+										name="#{space.visualIdentity.gymLogoPath}"
+										styleClass="product-image" />
+								</div>
+								<div>
+									<h3 class="mb-1"
+										style="color : ##{space.visualIdentity.firstColor}">#{space.idGym.gymName}</h3>
+									<h4 class="mt-0 mb-3">
+										<h:outputText
+											value="#{space.visualIdentity.spaceTextContent.motto}">
+										</h:outputText>
+									</h4>
+									<h5>#{space.idGym.adminInfoGym.location.city}</h5>
+									<!-- 								<div class="descriptionSpan"> -->
+									<!-- 									#{space.visualIdentity.spaceTextContent.description}</div>  -->
+									<!-- 									<br /> -->
+									<div class="mt-5">
+										<h:form id="viewSpaceForm">
+											<p:commandButton icon="pi pi-search"
+												styleClass="rounded-button mr-2"
+												action="#{spaceController.redirectToSpace(space.id)}" />
+										</h:form>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-				</p:carousel>
+					</p:carousel>
+				</div>
+
+
 			</div>
-
-
 		</div>
 	</ui:define>
 

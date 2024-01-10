@@ -54,6 +54,13 @@ body {
     height: 100%;
 }
 
+.contentSpaceIndex{
+	 flex: 1;
+	 padding-bottom: 20px;
+    margin-bottom:50px;
+    box-sizing: border-box;
+}
+
 .subcontent {
     flex: 1;
     padding-bottom: 20px;
