@@ -15,10 +15,7 @@
 <h:body>
 	<div class="header">
 		<div class="left-container">
-			<div class="logoContainer">
-					LOGO
-
-			</div>
+			<div class="logoContainer">LOGO</div>
 			<!-- Burger Menu Button for small screens 
         <p:commandButton id="burgerMenu" icon="pi pi-bars"
             styleClass="burger-menu p-d-md-none" />-->
@@ -35,22 +32,25 @@
 					<p:menuitem class="link-menu" value="Abonnements" 
 						outcome="listeMembership.xhtml?faces-redirect=true&amp;spaceId=#{spaceController.loadedSpace.id}"
 						/>
+
 					<p:menuitem class="link-menu" value="Contact"
 						outcome="spaceContact" />
 
 				</p:menubar>
-				<p:button class="rightButton" value="Tableau de bord"
-					outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
-					iconPos="right"
-					rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
-				<p:button class="rightButton" value="Tableau de bord"
-					outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
-					iconPos="right"
-					rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
-				<p:button class="rightButton" value="Mon espace personnel"
-					outcome="#{spaceController.redirectToSpace(loginController.loggedAccount.gymId)}" icon="pi pi-chevron-right"
-					iconPos="right"
-					rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
+				<h:form>
+					<p:button class="rightButton" value="Tableau de bord"
+						outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
+						iconPos="right"
+						rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
+					<p:button class="rightButton" value="Tableau de bord"
+						outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
+						iconPos="right"
+						rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
+					<p:button class="rightButton" value="Mon espace personnel"
+						outcome="#{spaceController.redirectToSpace(loginController.loggedAccount.gymId)}"
+						icon="pi pi-chevron-right" iconPos="right"
+						rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
+				</h:form>
 			</div>
 		</div>
 		<!-- Login and logout buttons depending on the connexion status of the user -->
@@ -69,33 +69,43 @@
 			</h:form>
 			<p:button id="BF-button" icon="pi pi-chevron-right" iconPos="right"
 				value="BearForce" outcome="index" />
-				
+
 			<!-- Login pop up -->
-			<p:dialog header="Connexion" widgetVar="dlg3" minHeight="40" width="350"
-				showEffect="fade">
-				<p class="m-0">
-					<h:form>
+			<h:form>
 
-						<div>
-							<h:outputLabel for="email">Email</h:outputLabel>
-							<h:inputText id="email"
-								value="#{loginController.accountVM.email}" required="true" />
-						</div>
+				<p:dialog header="Connexion" widgetVar="dlg3" minHeight="40"
+					width="350" showEffect="fade">
 
-						<div>
-							<h:outputLabel for="password">Mot de passe</h:outputLabel>
-							<h:inputSecret id="password"
-								value="#{loginController.accountVM.password}" required="true" />
-						</div>
+					<p class="m-0">
+					<div
+						style="display: flex; flex-direction: column; margin-bottom: 10px;">
+						<h:outputLabel for="email">Email</h:outputLabel>
+						<h:inputText id="email" value="#{loginController.accountVM.email}"
+							required="true" />
+					</div>
 
-						<h:commandButton value="Login"
+					<div
+						style="display: flex; flex-direction: column; margin-bottom: 10px;">
+						<h:outputLabel for="password">Mot de passe</h:outputLabel>
+						<h:inputSecret id="password"
+							value="#{loginController.accountVM.password}" required="true" />
+					</div>
+
+					<f:facet name="footer">
+						<p:commandButton value="Me connecter"
 							action="#{loginController.validateAccount}" />
-					</h:form>
-				</p>
-				<f:facet name="footer">
-					<p:commandButton type="button" value="Se connecter" action="#{loginController.validateAccount}" style="width:8rem" />
-				</f:facet>
-			</p:dialog>
+
+					</f:facet>
+					<f:facet name="footer">
+						<p:commandButton value="Créer un compte"
+							action="#{loginController.redirectToCreateAccount}" />
+					</f:facet>
+
+
+					</p>
+
+				</p:dialog>
+			</h:form>
 		</div>
 	</div>
 

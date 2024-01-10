@@ -17,7 +17,7 @@ public class SessionUtils {
 
     public static HttpSession getSession() {
     	HttpSession session =  (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-      
+
     	return session;
     }
 
@@ -29,7 +29,7 @@ public class SessionUtils {
     // Retrieving user object from session
     public static Account getAccount() {
     Account account=(Account) getSession().getAttribute(ADHERENT);
-    System.out.println(account);
+
         return account;
     }
 }
