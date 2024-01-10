@@ -69,31 +69,41 @@
 				value="BearForce" outcome="index" />
 				
 			<!-- Login pop up -->
-			<p:dialog header="Connexion" widgetVar="dlg3" minHeight="40" width="350"
-				showEffect="fade">
-				<p class="m-0">
-					<h:form>
+			<h:form>
 
-						<div>
-							<h:outputLabel for="email">Email</h:outputLabel>
-							<h:inputText id="email"
-								value="#{loginController.accountVM.email}" required="true" />
-						</div>
+				<p:dialog header="Connexion" widgetVar="dlg3" minHeight="40"
+					width="350" showEffect="fade">
 
-						<div>
-							<h:outputLabel for="password">Mot de passe</h:outputLabel>
-							<h:inputSecret id="password"
-								value="#{loginController.accountVM.password}" required="true" />
-						</div>
+					<p class="m-0">
+					<div
+						style="display: flex; flex-direction: column; margin-bottom: 10px;">
+						<h:outputLabel for="email">Email</h:outputLabel>
+						<h:inputText id="email" value="#{loginController.accountVM.email}"
+							required="true" />
+					</div>
 
-						<h:commandButton value="Login"
+					<div
+						style="display: flex; flex-direction: column; margin-bottom: 10px;">
+						<h:outputLabel for="password">Mot de passe</h:outputLabel>
+						<h:inputSecret id="password"
+							value="#{loginController.accountVM.password}" required="true" />
+					</div>
+
+					<f:facet name="footer">
+						<p:commandButton value="Me connecter"
 							action="#{loginController.validateAccount}" />
-					</h:form>
-				</p>
-				<f:facet name="footer">
-					<p:commandButton type="button" value="Se connecter" action="#{loginController.validateAccount}" style="width:8rem" />
-				</f:facet>
-			</p:dialog>
+
+					</f:facet>
+					<f:facet name="footer">
+						<p:commandButton value="Créer un compte"
+							action="#{loginController.redirectToCreateAccount}" />
+					</f:facet>
+
+
+					</p>
+
+				</p:dialog>
+			</h:form>
 		</div>
 	</div>
 
