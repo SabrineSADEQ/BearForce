@@ -51,6 +51,7 @@ public class MembershipManagedBean implements Serializable {
 		this.memberships = memberships;
 	}
 
+
 	@PostConstruct
     public void init() {
         
@@ -59,6 +60,7 @@ public class MembershipManagedBean implements Serializable {
     public List<Membership> getMemberships() {
         
         memberships = membershipDao.getAllMemberships();
+
         return memberships;
     }
 

@@ -119,7 +119,7 @@ public class AccountController implements Serializable {
     			existingAccount.getProfile().setContact(accountVM.getProfile().getContact());
     			existingAccount.getProfile().setAddress(accountVM.getProfile().getAddress());
     			existingAccount.getProfile().setProfesionalDetails(accountVM.getProfile().getProfesionalDetails());
-    			
+    			existingAccount.setGymId(accountVM.getGymId());
                 // Update other account attributes if needed
                 existingAccount.setEmail(accountVM.getEmail());
 
