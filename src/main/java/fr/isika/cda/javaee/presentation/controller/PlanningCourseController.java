@@ -22,36 +22,28 @@ import org.primefaces.model.ScheduleModel;
 
 import fr.isika.cda.javaee.dao.ActivityDao;
 import fr.isika.cda.javaee.dao.CourseDAO;
-
-import fr.isika.cda.javaee.dao.accounts.AccountDao;
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
-import fr.isika.cda.javaee.presentation.viewmodel.CourseViewModel;
-import fr.isika.cda.javaee.utils.SessionUtils;
 
 @Named
 @ViewScoped
 public class PlanningCourseController implements Serializable {
 
 	private static final long serialVersionUID = -160397842934902381L;
-
+	
+	/*
+	 * Dependencies
+	 */
 	@Inject
 	private CourseDAO courseDao;
 	
-	Activity activity = new Activity();
+	@Inject
+	private ActivityDao activityDao;
 	
-	//private CourseViewModel courseViewModel = new CourseViewModel();
-	//private Course updateCourse = new Course();
-	private Long selectedActivityId;
-	private Long selectedCoachProfileId;
-	
-
-	@PostConstruct
-	private void init() {
-		refreshModel();
-	}
-
+	/*
+	 * Schedule properties
+	 */
 	private ScheduleModel eventModel;
 	private ScheduleEvent<?> event = new DefaultScheduleEvent<>();
 	private String serverTimeZone = ZoneId.systemDefault().toString();
@@ -86,6 +78,19 @@ public class PlanningCourseController implements Serializable {
 	private String columnHeaderFormat = "";
 	private String view = "timeGridWeek";
 	private String height = "auto";
+	
+	/*
+	 * View props
+	 */
+	private Long selectedActivityId;
+	private Long selectedCoachProfileId;
+	private Integer nbPlacesCount;
+	
+	
+	@PostConstruct
+	private void init() {
+		refreshModel();
+	}
 
 	//******************************************************************************************
 	private void refreshModel() {
@@ -105,29 +110,11 @@ public class PlanningCourseController implements Serializable {
 	 * 
 	 * @return the courses list (:List<Course>)
 	 */
-	public List<Course> getAllCourses() {
+	private List<Course> getAllCourses() {
 		return courseDao.getAllCoursesWithActivities();
 	}
 
-//	private void refreshCoachModel() {
-//		eventModel = new DefaultScheduleModel();
-//		List<Course> courses = getAllCoachCourses();
-//		for (Course c : courses) {
-//			transformCoursetoEvent(c);
-//		}
-//	}
-
-	/**
-	 * Get all the courses to come, linked to a specific coach of the current
-	 * session space.
-	 * 
-	 * @return the courses list (:List<Course>)
-	 */
-//	public List<Course> getAllCoachCourses() {
-//		return courseDao.();
-//	}
-
-	private void transformCoursetoEvent(Course course) {
+	private DefaultScheduleEvent<?> transformCoursetoEvent(Course course) {
 		DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
 				.id(String.valueOf(course.getId()))
 				.title(course.getActivity().getName())
@@ -135,13 +122,11 @@ public class PlanningCourseController implements Serializable {
 				.endDate(course.getEndDate())
 				.borderColor("orange")
 				.build();
+		
 		eventModel.addEvent(event);
+		return event;
 	}
-
-//	public void deleteCourse(Long id) {
-//		courseDao.deleteCourse(id);
-//	}
-
+	
 	public void onEventSelect(SelectEvent<ScheduleEvent<Course>> selectEvent) {
 		event = selectEvent.getObject();
 	}
@@ -165,44 +150,65 @@ public class PlanningCourseController implements Serializable {
 	}
 
 	private void createNewEvent() {	
+		// add the event to the graphical model
 		eventModel.addEvent(event);
+		
+		// save the course
 		Course courseToCreate = new Course();
+		
+		Activity activity = activityDao.findActivityById(selectedActivityId);
+		courseToCreate.setActivity(activity);
+		
+		Profile coach = activityDao.findTrainerById(selectedCoachProfileId);
+		courseToCreate.setTrainer(coach);
+		
+		courseToCreate.setNbPlaces(nbPlacesCount);;
 		courseToCreate.setStartDate(event.getStartDate());
 		courseToCreate.setEndDate(event.getEndDate());
+		
 		courseDao.saveCourse(courseToCreate);
 	}
 
 	private void updateEvent() {
-		Course courseToUpdate = new Course();
+		Long courseId = Long.valueOf(event.getId());
+		Course courseToUpdate = courseDao.getCourseByIdJoinActivity(courseId);
+		
+		// Si l'activité a changé 
+		if(courseToUpdate.getActivity().getId() != selectedActivityId) {
+			Activity activity = activityDao.findActivityById(selectedActivityId);
+			courseToUpdate.setActivity(activity);
+		}
+		
+		// Si le coach a changé 
+		if(courseToUpdate.getTrainer().getId() != selectedCoachProfileId) {
+			Profile coach = activityDao.findTrainerById(selectedCoachProfileId);
+			courseToUpdate.setTrainer(coach);
+		}
+		
+		// Dans tous les autres cas on modifie
 		courseToUpdate.setStartDate(event.getStartDate());
 		courseToUpdate.setEndDate(event.getEndDate());
+		
+		if(nbPlacesCount != null) {
+			courseToUpdate.setNbPlaces(nbPlacesCount);
+		}
+		
 		eventModel.updateEvent(event);
-		courseDao.updateCourse(courseToUpdate, selectedActivityId, selectedActivityId);
 		
+		courseDao.mergeCourse(courseToUpdate);
 		
-		Long idcourse = Long.valueOf(event.getId());
-		Course courseToupdate = courseDao.getCourseByIdJoinActivity(idcourse);
-		
-		System.out.println("nouvelles iunfos : "+ event.getStartDate() + "-" +event.getEndDate());
-		
-		// modifier les infos du cours )à partir des infos de l'event
-		c.setStartDate(event.getStartDate());
-		
-		// update cours
-		
+		refreshModel();
 	}
 
 	public void onEventMove(ScheduleEntryMoveEvent event) {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved",
 				"Delta:" + event.getDeltaAsDuration());
-
 		addMessage(message);
 	}
 
 	public void onEventResize(ScheduleEntryResizeEvent event) {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event resized",
 				"Start-Delta:" + event.getDeltaStartAsDuration() + ", End-Delta: " + event.getDeltaEndAsDuration());
-
 		addMessage(message);
 	}
 
@@ -486,11 +492,25 @@ public class PlanningCourseController implements Serializable {
 	public void setServerTimeZone(String serverTimeZone) {
 		this.serverTimeZone = serverTimeZone;
 	}
+	
+	public Long getSelectedActivityId() {
+		return selectedActivityId;
+	}
+	public void setSelectedActivityId(Long selectedActivityId) {
+		this.selectedActivityId = selectedActivityId;
+	}
 	public Long getSelectedCoachProfileId() {
 		return selectedCoachProfileId;
 	}
 	public void setSelectedCoachProfileId(Long selectedCoachProfileId) {
 		this.selectedCoachProfileId = selectedCoachProfileId;
 	}
+	public Integer getNbPlacesCount() {
+		return nbPlacesCount;
+	}
+	public void setNbPlacesCount(Integer nbPlacesCount) {
+		this.nbPlacesCount = nbPlacesCount;
+	}
+	
 }
 

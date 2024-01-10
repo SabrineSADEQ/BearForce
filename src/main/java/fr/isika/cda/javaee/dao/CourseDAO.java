@@ -1,14 +1,15 @@
 package fr.isika.cda.javaee.dao;
 
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
-import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
 import fr.isika.cda.javaee.presentation.viewmodel.CourseViewModel;
 
 @Stateless
@@ -35,6 +36,9 @@ public class CourseDAO {
 		return courseBean;	
 	}
 	
+	public void mergeCourse(Course courseToMerge) {
+		entityManager.merge(courseToMerge);
+	}
 	
 	public void updateCourse(Course updateCourse, Long selectedActivity, Long selectedProfile) {
 		Course existingCourse = entityManager.find(Course.class, updateCourse.getId());

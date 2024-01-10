@@ -4,17 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 /** 
@@ -38,13 +33,6 @@ public class Activity {
 	private List<Equipment> equipmentList = new ArrayList<>() ;
 
 	//***************GETTERS & SETTERS***************
-	public ActivityCategory getCategory() {
-		return activityCategory;
-	}
-
-	public void setCategory(ActivityCategory category) {
-		this.activityCategory = category;
-	}
 
 	public List<Course> getCourseList() {
 		return courseList;
@@ -82,12 +70,11 @@ public class Activity {
 		return id;
 	}
 
-	public ActivityCategory getActiviteCategory() {
+	public ActivityCategory getActivityCategory() {
 		return activityCategory;
 	}
-
-	public void setActiviteCategory(ActivityCategory activiteCategory) {
-		this.activityCategory = activiteCategory;
-	} 
+	public void setActivityCategory(ActivityCategory activityCategory) {
+		this.activityCategory = activityCategory;
+	}
 
 }

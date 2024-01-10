@@ -14,48 +14,55 @@
 			<h:form>
 				<p:growl id="messages" showDetail="true" />
 
-				<p:schedule id="schedule" value="#{planningCourseController.eventModel}"
+				<p:schedule id="schedule"
+					value="#{planningCourseController.eventModel}"
 					widgetVar="myschedule">
-					  <p:ajax event="eventSelect" listener="#{planningCourseController.onEventSelect}" update="eventDetails"
-                    oncomplete="PF('eventDialog').show();"/>
+					<p:ajax event="dateSelect" listener="#{planningCourseController.onDateSelect}" 
+						update="eventDetails"
+                    	oncomplete="PF('eventDialog').show();"/>
+					<p:ajax event="eventSelect"
+						listener="#{planningCourseController.onEventSelect}"
+						update="eventDetails" oncomplete="PF('eventDialog').show();" />
 				</p:schedule>
 
 				<p:dialog widgetVar="eventDialog" header="Détail de l'évènement"
 					showEffect="fade" hideEffect="fade">
 					<h:panelGrid id="eventDetails" columns="2" cellpadding="7">
-						<p:outputLabel for="update-activity"
-									value="Activité concernée : " />
-								<p:selectOneMenu id="update-activity"
-									value="#{planningCourseController.event.title}"
-									style="min-width: 14rem">
-									<f:selectItems itemLabel="Sélectionnez une activité"
-										itemValue="null" noSelectionOption="true" />
-									<f:selectItems
-										value="#{activityController.displayActivitiesList()}"
-										var="act" itemLabel="#{act.name}" itemValue="#{act.id}" />
-								</p:selectOneMenu>
+						<p:outputLabel for="update-activity" value="Activité concernée : " />
+						<p:selectOneMenu id="update-activity"
+							value="#{planningCourseController.selectedActivityId}" style="min-width: 14rem">
+							<f:selectItems itemLabel="Sélectionnez une activité"
+								itemValue="null" noSelectionOption="true" />
+							<f:selectItems
+								value="#{activityController.displayActivitiesList()}" var="act"
+								itemLabel="#{act.name}" itemValue="#{act.id}" />
+						</p:selectOneMenu>
 
 						<p:outputLabel for="update-start-date">De</p:outputLabel>
-									<p:calendar id="update-start-date"
-										value="#{planningCourseController.event.startDate}"
-										pattern="MM/dd/yyyy HH:mm" showOn="button" required="true" />
+						<p:calendar id="update-start-date"
+							value="#{planningCourseController.event.startDate}"
+							pattern="dd/MM/yyyy HH:mm" showOn="button" required="true" />
 
 						<p:outputLabel for="update-end-date">à</p:outputLabel>
-									<p:calendar id="update-end-date"
-										value="#{planningCourseController.event.endDate}"
-										pattern="MM/dd/yyyy HH:mm" showOn="button" required="true" />
-							
-							<p:outputLabel for="update-trainer" value="Coach assigné : " />
-								<p:selectOneMenu id="update-trainer"
-									value="#{planningCourseController.selectedCoachProfileId}"
-									style="min-width: 14rem">
-									<f:selectItems itemLabel="Sélectionnez un coach"
-										itemValue="null" noSelectionOption="true" />
-									<f:selectItems
-										value="#{activityController.displayTrainersList()}" var="prof"
-										itemLabel="#{prof.firstName} #{prof.lastName}"
-										itemValue="#{prof.id}" />
-								</p:selectOneMenu>
+						<p:calendar id="update-end-date"
+							value="#{planningCourseController.event.endDate}"
+							pattern="dd/MM/yyyy HH:mm" showOn="button" required="true" />
+
+						<p:outputLabel for="update-nb-places">Nb. Places</p:outputLabel>
+						<p:inputText id="update-nb-places" 
+							value="#{planningCourseController.nbPlacesCount}"/>
+						
+						<p:outputLabel for="update-trainer" value="Coach assigné : " />
+						<p:selectOneMenu id="update-trainer"
+							value="#{planningCourseController.selectedCoachProfileId}"
+							style="min-width: 14rem">
+							<f:selectItems itemLabel="Sélectionnez un coach" itemValue="null"
+								noSelectionOption="true" />
+							<f:selectItems
+								value="#{activityController.displayTrainersList()}" var="prof"
+								itemLabel="#{prof.firstName} #{prof.lastName}"
+								itemValue="#{prof.id}" />
+						</p:selectOneMenu>
 
 					</h:panelGrid>
 
@@ -63,7 +70,7 @@
 						<p:commandButton type="reset" value="Reset"
 							styleClass="font-bold ui-button-outlined" />
 						<p:commandButton id="addButton" value="Enregistrer"
-							action="#{courseController.addCourse()}"
+							action="#{planningCourseController.addEvent()}"
 							oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
 					</div>
 				</p:dialog>
