@@ -85,6 +85,7 @@ public class DataInitializer {
 		AccountViewModel Adherent = new AccountViewModel();
 		Adherent.setEmail("adherent");
 		Adherent.setPassword("adherent");
+		Adherent.setGymId((long) 34);
 		Adherent.setRole(Role.ADHERENT);
 		Profile profileAdherent = new Profile();
 		profileAdherent.setFirstName("Yoann");
@@ -103,6 +104,7 @@ public class DataInitializer {
 		gestionnaire.setEmail("gestionnaire");
 		gestionnaire.setPassword("gestionnaire");
 		gestionnaire.setRole(Role.GESTIONNAIRE);
+		gestionnaire.setGymId((long) 34);
 
 		Profile profileGestionnaire = new Profile();
 		profileGestionnaire.setFirstName("Jean");
@@ -255,7 +257,7 @@ public class DataInitializer {
            AccountViewModel Adherent3 = new AccountViewModel();
            Adherent3.setEmail("adherent3@gmail.com");
            Adherent3.setPassword("adherent3");
-           Adherent3.setGymId((long) 30);
+           Adherent3.setGymId((long) 34);
            Adherent3.setRole(Role.ADHERENT);
            Profile profileAdherent3 = new Profile();
            profileAdherent3.setFirstName("theo");

@@ -79,12 +79,12 @@ public class AccountDao {
 			existingAccount.getProfile().setFirstName(updatedAccount.getProfile().getFirstName());
 			existingAccount.setEmail(updatedAccount.getEmail());
 			existingAccount.getProfile().setLastName(updatedAccount.getProfile().getLastName());
-
+			
 			existingAccount.getProfile().setBirthDate(updatedAccount.getProfile().getBirthDate());
 			existingAccount.getProfile().setContact(updatedAccount.getProfile().getContact());
 			existingAccount.getProfile().setAddress(updatedAccount.getProfile().getAddress());
 			existingAccount.getProfile().setProfesionalDetails(updatedAccount.getProfile().getProfesionalDetails());
-
+			existingAccount.setGymId(updatedAccount.getGymId());
 			// Enregistrer les modifications dans la base de données
 			entityManager.merge(existingAccount);
 		} else {

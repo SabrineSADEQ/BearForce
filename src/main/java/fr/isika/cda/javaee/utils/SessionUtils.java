@@ -17,7 +17,7 @@ public class SessionUtils {
 
     public static HttpSession getSession() {
     	HttpSession session =  (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-       System.out.println("Ma session " + session);
+      
     	return session;
     }
 

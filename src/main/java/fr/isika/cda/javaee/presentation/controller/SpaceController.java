@@ -12,13 +12,17 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 
+import org.primefaces.component.log.Log;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.model.file.UploadedFile;
 
 import fr.isika.cda.javaee.account.controller.LoginController;
 import fr.isika.cda.javaee.dao.SpaceDao;
+import fr.isika.cda.javaee.dao.accounts.AccountDao;
+import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.presentation.viewmodel.SpaceViewModel;
 import fr.isika.cda.javaee.utils.FileUploadUtils;
@@ -33,6 +37,7 @@ import fr.isika.cda.javaee.utils.FileUploadUtils;
 public class SpaceController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 
 	private String spaceId;
 	private SpaceViewModel spaceViewModel = new SpaceViewModel();
@@ -41,6 +46,8 @@ public class SpaceController implements Serializable {
 	@Inject
 	private SpaceDao spaceDao;
 
+	@Inject
+	private AccountDao accountDao;
 
 	@PostConstruct
 	public void init() {
@@ -57,7 +64,11 @@ public class SpaceController implements Serializable {
 			Space space = spaceDao.getSpaceById(Long.valueOf(spaceIdParam));
 			return space;
 		}
-		throw new Exception("No space id specified");
+		else {
+			LoginController loginController = new LoginController();
+			Space space = spaceDao.getSpaceById(loginController.getLoggedAccount().getGymId());
+			return space;
+		}
 	}
 
 	public List<Space> getAllSpaces() {
@@ -70,12 +81,21 @@ public class SpaceController implements Serializable {
 	}
 
 	public void createSpace() {
-		LoginController test = new LoginController();
-	
+
 		Long spaceId = spaceDao.createSpace(spaceViewModel).getId();
-		test.getLoggedAccount().setGymId(spaceId);
+		injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(spaceId);
 		spaceViewModel = new SpaceViewModel();
 		redirectToSpace(spaceId);
+	}
+	
+	public void injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(long spaceId) {
+
+		
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		logged.setGymId(spaceId);
+
+		//accountDao.update(logged);
 	}
 
 	public void save() {

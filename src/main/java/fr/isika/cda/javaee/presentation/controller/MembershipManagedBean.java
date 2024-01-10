@@ -1,5 +1,6 @@
 package fr.isika.cda.javaee.presentation.controller;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -20,11 +21,13 @@ public class MembershipManagedBean implements Serializable {
     private List<Membership> memberships;
     private Membership selectedMembership;
 
+    @PostConstruct
     public void init() {
-        memberships = membershipDao.getAllMemberships();
+      
     }
 
     public List<Membership> getMemberships() {
+    	  memberships = membershipDao.getAllMemberships();
         return memberships;
     }
 
