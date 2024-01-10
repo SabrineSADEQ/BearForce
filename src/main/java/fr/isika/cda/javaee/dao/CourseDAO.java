@@ -1,14 +1,15 @@
 package fr.isika.cda.javaee.dao;
 
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
-import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
 import fr.isika.cda.javaee.presentation.viewmodel.CourseViewModel;
 
 @Stateless
@@ -22,17 +23,21 @@ public class CourseDAO {
 	
 	public Course createCourse (CourseViewModel courseViewModel) {
 		Course courseBean = new Course();
-		Activity act = findActivityById(courseViewModel.getActivityId());
+		Activity act = activityDao.findActivityById(courseViewModel.getActivityId());
 		courseBean.setActivity(act);
 		courseBean.setStartDate(courseViewModel.getStartDate());
 		courseBean.setEndDate(courseViewModel.getEndDate());
 		courseBean.setNbPlaces(courseViewModel.getNbPlaces());
-		System.out.println(courseViewModel.getNbPlaces());
-		Profile trainer = findTrainerById(courseViewModel.getTrainerId());
+
+		Profile trainer = activityDao.findTrainerById(courseViewModel.getTrainerId());
 		courseBean.setTrainer(trainer);
 		entityManager.persist(courseBean);
 		entityManager.flush();
 		return courseBean;	
+	}
+	
+	public void mergeCourse(Course courseToMerge) {
+		entityManager.merge(courseToMerge);
 	}
 	
 	public void updateCourse(Course updateCourse, Long selectedActivity, Long selectedProfile) {
@@ -53,14 +58,6 @@ public class CourseDAO {
 				.setParameter("courseIdParam", courseToDeleteId)
 				.getSingleResult();
 		entityManager.remove(courseToDelete);
-	}
-
-	private Activity findActivityById(long activityId) {
-		return activityDao.findActivityById(activityId);
-	}
-	
-	private Profile findTrainerById(long trainerId) {
-		return activityDao.findTrainerById(trainerId);
 	}
 	
 	public void saveCourse(Course course) {

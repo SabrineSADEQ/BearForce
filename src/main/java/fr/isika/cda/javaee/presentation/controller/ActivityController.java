@@ -97,5 +97,6 @@ public class ActivityController implements Serializable{
 	public ActivityCategory[] getActivityCategories() {
 		return ActivityCategory.values();
 	}
+	
 
 }

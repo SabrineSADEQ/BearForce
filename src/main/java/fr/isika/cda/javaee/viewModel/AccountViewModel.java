@@ -98,11 +98,4 @@ public class AccountViewModel {
 			this.gymId = gymId;
 		}
 
-	
-	
-
-
-
-
-
 }

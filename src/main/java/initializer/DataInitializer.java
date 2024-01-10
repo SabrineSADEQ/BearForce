@@ -177,22 +177,28 @@ public class DataInitializer {
 
 		coach.setProfile(profileCoach);
 
-		accountDao.createAccount(coach);
+		Account savedAccount = accountDao.createAccount(coach);
 
-		ActivityViewModel activity = new ActivityViewModel();
-		activity.setName("judo");
+		/*
+		 * Prépa données cours par défaut + activité + coach
+		 */
+		Activity activity = new Activity();
+		activity.setName("Cardio vélo");
 		activity.setDescription("cours de judo avec les meilleurs coachs de la region");
-		ActivityCategory activityCategory = ActivityCategory.CARDIO;
-		activity.setActivityCategory(activityCategory);
-
-//            activityDao.createActivity(activity, null);
-
+		activity.setActivityCategory(ActivityCategory.CARDIO);
+		activityDao.persist(activity);
+		
 		Course course = new Course();
-
+		course.setActivity(activity);
+		course.setTrainer(savedAccount.getProfile());
 		course.setStartDate(LocalDateTime.now());
-		course.setEndDate(LocalDateTime.now());
+		course.setEndDate(LocalDateTime.now().plusHours(2));
 		course.setNbPlaces(10);
 		courseDao.saveCourse(course);
+		
+		/*
+		 * Fin données cours
+		 */
 
 		EquipmentViewModel equipment = new EquipmentViewModel();
 		equipment.setCondition("bonne");

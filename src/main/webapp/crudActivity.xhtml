@@ -41,7 +41,7 @@
 						</f:facet>
 
 						<p:column headerText="Activité" sortBy="#{act.name}"
-							filterBy="#{act.category}">
+							filterBy="#{act.activityCategory}">
 							<p:outputLabel>#{act.name}</p:outputLabel>
 						</p:column>
 
@@ -50,10 +50,10 @@
 							<p:outputLabel>#{act.description}</p:outputLabel>
 						</p:column>
 
-						<p:column headerText="Catégorie" sortBy="#{act.category}"
-							filterBy="#{act.category}">
+						<p:column headerText="Catégorie" sortBy="#{act.activityCategory}"
+							filterBy="#{act.activityCategory}">
 							<f:facet name="header">Catégorie</f:facet>
-							<p:outputLabel>#{act.category}</p:outputLabel>
+							<p:outputLabel>#{act.activityCategory}</p:outputLabel>
 						</p:column>
 
 						<p:column headerText="Equipement">
@@ -157,7 +157,7 @@
 								<div class="field">
 									<p:outputLabel for="update-category">Categorie</p:outputLabel>
 									<p:selectOneMenu id="update-category"
-										value="#{activityController.selectedActivity.category}">
+										value="#{activityController.selectedActivity.activityCategory}">
 										<f:selectItems
 											value="#{activityController.getActivityCategories()}"
 											var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />

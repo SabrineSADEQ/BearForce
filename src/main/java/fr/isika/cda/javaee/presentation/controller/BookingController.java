@@ -34,7 +34,7 @@ public class BookingController implements Serializable {
 	public void addBooking() {
 		bookingDao.createBooking(bookingViewModel);
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("Une nouvelle réservation à été enregistré"));
+				new FacesMessage("Une nouvelle réservation à été enregistrée"));
 		bookingViewModel =  new BookingViewModel();
 	}
 	
