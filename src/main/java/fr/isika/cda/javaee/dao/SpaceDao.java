@@ -85,4 +85,36 @@ public class SpaceDao {
 		return em.createQuery("SELECT s FROM Space s", Space.class).getResultList();
 	}
 
+	public void update(Space updatedSpace) {
+		//Find the given space from the database
+		Space oldSpace = em.find(Space.class, updatedSpace.getId());
+		
+		if (oldSpace != null) {
+			//Update the space with the new data
+			
+			//Contact
+			oldSpace.getIdGym().getAdminInfoGym().getContactInfo().setEmail(updatedSpace.getIdGym().getAdminInfoGym().getContactInfo().getEmail());
+			oldSpace.getIdGym().getAdminInfoGym().getContactInfo().setPhone(updatedSpace.getIdGym().getAdminInfoGym().getContactInfo().getPhone());
+			
+			//SpaceTextContent
+			oldSpace.getVisualIdentity().getSpaceTextContent().setSpaceName(updatedSpace.getVisualIdentity().getSpaceTextContent().getSpaceName());
+			oldSpace.getVisualIdentity().getSpaceTextContent().setMotto(updatedSpace.getVisualIdentity().getSpaceTextContent().getMotto());
+			oldSpace.getVisualIdentity().getSpaceTextContent().setDescription(updatedSpace.getVisualIdentity().getSpaceTextContent().getDescription());
+			
+			//VisualIdentity
+			oldSpace.getVisualIdentity().setFirstColor(updatedSpace.getVisualIdentity().getFirstColor());
+			oldSpace.getVisualIdentity().setSecondColor(updatedSpace.getVisualIdentity().getSecondColor());
+			oldSpace.getVisualIdentity().setThirdColor(updatedSpace.getVisualIdentity().getThirdColor());
+			//Save modifications
+			em.merge(oldSpace);
+			
+		}
+		else {
+			System.out.println("Space not found for ID: "+ updatedSpace.getId());
+		}
+		
+		
+		
+	}
+
 }

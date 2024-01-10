@@ -15,10 +15,7 @@
 <h:body>
 	<div class="header">
 		<div class="left-container">
-			<div class="logoContainer">
-					LOGO
-
-			</div>
+			<div class="logoContainer">LOGO</div>
 			<!-- Burger Menu Button for small screens 
         <p:commandButton id="burgerMenu" icon="pi pi-bars"
             styleClass="burger-menu p-d-md-none" />-->
@@ -32,23 +29,26 @@
 						<p:menuitem value="Nos équipements" />
 					</p:submenu>
 					<p:menuitem class="link-menu" value="Planning des cours" />
-					<p:menuitem class="link-menu" value="Abonnements" outcome="listeMembership" />
+					<p:menuitem class="link-menu" value="Abonnements"
+						outcome="listeMembership" />
 					<p:menuitem class="link-menu" value="Contact"
 						outcome="spaceContact" />
 
 				</p:menubar>
-				<p:button class="rightButton" value="Tableau de bord"
-					outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
-					iconPos="right"
-					rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
-				<p:button class="rightButton" value="Tableau de bord"
-					outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
-					iconPos="right"
-					rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
-				<p:button class="rightButton" value="Mon espace personnel"
-					outcome="#{spaceController.redirectToSpace(loginController.loggedAccount.gymId)}" icon="pi pi-chevron-right"
-					iconPos="right"
-					rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
+				<h:form>
+					<p:button class="rightButton" value="Tableau de bord"
+						outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
+						iconPos="right"
+						rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
+					<p:button class="rightButton" value="Tableau de bord"
+						outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
+						iconPos="right"
+						rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
+					<p:button class="rightButton" value="Mon espace personnel"
+						outcome="#{spaceController.redirectToSpace(loginController.loggedAccount.gymId)}"
+						icon="pi pi-chevron-right" iconPos="right"
+						rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
+				</h:form>
 			</div>
 		</div>
 		<!-- Login and logout buttons depending on the connexion status of the user -->
@@ -67,7 +67,7 @@
 			</h:form>
 			<p:button id="BF-button" icon="pi pi-chevron-right" iconPos="right"
 				value="BearForce" outcome="index" />
-				
+
 			<!-- Login pop up -->
 			<h:form>
 

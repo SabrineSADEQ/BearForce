@@ -100,22 +100,24 @@
 
 							<h:panelGrid columns="2" columnClasses="label, value">
 								<h:outputLabel for="firstColor">Couleur principale</h:outputLabel>
-								<p:colorPicker id="firstColorPicker" theme="polaroid" formatToggle="true"
+								<p:colorPicker id="firstColorPicker" theme="polaroid"
+									formatToggle="true"
 									value="#{spaceController.spaceViewModel.firstColor}"
-									clearButton="true" closeButton="true" alpha="false"
-									forceAlpha="true">
+									clearButton="true" closeButton="true" alpha="false">
 								</p:colorPicker>
-			
+
 
 								<h:outputLabel for="secondColor">Couleur secondaire</h:outputLabel>
-								<p:colorPicker id="secondColor" theme="polaroid" formatToggle="true"
+								<p:colorPicker id="secondColor" theme="polaroid"
+									formatToggle="true"
 									value="#{spaceController.spaceViewModel.secondColor}"
 									clearButton="true" closeButton="true" alpha="false"
 									forceAlpha="true">
 								</p:colorPicker>
 
 								<h:outputLabel for="thirdColor">Couleur tertiaire</h:outputLabel>
-								<p:colorPicker id="thirdColor" theme="polaroid" formatToggle="true"
+								<p:colorPicker id="thirdColor" theme="polaroid"
+									formatToggle="true"
 									value="#{spaceController.spaceViewModel.thirdColor}"
 									clearButton="true" closeButton="true" alpha="false"
 									forceAlpha="true">
@@ -128,14 +130,14 @@
 					<p:tab id="photos" title="Images">
 						<p:panel header="Images et photos de l'espace">
 
-								<h:outputLabel for="logo">Logo</h:outputLabel>
-								<!-- Composant graphique pour le fichier -->
-								<p:fileUpload listener="#{spaceController.uploadFileLogo}"
-									styleClass="w-100" mode="advanced" dragDropSupport="false" />
-								<br />
-								<h:outputLabel for="banner">Bannière</h:outputLabel>
-								<p:fileUpload listener="#{spaceController.uploadFileBanner}"
-									styleClass="w-100" mode="advanced" dragDropSupport="false" />
+							<h:outputLabel for="logo">Logo</h:outputLabel>
+							<!-- Composant graphique pour le fichier -->
+							<p:fileUpload listener="#{spaceController.uploadFileLogo}"
+								styleClass="w-100" mode="advanced" dragDropSupport="false" />
+							<br />
+							<h:outputLabel for="banner">Bannière</h:outputLabel>
+							<p:fileUpload listener="#{spaceController.uploadFileBanner}"
+								styleClass="w-100" mode="advanced" dragDropSupport="false" />
 
 						</p:panel>
 					</p:tab>
@@ -202,12 +204,12 @@
 								<div class="color-box"
 									style="background-color:##{spaceController.spaceViewModel.thirdColor}"></div>
 							</h:panelGrid>
-							
+
 							<h:outputText value="Logo : " />
 							<h:graphicImage library="images"
 								name="#{spaceController.spaceViewModel.gymLogoPath}"
 								width="50px" height="50px" />
-							<br/>
+							<br />
 							<h:outputText value="Bannière : " />
 							<h:graphicImage library="images"
 								name="#{spaceController.spaceViewModel.gymBannerPath}"

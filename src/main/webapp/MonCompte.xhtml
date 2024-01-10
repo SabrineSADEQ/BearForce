@@ -26,7 +26,7 @@
 							<p:panel header="Modifier mes informations personnelles">
 
 								<p:avatar styleClass="mr-2" size="xlarge" shape="circle">
-									<h:graphicImage library="images"
+									<p:graphicImage library="images"
 										name="#{accountController.accountVM.profile.pictureUrl}" />
 								</p:avatar>
 								<br />
@@ -36,7 +36,7 @@
 									<p:inputText
 										value="#{accountController.accountVM.profile.firstName}"
 										required="true"
-										placeholder="#{loginController.getLoggedAccount().profile.firstName}" />
+										placeholder="Votre prénom" />
 
 									<p:outputLabel value="Nom" />
 									<p:inputText

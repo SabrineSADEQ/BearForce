@@ -93,7 +93,7 @@ public class DataInitializer {
 		Adherent.setEmail("adherent");
 		Adherent.setPassword("adherent");
 		Adherent.setRole(Role.ADHERENT);
-		Adherent.setGymId((long) 34);
+		Adherent.setGymId((long) 45);
 		Profile profileAdherent = new Profile();
 		profileAdherent.setFirstName("Yoann");
 		profileAdherent.setLastName("François");
@@ -113,7 +113,7 @@ public class DataInitializer {
 		gestionnaire.setEmail("gestionnaire");
 		gestionnaire.setPassword("gestionnaire");
 		gestionnaire.setRole(Role.GESTIONNAIRE);
-		gestionnaire.setGymId((long) 34);
+		gestionnaire.setGymId((long) 45);
 		Profile profileGestionnaire = new Profile();
 		profileGestionnaire.setFirstName("Jean");
 		profileGestionnaire.setLastName("Dupont");
@@ -139,7 +139,7 @@ public class DataInitializer {
 		coach.setEmail("coach");
 		coach.setPassword("coach");
 		coach.setRole(Role.COACH);
-		coach.setGymId((long) 34);
+		coach.setGymId((long) 45);
 		Goal goal2 = new Goal();
 		goal2.setGoalName("Perte de poids");
 		goal2.setGoalDate(LocalDate.of(2024, Month.FEBRUARY, 28));
@@ -287,7 +287,7 @@ public class DataInitializer {
 		AccountViewModel Adherent2 = new AccountViewModel();
 		Adherent2.setEmail("leroymerlin@gmail.com");
 		Adherent2.setPassword("adherent2");
-		Adherent2.setGymId((long) 34);
+		Adherent2.setGymId((long) 45);
 		Adherent2.setRole(Role.ADHERENT);
 		Profile profileAdherent2 = new Profile();
 		profileAdherent2.setFirstName("Quentin");
@@ -301,7 +301,7 @@ public class DataInitializer {
 		AccountViewModel Adherent3 = new AccountViewModel();
 		Adherent3.setEmail("adherent3@gmail.com");
 		Adherent3.setPassword("adherent3");
-		Adherent3.setGymId((long) 34);
+		Adherent3.setGymId((long) 45);
 		Adherent3.setRole(Role.ADHERENT);
 		Profile profileAdherent3 = new Profile();
 		profileAdherent3.setFirstName("Theo");
