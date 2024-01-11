@@ -62,7 +62,7 @@ public class PlanningCourseController implements Serializable {
 	private boolean slotEventOverlap = true;
 	private boolean showWeekNumbers = false;
 	private boolean showHeader = true;
-	private boolean draggable = true;
+	private boolean draggable = false;
 	private boolean resizable = true;
 	private boolean selectable = false;
 	private boolean showWeekends = true;
@@ -134,6 +134,7 @@ public class PlanningCourseController implements Serializable {
 				.title(course.getActivity().getName())
 				.startDate(course.getStartDate())
 				.endDate(course.getEndDate())
+				.draggable(false)
 				.borderColor("orange")
 				.build();
 
