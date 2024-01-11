@@ -129,7 +129,7 @@ public class DataInitializer {
 		addressGestionnaire.setCity("Paris");
 
 		Contact contactGestionnaire = new Contact();
-		contactGestionnaire.setPhone("0623456789");
+		contactGestionnaire.setPhone("06 23 45 67 89");
 		contactGestionnaire.setEmail("jean.dupont@gmail.com");
 
 		profileGestionnaire.setAddress(addressGestionnaire);
@@ -161,7 +161,7 @@ public class DataInitializer {
 		addressCoach.setPostalCode("75005");
 
 		Contact contactCoach = new Contact();
-		contactCoach.setPhone("987654321");
+		contactCoach.setPhone("08 76 54 32 19");
 		contactCoach.setEmail("alice.smith@example.com");
 
 		profileCoach.setAddress(addressCoach);
@@ -303,7 +303,7 @@ public class DataInitializer {
 		profileAdherent2.setFirstName("Quentin");
 		profileAdherent2.setLastName("Garcia");
 		Contact contact2 = new Contact();
-		contact2.setPhone("0699851235");
+		contact2.setPhone("06 99 85 12 35");
 		profileAdherent2.setContact(contact2);
 		Adherent2.setProfile(profileAdherent2);
 		accountDao.createAccount(Adherent2);
@@ -319,7 +319,7 @@ public class DataInitializer {
 		profileAdherent3.setFirstName("Theo");
 		profileAdherent3.setLastName("Hamad");
 		Contact contact3 = new Contact();
-		contact3.setPhone("0655487945");
+		contact3.setPhone("06 55 48 79 45");
 		profileAdherent3.setContact(contact3);
 		Adherent3.setProfile(profileAdherent3);
 		accountDao.createAccount(Adherent3);
@@ -336,13 +336,13 @@ public class DataInitializer {
 		anotherProfileAdherent.setLastName("Smith");
 
 		Address anotherAddressAdherent = new Address();
-		anotherAddressAdherent.setCity("New York");
+		anotherAddressAdherent.setCity("macon");
 		anotherAddressAdherent.setStreetNumber("123");
-		anotherAddressAdherent.setStreetName("Broadway");
+		anotherAddressAdherent.setStreetName("jeanne d'arc");
 		anotherAddressAdherent.setPostalCode("10001");
 
 		Contact anotherContact = new Contact();
-		anotherContact.setPhone("555-1234");
+		anotherContact.setPhone("06 59 63 54 87");
 		anotherProfileAdherent.setPictureUrl("personne.png");
 		anotherProfileAdherent.setAddress(anotherAddressAdherent);
 		anotherProfileAdherent.setContact(anotherContact);
@@ -361,13 +361,13 @@ public class DataInitializer {
 		newMemberProfile.setLastName("Johnson");
 
 		Address newMemberAddress = new Address();
-		newMemberAddress.setCity("Los Angeles");
+		newMemberAddress.setCity("daube");
 		newMemberAddress.setStreetNumber("789");
-		newMemberAddress.setStreetName("Sunset Blvd");
+		newMemberAddress.setStreetName("republique");
 		newMemberAddress.setPostalCode("90001");
 
 		Contact newMemberContact = new Contact();
-		newMemberContact.setPhone("555-5678");
+		newMemberContact.setPhone("01 54 87 95 31");
 		newMemberProfile.setPictureUrl("personne.png");
 		newMemberProfile.setAddress(newMemberAddress);
 		newMemberProfile.setContact(newMemberContact);
@@ -386,13 +386,13 @@ public class DataInitializer {
 		guestProfile.setLastName("Miller");
 
 		Address guestAddress = new Address();
-		guestAddress.setCity("San Francisco");
+		guestAddress.setCity("fosses");
 		guestAddress.setStreetNumber("456");
-		guestAddress.setStreetName("Market St");
+		guestAddress.setStreetName("leonard de vinci");
 		guestAddress.setPostalCode("94105");
 
 		Contact guestContact = new Contact();
-		guestContact.setPhone("555-4321");
+		guestContact.setPhone("04 59 78 45 11");
 		guestProfile.setPictureUrl("personne.png");
 		guestProfile.setAddress(guestAddress);
 		guestProfile.setContact(guestContact);
@@ -411,13 +411,13 @@ public class DataInitializer {
 		premiumMemberProfile.setLastName("Williams");
 
 		Address premiumMemberAddress = new Address();
-		premiumMemberAddress.setCity("Miami");
+		premiumMemberAddress.setCity("versaille");
 		premiumMemberAddress.setStreetNumber("789");
-		premiumMemberAddress.setStreetName("Ocean Drive");
+		premiumMemberAddress.setStreetName("rue du roi");
 		premiumMemberAddress.setPostalCode("33139");
 
 		Contact premiumMemberContact = new Contact();
-		premiumMemberContact.setPhone("555-8765");
+		premiumMemberContact.setPhone("02 23 54 87 45");
 		premiumMemberProfile.setPictureUrl("personne.png");
 		premiumMemberProfile.setAddress(premiumMemberAddress);
 		premiumMemberProfile.setContact(premiumMemberContact);
@@ -427,8 +427,8 @@ public class DataInitializer {
 
 		// Create an Activity
 		Activity newActivity = new Activity();
-		newActivity.setName("Yoga Class");
-		newActivity.setDescription("Relaxing yoga session with certified instructors");
+		newActivity.setName("Yoga");
+		newActivity.setDescription("Venez vous relaxer avec nous");
 		newActivity.setActivityCategory(ActivityCategory.FITNESS);
 		activityDao.persist(newActivity);
 
@@ -444,8 +444,8 @@ public class DataInitializer {
 		// Create an Activity
 		Activity newActivity2 = new Activity();
 		newActivity2.setName("HIIT Training");
-		newActivity2.setDescription("High-Intensity Interval Training for a powerful workout");
-		newActivity2.setActivityCategory(ActivityCategory.FORCE);
+		newActivity2.setDescription("Du cardio venu des states");
+		newActivity2.setActivityCategory(ActivityCategory.CARDIO);
 		activityDao.persist(newActivity2);
 
 		// Create a Course for the Activity
@@ -464,10 +464,10 @@ public class DataInitializer {
 		newSpace.setThirdColor("334BFF");
 		newSpace.setGymLogoPath("logo2gym.png");
 		newSpace.setGymBannerPath("banner_3.png");
-		newSpace.setMotto("Achieve Your Fitness Goals Together!");
-		newSpace.setSpaceName("FitHub");
+		newSpace.setMotto("No pain, no gain");
+		newSpace.setSpaceName("Forklift");
 		newSpace.setDescription(
-		        "Discover FitHub, your ultimate fitness destination located in the heart of the city. Enjoy a wide range of classes and state-of-the-art equipment catering to all fitness levels.");
+		        "Plus qu'une salle de sport, une salle ou les corps s'activent");
 		newSpace.setFreeAccess(false); // No free access
 		newSpace.setLockerRoom(true);
 
@@ -478,7 +478,7 @@ public class DataInitializer {
 		addressGym2.setStreetNumber("45");
 		addressGym2.setStreetName("Avenue des Sports");
 		addressGym2.setPostalCode("75001");
-		addressGym2.setCity("Paris");
+		addressGym2.setCity("Aix-en-provence");
 		newSpace.setLocation(addressGym2);
 
 		Contact contactGym2 = new Contact();
@@ -497,10 +497,10 @@ public class DataInitializer {
 		fitnessCenter.setThirdColor("F4B400");
 		fitnessCenter.setGymLogoPath("fitness_logo.png");
 		fitnessCenter.setGymBannerPath("banner_fitness.jpg");
-		fitnessCenter.setMotto("Elevate Your Fitness Journey!");
-		fitnessCenter.setSpaceName("Epic Fitness");
+		fitnessCenter.setMotto("Toujours plus forts");
+		fitnessCenter.setSpaceName("FitnessBonhomme");
 		fitnessCenter.setDescription(
-		        "Welcome to Epic Fitness, your premier destination for fitness excellence. Experience a variety of cutting-edge workouts and personalized training programs.");
+		        "Ici, c'est jusqu'à plus envie");
 		fitnessCenter.setFreeAccess(false);
 		fitnessCenter.setLockerRoom(true);
 
@@ -511,7 +511,7 @@ public class DataInitializer {
 		gymAddress.setStreetNumber("123");
 		gymAddress.setStreetName("Main Street");
 		gymAddress.setPostalCode("90210");
-		gymAddress.setCity("Los Angeles");
+		gymAddress.setCity("Potier");
 		fitnessCenter.setLocation(gymAddress);
 
 		Contact gymContact = new Contact();
