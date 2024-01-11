@@ -13,7 +13,7 @@
 			<h:outputStylesheet library="css" name="styleSubscription.css" />
 		</h:head>
 
-		<h:body>
+		<h:body> 
 			<h:form>
 				<div class="container">
 					<p:panel header=" Abonnement">
@@ -23,9 +23,6 @@
 								alt="abonnement" />
 						</div>
 
-
-
-
 						<h:panelGrid class="panelsub" columns="2">
 
 
@@ -33,13 +30,9 @@
 							<h:inputText id="startDate"
 								value="#{subscriptionManagedBean.startDate}" />
 
-
 							<label for="endDate">Date de fin :</label>
 							<h:inputText id="endDate"
 								value="#{subscriptionManagedBean.endDate}" />
-
-
-
 
 							<label for="duration">Durée :</label>
 							<h:inputText id="duration"
@@ -47,7 +40,9 @@
 						</h:panelGrid>
 						<br />
 
-
+						<h:commandButton value="Souscrire"
+							action="#{subscriptionManagedBean.paymentSubscription()}" />
+						</h:column>
 
 					</p:panel>
 				</div>
