@@ -8,8 +8,7 @@
 <h:head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<h:outputStylesheet library="css" name="main/spaceStyle.css" />
-	<h:outputStylesheet library="css" name="main/spaceHeader.css" />
+	
 </h:head>
 
 <h:body>
@@ -25,7 +24,7 @@
 					<p:menuitem class="link-menu" value="Accueil" outcome="spaceIndex" />
 					<p:submenu label="Nos services">
 						<p:menuitem value="Nos cours" />
-						<p:menuitem value="Nos coachs" />
+						<p:menuitem value="Nos coachs" outcome="ListeCoachs" />
 						<p:menuitem value="Nos équipements" />
 					</p:submenu>
 					<p:menuitem class="link-menu" value="Planning des cours" />
