@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -19,6 +20,7 @@ import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 
 import fr.isika.cda.javaee.dao.accounts.AccountDao;
+import fr.isika.cda.javaee.dao.accounts.LoginDao;
 import fr.isika.cda.javaee.entity.accounts.Account;
 
 import fr.isika.cda.javaee.utils.FileUploadUtils;
@@ -92,6 +94,15 @@ public class AccountController implements Serializable {
         wizardStep = 1;
         wizardMode = false;
 
+        
+        redirectToIndex();
+    }
+    
+    public void redirectToIndex() {
+
+        FacesContext context = FacesContext.getCurrentInstance();
+        NavigationHandler handler = context.getApplication().getNavigationHandler();
+        handler.handleNavigation(context, null, "/index.xhtml?faces-redirect=true");
         accountVM = new AccountViewModel();
     }
     
