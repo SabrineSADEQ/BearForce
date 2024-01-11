@@ -66,7 +66,8 @@ public class AccountController implements Serializable {
 	    // Reset the wizard step and mode for the next user
 	    wizardStep = 1;
 	    wizardMode = false;
-
+	    
+	    
 	    accountVM = new AccountViewModel();
     	   
 	    // redirection dynamique vers la page + changement diurl 
