@@ -57,7 +57,6 @@ public class SpaceController implements Serializable {
 	@Inject
 	private AccountDao accountDao;
 	
-	private EntityManager entityManager;
 
 
 	@PostConstruct

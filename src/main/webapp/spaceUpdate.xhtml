@@ -18,6 +18,7 @@
 				<h:form>
 					<div class="update-text-content">
 						<div class="field grid">
+						
 							<p:outputLabel for="name" styleClass="col-fixed"
 								style="width:100px" value="Nom de la salle " />
 							<div class="col">
@@ -95,22 +96,23 @@
 								forceAlpha="true">
 							</p:colorPicker>
 						</div>
-
 						<div>
-
-							<h:outputLabel for="logo">Logo</h:outputLabel>
+							<h:outputLabel for="logo">Logo </h:outputLabel>
 							<p:graphicImage library="images" height="100px"
 								name="#{spaceController.spaceViewModel.gymLogoPath}" />
-							<p:fileUpload listener="#{spaceController.uploadFileLogo}"
-								styleClass="w-100" mode="advanced" dragDropSupport="false" />
+							<p:fileUpload label="Modifier" uploadLabel="Télécharger"
+								cancelLabel="Annuler"
+								listener="#{spaceController.uploadFileLogo}" styleClass="w-100"
+								mode="advanced" dragDropSupport="false" />
 						</div>
 						<div>
-
-							<h:outputLabel for="banner">Bannière</h:outputLabel>
-							<p:fileUpload listener="#{spaceController.uploadFileBanner}"
-								styleClass="w-100" mode="advanced" dragDropSupport="false" />
-							<p:graphicImage library="images" width="400px"
+							<h:outputLabel for="banner">Bannière </h:outputLabel>
+							<p:graphicImage library="images" width="200px"
 								name="#{spaceController.spaceViewModel.gymBannerPath}" />
+							<p:fileUpload label="Modifier" uploadLabel="Télécharger"
+								cancelLabel="Annuler"
+								listener="#{spaceController.uploadFileBanner}"
+								styleClass="w-100" mode="advanced" dragDropSupport="false" />
 						</div>
 
 					</div>

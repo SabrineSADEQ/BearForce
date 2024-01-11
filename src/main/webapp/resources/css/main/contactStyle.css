@@ -30,7 +30,7 @@
 }
 
 .green-bg {
-	background-color: #667eea; /* Vert */
+	background-color: #667eea; 
 	padding: 10px;
 	margin-bottom: 20px;
 	color: white;
@@ -38,6 +38,6 @@
 }
 
 .container2 .ui-panel {
-	width: 100%; /* Ajustez la largeur du panel selon vos besoins */
-	max-width: 900px; /* Définissez une largeur maximale si nécessaire */
+	width: 100%; 
+	max-width: 900px; 
 }
