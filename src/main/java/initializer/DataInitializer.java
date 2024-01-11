@@ -205,7 +205,7 @@ public class DataInitializer {
 		equipment.setQuantity(10);
 		equipment.setEquipmentName("barre de traction");
 		equipment.setDetails("barre de traction montée sur support métallique, poids max de 120kg");
-//    		equipmentDao.createEquipment(equipment, null);
+    		//equipmentDao.createEquipment(equipment, null);
 
 		// Packs for the BearForce platform
 		Pack basicPack = new Pack();
@@ -297,7 +297,7 @@ public class DataInitializer {
 		AccountViewModel Adherent2 = new AccountViewModel();
 		Adherent2.setEmail("leroymerlin@gmail.com");
 		Adherent2.setPassword("adherent2");
-		Adherent2.setGymId((long) 46);
+		Adherent2.setGymId((long) 95);
 		Adherent2.setRole(Role.ADHERENT);
 		Profile profileAdherent2 = new Profile();
 		profileAdherent2.setFirstName("Quentin");
@@ -312,7 +312,7 @@ public class DataInitializer {
 		Adherent3.setEmail("adherent3@gmail.com");
 		Adherent3.setPassword("adherent3");
 
-		Adherent3.setGymId((long) 67);
+		Adherent3.setGymId((long) 95);
 
 		Adherent3.setRole(Role.ADHERENT);
 		Profile profileAdherent3 = new Profile();
@@ -323,6 +323,206 @@ public class DataInitializer {
 		profileAdherent3.setContact(contact3);
 		Adherent3.setProfile(profileAdherent3);
 		accountDao.createAccount(Adherent3);
+		
+		AccountViewModel anotherAdherent = new AccountViewModel();
+		anotherAdherent.setEmail("alice@example.com");
+		anotherAdherent.setPassword("securePassword123");
+		anotherAdherent.setGymId((long) 46);
+		anotherAdherent.setRole(Role.ADHERENT);
+		anotherAdherent.setGymId((long) 46);
+
+		Profile anotherProfileAdherent = new Profile();
+		anotherProfileAdherent.setFirstName("Alice");
+		anotherProfileAdherent.setLastName("Smith");
+
+		Address anotherAddressAdherent = new Address();
+		anotherAddressAdherent.setCity("New York");
+		anotherAddressAdherent.setStreetNumber("123");
+		anotherAddressAdherent.setStreetName("Broadway");
+		anotherAddressAdherent.setPostalCode("10001");
+
+		Contact anotherContact = new Contact();
+		anotherContact.setPhone("555-1234");
+		anotherProfileAdherent.setPictureUrl("personne.png");
+		anotherProfileAdherent.setAddress(anotherAddressAdherent);
+		anotherProfileAdherent.setContact(anotherContact);
+
+		anotherAdherent.setProfile(anotherProfileAdherent);	
+		accountDao.createAccount(anotherAdherent);
+		
+		AccountViewModel newMember = new AccountViewModel();
+		newMember.setEmail("emma@example.com");
+		newMember.setPassword("strongPassword456");
+		newMember.setGymId((long) 46);
+		newMember.setRole(Role.ADHERENT);
+
+		Profile newMemberProfile = new Profile();
+		newMemberProfile.setFirstName("Emma");
+		newMemberProfile.setLastName("Johnson");
+
+		Address newMemberAddress = new Address();
+		newMemberAddress.setCity("Los Angeles");
+		newMemberAddress.setStreetNumber("789");
+		newMemberAddress.setStreetName("Sunset Blvd");
+		newMemberAddress.setPostalCode("90001");
+
+		Contact newMemberContact = new Contact();
+		newMemberContact.setPhone("555-5678");
+		newMemberProfile.setPictureUrl("personne.png");
+		newMemberProfile.setAddress(newMemberAddress);
+		newMemberProfile.setContact(newMemberContact);
+
+		newMember.setProfile(newMemberProfile);
+		accountDao.createAccount(newMember);
+		
+		AccountViewModel guestUser = new AccountViewModel();
+		guestUser.setEmail("alex@example.com");
+		guestUser.setPassword("temporaryPass789");
+		guestUser.setGymId((long) 46);
+		guestUser.setRole(Role.ADHERENT);
+
+		Profile guestProfile = new Profile();
+		guestProfile.setFirstName("Alex");
+		guestProfile.setLastName("Miller");
+
+		Address guestAddress = new Address();
+		guestAddress.setCity("San Francisco");
+		guestAddress.setStreetNumber("456");
+		guestAddress.setStreetName("Market St");
+		guestAddress.setPostalCode("94105");
+
+		Contact guestContact = new Contact();
+		guestContact.setPhone("555-4321");
+		guestProfile.setPictureUrl("personne.png");
+		guestProfile.setAddress(guestAddress);
+		guestProfile.setContact(guestContact);
+
+		guestUser.setProfile(guestProfile);
+		accountDao.createAccount(guestUser);
+		
+		AccountViewModel premiumMember = new AccountViewModel();
+		premiumMember.setEmail("sophia@example.com");
+		premiumMember.setPassword("strongPass789");
+		premiumMember.setGymId((long) 46);
+		premiumMember.setRole(Role.COACH);
+
+		Profile premiumMemberProfile = new Profile();
+		premiumMemberProfile.setFirstName("Sophia");
+		premiumMemberProfile.setLastName("Williams");
+
+		Address premiumMemberAddress = new Address();
+		premiumMemberAddress.setCity("Miami");
+		premiumMemberAddress.setStreetNumber("789");
+		premiumMemberAddress.setStreetName("Ocean Drive");
+		premiumMemberAddress.setPostalCode("33139");
+
+		Contact premiumMemberContact = new Contact();
+		premiumMemberContact.setPhone("555-8765");
+		premiumMemberProfile.setPictureUrl("personne.png");
+		premiumMemberProfile.setAddress(premiumMemberAddress);
+		premiumMemberProfile.setContact(premiumMemberContact);
+
+		premiumMember.setProfile(premiumMemberProfile);
+		accountDao.createAccount(premiumMember);
+
+		// Create an Activity
+		Activity newActivity = new Activity();
+		newActivity.setName("Yoga Class");
+		newActivity.setDescription("Relaxing yoga session with certified instructors");
+		newActivity.setActivityCategory(ActivityCategory.FITNESS);
+		activityDao.persist(newActivity);
+
+		// Create a Course for the Activity
+		Course yogaCourse = new Course();
+		yogaCourse.setActivity(newActivity);
+		yogaCourse.setTrainer(savedAccount.getProfile()); // Assuming savedAccount is the instructor's account
+		yogaCourse.setStartDate(LocalDateTime.now().plusDays(1)); // Start the course tomorrow
+		yogaCourse.setEndDate(LocalDateTime.now().plusDays(1).plusHours(1)); // Duration: 1 hour
+		yogaCourse.setNbPlaces(15); // Maximum number of participants
+		courseDao.saveCourse(yogaCourse);
+		
+		// Create an Activity
+		Activity newActivity2 = new Activity();
+		newActivity2.setName("HIIT Training");
+		newActivity2.setDescription("High-Intensity Interval Training for a powerful workout");
+		newActivity2.setActivityCategory(ActivityCategory.FORCE);
+		activityDao.persist(newActivity2);
+
+		// Create a Course for the Activity
+		Course hiitCourse = new Course();
+		hiitCourse.setActivity(newActivity2);
+		hiitCourse.setTrainer(savedAccount.getProfile()); // Assuming savedAccount is the instructor's account
+		hiitCourse.setStartDate(LocalDateTime.now().plusDays(2)); // Start the course in two days
+		hiitCourse.setEndDate(LocalDateTime.now().plusDays(2).plusHours(1)); // Duration: 1 hour
+		hiitCourse.setNbPlaces(20); // Maximum number of participants
+		courseDao.saveCourse(hiitCourse);
+		
+		
+		SpaceViewModel newSpace = new SpaceViewModel();
+		newSpace.setFirstColor("FF5733");
+		newSpace.setSecondColor("33FF57");
+		newSpace.setThirdColor("334BFF");
+		newSpace.setGymLogoPath("logo2gym.png");
+		newSpace.setGymBannerPath("banner_3.png");
+		newSpace.setMotto("Achieve Your Fitness Goals Together!");
+		newSpace.setSpaceName("FitHub");
+		newSpace.setDescription(
+		        "Discover FitHub, your ultimate fitness destination located in the heart of the city. Enjoy a wide range of classes and state-of-the-art equipment catering to all fitness levels.");
+		newSpace.setFreeAccess(false); // No free access
+		newSpace.setLockerRoom(true);
+
+		// AdminInfoGym
+		newSpace.setSiret("12345678901234");
+
+		Address addressGym2 = new Address();
+		addressGym2.setStreetNumber("45");
+		addressGym2.setStreetName("Avenue des Sports");
+		addressGym2.setPostalCode("75001");
+		addressGym2.setCity("Paris");
+		newSpace.setLocation(addressGym2);
+
+		Contact contactGym2 = new Contact();
+		contactGym2.setPhone("01 23 45 67 89");
+		contactGym2.setEmail("info@fithub.com");
+		contactGym2.setType(TypeContact.PERSO);
+		newSpace.setContactInfo(contactGym2);
+
+		
+
+		spaceDao.createSpace(newSpace);
+		
+		SpaceViewModel fitnessCenter = new SpaceViewModel();
+		fitnessCenter.setFirstColor("4285F4");
+		fitnessCenter.setSecondColor("DB4437");
+		fitnessCenter.setThirdColor("F4B400");
+		fitnessCenter.setGymLogoPath("fitness_logo.png");
+		fitnessCenter.setGymBannerPath("banner_fitness.jpg");
+		fitnessCenter.setMotto("Elevate Your Fitness Journey!");
+		fitnessCenter.setSpaceName("Epic Fitness");
+		fitnessCenter.setDescription(
+		        "Welcome to Epic Fitness, your premier destination for fitness excellence. Experience a variety of cutting-edge workouts and personalized training programs.");
+		fitnessCenter.setFreeAccess(false);
+		fitnessCenter.setLockerRoom(true);
+
+		// AdminInfoGym
+		fitnessCenter.setSiret("98765432101234");
+
+		Address gymAddress = new Address();
+		gymAddress.setStreetNumber("123");
+		gymAddress.setStreetName("Main Street");
+		gymAddress.setPostalCode("90210");
+		gymAddress.setCity("Los Angeles");
+		fitnessCenter.setLocation(gymAddress);
+
+		Contact gymContact = new Contact();
+		gymContact.setPhone("555-7890");
+		gymContact.setEmail("info@epicfitness.com");
+		gymContact.setType(TypeContact.PERSO);
+		fitnessCenter.setContactInfo(gymContact);
+
+		spaceDao.createSpace(fitnessCenter);
+
+
 
 	}
 
