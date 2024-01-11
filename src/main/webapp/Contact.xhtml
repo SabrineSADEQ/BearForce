@@ -6,7 +6,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
-	<ui:define name="titleValue">Souscrire à un nouveau pack</ui:define>
+	<ui:define name="titleValue">Contactez-nous</ui:define>
 	<ui:define name="content">
 
 		<h:head>
@@ -14,52 +14,60 @@
 		</h:head>
 
 		<h:body>
-			<h:form>
-				
-					<div class="container1">
-					<fieldset class="StyleFieldSetContact">
-						<div class="green-bg">
-							<p>
-								Si vous êtes adhérent d'un club, merci de contacter
-								directement votre club.
-								<br /> 
-							Ce formulaire est réservé aux sociétés et associations ayant des questions sur le produit.
-							</p>
+			<div class="body-platform">
+				<div class="subcontent">
+					<h:form>
+						<div class="container1">
+							<fieldset class="StyleFieldSetContact">
+								<div class="green-bg">
+									<p>
+										Si vous êtes adhérent d'un club, merci de contacter
+										directement votre club. <br /> Ce formulaire est réservé aux
+										sociétés et associations ayant des questions sur le produit.
+									</p>
+								</div>
+
+								<p:tab id="contact" title="Contact">
+									<p:panel header="Contactez nous">
+										<h:panelGrid columns="2">
+
+											<h:outputLabel for="email">Email<span
+													class="required-field">*</span>:</h:outputLabel>
+											<p:inputText id="email" />
+
+											<h:outputLabel for="phone">Numéro de téléphone<span
+													class="required-field">*</span>:</h:outputLabel>
+											<p:inputText id="phone" />
+
+
+											<h:outputLabel for="nom">Nom<span
+													class="required-field">*</span>:</h:outputLabel>
+											<p:inputText id="nom" />
+
+											<h:outputLabel for="prenom">Prénom<span
+													class="required-field">*</span>:</h:outputLabel>
+											<p:inputText id="prenom" />
+
+											<h:outputLabel for="nomSalle">Nom de la salle<span
+													class="required-field">*</span>:</h:outputLabel>
+											<p:inputText id="nomSalle" />
+
+											<h:outputLabel for="message">Message<span
+													class="required-field">*</span>:</h:outputLabel>
+											<p:inputTextarea id="message" cols="40" rows="5" />
+										</h:panelGrid>
+										<br />
+										<p:commandButton value="Envoyer le message"
+											action="#{spaceController.envoyerMessage}" />
+									</p:panel>
+								</p:tab>
+
+
+							</fieldset>
 						</div>
-
-						<p:tab id="contact" title="Contact">
-							<p:panel header="Contactez nous">
-								<h:panelGrid columns="2">
-
-									<h:outputLabel for="email">Email<span class="required-field">*</span>:</h:outputLabel>
-									<p:inputText id="email" />
-
-									<h:outputLabel for="phone">Numéro de téléphone<span class="required-field">*</span>:</h:outputLabel>
-									<p:inputText id="phone" />
-
-
-									<h:outputLabel for="nom">Nom<span class="required-field">*</span>:</h:outputLabel>
-									<p:inputText id="nom" />
-
-									<h:outputLabel for="prenom">Prénom<span class="required-field">*</span>:</h:outputLabel>
-									<p:inputText id="prenom" />
-
-									<h:outputLabel for="nomSalle">Nom de la salle<span class="required-field">*</span>:</h:outputLabel>
-									<p:inputText id="nomSalle" />
-
-									<h:outputLabel for="message">Message<span class="required-field">*</span>:</h:outputLabel>
-									<p:inputTextarea id="message" cols="40" rows="5" />
-								</h:panelGrid>
-								<br />
-								<p:commandButton value="Envoyer le message"
-									action="#{spaceController.envoyerMessage}" />
-							</p:panel>
-						</p:tab>
-
-					
-				</fieldset>
-</div>
-			</h:form>
+					</h:form>
+				</div>
+			</div>
 		</h:body>
 
 	</ui:define>

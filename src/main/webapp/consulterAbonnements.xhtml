@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+		<ui:define name="titleValue">Nos abonnements </ui:define>
+			<ui:define name="content">
+		
+				<h2>Nos abonnements</h2>
+				<hr align="center" width="80%" />
+				<h:form id="subscriptionForm">
+					<p>
+						<label for="startDate"> Date de début :</label>
+						<h:inputText id="startDate"
+							value="#{subscriptionManagedBean.startDate}" />
+		
+					</p>
+					<p>
+						<label for="endDate">Date de fin :</label>
+						<h:inputText id="endDate" value="#{subscriptionManagedBean.endDate}" />
+					</p>
+					<p>
+						<label for="autoRenewal">Renouvellement automatique :</label>
+						<h:selectBooleanCheckbox id="autoRenewal"
+							value="#{subscriptionManagedBean.autoRenewal}" />
+					</p>
+					<p>
+						<label for="duration">Durée :</label>
+						<h:inputText id="duration"
+							value="#{subscriptionManagedBean.duration}" />
+					</p>
+					</h:form>
+			</ui:define>
+	</ui:composition>
+
+</html>

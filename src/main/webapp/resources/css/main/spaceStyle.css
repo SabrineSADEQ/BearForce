@@ -51,7 +51,32 @@ body {
     border-radius: 10px; 
     background-color: #fff; 
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
- 
+    height: 100%;
+}
+
+.contentSpaceIndex{
+	 flex: 1;
+	 padding-bottom: 20px;
+    margin-bottom:50px;
+    box-sizing: border-box;
+}
+
+.subcontent {
+    flex: 1;
+    padding-bottom: 20px;
+    margin-left:50px;
+    margin-top:20px;
+    margin-right:50px;
+    box-sizing: border-box;
+    border-radius: 10px; 
+    background-color: #fff; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    height: 90%;
+    padding: 20px;
+}
+
+.dashboardContent {
+	margin-right : 20px;
 }
 
 /* Contains the sidebar menu + page content */
@@ -67,6 +92,7 @@ body {
     padding: 20px;
     box-sizing: border-box;
     align-content: center;
+
 }
 
 .dashboard-sidebar .profile-image {
@@ -90,6 +116,11 @@ body {
 	margin-bottom:20px;
 	width:60%;
 	
+}
+
+.titleH1{
+	display:flex;
+	justify-content:center;
 }
 
 .spaceLeftDiv {
@@ -122,7 +153,31 @@ body {
 	 flex-direction: column;
 }
 
+/* Update space view*/
+.update-space-container{
+	display:flex;
+	flex-direction: row;
+	width:100%;
+}
 
+
+.update-text-content{
+	flex:1;
+	float:left;
+	width:50%;
+
+}
+
+.update-visual-content{
+	flex:1;
+	width:40%;
+	float:left;
+	margin-left:20px;
+}
+
+
+
+/*PrimeFaces styles for color picker*/
 .square .clr-field button, .circle .clr-field button {
     width: 22px;
     height: 22px;
@@ -139,4 +194,14 @@ body {
     border-radius: 50%;
 }
 
+html body .ui-fileupload .ui-fileupload-buttonbar {
+	 background-color: transparent;
+	  border-color:transparent;
+	
+}
+
+html body .ui-fileupload .ui-fileupload-content {
+	 border-color:transparent;
+	 
+}
 

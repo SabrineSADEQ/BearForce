@@ -3,6 +3,7 @@ package fr.isika.cda.javaee.presentation.viewmodel;
 import fr.isika.cda.javaee.entity.accounts.Address;
 import fr.isika.cda.javaee.entity.accounts.Contact;
 import fr.isika.cda.javaee.entity.accounts.Profile;
+import fr.isika.cda.javaee.entity.gymspace.IdGym;
 
 public class SpaceViewModel {
 
@@ -24,6 +25,9 @@ public class SpaceViewModel {
 	private boolean freeAccess;
 	private boolean lockerRoom;
 	private String photoList;
+	
+	//IdGym
+	private IdGym idGym = new IdGym();
 
 	// AdminInfoGym attributes
 	private String siret;
@@ -146,5 +150,15 @@ public class SpaceViewModel {
 	public void setPhotoList(String photoList) {
 		this.photoList = photoList;
 	}
+
+	public IdGym getIdGym() {
+		return idGym;
+	}
+
+	public void setIdGym(IdGym idGym) {
+		this.idGym = idGym;
+	}
+	
+	
 
 }

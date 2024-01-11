@@ -97,5 +97,5 @@ public class AccountViewModel {
 		public void setGymId(Long gymId) {
 			this.gymId = gymId;
 		}
-	
+
 }

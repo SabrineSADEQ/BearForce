@@ -6,96 +6,110 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
-	<ui:define name="titleValue">Souscrire à un nouveau pack</ui:define>
+	<ui:define name="titleValue">BearForce : Fonctionnalités</ui:define>
 	<ui:define name="content">
 
 		<h:head>
 			<h:outputStylesheet library="css" name="main/cssCards.css" />
-	
+
 		</h:head>
 
 		<h:body>
-		
+			<div class="bodyCards">
 
-				<div class="container">
-					<div class="card">
-						<div class="card-header">
-							<h:graphicImage library="images" name="equipement.png"
-								alt="equipement" />
+
+					<div class="container">
+						<div class="card">
+							<div class="card-header">
+								<h:graphicImage library="images" name="equipement.png"
+									alt="equipement" />
+							</div>
+							<div class="card-body">
+								<span class="tag tag-teal">Gestion des équipements</span>
+								<h4>Optimisation de la Gestion de Vos Équipements</h4>
+								<p>Découvrez comment optimiser l'utilisation de vos
+									équipements pour une meilleure performance et une gestion plus
+									efficace</p>
+
+							</div>
 						</div>
-						<div class="card-body">
-							<span class="tag tag-teal">Gestion des équipements</span>
-							<h4>Optimisation de la Gestion de Vos Équipements</h4>
-							<p>Découvrez comment optimiser l'utilisation de vos équipements pour une meilleure performance et une gestion plus efficace</p>
 
+
+						<div class="card">
+							<div class="card-header">
+								<h:graphicImage library="images" name="cours.png" alt="rover" />
+							</div>
+							<div class="card-body">
+								<span class="tag tag-purple">Gestion des cours</span>
+								<h4>Personnalisation des Cours pour Vos Membres</h4>
+								<p>Explorez comment personnaliser les cours pour répondre
+									aux besoins spécifiques de vos membres et améliorer leur
+									expérience.</p>
+
+							</div>
 						</div>
-					</div>
-				
 
-				<div class="card">
-					<div class="card-header">
-						<h:graphicImage library="images" name="cours.png" alt="rover" />
-					</div>
-					<div class="card-body">
-						<span class="tag tag-purple">Gestion des cours</span>
-						<h4>Personnalisation des Cours pour Vos Membres</h4>
-						<p>Explorez comment personnaliser les cours pour répondre aux besoins spécifiques de vos membres et améliorer leur expérience.</p>
+						<div class="card">
+							<div class="card-header">
+								<h:graphicImage library="images" name="coach.png" alt="rover" />
+							</div>
+							<div class="card-body">
+								<span class="tag tag-pink">Gestion des coachs</span>
+								<h4>Maximiser le Potentiel de Vos Coachs</h4>
+								<p>Découvrez comment maximiser le potentiel de vos coachs
+									pour offrir un encadrement de qualité et motiver vos adhérents.</p>
+
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-header">
+								<h:graphicImage library="images" name="adherent.png" alt="rover" />
+							</div>
+							<div class="card-body">
+								<span class="tag tag-teal">Gestion des adhérents</span>
+								<h4>Simplification de la Gestion de vos Adhérents</h4>
+								<p>Explorez des méthodes pour simplifier la gestion de vos
+									adhérents et améliorer leur engagement avec votre plateforme.</p>
+
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-header">
+								<h:graphicImage library="images" name="abonnement.png"
+									alt="rover" />
+							</div>
+							<div class="card-body">
+								<span class="tag tag-pink">Gestion des abonnements</span>
+								<h4>Stratégies d'Abonnement Innovantes</h4>
+								<p>Découvrez des stratégies innovantes pour gérer les
+									abonnements et fidéliser vos clients avec des offres
+									attractives.</p>
+
+							</div>
+						</div>
+
+						<div class="card">
+							<div class="card-header">
+								<h:graphicImage library="images" name="reservation.png"
+									alt="rover" />
+							</div>
+							<div class="card-body">
+								<span class="tag tag-purple">Gestion des réservations</span>
+								<h4>Optimisation de l'Occupation des Salles</h4>
+								<p>Optimisez l'occupation de vos salles pour une meilleure
+									utilisation de l'espace et une expérience utilisateur
+									améliorée.</p>
+
+							</div>
+						</div>
+
 
 					</div>
+
 				</div>
-				
-				<div class="card">
-					<div class="card-header">
-						<h:graphicImage library="images" name="coach.png" alt="rover" />
-					</div>
-					<div class="card-body">
-						<span class="tag tag-pink">Gestion des coachs</span>
-						<h4>Maximiser le Potentiel de Vos Coachs</h4>
-						<p>Découvrez comment maximiser le potentiel de vos coachs pour offrir un encadrement de qualité et motiver vos adhérents.</p>
 
-					</div>
-				</div>
-				
-				<div class="card">
-					<div class="card-header">
-						<h:graphicImage library="images" name="adherent.png" alt="rover" />
-					</div>
-					<div class="card-body">
-						<span class="tag tag-teal">Gestion des adhérents</span>
-						<h4>Simplification de la Gestion de vos Adhérents</h4>
-						<p>Explorez des méthodes pour simplifier la gestion de vos adhérents et améliorer leur engagement avec votre plateforme.</p>
-
-					</div>
-				</div>
-				
-				<div class="card">
-					<div class="card-header">
-						<h:graphicImage library="images" name="abonnement.png" alt="rover" />
-					</div>
-					<div class="card-body">
-						<span class="tag tag-pink">Gestion des abonnements</span>
-						<h4>Stratégies d'Abonnement Innovantes</h4>
-						<p>Découvrez des stratégies innovantes pour gérer les abonnements et fidéliser vos clients avec des offres attractives.</p>
-
-					</div>
-				</div>
-				
-				<div class="card">
-					<div class="card-header">
-						<h:graphicImage library="images" name="reservation.png" alt="rover" />
-					</div>
-					<div class="card-body">
-						<span class="tag tag-purple">Gestion des réservations</span>
-						<h4>Optimisation de l'Occupation des Salles</h4>
-						<p>Optimisez l'occupation de vos salles pour une meilleure utilisation de l'espace et une expérience utilisateur améliorée.</p>
-
-					</div>
-				</div>
-				
-				
-</div>
-
-	
 		</h:body>
 	</ui:define>
 

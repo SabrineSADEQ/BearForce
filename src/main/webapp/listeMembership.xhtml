@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -10,40 +9,28 @@
 	<ui:define name="titleValue">Liste membership</ui:define>
 	<ui:define name="content">
 
-<h:head>	
-	<h:outputStylesheet library="css" name="main/style.css" />
-</h:head>
+		<h:head>
+			<h:outputStylesheet library="css" name="main/cssCards.css" />
+		</h:head>
+		<div class="container">
+			<ui:repeat value="#{membershipManagedBean.memberships}"
+				var="membership">
 
-		<h:form enctype="multipart/form-data">
-            <h2>Liste des memberships</h2>
-    <h:dataTable value="#{membershipManagedBean.memberships} " var="subscription">
-        <h:column>
-            <f:facet name="header">ID</f:facet>
-            <h:outputText value="#{membershipManagedBean.selectedMembership.id}" />
-        </h:column>
-        <h:column>
-            <f:facet name="header">StartDate</f:facet>
-            <h:outputText value="#{membershipManagedBean.selectedMembership.name}" />
-        </h:column>
-        <h:column>
-            <f:facet name="header">EndDate</f:facet>
-            <h:outputText value="#{membershipManagedBean.selectedMembership.price}" />
-        </h:column>
-         <h:column>
-            <f:facet name="header">EndDate</f:facet>
-            <h:outputText value="#{membershipManagedBean.selectedMembership.nbrOfActivities}" />
-        </h:column>
-        <h:column>
-            <f:facet name="header">Description</f:facet>
-            <h:outputText value="#{membershipManagedBean.selectedMembership.description}" />
-        </h:column>
-        <h:column>
-       
-    </h:column>
-    </h:dataTable>
+				<div class="card">
+					<div class="card-header">
+						<div>#{membership.name}</div>
 
-		</h:form> 
-	
+					</div>
+					<div class="card-body">
+						<div>#{membership.nbrOfActivities}</div>
+						<div>#{membership.price}</div>
+						<div>#{membership.description}</div>
+
+
+					</div>
+					</div>
+			</ui:repeat>
+		</div>
 	</ui:define>
 
 </ui:composition>

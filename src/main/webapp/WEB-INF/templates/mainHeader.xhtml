@@ -25,13 +25,16 @@
 				<p:menubar id="spaceMenuBar">
 					<p:menuitem class="link-menu" value="Accueil" outcome="index" />
 
-					<p:menuitem class="link-menu" value="Fonctionnalités" outcome="PageFonctionnalites" />
-					<p:menuitem class="link-menu" value="Nos clients" outcome="spacesList" />
-					<p:menuitem class="link-menu" value="Nos offres"/>
+					<p:menuitem class="link-menu" value="Fonctionnalités"
+						outcome="PageFonctionnalites" />
+					<p:menuitem class="link-menu" value="Nos clients"
+						outcome="spacesList" />
+					<p:menuitem class="link-menu" value="Nos offres"
+						outcome="Souscription" />
 
 					<p:menuitem class="link-menu" value="Créer un espace"
 						outcome="spaceCreation" />
-					<p:menuitem class="link-menu" value="Contact" outcome="Contact"/>
+					<p:menuitem class="link-menu" value="Contact" outcome="Contact" />
 					<p:submenu class="link-menu" label="ADMINISTRATION PLATEFORME"
 						rendered="#{loginController.getLoggedAccount().role eq 'SUPER_ADMIN'}">
 						<p:menuitem value="Configurer la plateforme"
@@ -40,7 +43,6 @@
 						<p:menuitem value="Gérer les packages"
 							rendered="#{loginController.getLoggedAccount().role eq 'SUPER_ADMIN'}"
 							outcome="CreationPack.xhtml" />
-						<p:menuitem value="Gérer les espaces" />
 					</p:submenu>
 				</p:menubar>
 
@@ -66,41 +68,44 @@
 				<!-- 						outcome="CreationDeCompte" /> -->
 				<!-- 				</ui:fragment> -->
 
-				
-					<p:button class="rightButton" value="Tableau de bord"
-						outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
-						iconPos="right"
-						rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
-					<p:button class="rightButton" value="Tableau de bord"
-						outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
-						iconPos="right"
-						rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
-						
-					<p:commandButton class="rightButton" value="Mon espace personnel"
-						action="#{spaceController.redirectToSpace(loginController.loggedAccount.gymId)}" icon="pi pi-chevron-right"
-						iconPos="right"
-						rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
+
+				<p:button class="rightButton" value="Tableau de bord"
+					outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
+					iconPos="right"
+					rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
+				<p:button class="rightButton" value="Tableau de bord"
+					outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
+					iconPos="right"
+					rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
+
+				<p:commandButton class="rightButton" value="Mon espace personnel"
+					action="#{spaceController.redirectToSpace(loginController.loggedAccount.gymId)}"
+					icon="pi pi-chevron-right" iconPos="right"
+					rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
 
 			</h:form>
 
 			<!-- Login pop up -->
 
 			<h:form>
-			
-			<p:dialog header="Connexion" widgetVar="dlg3" minHeight="40" width="350"
-				showEffect="fade">
 
-				<p class="m-0">
-					
-						<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
-    <h:outputLabel for="email">Email</h:outputLabel>
-    <h:inputText id="email" value="#{loginController.accountVM.email}" required="true" />
-</div>
+				<p:dialog header="Connexion" widgetVar="dlg3" minHeight="40"
+					width="350" showEffect="fade">
 
-<div style="display: flex; flex-direction: column; margin-bottom: 10px;">
-    <h:outputLabel for="password">Mot de passe</h:outputLabel>
-    <h:inputSecret id="password" value="#{loginController.accountVM.password}" required="true" />
-</div>
+					<p class="m-0">
+					<div
+						style="display: flex; flex-direction: column; margin-bottom: 10px;">
+						<h:outputLabel for="email">Email</h:outputLabel>
+						<h:inputText id="email" value="#{loginController.accountVM.email}"
+							required="true" />
+					</div>
+
+					<div
+						style="display: flex; flex-direction: column; margin-bottom: 10px;">
+						<h:outputLabel for="password">Mot de passe</h:outputLabel>
+						<h:inputSecret id="password"
+							value="#{loginController.accountVM.password}" required="true" />
+					</div>
 
 					<f:facet name="footer">
 						<p:commandButton value="Me connecter"
@@ -108,14 +113,15 @@
 
 					</f:facet>
 					<f:facet name="footer">
-						<p:commandButton value="Créer un compte"
-							action="#{loginController.redirectToCreateAccount}" />
+						<p:button value="Créer un compte"
+							outcome="CreationDeCompte" />
 					</f:facet>
-					
+
 
 					</p>
 
-				</p:dialog></h:form>
+				</p:dialog>
+			</h:form>
 
 
 

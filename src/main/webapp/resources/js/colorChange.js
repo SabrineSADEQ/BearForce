@@ -11,3 +11,4 @@ document.addEventListener('DOMContentLoaded', function() {
         document.documentElement.style.setProperty('--main-color', selectedColor);
     });
 });
+
