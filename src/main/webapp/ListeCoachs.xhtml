@@ -11,45 +11,87 @@
 
 		<h:head>
 			<h:outputStylesheet library="css" name="ListeCoachs.css" />
-			<h:outputStylesheet library="fontawesome" name="all.min.css" 
-    url="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
-			
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<h:outputScript>
+				<![CDATA[
+            document.addEventListener("DOMContentLoaded", function() {
+                var swiper = new Swiper(".slide-content", {
+                    slidesPerView: 3,
+                    spaceBetween: 25,
+                    loop: true,
+                    centerSlide: true,
+                    fade: true,
+                    grabCursor: true,
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                        dynamicBullets: true,
+                    },
+                    navigation: {
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                    },
+                    breakpoints:{
+                        0: {
+                            slidesPerView: 1,
+                        },
+                        520: {
+                            slidesPerView: 2,
+                        },
+                        950: {
+                            slidesPerView: 3,
+                        },
+                    },
+                });
+            });
+        ]]>
+			</h:outputScript>
+
 		</h:head>
-		 <body>
-            <div class="container">
-            
-                <div class="main-card">
-                    <div class="cards">
-                        <ui:repeat value="#{profilesManagementController.profiles}" var="tempProfile">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="img">
-                                        <p:avatar styleClass="mr-2" size="xlarge" shape="circle">
-                                            <h:graphicImage name="#{tempProfile.pictureUrl}" library="images" />
-                                        </p:avatar>
-                                    </div>
-                                    <div class="details">
-                                        <div class="name">
-                                            <h:outputText value="#{tempProfile.firstName}" />
-                                        </div>
-                                        <div class="job">
-                                            <h:outputText value="#{tempProfile.lastName}" />
-                                        </div>
-                                     
-                                        <div class="button">
-                              <h:commandButton value="Contacter"
-						action="#{subscriptionManagementController.paymentPack()}" />
-											 
-						</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ui:repeat>
-                        
-                    </div>
-                </div>
-            </div>
-        </body>
+
+
+
+
+		<h:body>
+			<div class="slide-container swiper">
+				<div class="slide-content">
+					<div class="card-wrapper swiper-wrapper">
+						<ui:repeat value="#{profilesManagementController.profiles}"
+							var="tempProfile">
+							<div class="card swiper-slide">
+								<div class="image-content">
+									<span class="overlay"></span>
+
+									<div class="card-image">
+
+								<h:graphicImage name="#{tempProfile.pictureUrl}" library="images" />
+
+									</div>
+								</div>
+								<div class="card-content">
+									<h2 class="name">
+										<h:outputText value="#{tempProfile.firstName}" />
+									</h2>
+									<p class="description">
+										<h:outputText value="#{tempProfile.lastName}" />
+									</p>
+
+									<h:commandButton value="Contacter"
+										action="#{subscriptionManagementController.paymentPack()}"
+										styleClass="button" />
+								</div>
+							</div>
+						</ui:repeat>
+					</div>
+				</div>
+
+				<div class="swiper-button-next swiper-navBtn"></div>
+				<div class="swiper-button-prev swiper-navBtn"></div>
+				<div class="swiper-pagination"></div>
+			</div>
+		</h:body>
 	</ui:define>
 
 </ui:composition>
