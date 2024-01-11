@@ -25,6 +25,7 @@ public class Activity {
 	private long id ;	
 	private String name ;
 	private String description;	
+	private Long attachedGymId;
 	@Enumerated(EnumType.STRING)
 	private ActivityCategory activityCategory;	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
@@ -77,4 +78,12 @@ public class Activity {
 		this.activityCategory = activityCategory;
 	}
 
+	public Long getAttachedGymId() {
+		return attachedGymId;
+	}
+
+	public void setAttachedGymId(Long attachedGymId) {
+		this.attachedGymId = attachedGymId;
+	}
+	
 }

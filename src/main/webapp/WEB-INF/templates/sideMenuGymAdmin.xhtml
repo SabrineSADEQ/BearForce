@@ -28,8 +28,8 @@
 			icon="pi pi-calendar-plus" />
 		<p:menuitem value="Equipements" outcome="crudEquipment"
 			icon="pi pi-wrench" />
-		<p:menuitem value="Réserver un cours" outcome="crudBooking"
-			icon="pi pi-time" />
+		<p:menuitem value="Réservations" outcome="allBookings"
+			icon="pi pi-chevron-circle-down" />
 		<p:menuitem value="Abonnements" outcome="CreateMembership"
 			icon="pi pi-shopping-cart" />
 		<p:menuitem value="Modifier mon espace" icon="pi pi-palette"
@@ -45,10 +45,10 @@
 		rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}">
 		<p:graphicImage library="images" name="bear_user_image.jpg"
 			alt="profile-picture" styleClass="profile-image" />
-		<p:menuitem value="Mon planning" icon="pi pi-calendar" />
+		<p:menuitem value="Mon planning" icon="pi pi-calendar" outcome="crdBooking"/>
 
-		<p:menuitem value="Réserver un cours" icon="pi pi-calendar-plus"
-			outcome="crdBooking" />
+		<p:menuitem value="Mes réservations" icon="pi-chevron-circle-down"
+			outcome="adherentBookings" />
 
 		<p:menuitem value="Mon abonnement" icon="pi pi-shopping-cart" />
 		<p:menuitem value="Mon compte" outcome="MonCompte" icon="pi pi-cog" />
@@ -62,7 +62,7 @@
 			alt="profile-picture" styleClass="profile-image" />
 		<p:menuitem value="Tableau de bord" outcome="spaceCoachDashboard"
 			icon="pi pi-chart-line" />
-		<p:menuitem value="Mon planning" icon="pi pi-calendar" />
+		<p:menuitem value="Mon planning" icon="pi pi-calendar" outcome="generalPlanning" />
 		<p:menuitem value="Adhérents" icon="pi pi-users"
 			outcome="ListeAdherent" />
 		<p:menuitem value="Mon profil professionel" icon="pi pi-user" />

@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.isika.cda.javaee.account.controller.LoginController;
+import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
@@ -17,10 +19,10 @@ public class CourseDAO {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	@Inject
 	private ActivityDao activityDao;
-	
+
 	public Course createCourse (CourseViewModel courseViewModel) {
 		Course courseBean = new Course();
 		Activity act = activityDao.findActivityById(courseViewModel.getActivityId());
@@ -35,11 +37,11 @@ public class CourseDAO {
 		entityManager.flush();
 		return courseBean;	
 	}
-	
+
 	public void mergeCourse(Course courseToMerge) {
 		entityManager.merge(courseToMerge);
 	}
-	
+
 	public void updateCourse(Course updateCourse, Long selectedActivity, Long selectedProfile) {
 		Course existingCourse = entityManager.find(Course.class, updateCourse.getId());
 		Activity activity = activityDao.findActivityById(selectedActivity);
@@ -51,7 +53,7 @@ public class CourseDAO {
 		existingCourse.setTrainer(trainer);
 		entityManager.merge(existingCourse);
 	}
-	
+
 	public void deleteCourse(Long courseToDeleteId) {
 		Course courseToDelete = entityManager
 				.createQuery("SELECT c FROM Course c LEFT JOIN FETCH c.activity WHERE c.id = :courseIdParam", Course.class)
@@ -59,11 +61,11 @@ public class CourseDAO {
 				.getSingleResult();
 		entityManager.remove(courseToDelete);
 	}
-	
+
 	public void saveCourse(Course course) {
 		entityManager.persist(course);
 	}
-	
+
 	public Course getCourseByIdJoinActivity(long courseId) {
 		return entityManager
 				.createQuery("SELECT c FROM Course c LEFT JOIN FETCH c.activity WHERE c.id = :courseIdParam",
@@ -76,7 +78,24 @@ public class CourseDAO {
 	}
 
 	public List<Course> getAllCoursesWithActivities() {
-		return entityManager.createQuery("SELECT c FROM Course c LEFT JOIN FETCH c.activity", Course.class)
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		Long loggedAccountGymId = logged.getGymId();	
+		return entityManager
+				.createQuery("SELECT c FROM Course c LEFT JOIN FETCH c.activity WHERE c.activity.attachedGymId = :gymIdParam"
+						, Course.class)
+				.setParameter("gymIdParam", loggedAccountGymId)
+				.getResultList();
+	}
+	
+	public List<Course> getAllCoursesOfConnectedCoach() {
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		Long loggedAccountId = logged.getId();	
+		return entityManager
+				.createQuery("SELECT c FROM Course c WHERE c.trainer.account.id = :accountIdParam"
+						, Course.class)
+				.setParameter("accountIdParam", loggedAccountId)
 				.getResultList();
 	}
 

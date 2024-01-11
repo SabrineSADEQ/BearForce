@@ -9,8 +9,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import fr.isika.cda.javaee.account.controller.LoginController;
 import fr.isika.cda.javaee.dao.BookingDao;
 import fr.isika.cda.javaee.dao.CourseDAO;
+import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.gymspace.business.Booking;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
 import fr.isika.cda.javaee.presentation.viewmodel.BookingViewModel;
@@ -51,6 +54,9 @@ public class BookingController implements Serializable {
 	
 	public List<Booking> displayBookingList(){
 		return bookingDao.getAllBookings();
+	}
+	public List<Booking> displayBookingListForAdherent(){
+		return bookingDao.getAllBookingsForAdherent();
 	}
 	
 	public List<Course> displayCoursesList() {

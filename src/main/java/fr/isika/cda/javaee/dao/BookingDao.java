@@ -55,7 +55,20 @@ public class BookingDao {
 	}
 	
 	public List<Booking> getAllBookings() {
-		return entityManager.createQuery("SELECT b FROM Booking b", Booking.class)
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		Long loggedAccountGymId = logged.getGymId();
+		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.account.gymId = :gymIdParam", Booking.class)
+				.setParameter("gymIdParam", loggedAccountGymId)
+				.getResultList();
+	}
+	
+	public List<Booking> getAllBookingsForAdherent() {
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		Long loggedAccountId = logged.getId();
+		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.account.id = :accountIdParam", Booking.class)
+				.setParameter("accountIdParam", loggedAccountId)
 				.getResultList();
 	}
 

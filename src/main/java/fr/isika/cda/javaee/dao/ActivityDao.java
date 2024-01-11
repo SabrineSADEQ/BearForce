@@ -7,6 +7,8 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import fr.isika.cda.javaee.account.controller.LoginController;
+import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
@@ -25,11 +27,18 @@ public class ActivityDao {
 		entityManager.persist(activity);
 		return activity.getId();
 	}
+	
+	private Long getCurrentConnectedGymId() { 
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		return logged.getGymId();
+		}
 
 	public Activity createActivity(ActivityViewModel activityViewModel, List<Long> selectedEquipments) {
 		Activity activityBean = new Activity();
 		activityBean.setName(activityViewModel.getName());
 		activityBean.setDescription(activityViewModel.getDescription());
+		activityBean.setAttachedGymId(getCurrentConnectedGymId());
 		activityBean.setActivityCategory(activityViewModel.getActivityCategory());
 		selectedEquipments.stream()
 				.map(id -> equipmentDao.findEquipmentById(id))
@@ -48,6 +57,7 @@ public class ActivityDao {
 		existingActivity.setName(updateActivity.getName());
 		existingActivity.setDescription(updateActivity.getDescription());
 		existingActivity.setActivityCategory(updateActivity.getActivityCategory());
+		existingActivity.setAttachedGymId(getCurrentConnectedGymId());
 		// existingActivity.setEquipmentList(updateActivity.getEquipmentList());
 		entityManager.merge(existingActivity);
 	}
@@ -67,7 +77,11 @@ public class ActivityDao {
 
 	// SEAK IN DATABASE ALL ACTIVITIES
 	public List<Activity> getAllActivities() {
-		return entityManager.createQuery("SELECT a FROM Activity a LEFT JOIN FETCH a.equipmentList", Activity.class)
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		Long loggedAccountGymId = logged.getGymId();	
+		return entityManager.createQuery("SELECT a FROM Activity a LEFT JOIN FETCH a.equipmentList WHERE a.attachedGymId = :gymIdParam", Activity.class)
+				.setParameter("gymIdParam", loggedAccountGymId)
 				.getResultList();
 	}
 

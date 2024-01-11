@@ -22,6 +22,7 @@ import org.primefaces.model.DefaultScheduleModel;
 import org.primefaces.model.ScheduleEvent;
 import org.primefaces.model.ScheduleModel;
 
+import fr.isika.cda.javaee.account.controller.LoginController;
 import fr.isika.cda.javaee.dao.ActivityDao;
 import fr.isika.cda.javaee.dao.BookingDao;
 import fr.isika.cda.javaee.dao.CourseDAO;
@@ -112,7 +113,7 @@ public class PlanningCourseController implements Serializable {
 		loadAllCourses();
 	}
 
-	private void loadAllCourses() {
+	private void loadAllCourses() {	
 		List<Course> courses = getAllCourses();
 		for (Course c : courses) {
 			transformCoursetoEvent(c);
@@ -125,7 +126,13 @@ public class PlanningCourseController implements Serializable {
 	 * @return the courses list (:List<Course>)
 	 */
 	private List<Course> getAllCourses() {
-		return courseDao.getAllCoursesWithActivities();
+		String role = getCurrentConnectedRole();
+		System.out.println(role + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		if (role == "Coach") {
+			return courseDao.getAllCoursesOfConnectedCoach();
+		} else {
+			return courseDao.getAllCoursesWithActivities();
+		}
 	}
 
 	private DefaultScheduleEvent<?> transformCoursetoEvent(Course course) {
@@ -169,20 +176,29 @@ public class PlanningCourseController implements Serializable {
 		event = new DefaultScheduleEvent<>();
 	}
 
+	private Long getCurrentConnectedId() { 
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		return logged.getId();
+	}
+
+	private String getCurrentConnectedRole() { 
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		return logged.getRole().getLibelle();
+	}
+
 	private void addBooking() {	
 		Booking bookingToCreate = new Booking();
 		Course courseToBook = courseDao.getCourseByIdJoinActivity(Long.valueOf(event.getId()));
-		//A ADAPTER !!!
-		Account bookingAccount = accountDao.getAccountById(Long.valueOf(1));
+		Account bookingAccount = accountDao.getAccountById(getCurrentConnectedId());
 		bookingToCreate.setAccount(bookingAccount);
 		bookingToCreate.setCourse(courseToBook);		
 		bookingDao.saveBooking(bookingToCreate);	
 	}
-	
-	
-	
+
 	public boolean checkExistingBooking() {
-		Account bookingAccount = accountDao.getAccountById(Long.valueOf(1));
+		Account bookingAccount = accountDao.getAccountById(getCurrentConnectedId());
 		Course courseToBook = courseDao.getCourseByIdJoinActivity(Long.valueOf(event.getId()));
 		List<Booking> bookings = bookingAccount.getBookingsList();
 		List<Long> coursesIdsList = new ArrayList<Long>();
@@ -192,8 +208,8 @@ public class PlanningCourseController implements Serializable {
 			for (Booking booking : bookings) {
 				//coursesIdsList.add(booking.getCourse().getId());
 				Optional.ofNullable(booking.getCourse())
-                .map(Course::getId)
-                .ifPresent(coursesIdsList::add);
+				.map(Course::getId)
+				.ifPresent(coursesIdsList::add);
 			}
 
 			Long courseToBookId = courseToBook.getId();
@@ -209,8 +225,8 @@ public class PlanningCourseController implements Serializable {
 			return false;
 		}
 	}
-	
-	
+
+
 
 	//	public boolean checkExistingBooking() {
 	//		Account bookingAccount = accountDao.getAccountById(Long.valueOf(1));
