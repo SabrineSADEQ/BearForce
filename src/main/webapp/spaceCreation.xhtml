@@ -21,7 +21,8 @@
 
 				<h:form>
 
-					<p:wizard flowListener="#{spaceController.onFlowProcess}">
+					<p:wizard flowListener="#{spaceController.onFlowProcess}"
+						nextLabel="Suite" backLabel="Retour">
 						<p:tab id="infos" title="Informations">
 
 							<p:panel header="Informations principales de la page d'accueil">
@@ -134,11 +135,11 @@
 
 								<h:outputLabel for="logo">Logo</h:outputLabel>
 								<!-- Composant graphique pour le fichier -->
-								<p:fileUpload listener="#{spaceController.uploadFileLogo}"
+								<p:fileUpload label="Ajouter" uploadLabel="Télécharger" cancelLabel="Annuler" listener="#{spaceController.uploadFileLogo}"
 									styleClass="w-100" mode="advanced" dragDropSupport="false" />
 								<br />
 								<h:outputLabel for="banner">Bannière</h:outputLabel>
-								<p:fileUpload listener="#{spaceController.uploadFileBanner}"
+								<p:fileUpload label="Ajouter" uploadLabel="Télécharger" cancelLabel="Annuler" listener="#{spaceController.uploadFileBanner}"
 									styleClass="w-100" mode="advanced" dragDropSupport="false" />
 
 							</p:panel>

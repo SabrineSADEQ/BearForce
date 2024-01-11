@@ -28,14 +28,14 @@ html, body {
 }
 
 body {
-    min-height: 100vh;
+    min-height: 100%;
 }
 
 .body-platform{
 	background-color: #f7f8fc;
 	color: var(--dark);
-	padding-bottom:2.5rem;
-	min-height: 100vh;
+	padding-bottom:5rem;
+	
 }
 
 .content {

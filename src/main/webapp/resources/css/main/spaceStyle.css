@@ -157,17 +157,22 @@ body {
 .update-space-container{
 	display:flex;
 	flex-direction: row;
+	width:100%;
 }
 
 
 .update-text-content{
-	display: flex;
-	flex-direction: column;
-	width:100%;
+	flex:1;
+	float:left;
+	width:50%;
+
 }
 
 .update-visual-content{
-	display: flex;
+	flex:1;
+	width:40%;
+	float:left;
+	margin-left:20px;
 }
 
 
@@ -189,4 +194,14 @@ body {
     border-radius: 50%;
 }
 
+html body .ui-fileupload .ui-fileupload-buttonbar {
+	 background-color: transparent;
+	  border-color:transparent;
+	
+}
+
+html body .ui-fileupload .ui-fileupload-content {
+	 border-color:transparent;
+	 
+}
 
