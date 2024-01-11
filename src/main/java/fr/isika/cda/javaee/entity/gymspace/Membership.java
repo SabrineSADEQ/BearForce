@@ -1,15 +1,19 @@
 package fr.isika.cda.javaee.entity.gymspace;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import fr.isika.cda.javaee.entity.gymspace.business.PaymentReceipt;
+import fr.isika.cda.javaee.entity.platform.Subscription;
 
 @Entity
 @Table(name = "memberShip")
@@ -28,7 +32,10 @@ public class Membership {
 	private int nbrOfActivities;
 	@Column(name = "description")
 	private String description;
-
+	
+	@OneToMany
+	private List<Subscription> subscriptions ;
+	
 	@OneToOne(cascade = CascadeType.ALL)
 	private IdGym idGym = new IdGym();
 
@@ -43,6 +50,30 @@ public class Membership {
 		this.price = price;
 		this.nbrOfActivities = nbrOfActivities;
 		this.description = description;
+	}
+
+	public List<Subscription> getSubscriptions() {
+		return subscriptions;
+	}
+
+	public void setSubscriptions(List<Subscription> subscriptions) {
+		this.subscriptions = subscriptions;
+	}
+
+	public IdGym getIdGym() {
+		return idGym;
+	}
+
+	public void setIdGym(IdGym idGym) {
+		this.idGym = idGym;
+	}
+
+	public PaymentReceipt getPaymentReceipt() {
+		return paymentReceipt;
+	}
+
+	public void setPaymentReceipt(PaymentReceipt paymentReceipt) {
+		this.paymentReceipt = paymentReceipt;
 	}
 
 	public long getId() {

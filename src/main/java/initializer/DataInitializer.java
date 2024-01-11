@@ -311,7 +311,9 @@ public class DataInitializer {
 		AccountViewModel Adherent3 = new AccountViewModel();
 		Adherent3.setEmail("adherent3@gmail.com");
 		Adherent3.setPassword("adherent3");
+
 		Adherent3.setGymId((long) 67);
+
 		Adherent3.setRole(Role.ADHERENT);
 		Profile profileAdherent3 = new Profile();
 		profileAdherent3.setFirstName("Theo");

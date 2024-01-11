@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+<ui:composition
+	template="WEB-INF/templates/spaceGeneralViewsTemplate.xhtml">
 	<ui:define name="titleValue">Liste membership</ui:define>
 	<ui:define name="content">
 
@@ -26,11 +27,58 @@
 						<div>#{membership.price}</div>
 						<div>#{membership.description}</div>
 
+						<input type="button" id="validate-button"
+							onclick="PF('dlgMembership').show()" value="Valider" />
 
 					</div>
-					</div>
+				</div>
 			</ui:repeat>
+
 		</div>
+
+		<p:dialog header="Choisir mes modalités d'abonnement"
+			widgetVar="dlgMembership" minHeight="40" width="350"
+			showEffect="fade">
+			<h:form>
+				<h:panelGrid class="panelsub" columns="2">
+
+					<h:outputLabel for="memberships" styleClass="form-label"
+						style="margin-left: 10px;">Choisir un abonnement : </h:outputLabel>
+					<h:selectOneMenu id="memberships"
+						value="#{subscriptionManagedBean.subscriptionViewModel.selectedMembership}" required="true"
+						styleClass="form-input">
+						<f:selectItems value="#{membershipManagedBean.memberships}" var="membershipChoice"
+							itemLabel="#{membershipChoice}" itemValue="#{membershipChoice}" />
+					</h:selectOneMenu>
+
+
+<!-- 					<label for="startDate"> Date de début :</label> -->
+<!--  					<p:datePicker id="startDate"  -->
+<!-- 						value="#{subscriptionManagedBean.subscriptionViewModel.startDate}" />  -->
+
+
+<!-- 				<label for="endDate">Date de fin :</label> -->
+<!-- 					<p:datePicker id="endDate"  -->
+<!--  						value="#{subscriptionManagedBean.subscriptionViewModel.endDate}" />  -->
+
+					<label for="duration">Durée :</label>
+					<h:inputText id="duration"
+						value="#{subscriptionManagedBean.subscriptionViewModel.duration}" />
+
+					<p:selectBooleanCheckbox
+						value="#{subscriptionManagedBean.subscriptionViewModel.autorenewal}"
+						itemLabel="Renouvellement automatique :" />
+
+				</h:panelGrid>
+				<br />
+
+				<p:button value="Souscrire"
+					action="#{subscriptionManagedBean.subscribe()}" />
+
+			</h:form>
+
+		</p:dialog>
+
 	</ui:define>
 
 </ui:composition>

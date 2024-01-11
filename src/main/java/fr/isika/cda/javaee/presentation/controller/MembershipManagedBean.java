@@ -11,6 +11,7 @@ import fr.isika.cda.javaee.entity.gymspace.Membership;
 import fr.isika.cda.javaee.presentation.viewmodel.MembershipViewModel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,11 +25,14 @@ import java.util.List;
 @ViewScoped
 public class MembershipManagedBean implements Serializable {
 
-    @Inject
+    
+	private static final long serialVersionUID = 1L;
+
+	@Inject
     private MembershipDao membershipDao;
 
-    private List<Membership> memberships;
-    private Membership selectedMembership;
+    private List<Membership> memberships = new ArrayList<Membership>();
+    private Membership selectedMembership = new Membership() ;
     private MembershipViewModel membershipViewModel = new MembershipViewModel();
 
     public MembershipDao getMembershipDao() {
@@ -54,7 +58,7 @@ public class MembershipManagedBean implements Serializable {
 
 	@PostConstruct
     public void init() {
-        
+        this.memberships = getMemberships();
     }
 
     public List<Membership> getMemberships() {
