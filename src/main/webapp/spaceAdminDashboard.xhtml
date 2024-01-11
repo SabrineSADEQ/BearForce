@@ -6,19 +6,94 @@
 	xmlns:p="http://primefaces.org/ui">
 
 
-<ui:composition template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
-	
-	<ui:define name="titleValue">INSERER NOM ESPACE ICI</ui:define>
+<ui:composition
+	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+
+	<ui:define name="titleValue">Tableau de bord</ui:define>
 	<ui:define name="content">
-		<h:outputStylesheet library="css" name="spaceStyle.css"/>
+		<h:outputStylesheet library="css" name="spaceStyle.css" />
 		<div class="subcontent">
-        	<!-- Main content goes here -->
-	        <h1  class="titleH1">Tableau de bord Gestionnaire</h1>
-	        <p>Statistiques :</p>
-    	</div>
+
+			<div class="grid">
+				<div class="col-12 md:col-6 lg:col-3">
+					<div class="surface-card shadow-2 p-3 border-round">
+						<div class="flex justify-content-between mb-3">
+							<div>
+								<span class="block text-500 font-medium mb-3">Adhérents</span>
+								<div class="text-900 font-medium text-xl">152</div>
+							</div>
+							<div
+								class="flex align-items-center justify-content-center bg-blue-100 border-round"
+								style="width: 2.5rem; height: 2.5rem">
+								<i class="pi pi-users text-blue-500 text-xl" />
+							</div>
+						</div>
+						<span class="text-green-500 font-medium">+20</span> <span
+							class="text-500">cette semaine</span>
+					</div>
+				</div>
+				<div class="col-12 md:col-6 lg:col-3">
+					<div class="surface-card shadow-2 p-3 border-round">
+						<div class="flex justify-content-between mb-3">
+							<div>
+								<span class="block text-500 font-medium mb-3">CA mensuel</span>
+								<div class="text-900 font-medium text-xl">8100€</div>
+							</div>
+							<div
+								class="flex align-items-center justify-content-center bg-orange-100 border-round"
+								style="width: 2.5rem; height: 2.5rem">
+								<i class="pi pi-euro text-orange-500 text-xl" />
+							</div>
+						</div>
+						<span class="text-green-500 font-medium">+12% </span> <span
+							class="text-500">cette semaine</span>
+					</div>
+				</div>
+				<div class="col-12 md:col-6 lg:col-3">
+					<div class="surface-card shadow-2 p-3 border-round">
+						<div class="flex justify-content-between mb-3">
+							<div>
+								<span class="block text-500 font-medium mb-3">Coachs</span>
+								<div class="text-900 font-medium text-xl">10</div>
+							</div>
+							<div
+								class="flex align-items-center justify-content-center bg-cyan-100 border-round"
+								style="width: 2.5rem; height: 2.5rem">
+								<i class="pi pi-briefcase text-cyan-500 text-xl" />
+							</div>
+						</div>
+						<span class="text-green-500 font-medium">  <br/>      </span> <span
+							class="text-500"></span>
+					</div>
+				</div>
+				<div class="col-12 md:col-6 lg:col-3">
+					<div class="surface-card shadow-2 p-3 border-round">
+						<div class="flex justify-content-between mb-3">
+							<div>
+								<span class="block text-500 font-medium mb-3">Equipements</span>
+								<div class="text-900 font-medium text-xl">84</div>
+							</div>
+							<div
+								class="flex align-items-center justify-content-center bg-purple-100 border-round"
+								style="width: 2.5rem; height: 2.5rem">
+								<i class="pi pi-wrench text-purple-500 text-xl" />
+							</div>
+						</div>
+						<span class="text-green-500 font-medium">    <br/>    </span> <span
+							class="text-500"></span>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+
+		</div>
 
 	</ui:define>
-	
+
 </ui:composition>
 
 </html>

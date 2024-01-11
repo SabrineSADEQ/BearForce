@@ -1,11 +1,15 @@
-document.addEventListener('DOMContentLoaded', function() {
-    fetch('/BearForce/spaceIndex.xhtml')
-        .then(response => response.json())
-        .then(spaceColors => {
-            // Set user colors to CSS variables
-            document.documentElement.style.setProperty('--color1', spaceColors.color1);
-            document.documentElement.style.setProperty('--color2', spaceColors.color2);
-            document.documentElement.style.setProperty('--color3', spaceColors.color3);
-        })
-        .catch(error => console.error('Error fetching space colors:', error));
+ window.addEventListener("load", function () {
+   
+    // Add # symbol to colors
+    visualIdentityData.firstColor = "#" + visualIdentityData.firstColor;
+    visualIdentityData.secondColor = "#" + visualIdentityData.secondColor;
+    visualIdentityData.thirdColor = "#" + visualIdentityData.thirdColor;
+
+    setColors(visualIdentityData.firstColor, visualIdentityData.secondColor, visualIdentityData.thirdColor);
+
+    function setColors(firstColor, secondColor, thirdColor) {
+        document.documentElement.style.setProperty('--firstColor', firstColor);
+        document.documentElement.style.setProperty('--secondColor', secondColor);
+        document.documentElement.style.setProperty('--thirdColor', thirdColor);
+    }
 });

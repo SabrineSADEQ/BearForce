@@ -95,10 +95,22 @@ body {
 
 }
 
+html #sidebarTopItem1{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+html body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-text #sidebarTopItem2{
+	object-position: 50% 50%;
+	color:var(--firstColor) !important;
+}
+
 .dashboard-sidebar .profile-image {
     display: block; 
-    margin-bottom: 20px; 
     width: 100%; 
+    text-align: center;
     border-radius: 50%; /* Make the image appear in a circle */
     overflow: hidden; /* Ensure content outside the circle is hidden */
 }
@@ -153,6 +165,14 @@ body {
 	 flex-direction: column;
 }
 
+
+#mainTitle{
+	color:var(--firstColor) !important;
+}
+
+
+
+
 /* Update space view*/
 .update-space-container{
 	display:flex;
@@ -204,4 +224,5 @@ html body .ui-fileupload .ui-fileupload-content {
 	 border-color:transparent;
 	 
 }
+
 

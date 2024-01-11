@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition
+	template="WEB-INF/templates/spaceGeneralViewsTemplate.xhtml">
+
+	<ui:define name="titleValue">
+		#{spaceController.getLoadedSpace().visualIdentity.spaceTextContent.spaceName}
+	</ui:define>
+	<ui:define name="content">
+		<h:outputStylesheet library="css" name="main/spaceStyle.css" />
+		<h:outputStylesheet name="primeflex/primeflex.css" />
+
+		<div class="grid grid-nogutter surface-section text-800">
+			<div
+				class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
+				<section>
+					<span class="block text-6xl font-bold mb-1" >#{spaceController.getLoadedSpace().visualIdentity.spaceTextContent.spaceName}
+					</span>
+					<div class="text-6xl text-primary font-bold mb-3" id="mainTitle">#{spaceController.getLoadedSpace().visualIdentity.spaceTextContent.motto}</div>
+					<p class="mt-0 mb-4 text-700 line-height-3">#{spaceController.getLoadedSpace().visualIdentity.spaceTextContent.description}</p>
+
+					<p:commandButton value="Nos cours" type="button"
+						class="mr-3 ui-button-raised" />
+					<p:commandButton value="Nos coachs" type="button"
+						class="mr-3 ui-button-raised" />
+					<p:commandButton value="Nos équipements" type="button"
+						class="mr-3 ui-button-raised" />
+				</section>
+			</div>
+			<div class="col-12 md:col-6 overflow-hidden">
+				<p:graphicImage
+					name="#{spaceController.getLoadedSpace().visualIdentity.gymBannerPath}"
+					library="images" alt="Image"
+					styleClass="md:ml-auto block md:h-full"
+					style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)" />
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
