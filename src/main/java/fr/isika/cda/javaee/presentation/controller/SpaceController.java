@@ -1,5 +1,6 @@
 package fr.isika.cda.javaee.presentation.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,6 +10,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -173,8 +175,28 @@ public class SpaceController implements Serializable {
 		Long spaceId = spaceDao.createSpace(spaceViewModel).getId();
 		injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(spaceId);
 		spaceViewModel = new SpaceViewModel();
-		redirectToSpace(spaceId);
-	}
+		// Construct the URL with the specific spaceId
+        String url = "http://127.0.0.1:8080/BearForce/spaceAdminDashboard.xhtml?spaceId=" + spaceId;
+
+        // Get the FacesContext and ExternalContext
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+
+        // Redirect to the constructed URL
+        try {
+			externalContext.redirect(url);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        // Optionally, you can add facesContext.responseComplete() to ensure that no further processing occurs
+        // after the redirect.
+        facesContext.responseComplete();
+
+    } 
+
+	
 	
 @Transactional
 	public void injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(long spaceId) {
