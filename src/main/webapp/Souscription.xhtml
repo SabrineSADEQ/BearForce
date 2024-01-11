@@ -4,6 +4,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
+	
 
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
     <ui:define name="titleValue">Nos coachs</ui:define>
@@ -16,7 +17,12 @@
         </h:head>
 
         <h:body>
+                       
+						<h1 class="titleH1">Nos Packs</h1>
+					
+					
             <div class="slide-container swiper">
+            
                 <div class="slide-content">
                     <div class="card-wrapper swiper-wrapper">
                         <ui:repeat value="#{subscriptionManagementController.listePacks()}" var="pack">
@@ -27,6 +33,7 @@
                                     </h2>
                                     <p class="description">
                                         <h:outputText value="#{pack.price}" />
+                                        <h:outputText value="€" />
                                     </p>
 
                                     <div class="image-content">
