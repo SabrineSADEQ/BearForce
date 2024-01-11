@@ -52,8 +52,7 @@ public class AccountDao {
 		entityManager.persist(accountbean);
 		entityManager.persist(profile);
 
-		// Flush the changes to the database
-		entityManager.flush();
+	
 
 		return accountbean;
 

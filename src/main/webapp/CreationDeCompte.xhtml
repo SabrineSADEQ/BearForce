@@ -199,15 +199,13 @@
 				</h:panelGroup>
 			</h:panelGrid>
 
+			 <h:commandButton value="Retour" action="#{accountController.previousWizardStep}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only next-button" />
+         <h:commandButton value="Valider" action="#{accountController.finishWizard}" rendered="#{accountController.accountVM.role eq 'GESTIONNAIRE'}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only finish-button" style="margin-left: 10px; font-size: 15px; padding: 10px 20px;" />
+        
+        <h:commandButton value="Suite" action="#{accountController.nextWizardStep}" rendered="#{accountController.accountVM.role ne 'GESTIONNAIRE'}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only next-button" />
+       
+        <h:messages globalOnly="true" />
 
-			<h:commandButton value="Retour"
-				action="#{accountController.previousWizardStep}"
-				styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only next-button" />
-			<h:commandButton value="Suite"
-				action="#{accountController.nextWizardStep}"
-				styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only next-button" />
-
-			<h:messages globalOnly="true" />
 		</h:form>
 
 		<h:form rendered="#{accountController.wizardStep == 3}">
