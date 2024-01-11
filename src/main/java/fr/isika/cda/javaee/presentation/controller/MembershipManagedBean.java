@@ -64,8 +64,8 @@ public class MembershipManagedBean implements Serializable {
     public List<Membership> getMemberships() {
         
         memberships = membershipDao.getAllMemberships();
-
         return memberships;
+       
     }
 
     public Membership getSelectedMembership() {
@@ -75,6 +75,7 @@ public class MembershipManagedBean implements Serializable {
     public void setSelectedMembership(Membership selectedMembership) {
         this.selectedMembership = selectedMembership;
     }
+    
     public void createMembership() {
         Membership newMembership = new Membership();
         newMembership.setName(membershipViewModel.getName());
@@ -86,5 +87,12 @@ public class MembershipManagedBean implements Serializable {
         // Réinitialise le viewModel après la création
         membershipViewModel = new MembershipViewModel();
     }
+    
+    public String paymentSubscription() {
+
+		return "pagePayment.xhtml?faces-redirect=true";
+
+	}
+
 }
 
