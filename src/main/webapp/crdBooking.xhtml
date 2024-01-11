@@ -22,18 +22,25 @@
 						update="eventDetails" oncomplete="PF('eventDialog').show();" />
 				</p:schedule>
 
+				
+
+
 				<p:dialog widgetVar="eventDialog" header="Réserver cette activité ?"
 					showEffect="fade" hideEffect="fade">
-					<h:panelGrid id="eventDetails" columns="2" cellpadding="7">
-					
-					</h:panelGrid>
+					<h:panelGrid id="eventDetails" columns="2" cellpadding="7" />
+
+					<h:outputText value="La condition est vraie!"
+						rendered="#{PlanningCourseController.checkExistingBooking()}" />
+					<h:outputText value="La condition est fausse!"
+						rendered="#{not PlanningCourseController.checkExistingBooking()}" />
 
 					<div class="flex justify-content-between mt-3">
 						<p:commandButton id="bookingButton" value="Oui"
-							action="#{planningCourseController.bookingEvent()}"
+							action="#{planningCourseController.checkExistingBooking()}"
 							oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
 					</div>
 				</p:dialog>
+
 
 
 			</h:form>
