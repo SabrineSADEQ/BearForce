@@ -34,7 +34,7 @@ public class BookingDao {
 
 	public void deleteBooking(Long bookingToDeleteId) {
 		Booking bookingToDelete = entityManager
-				.createQuery("SELECT b FROM Booking WHERE b.id = :bookingIdParam", Booking.class)
+				.createQuery("SELECT b FROM Booking b WHERE b.id = :bookingIdParam", Booking.class)
 				.setParameter("bookingIdParam", bookingToDeleteId)
 				.getSingleResult();
 		entityManager.remove(bookingToDelete);
@@ -48,13 +48,24 @@ public class BookingDao {
 		return entityManager.createQuery("SELECT a FROM Account a WHERE a.id = :accountIdParam", Account.class)
 				.setParameter("accountIdParam", accountId).getSingleResult();
 	}
-
-	public List <Booking> getAccountBookingsList(Account accountToCheck){
-		Long accountToCheckId = accountToCheck.getId();
-		return entityManager.createQuery("SELECT a FROM Account a LEFT JOINT FETCH a.bookingList WHERE a.id = :accountIdParam", Account.class)
-				.setParameter("accountIdParam", accountToCheckId)
+	
+	public List<Course> getAllCoursesWithActivities() {
+		return entityManager.createQuery("SELECT c FROM Course c LEFT JOIN FETCH c.activity", Course.class)
 				.getResultList();
 	}
+	
+	public List<Booking> getAllBookings() {
+		return entityManager.createQuery("SELECT b FROM Booking b", Booking.class)
+				.getResultList();
+	}
+
+
+//	public List <Booking> getAccountBookingsList(Account accountToCheck){
+//		Long accountToCheckId = accountToCheck.getId();
+//		return entityManager.createQuery("SELECT a FROM Account a LEFT JOINT FETCH a.bookingList WHERE a.id = :accountIdParam", Account.class)
+//				.setParameter("accountIdParam", accountToCheckId)
+//				.getResultList();
+//	}
 
 	public Course findCourseById(long courseId) {
 		return entityManager.createQuery("SELECT c FROM Course c WHERE c.id = :courseIdParam", Course.class)
