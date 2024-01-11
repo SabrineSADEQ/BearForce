@@ -37,7 +37,7 @@ public class Account {
 	@ManyToOne
 	private Subscription subscription;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Profile profile;
 
 	@Column
