@@ -83,6 +83,7 @@ public class SubscriptionManagedBean implements Serializable {
 		
 		//Membership membership = membershipManagedBean.getSelectedMembership();
 		Membership membership = subscriptionViewModel.getSelectedMembership();
+		
 		System.out.println(membership);
 		
 		Account account = accountManagedBean.getLoggedInAccount();
