@@ -3,7 +3,9 @@ package fr.isika.cda.javaee.presentation.controller;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -35,22 +37,22 @@ import fr.isika.cda.javaee.entity.gymspace.business.Course;
 public class PlanningCourseController implements Serializable {
 
 	private static final long serialVersionUID = -160397842934902381L;
-	
+
 	/*
 	 * Dependencies
 	 */
 	@Inject
 	private CourseDAO courseDao;
-	
+
 	@Inject
 	private ActivityDao activityDao;
-	
+
 	@Inject
 	private BookingDao bookingDao;
-	
+
 	@Inject
 	private AccountDao accountDao;
-	
+
 	/*
 	 * Schedule properties
 	 */
@@ -60,7 +62,7 @@ public class PlanningCourseController implements Serializable {
 	private boolean slotEventOverlap = true;
 	private boolean showWeekNumbers = false;
 	private boolean showHeader = true;
-	private boolean draggable = true;
+	private boolean draggable = false;
 	private boolean resizable = true;
 	private boolean selectable = false;
 	private boolean showWeekends = true;
@@ -88,7 +90,7 @@ public class PlanningCourseController implements Serializable {
 	private String columnHeaderFormat = "";
 	private String view = "timeGridWeek";
 	private String height = "auto";
-	
+
 	/*
 	 * View props
 	 */
@@ -96,8 +98,9 @@ public class PlanningCourseController implements Serializable {
 	private Long selectedCoachProfileId;
 	private Long selectedCourseId;
 	private Integer nbPlacesCount;
-	
-	
+	private boolean reservedOrNot;
+
+
 	@PostConstruct
 	private void init() {
 		refreshModel();
@@ -131,13 +134,14 @@ public class PlanningCourseController implements Serializable {
 				.title(course.getActivity().getName())
 				.startDate(course.getStartDate())
 				.endDate(course.getEndDate())
+				.draggable(false)
 				.borderColor("orange")
 				.build();
-		
+
 		eventModel.addEvent(event);
 		return event;
 	}
-	
+
 	public void onEventSelect(SelectEvent<ScheduleEvent<Course>> selectEvent) {
 		event = selectEvent.getObject();
 	}
@@ -157,15 +161,14 @@ public class PlanningCourseController implements Serializable {
 		}
 		refreshModel();
 		event = new DefaultScheduleEvent<>();
-
 	}
-	
+
 	public void bookingEvent() {
 		addBooking();
 		refreshModel();
 		event = new DefaultScheduleEvent<>();
 	}
-	
+
 	private void addBooking() {	
 		Booking bookingToCreate = new Booking();
 		Course courseToBook = courseDao.getCourseByIdJoinActivity(Long.valueOf(event.getId()));
@@ -175,55 +178,107 @@ public class PlanningCourseController implements Serializable {
 		bookingToCreate.setCourse(courseToBook);		
 		bookingDao.saveBooking(bookingToCreate);	
 	}
+	
+	
+	
+	public boolean checkExistingBooking() {
+		Account bookingAccount = accountDao.getAccountById(Long.valueOf(1));
+		Course courseToBook = courseDao.getCourseByIdJoinActivity(Long.valueOf(event.getId()));
+		List<Booking> bookings = bookingAccount.getBookingsList();
+		List<Long> coursesIdsList = new ArrayList<Long>();
+		System.out.println(bookings + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		System.out.println(courseToBook + "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+		if (bookings != null) {
+			for (Booking booking : bookings) {
+				//coursesIdsList.add(booking.getCourse().getId());
+				Optional.ofNullable(booking.getCourse())
+                .map(Course::getId)
+                .ifPresent(coursesIdsList::add);
+			}
+
+			Long courseToBookId = courseToBook.getId();
+			if(coursesIdsList.contains(courseToBookId)) {
+				System.out.println("FAUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUX");
+				return false; 
+			} else {
+				System.out.println("VRAIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIS");
+				return true;
+
+			}
+		}else {
+			return false;
+		}
+	}
+	
+	
+
+	//	public boolean checkExistingBooking() {
+	//		Account bookingAccount = accountDao.getAccountById(Long.valueOf(1));
+	//		Course courseToBook = courseDao.getCourseByIdJoinActivity(Long.valueOf(event.getId()));
+	//		List <Booking> bookings = bookingAccount.getBookingsList();
+	//		List <Course> courses = new ArrayList<Course>();
+	//		List <Long> coursesIdsList = new ArrayList<Long>();
+	//		for (Booking booking : bookings) {
+	//			courses.add(booking.getCourse());
+	//			for (Course course : courses) {
+	//				coursesIdsList.add(course.getId());		
+	//			}
+	//		}	
+	//		Long courseToBookId = courseToBook.getId();
+	//		if (coursesIdsList.contains(courseToBookId)){
+	//			return false;
+	//		} 
+	//		return true	;
+	//	}
 
 	private void createNewEvent() {	
 		// add the event to the graphical model
 		eventModel.addEvent(event);
-		
+
 		// save the course
 		Course courseToCreate = new Course();
-		
+
 		Activity activity = activityDao.findActivityById(selectedActivityId);
 		courseToCreate.setActivity(activity);
-		
+
 		Profile coach = activityDao.findTrainerById(selectedCoachProfileId);
 		courseToCreate.setTrainer(coach);
-		
+
 		courseToCreate.setNbPlaces(nbPlacesCount);;
 		courseToCreate.setStartDate(event.getStartDate());
 		courseToCreate.setEndDate(event.getEndDate());
-		
+
 		courseDao.saveCourse(courseToCreate);
 	}
 
 	private void updateEvent() {
 		Long courseId = Long.valueOf(event.getId());
 		Course courseToUpdate = courseDao.getCourseByIdJoinActivity(courseId);
-		
+
 		// Si l'activité a changé 
 		if(courseToUpdate.getActivity().getId() != selectedActivityId) {
 			Activity activity = activityDao.findActivityById(selectedActivityId);
 			courseToUpdate.setActivity(activity);
 		}
-		
+
 		// Si le coach a changé 
 		if(courseToUpdate.getTrainer().getId() != selectedCoachProfileId) {
 			Profile coach = activityDao.findTrainerById(selectedCoachProfileId);
 			courseToUpdate.setTrainer(coach);
 		}
-		
+
 		// Dans tous les autres cas on modifie
 		courseToUpdate.setStartDate(event.getStartDate());
 		courseToUpdate.setEndDate(event.getEndDate());
-		
+
 		if(nbPlacesCount != null) {
 			courseToUpdate.setNbPlaces(nbPlacesCount);
 		}
-		
+
 		eventModel.updateEvent(event);
-		
+
 		courseDao.mergeCourse(courseToUpdate);
-		
+
 		refreshModel();
 	}
 
@@ -519,7 +574,7 @@ public class PlanningCourseController implements Serializable {
 	public void setServerTimeZone(String serverTimeZone) {
 		this.serverTimeZone = serverTimeZone;
 	}
-	
+
 	public Long getSelectedActivityId() {
 		return selectedActivityId;
 	}
@@ -546,8 +601,16 @@ public class PlanningCourseController implements Serializable {
 	public void setSelectedCourseId(Long selectedCourseId) {
 		this.selectedCourseId = selectedCourseId;
 	}
-	
-	
+
+	public boolean isReservedOrNot() {
+		return reservedOrNot;
+	}
+
+	public void setReservedOrNot(boolean reservedOrNot) {
+		this.reservedOrNot = reservedOrNot;
+	}
+
+
 
 }
 

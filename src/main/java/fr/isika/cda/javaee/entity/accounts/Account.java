@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.criteria.Predicate.BooleanOperator;
+
 import fr.isika.cda.javaee.entity.gymspace.business.Booking;
 import fr.isika.cda.javaee.entity.platform.Subscription;
 
@@ -41,9 +43,11 @@ public class Account {
 	private Profile profile;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
-	private List<Booking> accountsList = new ArrayList<>();
+
+	private List<Booking> bookingsList = new ArrayList<>();
 
 	private Long gymId;
+	
 
 	public Long getGymId() {
 
@@ -136,16 +140,18 @@ public class Account {
 		this.wizardStep = wizardStep;
 	}
 
+
 	public void setSubscription(Subscription subscription) {
 		this.subscription = subscription;
 	}
 
-	public List<Booking> getAccountsList() {
-		return accountsList;
-	}
 
-	public void setAccountsList(List<Booking> accountsList) {
-		this.accountsList = accountsList;
-	}
+	public List<Booking> getBookingsList() {
+		return bookingsList;
+	} 
+	
+	public void setBookingsList(List<Booking> bookingsList) {
+		this.bookingsList = bookingsList;
+	}	
 
 }
