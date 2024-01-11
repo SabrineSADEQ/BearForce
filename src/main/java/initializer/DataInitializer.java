@@ -85,12 +85,12 @@ public class DataInitializer {
 		// Check if the default user already exists
 
 		AccountViewModel defaultUser = new AccountViewModel();
-		defaultUser.setEmail("azerty");
-		defaultUser.setPassword("azerty");
+		defaultUser.setEmail("superAdmin@gmail.com");
+		defaultUser.setPassword("superAdmin");
 		defaultUser.setRole(Role.SUPER_ADMIN);
 		accountDao.createAccount(defaultUser);
 		AccountViewModel Adherent = new AccountViewModel();
-		Adherent.setEmail("adherent");
+		Adherent.setEmail("adherent@gmail.com");
 		Adherent.setPassword("adherent");
 		Adherent.setGymId((long) 46);
 		Adherent.setRole(Role.ADHERENT);
@@ -111,7 +111,7 @@ public class DataInitializer {
 		Adherent.setProfile(profileAdherent);
 		accountDao.createAccount(Adherent);
 		AccountViewModel gestionnaire = new AccountViewModel();
-		gestionnaire.setEmail("gestionnaire");
+		gestionnaire.setEmail("gestionnaire@gmail.com");
 		gestionnaire.setPassword("gestionnaire");
 		gestionnaire.setRole(Role.GESTIONNAIRE);
 
@@ -139,7 +139,7 @@ public class DataInitializer {
 
 		accountDao.createAccount(gestionnaire);
 		AccountViewModel coach = new AccountViewModel();
-		coach.setEmail("coach");
+		coach.setEmail("coach@gmail.com");
 		coach.setPassword("coach");
 		coach.setRole(Role.COACH);
 		coach.setGymId((long) 46);
