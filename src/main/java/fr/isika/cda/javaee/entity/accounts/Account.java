@@ -34,25 +34,17 @@ public class Account {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Goal goal;
 
-	@ManyToOne
+	@OneToOne
 	private Subscription subscription;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Profile profile;
 
-	@Column
-
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "account")
 	private List<Booking> accountsList = new ArrayList<>();
 
-
 	private Long gymId;
-	
-	
-	
-	
-	
+
 	public Long getGymId() {
 
 		return gymId;
@@ -144,8 +136,8 @@ public class Account {
 		this.wizardStep = wizardStep;
 	}
 
-	public void setSubscription(Subscription subscription2) {
-		this.subscription =  subscription;
+	public void setSubscription(Subscription subscription) {
+		this.subscription = subscription;
 	}
 
 	public List<Booking> getAccountsList() {
