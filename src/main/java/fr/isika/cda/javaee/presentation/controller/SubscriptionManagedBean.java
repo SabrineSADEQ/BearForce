@@ -1,21 +1,19 @@
 package fr.isika.cda.javaee.presentation.controller;
 
 import java.io.Serializable;
-import java.time.LocalTime;
 import java.util.List;
 
-import javax.faces.bean.ManagedProperty;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import fr.isika.cda.javaee.dao.gymspace.MembershipDao;
 import fr.isika.cda.javaee.dao.platform.SubscriptionDao;
 import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.gymspace.Membership;
-import fr.isika.cda.javaee.entity.platform.Pack;
 import fr.isika.cda.javaee.entity.platform.Subscription;
-import fr.isika.cda.javaee.presentation.viewmodel.EquipmentViewModel;
-import fr.isika.cda.javaee.presentation.viewmodel.MembershipViewModel;
 import fr.isika.cda.javaee.presentation.viewmodel.SubscriptionViewModel;
+import fr.isika.cda.javaee.utils.SessionUtils;
 
 /**
  * Ce bean gère les opérations liées aux souscriptions de application Java EE.
@@ -29,23 +27,73 @@ import fr.isika.cda.javaee.presentation.viewmodel.SubscriptionViewModel;
  *
  */
 @Named
+@ViewScoped
 public class SubscriptionManagedBean implements Serializable {
 
-	private LocalTime startDate;
-	private LocalTime endDate;
-	private boolean autoRenewal;
-	private int duration;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -324909137916793277L;
+
 	private SubscriptionViewModel subscriptionViewModel = new SubscriptionViewModel();
-	private MembershipViewModel membershipViewModel = new MembershipViewModel();
-	private MembershipManagedBean membershipManagedBean;
-	private AccountManagedBean accountManagedBean;
+	
 	@Inject
 	private SubscriptionDao subscriptionDao;
+	
+	@Inject
+	private MembershipDao membershipDao;
 
-	public List<Subscription> subscriptionList() {
-		return subscriptionDao.getAllSubscriptions();
+	private Long selectedMembershipId;
+
+	public List<Membership> getMemberships() {
+		return membershipDao.getAllMemberships();
 	}
 
+	public String subscribe() {
+		Membership membership = membershipDao.getMembershipByIdWithSubscriptions(selectedMembershipId);
+		Account account = SessionUtils.getAccount();
+		if (membership != null && account != null) {
+			
+			Subscription subscription = new Subscription();
+			subscription.setAutoRenewal(subscriptionViewModel.isAutorenewal());
+			// TODO : faire un petit calcul intelligent pour déduire la duration à partir de la end date et start date
+			subscription.setDuration(subscriptionViewModel.getDuration());
+			subscription.setStartDate(subscriptionViewModel.getStartDate().atStartOfDay());
+			subscription.setEndDate(subscriptionViewModel.getEndDate().atStartOfDay());
+			subscription.setMembership(membership);
+			
+			membership.getSubscriptions().add(subscription);
+
+			account.setSubscription(subscription);
+			
+			subscription = subscriptionDao.createSubscriptionAndUpdateRelations(subscription, membership, account);
+			
+			// TODO : réactiver quand il y aura les objets pour le paiement (meme en simulation)
+			return redirectToPaymentSubscription(subscription.getId());
+			
+//			return "ListeSubscriptions.xhtml";
+		}
+		
+		System.err.println("Ceci ne doit pas arriver mais au cas où ça veut dire que account == null ou membership == null");
+		return "";
+	}
+	
+	public List<Subscription> subscriptionList() {
+		// FIX : subs du user connecté et non pas toutes les subs
+		return subscriptionDao.getAllSubscriptions();
+	}
+	
+	public String redirectToPaymentSubscription(Long subscriptionId) {
+		// url : pagePayment.xhtml?spaceId=xx&subscriptionId=yy
+		return "pagePayment.xhtml?faces-redirect=true&amp;spaceId=" 
+				+ SessionUtils.getAccount().getGymId()
+				+ "&amp;subscriptionId=" + subscriptionId;
+	}
+	
+	public void selectMemberShip(Long membershipId) {
+		this.selectedMembershipId = membershipId;
+	}
+	
 	public SubscriptionViewModel getSubscriptionViewModel() {
 		return subscriptionViewModel;
 	}
@@ -53,95 +101,4 @@ public class SubscriptionManagedBean implements Serializable {
 	public void setSubscriptionViewModel(SubscriptionViewModel subscriptionViewModel) {
 		this.subscriptionViewModel = subscriptionViewModel;
 	}
-
-	public MembershipViewModel getMembershipViewModel() {
-		return membershipViewModel;
-	}
-
-	public void setMembershipViewModel(MembershipViewModel membershipViewModel) {
-		this.membershipViewModel = membershipViewModel;
-	}
-
-	public SubscriptionDao getSubscriptionDao() {
-		return subscriptionDao;
-	}
-
-	public void setSubscriptionDao(SubscriptionDao subscriptionDao) {
-		this.subscriptionDao = subscriptionDao;
-	}
-
-	public MembershipManagedBean getMembershipManagedBean() {
-		return membershipManagedBean;
-	}
-
-	public AccountManagedBean getAccountManagedBean() {
-		return accountManagedBean;
-	}
-
-	public void subscribe() {
-		System.out.println("\n \n \n \n \br \br JE SUIS DANS SUSCRIBEEEEE");
-		
-		//Membership membership = membershipManagedBean.getSelectedMembership();
-		Membership membership = subscriptionViewModel.getSelectedMembership();
-		
-		System.out.println(membership);
-		
-		Account account = accountManagedBean.getLoggedInAccount();
-
-		if (membership != null && account != null) {
-			Subscription subscription = new Subscription();
-			subscription.setMembership(membership);
-			account.setSubscription(subscription);
-
-			subscriptionDao.saveSubscription(subscription);
-			paymentSubscription();
-		}
-	}
-
-	public LocalTime getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(LocalTime startDate) {
-		this.startDate = startDate;
-	}
-
-	public LocalTime getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(LocalTime endDate) {
-		this.endDate = endDate;
-	}
-
-	public boolean isAutoRenewal() {
-		return autoRenewal;
-	}
-
-	public void setAutoRenewal(boolean autoRenewal) {
-		this.autoRenewal = autoRenewal;
-	}
-
-	public int getDuration() {
-		return duration;
-	}
-
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
-
-	public void setMembershipManagedBean(MembershipManagedBean membershipManagedBean) {
-		this.membershipManagedBean = membershipManagedBean;
-	}
-
-	public void setAccountManagedBean(AccountManagedBean accountManagedBean) {
-		this.accountManagedBean = accountManagedBean;
-	}
-
-	public String paymentSubscription() {
-
-		return "pagePayment.xhtml?faces-redirect=true";
-
-	}
-
 }

@@ -219,28 +219,32 @@ public class DataInitializer {
 		packDao.createPack(premiumPack);
 
 		// Memberships for the example spaces
-		Membership membership = new Membership();
-		membership.setName("Gold");
-		membership.setPrice(99);
-		membership.setNbrOfActivities(20);
-		membership.setDescription(
-				"Jusqu'à 20 cours par semaine pour les plus grands sportifs, encadrement personnalisé par le coach de votre choix et accès illimité à l'espace détente");
-		membershipDao.saveMembership(membership);
-
+		
 		Membership membership2 = new Membership();
 		membership2.setName("Bronze");
 		membership2.setPrice(20);
 		membership2.setNbrOfActivities(2);
-		membership2.setDescription(
-				"2 cours par semaine, pour une remise en forme en douceur, un accès à l'espace détente par semaine");
+		membership2.setDescription("2 cours par semaine, pour une remise en forme en douceur, "
+				+ "un accès à l'espace détente par semaine");
 		membershipDao.saveMembership(membership2);
+		
 
 		Membership membership3 = new Membership();
 		membership3.setName("Silver");
 		membership3.setPrice(45);
 		membership3.setNbrOfActivities(7);
 		membership3.setDescription("7 cours par semaine, accès illimité aux équipements en accès libre");
+		
+		
+		
 		membershipDao.saveMembership(membership3);
+		Membership membership = new Membership();
+		membership.setName("Gold");
+		membership.setPrice(99);
+		membership.setNbrOfActivities(20);
+		membership.setDescription("Jusqu'à 20 cours par semaine pour les plus grands sportifs,"
+				+ " encadrement personnalisé par le coach de votre choix et accès illimité à l'espace détente");
+		membershipDao.saveMembership(membership);
 
 		List<Membership> membershipList = new ArrayList<Membership>();
 		membershipList.add(membership);
@@ -260,8 +264,9 @@ public class DataInitializer {
 		spaceViewModel.setGymBannerPath("banner_2.png");
 		spaceViewModel.setMotto("Ensemble, en route vers le sport !");
 		spaceViewModel.setSpaceName("Go Gym");
-		spaceViewModel.setDescription(
-				"Notre salle, idéalement située au coeur de Paris, vous permettra d'accéder à de nombreux cours pour tous les goûts et toutes les envies. Nos équipements dernier cri satisferont les sportifs les plus exigeants.");
+		spaceViewModel.setDescription("Notre salle, idéalement située au coeur de Paris,"
+				+ " vous permettra d'accéder à de nombreux cours pour tous les goûts et toutes les envies."
+				+ " Nos équipements dernier cri satisferont les sportifs les plus exigeants.");
 		spaceViewModel.setFreeAccess(true);
 		spaceViewModel.setLockerRoom(true);
 
@@ -291,7 +296,7 @@ public class DataInitializer {
 		subscription.setAutoRenewal(true);
 		subscription.setDuration(6);
 		subscription.setMembership(membership);
-		subscriptionDao.saveSubscription(subscription);
+		subscriptionDao.CreateSubscription(subscription);
 
 
 		AccountViewModel Adherent2 = new AccountViewModel();

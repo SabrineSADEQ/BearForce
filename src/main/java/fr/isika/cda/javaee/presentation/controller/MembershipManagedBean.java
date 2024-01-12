@@ -16,8 +16,9 @@ import java.util.List;
 
 /**
  * Cette classe gère la récupération des abonnements depuis la base de données,
- *  permet à l'utilisateur de sélectionner un abonnement,
- *  et fournit une méthode pour créer de nouveaux abonnements en utilisant un modèle de vue
+ * permet à l'utilisateur de sélectionner un abonnement, et fournit une méthode
+ * pour créer de nouveaux abonnements en utilisant un modèle de vue
+ * 
  * @author Bitjoka Vincent
  *
  */
@@ -25,17 +26,16 @@ import java.util.List;
 @ViewScoped
 public class MembershipManagedBean implements Serializable {
 
-    
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-    private MembershipDao membershipDao;
+	private MembershipDao membershipDao;
 
-    private List<Membership> memberships = new ArrayList<Membership>();
-    private Membership selectedMembership = new Membership() ;
-    private MembershipViewModel membershipViewModel = new MembershipViewModel();
+	private List<Membership> memberships = new ArrayList<Membership>();
+	private Membership selectedMembership = new Membership();
+	private MembershipViewModel membershipViewModel = new MembershipViewModel();
 
-    public MembershipDao getMembershipDao() {
+	public MembershipDao getMembershipDao() {
 		return membershipDao;
 	}
 
@@ -55,44 +55,36 @@ public class MembershipManagedBean implements Serializable {
 		this.memberships = memberships;
 	}
 
-
 	@PostConstruct
-    public void init() {
-        this.memberships = getMemberships();
-    }
+	public void init() {
+		this.memberships = getMemberships();
+	}
 
-    public List<Membership> getMemberships() {
-        
-        memberships = membershipDao.getAllMemberships();
-        return memberships;
-       
-    }
+	public List<Membership> getMemberships() {
 
-    public Membership getSelectedMembership() {
-        return selectedMembership;
-    }
-
-    public void setSelectedMembership(Membership selectedMembership) {
-        this.selectedMembership = selectedMembership;
-    }
-    
-    public void createMembership() {
-        Membership newMembership = new Membership();
-        newMembership.setName(membershipViewModel.getName());
-        newMembership.setNbrOfActivities(membershipViewModel.getNbrOfActivities());
-        newMembership.setPrice(membershipViewModel.getPrice());
-
-        membershipDao.addMembership(newMembership);
-
-        // Réinitialise le viewModel après la création
-        membershipViewModel = new MembershipViewModel();
-    }
-    
-    public String paymentSubscription() {
-
-		return "pagePayment.xhtml?faces-redirect=true";
+		memberships = membershipDao.getAllMemberships();
+		return memberships;
 
 	}
 
-}
+	public Membership getSelectedMembership() {
+		return selectedMembership;
+	}
 
+	public void setSelectedMembership(Membership selectedMembership) {
+		this.selectedMembership = selectedMembership;
+	}
+
+	public void createMembership() {
+		Membership newMembership = new Membership();
+		newMembership.setName(membershipViewModel.getName());
+		newMembership.setNbrOfActivities(membershipViewModel.getNbrOfActivities());
+		newMembership.setPrice(membershipViewModel.getPrice());
+
+		membershipDao.addMembership(newMembership);
+
+		// Réinitialise le viewModel après la création
+		membershipViewModel = new MembershipViewModel();
+	}
+
+}

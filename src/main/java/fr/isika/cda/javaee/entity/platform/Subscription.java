@@ -100,8 +100,26 @@ public class Subscription {
 		
 	}
 
-	
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Subscription [id=");
+		builder.append(id);
+		builder.append(", startDate=");
+		builder.append(startDate);
+		builder.append(", endDate=");
+		builder.append(endDate);
+		builder.append(", autoRenewal=");
+		builder.append(autoRenewal);
+		builder.append(", duration=");
+		builder.append(duration);
+		builder.append(", membership=");
+		builder.append(membership);
+		builder.append("]");
+		return builder.toString();
+	}
+	
 	
 
 }

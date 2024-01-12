@@ -42,7 +42,12 @@ import java.util.List;
 	    public Membership getMembershipById(long membershipId) {
 	        return entityManager.find(Membership.class, membershipId);
 	    }
-
+	    public Membership getMembershipByIdWithSubscriptions(long membershipId) {
+	        return entityManager
+	        		.createQuery("SELECT m FROM Membership m LEFT JOIN FETCH m.subscriptions WHERE m.id =: membershipIdParam", Membership.class)
+	        		.setParameter("membershipIdParam", membershipId)
+	        		.getSingleResult();
+	    }
 	    public List<Membership> getAllMemberships() {
 	        return entityManager.createQuery("SELECT m FROM Membership m", Membership.class).getResultList();
 	    }

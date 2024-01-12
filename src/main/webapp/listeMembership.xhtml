@@ -10,48 +10,78 @@
 	<ui:define name="titleValue">Liste membership</ui:define>
 	<ui:define name="content">
 
-		<h:head>
-			<h:outputStylesheet library="css" name="main/membership.css" />
-		</h:head>
-		<body>
-			<div class="slide-container swiper">
-				<div class="slide-content">
-					<div class="card-wrapper swiper-wrapper">
-						<ui:repeat value="#{membershipManagedBean.memberships}"
-							var="membership">
-							<div class="card swiper-slide">
-								<div class="card-content">
+		<h:outputStylesheet library="css" name="main/membership.css" />
 
-									<div class="card">
-										<div class="card-header">
-											<div>#{membership.name}</div>
 
-										</div>
-										<div>#{membership.description}</div> 
-
-										<div class="image-content">
-											<span class="overlay"></span>
-											<div class="card-image">
-												<h:outputText value="#{membership.nbrOfActivities}" />
-												<h:outputText value="#{membership.price}" />
-												<h:outputText value="#{membership.description}" />
-											</div>
-										</div>
-
-										<input type="button" id="validate-button"
-											onclick="PF('dlgMembership').show()" value="Valider" />
-
+		<div class="slide-container swiper">
+			<div>
+				<div>
+				<h:form id="membershipsForm">
+					<ui:repeat value="#{subscriptionManagedBean.memberships}" var="membership">
+						<div class="card ">
+							<div class="card-content">
+								<div>
+									<div class="name">#{membership.name}</div>
+									<div class="description">#{membership.description}</div>
+									<div class="image-content">
+										<span class="overlay"></span>
 									</div>
+									<p:commandButton id="validate-button" 
+										action="#{subscriptionManagedBean.selectMemberShip(membership.id)}" 
+										oncomplete="PF('dlgMembership').show()" 
+										value="Souscrire" />
 								</div>
 							</div>
-				
+						</div>
 					</ui:repeat>
+					</h:form>
 				</div>
 			</div>
-</div>
-		</body>
+		</div>
 
+		<p:dialog header="Finalisez votre abonnement" widgetVar="dlgMembership" minHeight="40" width="450" showEffect="fade">
+			<h:form id="subscriptionForm">
+				<h:panelGrid class="panelsub" columns="2">
+					<label for="startDate">Date de début :</label>
+					<p:datePicker id="startDate" value="#{subscriptionManagedBean.subscriptionViewModel.startDate}" />
+
+					<label for="endDate">Date de fin :</label>
+					<p:datePicker id="endDate" value="#{subscriptionManagedBean.subscriptionViewModel.endDate}" />
+
+					<p:selectBooleanCheckbox value="#{subscriptionManagedBean.subscriptionViewModel.autorenewal}">
+                        Renouvellement automatique
+                    </p:selectBooleanCheckbox>
+				</h:panelGrid>
+				<br />
+				<p:commandButton value="Souscrire" action="#{subscriptionManagedBean.subscribe()}" />
+			</h:form>
+		</p:dialog>
 	</ui:define>
-
 </ui:composition>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
