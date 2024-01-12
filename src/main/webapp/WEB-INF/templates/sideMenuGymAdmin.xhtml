@@ -13,21 +13,29 @@
 	<h:outputStylesheet library="css" name="main/spaceStyle.css" />
 	<p:menu styleClass="dashboard-sidebar"
 		rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}">
-		<p:graphicImage library="images" name="bear_user_image.jpg"
-			alt="profile-picture" styleClass="profile-image" />
+		<p:menuitem id="sidebarTopItem1">
+			<p:avatar styleClass="mr-2" size="xlarge" shape="circle">
+				<p:graphicImage library="images"
+					name="#{loginController.getLoggedAccount().profile.pictureUrl}"
+					alt="profile-picture" styleClass="profile-image" />
+			</p:avatar>
+		</p:menuitem>
+		<p:menuitem id="sidebarTopItem2"
+			value="#{loginController.getLoggedAccount().profile.firstName} #{loginController.getLoggedAccount().profile.lastName}">
+		</p:menuitem>
 		<p:menuitem value="Tableau de bord" outcome="spaceAdminDashboard"
 			icon="pi pi-chart-line" />
 		<p:menuitem value="Adhérents" icon="pi pi-users"
 			outcome="ListeAdherent" />
 		<p:menuitem value="Employés" outcome="GestionEmployerGestionnaire"
 			icon="pi pi-briefcase" />
+		<p:menuitem value="Equipements" outcome="crudEquipment"
+			icon="pi pi-wrench" />
 		<p:menuitem value="Activités" outcome="crudActivity" icon="pi pi-flag" />
 		<p:menuitem value="Planifier un cours" outcome="crudCourse"
 			icon="pi pi-calendar" />
 		<p:menuitem value="Planning" outcome="crudPlanning"
 			icon="pi pi-calendar-plus" />
-		<p:menuitem value="Equipements" outcome="crudEquipment"
-			icon="pi pi-wrench" />
 		<p:menuitem value="Réserver un cours" outcome="crudBooking"
 			icon="pi pi-time" />
 		<p:menuitem value="Abonnements" outcome="CreateMembership"
@@ -43,8 +51,16 @@
 	<!-- 	Gym member sidebar  -->
 	<p:menu styleClass="dashboard-sidebar"
 		rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}">
-		<p:graphicImage library="images" name="bear_user_image.jpg"
-			alt="profile-picture" styleClass="profile-image" />
+		<p:menuitem >
+			<p:avatar styleClass="mr-2" size="xlarge" shape="circle">
+				<p:graphicImage library="images"
+					name="#{loginController.getLoggedAccount().profile.pictureUrl}"
+					alt="profile-picture" styleClass="profile-image" />
+			</p:avatar>
+		</p:menuitem>
+		<p:menuitem 
+			value="#{loginController.getLoggedAccount().profile.firstName} #{loginController.getLoggedAccount().profile.lastName}">
+		</p:menuitem>
 		<p:menuitem value="Mon planning" icon="pi pi-calendar" />
 
 		<p:menuitem value="Réserver un cours" icon="pi pi-calendar-plus"
@@ -58,8 +74,16 @@
 	<!-- 	Gym coach sidebar  -->
 	<p:menu styleClass="dashboard-sidebar"
 		rendered="#{loginController.getLoggedAccount().role eq 'COACH'}">
-		<p:graphicImage library="images" name="bear_user_image.jpg"
-			alt="profile-picture" styleClass="profile-image" />
+		<p:menuitem >
+			<p:avatar styleClass="mr-2" size="xlarge" shape="circle">
+				<p:graphicImage library="images"
+					name="#{loginController.getLoggedAccount().profile.pictureUrl}"
+					alt="profile-picture" styleClass="profile-image" />
+			</p:avatar>
+		</p:menuitem>
+		<p:menuitem 
+			value="#{loginController.getLoggedAccount().profile.firstName} #{loginController.getLoggedAccount().profile.lastName}">
+		</p:menuitem>
 		<p:menuitem value="Tableau de bord" outcome="spaceCoachDashboard"
 			icon="pi pi-chart-line" />
 		<p:menuitem value="Mon planning" icon="pi pi-calendar" />

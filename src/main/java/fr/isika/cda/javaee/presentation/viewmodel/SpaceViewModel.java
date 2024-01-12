@@ -42,7 +42,6 @@ public class SpaceViewModel {
 		this.siret = siret;
 	}
 
-
 	public Address getLocation() {
 		return location;
 	}
