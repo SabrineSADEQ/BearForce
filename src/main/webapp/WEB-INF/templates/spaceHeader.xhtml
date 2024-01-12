@@ -30,9 +30,11 @@
 					<p:menuitem class="link-menu" value="Accueil"
 						outcome="accueil.xhtml?faces-redirect=true&amp;spaceId=#{spaceController.loadedSpace.id}" />
 					<p:submenu label="Nos services">
+
 						<p:menuitem value="Nos cours" outcome="generalActivity.xhtml?faces-redirect=true&amp;spaceId=#{spaceController.loadedSpace.id}"/>
-						<p:menuitem value="Nos coachs" outcome="ListeCoachs" />
+						<p:menuitem value="Nos coachs" outcome="ListeCoachs.xhtml?faces-redirect=true&amp;spaceId=#{spaceController.loadedSpace.id}" />
 						<p:menuitem value="Nos équipements" outcome="generalEquipment.xhtml?faces-redirect=true&amp;spaceId=#{spaceController.loadedSpace.id}"/>
+
 					</p:submenu>
 					<p:menuitem class="link-menu" value="Planning des cours"
 						outcome="generalPlanning.xhtml?faces-redirect=true&amp;spaceId=#{spaceController.loadedSpace.id}" />
