@@ -8,8 +8,14 @@
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
 	<ui:define name="titleValue">Enregistrer un cours</ui:define>
 	<ui:define name="content">
+		
+	
+		
+		
+		
 		<div>
 			<h:form id="courseForm">
+			<div class="container">
 			<p:messages id="msgs"/>
 				<div class="card">
 					<h5>Enregistrer un nouveau cours</h5>
@@ -87,6 +93,7 @@
 							action="#{courseController.addCourse()}" icon="pi pi-check"
 							styleClass="rounded-button ui-button-primary" />
 					</div>
+				</div>
 				</div>
 			</h:form>
 			<br/>

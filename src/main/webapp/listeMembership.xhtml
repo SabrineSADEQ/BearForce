@@ -11,73 +11,45 @@
 	<ui:define name="content">
 
 		<h:head>
-			<h:outputStylesheet library="css" name="main/cssCards.css" />
+			<h:outputStylesheet library="css" name="main/membership.css" />
 		</h:head>
-		<div class="container">
-			<ui:repeat value="#{membershipManagedBean.memberships}"
-				var="membership">
+		<body>
+			<div class="slide-container swiper">
+				<div class="slide-content">
+					<div class="card-wrapper swiper-wrapper">
+						<ui:repeat value="#{membershipManagedBean.memberships}"
+							var="membership">
+							<div class="card swiper-slide">
+								<div class="card-content">
 
-				<div class="card">
-					<div class="card-header">
-						<div>#{membership.name}</div>
+									<div class="card">
+										<div class="card-header">
+											<div>#{membership.name}</div>
 
-					</div>
-					<div class="card-body">
-						<div>#{membership.nbrOfActivities}</div>
-						<div>#{membership.price}</div>
-						<div>#{membership.description}</div>
+										</div>
+										<div>#{membership.description}</div> 
 
-						<input type="button" id="validate-button"
-							onclick="PF('dlgMembership').show()" value="Valider" />
+										<div class="image-content">
+											<span class="overlay"></span>
+											<div class="card-image">
+												<h:outputText value="#{membership.nbrOfActivities}" />
+												<h:outputText value="#{membership.price}" />
+												<h:outputText value="#{membership.description}" />
+											</div>
+										</div>
 
-					</div>
+										<input type="button" id="validate-button"
+											onclick="PF('dlgMembership').show()" value="Valider" />
+
+									</div>
+								</div>
+							</div>
+				
+					</ui:repeat>
 				</div>
-			</ui:repeat>
-
-		</div>
-
-		<p:dialog header="Choisir mes modalités d'abonnement"
-			widgetVar="dlgMembership" minHeight="40" width="350"
-			showEffect="fade">
-			<h:form>
-				<h:panelGrid class="panelsub" columns="2">
-
-					<h:outputLabel for="memberships" styleClass="form-label"
-						style="margin-left: 10px;">Choisir un abonnement : </h:outputLabel>
-					<h:selectOneMenu id="memberships"
-						value="#{subscriptionManagedBean.subscriptionViewModel.selectedMembership}" required="true"
-						styleClass="form-input">
-						<f:selectItems value="#{membershipManagedBean.memberships}" var="membershipChoice"
-							itemLabel="#{membershipChoice}" itemValue="#{membershipChoice}" />
-					</h:selectOneMenu>
-
-
-<!-- 					<label for="startDate"> Date de début :</label> -->
-<!--  					<p:datePicker id="startDate"  -->
-<!-- 						value="#{subscriptionManagedBean.subscriptionViewModel.startDate}" />  -->
-
-
-<!-- 				<label for="endDate">Date de fin :</label> -->
-<!-- 					<p:datePicker id="endDate"  -->
-<!--  						value="#{subscriptionManagedBean.subscriptionViewModel.endDate}" />  -->
-
-					<label for="duration">Durée :</label>
-					<h:inputText id="duration"
-						value="#{subscriptionManagedBean.subscriptionViewModel.duration}" />
-
-					<p:selectBooleanCheckbox
-						value="#{subscriptionManagedBean.subscriptionViewModel.autorenewal}"
-						itemLabel="Renouvellement automatique :" />
-
-				</h:panelGrid>
-				<br />
-
-				<p:button value="Souscrire"
-					action="#{subscriptionManagedBean.subscribe()}" />
-
-			</h:form>
-
-		</p:dialog>
+			</div>
+</div>
+		</body>
 
 	</ui:define>
 

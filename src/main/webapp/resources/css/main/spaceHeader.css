@@ -3,14 +3,14 @@
 
 /* HEADER */
 .header {
-	background-color: var(--blanc);
+	background-color: var(--thirdColor);
 	top: 0;
-	height: 10vh;
+	height: 12vh;
 	width: 100%;
 	gap: 60px;
 	align-items: center;
 	display: flex;
-	color: var(--blanc);
+	color: var(--firstColor);
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
@@ -22,40 +22,40 @@
 #spaceMenuBar{
 	background-color: transparent;
 	border-color:transparent;
-	color: var(--blanc);
+	color: var(--thirdColor);
 }
 
 html body .ui-menu .ui-menu-list .ui-menuitem.ui-menuitem-active>.ui-menuitem-link .ui-menuitem-text {
-	color: var(--violet);
+	color: var(--secondColor);
 	}
 	
 html body .ui-menu.ui-menubar>.ui-menu-list>.ui-menuitem>.ui-menuitem-link>span {
-	color: var(--turquoise);
+	color: var(--firstColor);
 
 	}
 
 html body .ui-button {
-	background-color: var(--turquoise);
+	background-color: var(--firstColor);
 	border-color:transparent;
 	border-radius:20px;
 	
 }
 
 html body .ui-button:hover {
-	background-color: var(--violet);
+	background-color: var(--secondColor);
 	border-color:transparent;
 	border-radius:20px;
 	
 }
 
 html body .ui-button #logout-button, #login-button {
-	background-color: var(--blanc);
+	background-color: var(--thirdColor);
 }
 
 
 .link-menu {
 	text-decoration: none;
-	color: var(--turquoise);
+	color: var(--firstColor);
 	margin-right: 10px;
 	padding: 10px;
 }
@@ -66,7 +66,7 @@ html body .ui-button #logout-button, #login-button {
 
 .link-menu:hover {
 	text-decoration: none;
-	color: var(--turquoise);
+	color: var(--firstColor);
 }
 
 
@@ -76,13 +76,12 @@ html body .ui-button #logout-button, #login-button {
 
 
 .logoContainer {
-	height: 80%;
-	color: var(--turquoise);
-	width: 120px;
+	height: 100px;;
+	color: var(--firstColor);
+	/*width: 120px;*/
 	margin-left: 50px;
 	margin-right: 20px;
 	margin-top:10px;
-	border-radius: 50%;
 	padding: 10px;
 	align-items: center;
 }
@@ -91,7 +90,6 @@ html body .ui-button #logout-button, #login-button {
 	height: 100%;
 	width: 100%;
 	object-fit: contain;
-	border-radius: 50px;
 }
 
 .right-container {

@@ -15,6 +15,7 @@ import org.primefaces.PrimeFaces;
 import fr.isika.cda.javaee.dao.CourseDAO;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
 import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
+import fr.isika.cda.javaee.entity.platform.PlatformConfiguration;
 import fr.isika.cda.javaee.presentation.viewmodel.CourseViewModel;
 
 @Named
@@ -59,8 +60,12 @@ public class CourseController implements Serializable{
 
 
 	public List<Course> displayCoursesList() {
-		return courseDao.getAllCoursesWithActivities();
+		return courseDao.getAllCourses();
 	}
+	
+	
+	
+	
 
 	//***************GETTERS & SETTERS***************
 	public CourseViewModel getCourseViewModel() {
