@@ -43,6 +43,7 @@ public class ActivityDao {
 		activityBean.setName(activityViewModel.getName());
 		activityBean.setDescription(activityViewModel.getDescription());
 		activityBean.setAttachedGymId(getCurrentConnectedGymId());
+		activityBean.setActivityPicturePath(activityViewModel.getActivityPicturePath());
 		activityBean.setActivityCategory(activityViewModel.getActivityCategory());
 		selectedEquipments.stream()
 				.map(id -> equipmentDao.findEquipmentById(id))
@@ -62,7 +63,7 @@ public class ActivityDao {
 		existingActivity.setDescription(updateActivity.getDescription());
 		existingActivity.setActivityCategory(updateActivity.getActivityCategory());
 		existingActivity.setAttachedGymId(getCurrentConnectedGymId());
-		// existingActivity.setEquipmentList(updateActivity.getEquipmentList());
+		existingActivity.setActivityPicturePath(updateActivity.getActivityPicturePath());
 		entityManager.merge(existingActivity);
 	}
 

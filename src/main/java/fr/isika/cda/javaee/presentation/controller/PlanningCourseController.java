@@ -143,7 +143,7 @@ public class PlanningCourseController implements Serializable {
 		if (booked) {
 		DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
 				.id(String.valueOf(course.getId()))
-				.title("RESERVE ! " + course.getActivity().getName())
+				.title("RESERVE : " + course.getActivity().getName())
 				.startDate(course.getStartDate())
 				.endDate(course.getEndDate())
 				.draggable(false)
@@ -237,28 +237,7 @@ public class PlanningCourseController implements Serializable {
 		}
 		return false;
 	}
-
-
-
-	//	public boolean checkExistingBooking() {
-	//		Account bookingAccount = accountDao.getAccountById(Long.valueOf(1));
-	//		Course courseToBook = courseDao.getCourseByIdJoinActivity(Long.valueOf(event.getId()));
-	//		List <Booking> bookings = bookingAccount.getBookingsList();
-	//		List <Course> courses = new ArrayList<Course>();
-	//		List <Long> coursesIdsList = new ArrayList<Long>();
-	//		for (Booking booking : bookings) {
-	//			courses.add(booking.getCourse());
-	//			for (Course course : courses) {
-	//				coursesIdsList.add(course.getId());		
-	//			}
-	//		}	
-	//		Long courseToBookId = courseToBook.getId();
-	//		if (coursesIdsList.contains(courseToBookId)){
-	//			return false;
-	//		} 
-	//		return true	;
-	//	}
-
+	
 	private void createNewEvent() {	
 		// add the event to the graphical model
 		eventModel.addEvent(event);
