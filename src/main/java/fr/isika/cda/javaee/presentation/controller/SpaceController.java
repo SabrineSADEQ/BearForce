@@ -1,5 +1,6 @@
 package fr.isika.cda.javaee.presentation.controller;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -9,14 +10,15 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import javax.persistence.EntityManager;
-
 
 import org.primefaces.component.log.Log;
 import org.primefaces.event.FileUploadEvent;
@@ -40,11 +42,10 @@ import fr.isika.cda.javaee.utils.SessionUtils;
  * @author Floriane D.
  */
 @Named
-@SessionScoped
+@ViewScoped
 public class SpaceController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
 
 	private String spaceId;
 	private SpaceViewModel spaceViewModel = new SpaceViewModel();
@@ -53,59 +54,39 @@ public class SpaceController implements Serializable {
 	@Inject
 	private SpaceDao spaceDao;
 
-
 	@Inject
 	private AccountDao accountDao;
-	
-
 
 	@PostConstruct
 	public void init() {
 		System.out.println("SpaceController bean initialized!");
 
-		// Check if user is in session
-		HttpSession session = SessionUtils.getSession();
-		Account account = (Account) session.getAttribute("loggedInUser");
-		if (account != null) {
-			if (account.getGymId() != null) {
-				// get space id from account session
-				Long spaceId = SessionUtils.getAccount().getGymId();
-				// get space from spaceId if spaceId not null
-				if (spaceId != null) {
-					Space space = spaceDao.getSpaceById(spaceId);
+//		// Check if user is in session
+//		HttpSession session = SessionUtils.getSession();
+//		Account account = (Account) session.getAttribute("loggedInUser");
+//		if (account != null) {
+//			if (account.getGymId() != null) {
+//				// get space id from account session
+//				Long spaceId = SessionUtils.getAccount().getGymId();
+//				// get space from spaceId if spaceId not null
+//				if (spaceId != null) {
+//					Space space = spaceDao.getSpaceById(spaceId);
+//					chargeSpaceIntoSpaceViewModel(space);
+//				}
+//			}
+//		} else {
+//			System.out.println("Attention ! pas de compte dans la session");
+		try {
+			Space space = getLoadedSpaceDependingOnLoginStatus();
+			chargeSpaceIntoSpaceViewModel(space);
 
-					// load the view model with the space informations
-					// Text content
-					spaceViewModel.setSpaceName(space.getVisualIdentity().getSpaceTextContent().getSpaceName());
-					spaceViewModel.setMotto(space.getVisualIdentity().getSpaceTextContent().getMotto());
-					spaceViewModel.setDescription(space.getVisualIdentity().getSpaceTextContent().getDescription());
+		} catch (Exception e) {
 
-					// Colors
-					spaceViewModel.setFirstColor(space.getVisualIdentity().getFirstColor());
-					spaceViewModel.setSecondColor(space.getVisualIdentity().getSecondColor());
-					spaceViewModel.setThirdColor(space.getVisualIdentity().getThirdColor());
-
-					// Photos
-					spaceViewModel.setGymLogoPath(space.getVisualIdentity().getGymLogoPath());
-					spaceViewModel.setGymBannerPath(space.getVisualIdentity().getGymBannerPath());
-
-					// Gym caracteristics
-					spaceViewModel.setLockerRoom(space.getIdGym().getGymCaracteristics().isLockerRoom());
-					spaceViewModel.setFreeAccess(space.getIdGym().getGymCaracteristics().isLibreAccess());
-
-					// Contact info
-					spaceViewModel.getContactInfo()
-							.setEmail(space.getIdGym().getAdminInfoGym().getContactInfo().getEmail());
-					spaceViewModel.getContactInfo()
-							.setPhone(space.getIdGym().getAdminInfoGym().getContactInfo().getPhone());
-
-				}
-			}
-		} else {
-			System.out.println("Attention ! pas de compte dans la session");
+			e.printStackTrace();
 		}
-
 	}
+
+	// }
 
 	public Space getLoadedSpace() throws Exception {
 
@@ -117,8 +98,7 @@ public class SpaceController implements Serializable {
 		if (spaceIdParam != null) {
 			Space space = spaceDao.getSpaceById(Long.valueOf(spaceIdParam));
 			return space;
-		}
-		else {
+		} else {
 			LoginController loginController = new LoginController();
 			Space space = spaceDao.getSpaceById(loginController.getLoggedAccount().getGymId());
 			return space;
@@ -158,13 +138,43 @@ public class SpaceController implements Serializable {
 		return null;
 	}
 
+	public void chargeSpaceIntoSpaceViewModel(Space space) {
+		// load the view model with the space informations
+		// Text content
+		spaceViewModel.setSpaceName(space.getVisualIdentity().getSpaceTextContent().getSpaceName());
+		spaceViewModel.setMotto(space.getVisualIdentity().getSpaceTextContent().getMotto());
+		spaceViewModel.setDescription(space.getVisualIdentity().getSpaceTextContent().getDescription());
+
+		// Colors
+		spaceViewModel.setFirstColor(space.getVisualIdentity().getFirstColor());
+		spaceViewModel.setSecondColor(space.getVisualIdentity().getSecondColor());
+		spaceViewModel.setThirdColor(space.getVisualIdentity().getThirdColor());
+
+		// Photos
+		spaceViewModel.setGymLogoPath(space.getVisualIdentity().getGymLogoPath());
+		spaceViewModel.setGymBannerPath(space.getVisualIdentity().getGymBannerPath());
+
+		// Gym caracteristics
+		spaceViewModel.setLockerRoom(space.getIdGym().getGymCaracteristics().isLockerRoom());
+		spaceViewModel.setFreeAccess(space.getIdGym().getGymCaracteristics().isLibreAccess());
+
+		// Contact info
+		spaceViewModel.getContactInfo().setEmail(space.getIdGym().getAdminInfoGym().getContactInfo().getEmail());
+		spaceViewModel.getContactInfo().setPhone(space.getIdGym().getAdminInfoGym().getContactInfo().getPhone());
+		spaceViewModel.getLocation().setStreetNumber(space.getIdGym().getAdminInfoGym().getLocation().getStreetNumber());
+		spaceViewModel.getLocation().setStreetName(space.getIdGym().getAdminInfoGym().getLocation().getStreetName());
+		spaceViewModel.getLocation().setPostalCode(space.getIdGym().getAdminInfoGym().getLocation().getPostalCode());
+		spaceViewModel.getLocation().setCity(space.getIdGym().getAdminInfoGym().getLocation().getCity());
+		
+	}
+
 	public List<Space> getAllSpaces() {
 		List<Space> spaces = spaceDao.getAllSpaces();
 		return spaces;
 	}
 
 	public String redirectToSpace(Long spaceId) {
-		return "testSpaceTemplate.xhtml?faces-redirect=true&amp;spaceId=" + spaceId;
+		return "accueil.xhtml?faces-redirect=true&amp;spaceId=" + spaceId;
 	}
 
 	@Transactional
@@ -173,21 +183,40 @@ public class SpaceController implements Serializable {
 		Long spaceId = spaceDao.createSpace(spaceViewModel).getId();
 		injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(spaceId);
 		spaceViewModel = new SpaceViewModel();
+
 		
 		return "index.xhtml?faces-redirect=true";
 		
 		
+
+		// Construct the URL with the specific spaceId
+		String url = "http://127.0.0.1:8080/BearForce/spaceAdminDashboard.xhtml?spaceId=" + spaceId;
+
+		// Get the FacesContext and ExternalContext
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext externalContext = facesContext.getExternalContext();
+
+		// Redirect to the constructed URL
+		try {
+			externalContext.redirect(url);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+		facesContext.responseComplete();
+
+
 	}
-	
-@Transactional
+
+	@Transactional
 	public void injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(long spaceId) {
 
 		LoginController controller = new LoginController();
 		Account logged = controller.getLoggedAccount();
 		logged.setGymId(spaceId);
 		accountDao.update(logged);
-		
-		
+
 	}
 
 	public void save() {
@@ -214,21 +243,23 @@ public class SpaceController implements Serializable {
 			if (oldSpace != null) {
 				// if space not null, put the space customization informations from the form in
 				// this space
-				
-				//Contact
-				oldSpace.getIdGym().getAdminInfoGym().getContactInfo().setEmail(spaceViewModel.getContactInfo().getEmail());
-				oldSpace.getIdGym().getAdminInfoGym().getContactInfo().setPhone(spaceViewModel.getContactInfo().getPhone());
-				//SpaceTextContent
+
+				// Contact
+				oldSpace.getIdGym().getAdminInfoGym().getContactInfo()
+						.setEmail(spaceViewModel.getContactInfo().getEmail());
+				oldSpace.getIdGym().getAdminInfoGym().getContactInfo()
+						.setPhone(spaceViewModel.getContactInfo().getPhone());
+				// SpaceTextContent
 				oldSpace.getVisualIdentity().getSpaceTextContent().setSpaceName(spaceViewModel.getSpaceName());
 				oldSpace.getVisualIdentity().getSpaceTextContent().setMotto(spaceViewModel.getMotto());
 				oldSpace.getVisualIdentity().getSpaceTextContent().setDescription(spaceViewModel.getDescription());
-				//VisualIdentity
+				// VisualIdentity
 				oldSpace.getVisualIdentity().setFirstColor(spaceViewModel.getFirstColor());
 				oldSpace.getVisualIdentity().setSecondColor(spaceViewModel.getSecondColor());
 				oldSpace.getVisualIdentity().setThirdColor(spaceViewModel.getThirdColor());
 				oldSpace.getVisualIdentity().setGymLogoPath(spaceViewModel.getGymLogoPath());
 				oldSpace.getVisualIdentity().setGymBannerPath(spaceViewModel.getGymBannerPath());
-				
+
 				// call the update method from spaceDao to persist in database
 				spaceDao.update(oldSpace);
 			} else {

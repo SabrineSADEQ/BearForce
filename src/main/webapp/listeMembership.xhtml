@@ -5,32 +5,52 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+<ui:composition
+	template="WEB-INF/templates/spaceGeneralViewsTemplate.xhtml">
 	<ui:define name="titleValue">Liste membership</ui:define>
 	<ui:define name="content">
 
 		<h:head>
-			<h:outputStylesheet library="css" name="main/cssCards.css" />
+			<h:outputStylesheet library="css" name="main/membership.css" />
 		</h:head>
-		<div class="container">
-			<ui:repeat value="#{membershipManagedBean.memberships}"
-				var="membership">
+		<body>
+			<div class="slide-container swiper">
+				<div class="slide-content">
+					<div class="card-wrapper swiper-wrapper">
+						<ui:repeat value="#{membershipManagedBean.memberships}"
+							var="membership">
+							<div class="card swiper-slide">
+								<div class="card-content">
 
-				<div class="card">
-					<div class="card-header">
-						<div>#{membership.name}</div>
+									<div class="card">
+										<div class="card-header">
+											<div>#{membership.name}</div>
 
-					</div>
-					<div class="card-body">
-						<div>#{membership.nbrOfActivities}</div>
-						<div>#{membership.price}</div>
-						<div>#{membership.description}</div>
+										</div>
+										<div>#{membership.description}</div> 
 
+										<div class="image-content">
+											<span class="overlay"></span>
+											<div class="card-image">
+												<h:outputText value="#{membership.nbrOfActivities}" />
+												<h:outputText value="#{membership.price}" />
+												<h:outputText value="#{membership.description}" />
+											</div>
+										</div>
 
-					</div>
-					</div>
-			</ui:repeat>
-		</div>
+										<input type="button" id="validate-button"
+											onclick="PF('dlgMembership').show()" value="Valider" />
+
+									</div>
+								</div>
+							</div>
+				
+					</ui:repeat>
+				</div>
+			</div>
+</div>
+		</body>
+
 	</ui:define>
 
 </ui:composition>

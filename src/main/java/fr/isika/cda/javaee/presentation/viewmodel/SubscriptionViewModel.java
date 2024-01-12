@@ -2,6 +2,8 @@ package fr.isika.cda.javaee.presentation.viewmodel;
 
 import java.util.Date;
 
+import fr.isika.cda.javaee.entity.gymspace.Membership;
+
 /**
  * 
  * @author Bitjoka Vincent
@@ -14,6 +16,7 @@ public class SubscriptionViewModel<DateTime> {
 	private DateTime endDate;
 	private boolean autorenewal;
 	private int duration;
+	private Membership selectedMembership = new Membership();
 	
 	public Long getId() {
 		return id;
@@ -44,6 +47,12 @@ public class SubscriptionViewModel<DateTime> {
 	}
 	public void setDuration(int duration) {
 		this.duration = duration;
+	}
+	public Membership getSelectedMembership() {
+		return selectedMembership;
+	}
+	public void setSelectedMembership(Membership selectedMembership) {
+		this.selectedMembership = selectedMembership;
 	}
 
 	

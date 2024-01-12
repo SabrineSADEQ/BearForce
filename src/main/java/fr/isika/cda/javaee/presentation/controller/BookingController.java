@@ -1,6 +1,7 @@
 package fr.isika.cda.javaee.presentation.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -9,9 +10,10 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import fr.isika.cda.javaee.dao.BookingDao;
+import fr.isika.cda.javaee.dao.CourseDAO;
 import fr.isika.cda.javaee.entity.gymspace.business.Booking;
+import fr.isika.cda.javaee.entity.gymspace.business.Course;
 import fr.isika.cda.javaee.presentation.viewmodel.BookingViewModel;
-import fr.isika.cda.javaee.presentation.viewmodel.CourseViewModel;
 
 @Named
 @ViewScoped
@@ -24,6 +26,9 @@ public class BookingController implements Serializable {
 		
 	@Inject
 	private BookingDao bookingDao;
+	
+	@Inject
+	private CourseDAO courseDao;
 	
 	@PostConstruct
 	public void init() {
@@ -42,6 +47,14 @@ public class BookingController implements Serializable {
 	public void deleteSelectedBooking() {
 		bookingDao.deleteBooking(selectedBooking.getId());	
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Réservation annulée"));
+	}
+	
+	public List<Booking> displayBookingList(){
+		return bookingDao.getAllBookings();
+	}
+	
+	public List<Course> displayCoursesList() {
+		return courseDao.getAllCoursesWithActivities();
 	}
 	
 	//***************GETTERS & SETTERS***************

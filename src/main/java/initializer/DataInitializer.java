@@ -85,16 +85,16 @@ public class DataInitializer {
 		// Check if the default user already exists
 
 		AccountViewModel defaultUser = new AccountViewModel();
-		defaultUser.setEmail("azerty");
-		defaultUser.setPassword("azerty");
+		defaultUser.setEmail("superAdmin@gmail.com");
+		defaultUser.setPassword("superAdmin");
 		defaultUser.setRole(Role.SUPER_ADMIN);
 		accountDao.createAccount(defaultUser);
 		AccountViewModel Adherent = new AccountViewModel();
-		Adherent.setEmail("adherent");
+		Adherent.setEmail("adherent@gmail.com");
 		Adherent.setPassword("adherent");
-		Adherent.setGymId((long) 34);
+		Adherent.setGymId((long) 46);
 		Adherent.setRole(Role.ADHERENT);
-		Adherent.setGymId((long) 45);
+		Adherent.setGymId((long) 46);
 		Profile profileAdherent = new Profile();
 		profileAdherent.setFirstName("Yoann");
 		profileAdherent.setLastName("François");
@@ -111,11 +111,11 @@ public class DataInitializer {
 		Adherent.setProfile(profileAdherent);
 		accountDao.createAccount(Adherent);
 		AccountViewModel gestionnaire = new AccountViewModel();
-		gestionnaire.setEmail("gestionnaire");
+		gestionnaire.setEmail("gestionnaire@gmail.com");
 		gestionnaire.setPassword("gestionnaire");
 		gestionnaire.setRole(Role.GESTIONNAIRE);
 
-		gestionnaire.setGymId((long) 45);
+		gestionnaire.setGymId((long) 46);
 
 		Profile profileGestionnaire = new Profile();
 		profileGestionnaire.setFirstName("Jean");
@@ -129,7 +129,7 @@ public class DataInitializer {
 		addressGestionnaire.setCity("Paris");
 
 		Contact contactGestionnaire = new Contact();
-		contactGestionnaire.setPhone("0623456789");
+		contactGestionnaire.setPhone("06 23 45 67 89");
 		contactGestionnaire.setEmail("jean.dupont@gmail.com");
 
 		profileGestionnaire.setAddress(addressGestionnaire);
@@ -139,10 +139,10 @@ public class DataInitializer {
 
 		accountDao.createAccount(gestionnaire);
 		AccountViewModel coach = new AccountViewModel();
-		coach.setEmail("coach");
+		coach.setEmail("coach@gmail.com");
 		coach.setPassword("coach");
 		coach.setRole(Role.COACH);
-		coach.setGymId((long) 45);
+		coach.setGymId((long) 46);
 		Goal goal2 = new Goal();
 		goal2.setGoalName("Perte de poids");
 		goal2.setGoalDate(LocalDate.of(2024, Month.FEBRUARY, 28));
@@ -161,7 +161,7 @@ public class DataInitializer {
 		addressCoach.setPostalCode("75005");
 
 		Contact contactCoach = new Contact();
-		contactCoach.setPhone("987654321");
+		contactCoach.setPhone("08 76 54 32 19");
 		contactCoach.setEmail("alice.smith@example.com");
 
 		profileCoach.setAddress(addressCoach);
@@ -205,7 +205,7 @@ public class DataInitializer {
 		equipment.setQuantity(10);
 		equipment.setEquipmentName("barre de traction");
 		equipment.setDetails("barre de traction montée sur support métallique, poids max de 120kg");
-//    		equipmentDao.createEquipment(equipment, null);
+    		//equipmentDao.createEquipment(equipment, null);
 
 		// Packs for the BearForce platform
 		Pack basicPack = new Pack();
@@ -297,13 +297,13 @@ public class DataInitializer {
 		AccountViewModel Adherent2 = new AccountViewModel();
 		Adherent2.setEmail("leroymerlin@gmail.com");
 		Adherent2.setPassword("adherent2");
-		Adherent2.setGymId((long) 45);
+		Adherent2.setGymId((long) 95);
 		Adherent2.setRole(Role.ADHERENT);
 		Profile profileAdherent2 = new Profile();
 		profileAdherent2.setFirstName("Quentin");
 		profileAdherent2.setLastName("Garcia");
 		Contact contact2 = new Contact();
-		contact2.setPhone("0699851235");
+		contact2.setPhone("06 99 85 12 35");
 		profileAdherent2.setContact(contact2);
 		Adherent2.setProfile(profileAdherent2);
 		accountDao.createAccount(Adherent2);
@@ -311,16 +311,218 @@ public class DataInitializer {
 		AccountViewModel Adherent3 = new AccountViewModel();
 		Adherent3.setEmail("adherent3@gmail.com");
 		Adherent3.setPassword("adherent3");
-		Adherent3.setGymId((long) 45);
+
+		Adherent3.setGymId((long) 95);
+
 		Adherent3.setRole(Role.ADHERENT);
 		Profile profileAdherent3 = new Profile();
 		profileAdherent3.setFirstName("Theo");
 		profileAdherent3.setLastName("Hamad");
 		Contact contact3 = new Contact();
-		contact3.setPhone("0655487945");
+		contact3.setPhone("06 55 48 79 45");
 		profileAdherent3.setContact(contact3);
 		Adherent3.setProfile(profileAdherent3);
 		accountDao.createAccount(Adherent3);
+		
+		AccountViewModel anotherAdherent = new AccountViewModel();
+		anotherAdherent.setEmail("alice@example.com");
+		anotherAdherent.setPassword("securePassword123");
+		anotherAdherent.setGymId((long) 46);
+		anotherAdherent.setRole(Role.ADHERENT);
+		anotherAdherent.setGymId((long) 46);
+
+		Profile anotherProfileAdherent = new Profile();
+		anotherProfileAdherent.setFirstName("Alice");
+		anotherProfileAdherent.setLastName("Smith");
+
+		Address anotherAddressAdherent = new Address();
+		anotherAddressAdherent.setCity("macon");
+		anotherAddressAdherent.setStreetNumber("123");
+		anotherAddressAdherent.setStreetName("jeanne d'arc");
+		anotherAddressAdherent.setPostalCode("10001");
+
+		Contact anotherContact = new Contact();
+		anotherContact.setPhone("06 59 63 54 87");
+		anotherProfileAdherent.setPictureUrl("personne.png");
+		anotherProfileAdherent.setAddress(anotherAddressAdherent);
+		anotherProfileAdherent.setContact(anotherContact);
+
+		anotherAdherent.setProfile(anotherProfileAdherent);	
+		accountDao.createAccount(anotherAdherent);
+		
+		AccountViewModel newMember = new AccountViewModel();
+		newMember.setEmail("emma@example.com");
+		newMember.setPassword("strongPassword456");
+		newMember.setGymId((long) 46);
+		newMember.setRole(Role.ADHERENT);
+
+		Profile newMemberProfile = new Profile();
+		newMemberProfile.setFirstName("Emma");
+		newMemberProfile.setLastName("Johnson");
+
+		Address newMemberAddress = new Address();
+		newMemberAddress.setCity("daube");
+		newMemberAddress.setStreetNumber("789");
+		newMemberAddress.setStreetName("republique");
+		newMemberAddress.setPostalCode("90001");
+
+		Contact newMemberContact = new Contact();
+		newMemberContact.setPhone("01 54 87 95 31");
+		newMemberProfile.setPictureUrl("personne.png");
+		newMemberProfile.setAddress(newMemberAddress);
+		newMemberProfile.setContact(newMemberContact);
+
+		newMember.setProfile(newMemberProfile);
+		accountDao.createAccount(newMember);
+		
+		AccountViewModel guestUser = new AccountViewModel();
+		guestUser.setEmail("alex@example.com");
+		guestUser.setPassword("temporaryPass789");
+		guestUser.setGymId((long) 46);
+		guestUser.setRole(Role.ADHERENT);
+
+		Profile guestProfile = new Profile();
+		guestProfile.setFirstName("Alex");
+		guestProfile.setLastName("Miller");
+
+		Address guestAddress = new Address();
+		guestAddress.setCity("fosses");
+		guestAddress.setStreetNumber("456");
+		guestAddress.setStreetName("leonard de vinci");
+		guestAddress.setPostalCode("94105");
+
+		Contact guestContact = new Contact();
+		guestContact.setPhone("04 59 78 45 11");
+		guestProfile.setPictureUrl("personne.png");
+		guestProfile.setAddress(guestAddress);
+		guestProfile.setContact(guestContact);
+
+		guestUser.setProfile(guestProfile);
+		accountDao.createAccount(guestUser);
+		
+		AccountViewModel premiumMember = new AccountViewModel();
+		premiumMember.setEmail("sophia@example.com");
+		premiumMember.setPassword("strongPass789");
+		premiumMember.setGymId((long) 46);
+		premiumMember.setRole(Role.COACH);
+
+		Profile premiumMemberProfile = new Profile();
+		premiumMemberProfile.setFirstName("Sophia");
+		premiumMemberProfile.setLastName("Williams");
+
+		Address premiumMemberAddress = new Address();
+		premiumMemberAddress.setCity("versaille");
+		premiumMemberAddress.setStreetNumber("789");
+		premiumMemberAddress.setStreetName("rue du roi");
+		premiumMemberAddress.setPostalCode("33139");
+
+		Contact premiumMemberContact = new Contact();
+		premiumMemberContact.setPhone("02 23 54 87 45");
+		premiumMemberProfile.setPictureUrl("personne.png");
+		premiumMemberProfile.setAddress(premiumMemberAddress);
+		premiumMemberProfile.setContact(premiumMemberContact);
+
+		premiumMember.setProfile(premiumMemberProfile);
+		accountDao.createAccount(premiumMember);
+
+		// Create an Activity
+		Activity newActivity = new Activity();
+		newActivity.setName("Yoga");
+		newActivity.setDescription("Venez vous relaxer avec nous");
+		newActivity.setActivityCategory(ActivityCategory.FITNESS);
+		activityDao.persist(newActivity);
+
+		// Create a Course for the Activity
+		Course yogaCourse = new Course();
+		yogaCourse.setActivity(newActivity);
+		yogaCourse.setTrainer(savedAccount.getProfile()); // Assuming savedAccount is the instructor's account
+		yogaCourse.setStartDate(LocalDateTime.now().plusDays(1)); // Start the course tomorrow
+		yogaCourse.setEndDate(LocalDateTime.now().plusDays(1).plusHours(1)); // Duration: 1 hour
+		yogaCourse.setNbPlaces(15); // Maximum number of participants
+		courseDao.saveCourse(yogaCourse);
+		
+		// Create an Activity
+		Activity newActivity2 = new Activity();
+		newActivity2.setName("HIIT Training");
+		newActivity2.setDescription("Du cardio venu des states");
+		newActivity2.setActivityCategory(ActivityCategory.CARDIO);
+		activityDao.persist(newActivity2);
+
+		// Create a Course for the Activity
+		Course hiitCourse = new Course();
+		hiitCourse.setActivity(newActivity2);
+		hiitCourse.setTrainer(savedAccount.getProfile()); // Assuming savedAccount is the instructor's account
+		hiitCourse.setStartDate(LocalDateTime.now().plusDays(2)); // Start the course in two days
+		hiitCourse.setEndDate(LocalDateTime.now().plusDays(2).plusHours(1)); // Duration: 1 hour
+		hiitCourse.setNbPlaces(20); // Maximum number of participants
+		courseDao.saveCourse(hiitCourse);
+		
+		
+		SpaceViewModel newSpace = new SpaceViewModel();
+		newSpace.setFirstColor("FF5733");
+		newSpace.setSecondColor("33FF57");
+		newSpace.setThirdColor("334BFF");
+		newSpace.setGymLogoPath("logo2gym.png");
+		newSpace.setGymBannerPath("banner_3.png");
+		newSpace.setMotto("No pain, no gain");
+		newSpace.setSpaceName("Forklift");
+		newSpace.setDescription(
+		        "Plus qu'une salle de sport, une salle ou les corps s'activent");
+		newSpace.setFreeAccess(false); // No free access
+		newSpace.setLockerRoom(true);
+
+		// AdminInfoGym
+		newSpace.setSiret("12345678901234");
+
+		Address addressGym2 = new Address();
+		addressGym2.setStreetNumber("45");
+		addressGym2.setStreetName("Avenue des Sports");
+		addressGym2.setPostalCode("75001");
+		addressGym2.setCity("Aix-en-provence");
+		newSpace.setLocation(addressGym2);
+
+		Contact contactGym2 = new Contact();
+		contactGym2.setPhone("01 23 45 67 89");
+		contactGym2.setEmail("info@fithub.com");
+		contactGym2.setType(TypeContact.PERSO);
+		newSpace.setContactInfo(contactGym2);
+
+		
+
+		spaceDao.createSpace(newSpace);
+		
+		SpaceViewModel fitnessCenter = new SpaceViewModel();
+		fitnessCenter.setFirstColor("4285F4");
+		fitnessCenter.setSecondColor("DB4437");
+		fitnessCenter.setThirdColor("F4B400");
+		fitnessCenter.setGymLogoPath("fitness_logo.png");
+		fitnessCenter.setGymBannerPath("banner_fitness.jpg");
+		fitnessCenter.setMotto("Toujours plus forts");
+		fitnessCenter.setSpaceName("FitnessBonhomme");
+		fitnessCenter.setDescription(
+		        "Ici, c'est jusqu'à plus envie");
+		fitnessCenter.setFreeAccess(false);
+		fitnessCenter.setLockerRoom(true);
+
+		// AdminInfoGym
+		fitnessCenter.setSiret("98765432101234");
+
+		Address gymAddress = new Address();
+		gymAddress.setStreetNumber("123");
+		gymAddress.setStreetName("Main Street");
+		gymAddress.setPostalCode("90210");
+		gymAddress.setCity("Potier");
+		fitnessCenter.setLocation(gymAddress);
+
+		Contact gymContact = new Contact();
+		gymContact.setPhone("555-7890");
+		gymContact.setEmail("info@epicfitness.com");
+		gymContact.setType(TypeContact.PERSO);
+		fitnessCenter.setContactInfo(gymContact);
+
+		spaceDao.createSpace(fitnessCenter);
+
+
 
 	}
 

@@ -104,6 +104,13 @@ public class LoginController implements Serializable {
 	public String logout() {
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
-		return "CreationDeCompte";
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+
+        // Add a parameter to the URL indicating a redirect
+        externalContext.getFlash().put("refresh", "true");
+
+        // Redirect to the index page
+        return "index?faces-redirect=true";
 	}
 }

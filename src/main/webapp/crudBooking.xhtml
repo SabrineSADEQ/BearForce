@@ -5,8 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition
-	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+<ui:composition template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
 	<ui:define name="titleValue">Gestion des réservations</ui:define>
 	<ui:define name="content">
 		<div>
@@ -14,108 +13,60 @@
 				<h:form id="form">
 					<p:growl id="messages" showDetail="true" />
 
-					<p:dataTable id="crud-cours" widgetVar="dtCourses" var="cou"
-						value="#{courseController.displayCoursesList()}" reflow="true"
-						styleClass="products-table" paginator="true" rows="10"
-						rowSelectMode="add" paginatorPosition="bottom">
+					<p:dataTable id="d-booking" widgetVar="dtbookings" var="boo"
+						value="#{bookingController.displayBookingList()}"
+						reflow="true" styleClass="products-table" paginator="true"
+						rows="10" rowSelectMode="add" paginatorPosition="bottom">
 
 						<f:facet name="header">
 							<div class="products-table-header">
-								<span style="font-weight: bold">LES COURS</span> <span
+								<span style="font-weight: bold">LES COURS RESERVES</span> <span
 									class="filter-container ui-input-icon-left"> <i
 									class="pi pi-search"></i> <p:inputText id="globalFilter"
-										onkeyup="PF('dtCourses').filter()" placeholder="Recherche" />
+										onkeyup="PF('dtBookings').filter()" placeholder="Recherche" />
 								</span>
 							</div>
 						</f:facet>
-
-						<p:column headerText="Cours" sortBy="#{cou.activity.name}"
-							filterBy="#{cou.activity.name}">
-							<p:outputLabel>#{cou.activity.name}</p:outputLabel>
+						
+						<p:column headerText="Activité" sortBy="#{boo.course.activity.name}"
+							filterBy="#{boo.course.activity.name}">
+							<p:outputLabel>#{boo.course.activity.name}</p:outputLabel>
+						</p:column>
+						
+						<p:column headerText="Catégorie" sortBy="#{boo.course.activity.activityCategory}"
+							filterBy="#{boo.course.activity.activityCategory}">
+							<p:outputLabel>#{boo.course.activity.activityCategory}</p:outputLabel>
+						</p:column>
+						
+						<p:column headerText="Coach" sortBy="#{boo.course.trainer}"
+							filterBy="#{boo.course.trainer}">
+							<p:outputLabel>#{boo.course.trainer}</p:outputLabel>
+						</p:column>
+						
+						<p:column headerText="Début" sortBy="#{boo.course.startDate}"
+							filterBy="#{boo.course.startDate}">
+							<p:outputLabel>#{boo.course.startDate}</p:outputLabel>
 						</p:column>
 
-						<p:column headerText="Début" sortBy="#{cou.startDate}"
-							filterBy="#{cou.startDate}">
-							<p:outputLabel>#{cou.startDate}</p:outputLabel>
-						</p:column>
-
-						<p:column headerText="Fin" sortBy="#{cou.endDate}"
-							filterBy="#{cou.endDate}">
-							<p:outputLabel>#{cou.endDate}</p:outputLabel>
-						</p:column>
-
-						<p:column headerText="Nom du coach"
-							sortBy="#{cou.trainer.firstName}"
-							filterBy="#{cou.trainer.firstName}">
-							<p:outputLabel>#{cou.trainer.firstName}</p:outputLabel>
-						</p:column>
-
-						<p:column headerText="Prénom du coach"
-							sortBy="#{cou.trainer.lastName}"
-							filterBy="#{cou.trainer.lastName}">
-							<p:outputLabel>#{cou.trainer.lastName}</p:outputLabel>
-						</p:column>
-
-
-						<p:column headerText="Nombre de place" sortBy="#{cou.nbPlaces}"
-							filterBy="#{cou.nbPlaces}">
-							<p:outputLabel>#{cou.nbPlaces}</p:outputLabel>
+						<p:column headerText="Fin" sortBy="#{boo.course.endDate}"
+							filterBy="#{boo.course.endDate}">
+							<p:outputLabel>#{boo.course.startDate}</p:outputLabel>
 						</p:column>
 
 						<p:column exportable="false">
-
-							<p:commandButton icon="pi pi-pencil"
-								update=":dialogs:add-booking-content"
-								oncomplete="PF('addBookingDialog').show()"
-								styleClass="edit-button rounded-button ui-button-success"
-								process="@this">
-								<f:setPropertyActionListener value="#{cou}"
-									target="#{courseController.selectedCourse}" />
-								<p:resetInput target=":dialogs:add-booking-content" />
-							</p:commandButton>
 
 							<p:commandButton class="ui-button-warning rounded-button"
 								icon="pi pi-trash" process="@this"
 								oncomplete="PF('deleteBookingDialog').show()">
 								<f:setPropertyActionListener value="#{boo}"
-									target="#{courseController.selectedCourse}" />
+									target="#{bookingController.selectedBooking}" />
 							</p:commandButton>
 						</p:column>
 
 					</p:dataTable>
 				</h:form>
-				<!-- Faire un textfiield que l'on cache avec la récupération de l'id -->
+
 				<h:form id="dialogs">
-
-					<p:dialog header="Réserver un cours" showEffect="fade" modal="true"
-						widgetVar="addBookingDialog" responsive="true">
-						<p:outputPanel id="add-booking-content" class="ui-fluid">
-							<p:outputPanel>
-
-								<div class="field">
-									<p:outputLabel for="add-course-id">COURSE</p:outputLabel>
-									<p:inputText id="add-course-id"
-										value="#{courseController.selectedCourse.id}" />
-								</div>
-
-								<div class="field">
-									<p:outputLabel for="add-account-id">ACCOUNT</p:outputLabel>
-									<p:inputText id="add-account-id"
-										value="#{loginController.getLoggedAccount().id}" />
-								</div>
-							</p:outputPanel>
-						</p:outputPanel>
-
-						<f:facet name="footer">
-							<p:commandButton value="Réserver" icon="pi pi-check"
-								actionListener="#{bookingController.addBooking()}"
-								update=":form:" process="add-booking-content @this"
-								oncomplete="PF('addBookingDialog').hide()" />
-							<p:commandButton value="Annuler" icon="pi pi-times"
-								onclick="PF('addBookingDialog').hide()"
-								class="ui-button-secondary" type="button" />
-						</f:facet>
-					</p:dialog>
 
 					<p:confirmDialog widgetVar="deleteBookingDialog" showEffect="fade"
 						width="300" message="Annuler la réservation ?" header="Confirm"

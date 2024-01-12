@@ -7,6 +7,7 @@
 <h:head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css">  </link>
 	<h:outputStylesheet library="css" name="main/mainHeader.css" />
 </h:head>
 
@@ -78,8 +79,8 @@
 					iconPos="right"
 					rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
 
-				<p:commandButton class="rightButton" value="Mon espace personnel"
-					action="#{spaceController.redirectToSpace(loginController.loggedAccount.gymId)}"
+				<p:button class="rightButton" value="Mon espace personnel"
+					outcome="spaceAdherentDashboard"
 					icon="pi pi-chevron-right" iconPos="right"
 					rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
 

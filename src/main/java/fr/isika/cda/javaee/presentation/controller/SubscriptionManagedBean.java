@@ -79,8 +79,13 @@ public class SubscriptionManagedBean implements Serializable {
 	}
 
 	public void subscribe() {
-		Membership membership = membershipManagedBean.getSelectedMembership();
-
+		System.out.println("\n \n \n \n \br \br JE SUIS DANS SUSCRIBEEEEE");
+		
+		//Membership membership = membershipManagedBean.getSelectedMembership();
+		Membership membership = subscriptionViewModel.getSelectedMembership();
+		
+		System.out.println(membership);
+		
 		Account account = accountManagedBean.getLoggedInAccount();
 
 		if (membership != null && account != null) {
@@ -88,8 +93,8 @@ public class SubscriptionManagedBean implements Serializable {
 			subscription.setMembership(membership);
 			account.setSubscription(subscription);
 
-			SubscriptionDao subscriptionDao = new SubscriptionDao();
 			subscriptionDao.saveSubscription(subscription);
+			paymentSubscription();
 		}
 	}
 

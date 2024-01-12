@@ -11,6 +11,7 @@ import fr.isika.cda.javaee.entity.gymspace.Membership;
 import fr.isika.cda.javaee.presentation.viewmodel.MembershipViewModel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,11 +25,14 @@ import java.util.List;
 @ViewScoped
 public class MembershipManagedBean implements Serializable {
 
-    @Inject
+    
+	private static final long serialVersionUID = 1L;
+
+	@Inject
     private MembershipDao membershipDao;
 
-    private List<Membership> memberships;
-    private Membership selectedMembership;
+    private List<Membership> memberships = new ArrayList<Membership>();
+    private Membership selectedMembership = new Membership() ;
     private MembershipViewModel membershipViewModel = new MembershipViewModel();
 
     public MembershipDao getMembershipDao() {
@@ -54,14 +58,14 @@ public class MembershipManagedBean implements Serializable {
 
 	@PostConstruct
     public void init() {
-        
+        this.memberships = getMemberships();
     }
 
     public List<Membership> getMemberships() {
         
         memberships = membershipDao.getAllMemberships();
-
         return memberships;
+       
     }
 
     public Membership getSelectedMembership() {
@@ -71,6 +75,7 @@ public class MembershipManagedBean implements Serializable {
     public void setSelectedMembership(Membership selectedMembership) {
         this.selectedMembership = selectedMembership;
     }
+    
     public void createMembership() {
         Membership newMembership = new Membership();
         newMembership.setName(membershipViewModel.getName());
@@ -82,5 +87,12 @@ public class MembershipManagedBean implements Serializable {
         // Réinitialise le viewModel après la création
         membershipViewModel = new MembershipViewModel();
     }
+    
+    public String paymentSubscription() {
+
+		return "pagePayment.xhtml?faces-redirect=true";
+
+	}
+
 }
 
