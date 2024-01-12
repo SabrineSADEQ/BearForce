@@ -43,17 +43,18 @@ public class PackDao implements PackInterface {
 		return entityManager.createQuery("SELECT p FROM Pack p LEFT JOIN FETCH p.subscriptions", Pack.class)
 				.getResultList();
 
-
-		
 	}
 
 	@Override
 	public void createPack(Pack pack) {
 
-
 		entityManager.persist(pack);
-
-
 	}
+	
+	public void deletePack(Pack pack) {
+	    entityManager.remove(entityManager.contains(pack) ? pack : entityManager.merge(pack));
+	}
+
+	
 
 }
