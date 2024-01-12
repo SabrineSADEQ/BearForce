@@ -77,7 +77,7 @@ public class SpaceController implements Serializable {
 //		} else {
 //			System.out.println("Attention ! pas de compte dans la session");
 		try {
-			Space space = getLoadedSpaceDependingOnLoginStatus();
+			Space space = getLoadedSpace();
 			chargeSpaceIntoSpaceViewModel(space);
 
 		} catch (Exception e) {
@@ -99,32 +99,11 @@ public class SpaceController implements Serializable {
 			Space space = spaceDao.getSpaceById(Long.valueOf(spaceIdParam));
 			return space;
 		} else {
-			LoginController loginController = new LoginController();
-			Space space = spaceDao.getSpaceById(loginController.getLoggedAccount().getGymId());
-			return space;
-		}
-	}
-
-	public Space getLoadedSpaceDependingOnLoginStatus() throws Exception {
-
-		// If user is not logged in,
-		// Get spaceId param from url
-		HttpSession session = SessionUtils.getSession();
-		Account account = (Account) session.getAttribute("loggedInUser");
-		if (account == null) {
-
-			Map<String, String> parameterMap = FacesContext.getCurrentInstance().getExternalContext()
-					.getRequestParameterMap();
-			String spaceIdParam = parameterMap.get("spaceId");
-
-			if (spaceIdParam != null) {
-				Space space = spaceDao.getSpaceById(Long.valueOf(spaceIdParam));
-				return space;
-			}
-			throw new Exception("No space id specified");
-		}
-		// if user is logged in , get spaceId from account stored in session
-		else {
+//			LoginController loginController = new LoginController();
+//			Space space = spaceDao.getSpaceById(loginController.getLoggedAccount().getGymId());
+//			return space;
+			HttpSession session = SessionUtils.getSession();
+			Account account = (Account) session.getAttribute("loggedInUser");
 			if (account.getGymId() != null) {
 				// get space id from account session
 				Long spaceId = SessionUtils.getAccount().getGymId();
@@ -137,6 +116,39 @@ public class SpaceController implements Serializable {
 		}
 		return null;
 	}
+
+//	public Space getLoadedSpaceDependingOnLoginStatus() throws Exception {
+//
+//		// If user is not logged in,
+//		// Get spaceId param from url
+//		HttpSession session = SessionUtils.getSession();
+//		Account account = (Account) session.getAttribute("loggedInUser");
+//		if (account == null) {
+//
+//			Map<String, String> parameterMap = FacesContext.getCurrentInstance().getExternalContext()
+//					.getRequestParameterMap();
+//			String spaceIdParam = parameterMap.get("spaceId");
+//
+//			if (spaceIdParam != null) {
+//				Space space = spaceDao.getSpaceById(Long.valueOf(spaceIdParam));
+//				return space;
+//			}
+//			throw new Exception("No space id specified");
+//		}
+//		// if user is logged in , get spaceId from account stored in session
+//		else {
+//			if (account.getGymId() != null) {
+//				// get space id from account session
+//				Long spaceId = SessionUtils.getAccount().getGymId();
+//				// get space from spaceId if spaceId not null
+//				if (spaceId != null) {
+//					Space space = spaceDao.getSpaceById(spaceId);
+//					return space;
+//				}
+//			}
+//		}
+//		return null;
+//	}
 
 	public void chargeSpaceIntoSpaceViewModel(Space space) {
 		// load the view model with the space informations
@@ -178,16 +190,11 @@ public class SpaceController implements Serializable {
 	}
 
 	@Transactional
-	public String createSpace() {
+	public void createSpace() {
 
 		Long spaceId = spaceDao.createSpace(spaceViewModel).getId();
 		injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(spaceId);
 		spaceViewModel = new SpaceViewModel();
-
-		
-		return "index.xhtml?faces-redirect=true";
-		
-		
 
 		// Construct the URL with the specific spaceId
 		String url = "http://127.0.0.1:8080/BearForce/spaceAdminDashboard.xhtml?spaceId=" + spaceId;
@@ -262,6 +269,25 @@ public class SpaceController implements Serializable {
 
 				// call the update method from spaceDao to persist in database
 				spaceDao.update(oldSpace);
+				
+				// Construct the URL with the specific spaceId
+				String url = "http://127.0.0.1:8080/BearForce/spaceUpdate.xhtml?spaceId=" + spaceId;
+
+				// Get the FacesContext and ExternalContext
+				FacesContext facesContext = FacesContext.getCurrentInstance();
+				ExternalContext externalContext = facesContext.getExternalContext();
+
+				// Redirect to the constructed URL
+				try {
+					externalContext.redirect(url);
+				} catch (IOException e) {
+
+					e.printStackTrace();
+				}
+
+				facesContext.responseComplete();
+
+				
 			} else {
 				System.out.println("Space not found with ID : " + spaceId);
 			}

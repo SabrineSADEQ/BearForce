@@ -18,7 +18,7 @@
 				<h:form>
 					<div class="update-text-content">
 						<div class="field grid">
-						
+
 							<p:outputLabel for="name" styleClass="col-fixed"
 								style="width:100px" value="Nom de la salle " />
 							<div class="col">
@@ -27,6 +27,27 @@
 									required="true" placeholder="Nom de votre salle" />
 							</div>
 						</div>
+
+						<div class="field grid">
+							<p:outputLabel for="email" styleClass="col-fixed"
+								style="width:100px" value="Email de la salle " />
+							<div class="col">
+								<p:inputText id="email"
+									value="#{spaceController.spaceViewModel.contactInfo.email}"
+									required="true" placeholder="Email" />
+							</div>
+						</div>
+						<div class="field grid">
+							<p:outputLabel for="phone" styleClass="col-fixed"
+								style="width:100px" value="Téléphone " />
+							<div class="col">
+								<p:inputText id="phone"
+									value="#{spaceController.spaceViewModel.contactInfo.phone}"
+									required="true" placeholder="Téléphone" />
+							</div>
+						</div>
+
+
 						<div class="field grid">
 							<p:outputLabel for="motto" styleClass="col-fixed"
 								style="width:100px" value="Slogan " />
@@ -47,30 +68,12 @@
 								</p:inputTextarea>
 							</div>
 						</div>
-						<div class="field grid">
-							<p:outputLabel for="email" styleClass="col-fixed"
-								style="width:100px" value="Email de la salle " />
-							<div class="col">
-								<p:inputText id="email"
-									value="#{spaceController.spaceViewModel.contactInfo.email}"
-									required="true" placeholder="Email" />
-							</div>
-						</div>
 
-						<div class="field grid">
-							<p:outputLabel for="phone" styleClass="col-fixed"
-								style="width:100px" value="Téléphone " />
-							<div class="col">
-								<p:inputText id="phone"
-									value="#{spaceController.spaceViewModel.contactInfo.phone}"
-									required="true" placeholder="Téléphone" />
-							</div>
-						</div>
 					</div>
 					<div class="update-visual-content">
 
 						<div>
-							<h:outputLabel for="firstColor">Couleur principale</h:outputLabel>
+							<h:outputLabel class="colorLabel">Couleur principale</h:outputLabel>
 							<p:colorPicker id="firstColorPicker" theme="polaroid"
 								formatToggle="true"
 								value="#{spaceController.spaceViewModel.firstColor}"
@@ -79,7 +82,7 @@
 						</div>
 
 						<div>
-							<h:outputLabel for="secondColor">Couleur secondaire</h:outputLabel>
+							<h:outputLabel class="colorLabel">Deuxième couleur</h:outputLabel>
 							<p:colorPicker id="secondColor" theme="polaroid"
 								formatToggle="true"
 								value="#{spaceController.spaceViewModel.secondColor}"
@@ -88,7 +91,7 @@
 							</p:colorPicker>
 						</div>
 						<div>
-							<h:outputLabel for="thirdColor">Couleur tertiaire</h:outputLabel>
+							<h:outputLabel class="colorLabel">Troisième couleur</h:outputLabel>
 							<p:colorPicker id="thirdColor" theme="polaroid"
 								formatToggle="true"
 								value="#{spaceController.spaceViewModel.thirdColor}"
@@ -96,29 +99,28 @@
 								forceAlpha="true">
 							</p:colorPicker>
 						</div>
-						<div>
-							<h:outputLabel for="logo">Logo </h:outputLabel>
-							<p:graphicImage library="images" height="100px"
-								name="#{spaceController.spaceViewModel.gymLogoPath}" />
-							<p:fileUpload label="Modifier" uploadLabel="Télécharger"
-								cancelLabel="Annuler"
-								listener="#{spaceController.uploadFileLogo}" styleClass="w-100"
-								mode="advanced" dragDropSupport="false" />
-						</div>
-						<div>
-							<h:outputLabel for="banner">Bannière </h:outputLabel>
-							<p:graphicImage library="images" width="200px"
-								name="#{spaceController.spaceViewModel.gymBannerPath}" />
-							<p:fileUpload label="Modifier" uploadLabel="Télécharger"
-								cancelLabel="Annuler"
-								listener="#{spaceController.uploadFileBanner}"
-								styleClass="w-100" mode="advanced" dragDropSupport="false" />
+						<div class="imagesDiv">
+							<div>
+								<h:outputLabel>Logo :</h:outputLabel>
+								<p:fileUpload label="Modifier" uploadLabel="Télécharger"
+									cancelLabel="Annuler"
+									listener="#{spaceController.uploadFileLogo}" styleClass="w-100"
+									mode="advanced" dragDropSupport="false" />
+							</div>
+							<div>
+								<h:outputLabel>Image de la page d'accueil : </h:outputLabel>
+								<p:fileUpload label="Modifier" uploadLabel="Télécharger"
+									cancelLabel="Annuler"
+									listener="#{spaceController.uploadFileBanner}"
+									styleClass="w-100" mode="advanced" dragDropSupport="false" />
+							</div>
 						</div>
 
 					</div>
-
-					<p:commandButton value="Modifier mon espace"
-						action="#{spaceController.updateSpace}" />
+					<div class="updateButton">
+						<p:commandButton value="Modifier mon espace"
+							action="#{spaceController.updateSpace}" />
+					</div>
 				</h:form>
 			</div>
 		</div>

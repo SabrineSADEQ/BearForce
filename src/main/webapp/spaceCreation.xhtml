@@ -109,7 +109,6 @@
 										clearButton="true" closeButton="true" alpha="false">
 									</p:colorPicker>
 
-
 									<h:outputLabel for="secondColor">Couleur secondaire</h:outputLabel>
 									<p:colorPicker id="secondColor" theme="polaroid"
 										formatToggle="true"
@@ -125,8 +124,8 @@
 										clearButton="true" closeButton="true" alpha="false"
 										forceAlpha="true">
 									</p:colorPicker>
-
 								</h:panelGrid>
+								
 							</p:panel>
 						</p:tab>
 
@@ -135,11 +134,15 @@
 
 								<h:outputLabel for="logo">Logo</h:outputLabel>
 								<!-- Composant graphique pour le fichier -->
-								<p:fileUpload label="Ajouter" uploadLabel="Télécharger" cancelLabel="Annuler" listener="#{spaceController.uploadFileLogo}"
-									styleClass="w-100" mode="advanced" dragDropSupport="false" />
+								<p:fileUpload label="Ajouter" uploadLabel="Télécharger"
+									cancelLabel="Annuler"
+									listener="#{spaceController.uploadFileLogo}" styleClass="w-100"
+									mode="advanced" dragDropSupport="false" />
 								<br />
 								<h:outputLabel for="banner">Bannière</h:outputLabel>
-								<p:fileUpload label="Ajouter" uploadLabel="Télécharger" cancelLabel="Annuler" listener="#{spaceController.uploadFileBanner}"
+								<p:fileUpload label="Ajouter" uploadLabel="Télécharger"
+									cancelLabel="Annuler"
+									listener="#{spaceController.uploadFileBanner}"
 									styleClass="w-100" mode="advanced" dragDropSupport="false" />
 
 							</p:panel>
@@ -229,6 +232,8 @@
 				</h:form>
 			</div>
 		</div>
+		
+		
 	</ui:define>
 
 </ui:composition>
