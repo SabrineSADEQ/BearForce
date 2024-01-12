@@ -25,12 +25,14 @@ public class Activity {
 	private long id ;	
 	private String name ;
 	private String description;	
+	private Long attachedGymId;
 	@Enumerated(EnumType.STRING)
 	private ActivityCategory activityCategory;	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
 	private List<Course> courseList = new ArrayList<>() ;	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
 	private List<Equipment> equipmentList = new ArrayList<>() ;
+	private String activityPicturePath;
 
 	//***************GETTERS & SETTERS***************
 
@@ -77,4 +79,20 @@ public class Activity {
 		this.activityCategory = activityCategory;
 	}
 
+	public Long getAttachedGymId() {
+		return attachedGymId;
+	}
+
+	public void setAttachedGymId(Long attachedGymId) {
+		this.attachedGymId = attachedGymId;
+	}
+
+	public String getActivityPicturePath() {
+		return activityPicturePath;
+	}
+
+	public void setActivityPicturePath(String activityPicturePath) {
+		this.activityPicturePath = activityPicturePath;
+	}
+	
 }

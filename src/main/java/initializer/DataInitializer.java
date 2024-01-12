@@ -20,7 +20,7 @@ import fr.isika.cda.javaee.dao.EquipmentDao;
 import fr.isika.cda.javaee.dao.PackDao;
 import fr.isika.cda.javaee.dao.SpaceDao;
 import fr.isika.cda.javaee.dao.accounts.AccountDao;
-
+import fr.isika.cda.javaee.dao.accounts.ProfilesManagementDao;
 import fr.isika.cda.javaee.dao.gymspace.MembershipDao;
 import fr.isika.cda.javaee.dao.platform.SubscriptionDao;
 
@@ -166,7 +166,7 @@ public class DataInitializer {
 
 		profileCoach.setAddress(addressCoach);
 		profileCoach.setContact(contactCoach);
-
+		
 		ProfessionalDetails coachDetails = new ProfessionalDetails();
 		coachDetails.setCoachCertification("Certifiée en Zumba, 4ème niveau et en Yoga");
 		coachDetails.setCoachForm("Advanced Coaching");
@@ -178,13 +178,20 @@ public class DataInitializer {
 		coach.setProfile(profileCoach);
 
 		Account savedAccount = accountDao.createAccount(coach);
-
+		
+		
+		/*
+		 * Do not delete this 
+		 */
+		createFakeProfiles();
+		
 		/*
 		 * Prépa données cours par défaut + activité + coach
 		 */
 		Activity activity = new Activity();
 		activity.setName("Cardio vélo");
 		activity.setDescription("cours de judo avec les meilleurs coachs de la region");
+		activity.setAttachedGymId(Long.valueOf(46));
 		activity.setActivityCategory(ActivityCategory.CARDIO);
 		activityDao.persist(activity);
 		
@@ -211,13 +218,32 @@ public class DataInitializer {
 		Pack basicPack = new Pack();
 		basicPack.setName("Ourson");
 		basicPack.setPrice(99);
-		packDao.createPack(basicPack);
+		packDao. deletePack(basicPack);
 
 		Pack premiumPack = new Pack();
 		premiumPack.setName("Grizzly");
 		premiumPack.setPrice(199);
-		packDao.createPack(premiumPack);
-
+		packDao. deletePack(premiumPack);
+		
+		
+		Pack basicPack1 = new Pack();
+		basicPack1.setName("Basic");
+		basicPack1.setPrice(200);
+		basicPack1.setDescription("Offre une solution économique, idéale pour les petites salles de sport , en facilitant la gestion des membres, le suivi des paiements, et en fournissant des rapports de base pour une gestion transparente.");
+		packDao.createPack(basicPack1);
+		
+		Pack avancePack = new Pack();
+		avancePack.setName("Avancé");
+		avancePack.setPrice(250);
+		avancePack.setDescription("Le package Avancé élève votre salle de sport en offrant, au-delà des fonctionnalités essentielles, la planification de cours, la gestion des réservations, et une analyse approfondie des performances.");
+		packDao.createPack(avancePack);
+		
+		Pack premiumPack1 = new Pack();
+		premiumPack1.setName("Premium");
+		premiumPack1.setPrice(400);
+		premiumPack1.setDescription("Le package Premium offre une expérience exceptionnelle avec des fonctionnalités avancées, un support prioritaire, idéal pour les salles de sport visant l'excellence et la satisfaction maximale des membres");
+		packDao.createPack(premiumPack1);
+		
 		// Memberships for the example spaces
 		Membership membership = new Membership();
 		membership.setName("Gold");
@@ -526,5 +552,106 @@ public class DataInitializer {
 
 	}
 
+	private void createFakeProfiles() {
+		/*
+		 * 1er profile fake
+		 */
+		Profile profileCoach2 = new Profile();
+		profileCoach2.setFirstName("Rayan");
+		profileCoach2.setLastName("Simon");
+		profileCoach2.setPictureUrl("profil2.jpg");
 
+		Address addressCoach2= new Address();
+		addressCoach2.setCity("Paris");
+		addressCoach2.setStreetName("rue de Générale Leclerc");
+		addressCoach2.setStreetNumber("4");
+		addressCoach2.setPostalCode("75018");
+
+		Contact contactCoach2 = new Contact();
+		contactCoach2.setPhone("08 76 54 32 19");
+		contactCoach2.setEmail("rayan1simon@example.com");
+
+		profileCoach2.setAddress(addressCoach2);
+		profileCoach2.setContact(contactCoach2);
+		
+		ProfessionalDetails coachDetails1 = new ProfessionalDetails();
+		coachDetails1.setCoachCertification("Certifiée en Zumba, 4ème niveau et en Yoga");
+		coachDetails1.setCoachForm("Advanced Coaching");
+		coachDetails1.setCoachCV(
+				"Coach sportive passionnée et polyvalente, spécialisée dans l'enseignement du yoga et de la zumba, avec une expertise éprouvée dans la création de programmes holistiques favorisant le bien-être physique et mental.");
+
+		profileCoach2.setProfesionalDetails(coachDetails1);
+
+		
+		AccountViewModel coach = new AccountViewModel();
+		coach.setEmail("coach.lambert@gmail.com");
+		coach.setPassword("coach");
+		coach.setRole(Role.COACH);
+		coach.setGymId((long) 46);
+		
+		Goal goal2 = new Goal();
+		goal2.setGoalName("Perte de poids");
+		goal2.setGoalDate(LocalDate.of(2024, Month.FEBRUARY, 28));
+
+		coach.setGoal(goal2);
+		coach.setProfile(profileCoach2);
+
+		Account savedAccount = accountDao.createAccount(coach);
+		
+		//***************************************************************************************************************
+		
+		/*
+		 * 2er profile fake
+		 */
+		Profile profileCoach3 = new Profile();
+		profileCoach3.setFirstName("Emma");
+		profileCoach3.setLastName("Cai");
+		profileCoach3.setPictureUrl("profil3.png");
+
+		Address addressCoach3= new Address();
+		addressCoach3.setCity("Créteil");
+		addressCoach3.setStreetName("rue Charles de Gaulle");
+		addressCoach3.setStreetNumber("14");
+		addressCoach3.setPostalCode("94000");
+
+		Contact contactCoach3 = new Contact();
+		contactCoach3.setPhone("08 76 54 15 47");
+		contactCoach3.setEmail("emma26@gmail.com");
+
+		profileCoach3.setAddress(addressCoach3);
+		profileCoach3.setContact(contactCoach3);
+		
+		ProfessionalDetails coachDetails3 = new ProfessionalDetails();
+		coachDetails3.setCoachCertification("Certifiée en Zumba, 4ème niveau et en Yoga");
+		coachDetails3.setCoachForm("Advanced Yoga");
+		coachDetails3.setCoachCV(
+				"Coach sportive passionnée et polyvalente, spécialisée dans l'enseignement du yoga et de la zumba, avec une expertise éprouvée dans la création de programmes holistiques favorisant le bien-être physique et mental.");
+
+		profileCoach3.setProfesionalDetails(coachDetails3);
+
+		
+		AccountViewModel coach3 = new AccountViewModel();
+		coach3.setEmail("emma26@gmail.com");
+		coach3.setPassword("coach124");
+		coach3.setRole(Role.COACH);
+		coach3.setGymId((long) 46);
+		
+		Goal goal3 = new Goal();
+		goal3.setGoalName(" Yoga");
+		goal3.setGoalDate(LocalDate.of(2023, Month.FEBRUARY, 28));
+
+		coach3.setGoal(goal3);
+		coach3.setProfile(profileCoach3);
+		
+		Account savedAccount3 = accountDao.createAccount(coach3);
+//		Profile profileCoach2 = new Profile();
+//		profileCoach2.setFirstName("Rayan");
+//		profileCoach2.setLastName("Simon");
+//		profileCoach2.setPictureUrl("profil2.jpg");
+//
+//		Profile profileCoach3 = new Profile();
+//		profileCoach3.setFirstName("Emma");
+//		profileCoach3.setLastName("Cai");
+//		profileCoach3.setPictureUrl("profil3.png");
+	}
 }

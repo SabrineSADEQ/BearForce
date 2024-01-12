@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+
+	<ui:define name="titleValue">Equipements</ui:define>
+	<ui:define name="content">
+		<div class="body-platform">
+			<div class="content">
+				<div class="card">
+					<p:carousel
+						value="#{equipmentController.displayEquipmentsListByGymId()}"
+						var="equi" numVisible="3" numScroll="3">
+						<f:facet name="header">
+							<h1 class="titleH1">Nos équipements</h1>
+						</f:facet>
+						<div class="product-item grow">
+							<div class="product-item-content">
+								<div>
+									<h2>#{equi.equipmentName}</h2>
+									<div class="mt-5"><h5>#{equi.details}</h5></div>
+								</div>
+							</div>
+						</div>
+					</p:carousel>
+				</div>
+
+
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>
+
+</html>

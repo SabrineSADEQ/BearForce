@@ -9,6 +9,7 @@ import javax.print.attribute.standard.DialogOwner;
 
 import fr.isika.cda.javaee.account.controller.LoginController;
 import fr.isika.cda.javaee.entity.accounts.Account;
+import fr.isika.cda.javaee.entity.accounts.Role;
 import fr.isika.cda.javaee.entity.gymspace.business.Booking;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
 import fr.isika.cda.javaee.presentation.viewmodel.BookingViewModel;
@@ -48,24 +49,48 @@ public class BookingDao {
 		return entityManager.createQuery("SELECT a FROM Account a WHERE a.id = :accountIdParam", Account.class)
 				.setParameter("accountIdParam", accountId).getSingleResult();
 	}
-	
+
 	public List<Course> getAllCoursesWithActivities() {
 		return entityManager.createQuery("SELECT c FROM Course c LEFT JOIN FETCH c.activity", Course.class)
 				.getResultList();
 	}
-	
+
 	public List<Booking> getAllBookings() {
-		return entityManager.createQuery("SELECT b FROM Booking b", Booking.class)
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		Long loggedAccountGymId = logged.getGymId();
+		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.account.gymId = :gymIdParam", Booking.class)
+				.setParameter("gymIdParam", loggedAccountGymId)
+				.getResultList();
+	}
+
+	public List<Booking> getAllBookingsForAdherent() {
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		Long loggedAccountId = logged.getId();
+		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.account.id = :accountIdParam", Booking.class)
+				.setParameter("accountIdParam", loggedAccountId)
+				.getResultList();
+	}
+
+	public List<Booking> getAllBookingsForCoach() {
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		Long loggedAccountId = logged.getId();
+		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.course.trainer.account.id = :accountIdParam", Booking.class)
+				.setParameter("accountIdParam", loggedAccountId)
 				.getResultList();
 	}
 
 
-//	public List <Booking> getAccountBookingsList(Account accountToCheck){
-//		Long accountToCheckId = accountToCheck.getId();
-//		return entityManager.createQuery("SELECT a FROM Account a LEFT JOINT FETCH a.bookingList WHERE a.id = :accountIdParam", Account.class)
-//				.setParameter("accountIdParam", accountToCheckId)
-//				.getResultList();
-//	}
+	public List<Booking> getBookingListByAccount(){
+		LoginController controller = new LoginController();
+		Account logged = controller.getLoggedAccount();
+		Long loggedAccountId = logged.getId();
+		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.account.id = :bookingIdParam", Booking.class)
+				.setParameter("bookingIdParam", loggedAccountId)
+				.getResultList();
+	}
 
 	public Course findCourseById(long courseId) {
 		return entityManager.createQuery("SELECT c FROM Course c WHERE c.id = :courseIdParam", Course.class)

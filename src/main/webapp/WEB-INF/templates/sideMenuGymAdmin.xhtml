@@ -36,8 +36,12 @@
 			icon="pi pi-calendar" />
 		<p:menuitem value="Planning" outcome="crudPlanning"
 			icon="pi pi-calendar-plus" />
-		<p:menuitem value="Réserver un cours" outcome="crudBooking"
-			icon="pi pi-time" />
+
+		<p:menuitem value="Equipements" outcome="crudEquipment"
+			icon="pi pi-wrench" />
+		<p:menuitem value="Réservations" outcome="allBookings"
+			icon="pi pi-chevron-circle-down" />
+
 		<p:menuitem value="Abonnements" outcome="CreateMembership"
 			icon="pi pi-shopping-cart" />
 		<p:menuitem value="Modifier mon espace" icon="pi pi-palette"
@@ -51,6 +55,7 @@
 	<!-- 	Gym member sidebar  -->
 	<p:menu styleClass="dashboard-sidebar"
 		rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}">
+
 		<p:menuitem >
 			<p:avatar styleClass="mr-2" size="xlarge" shape="circle">
 				<p:graphicImage library="images"
@@ -61,10 +66,11 @@
 		<p:menuitem 
 			value="#{loginController.getLoggedAccount().profile.firstName} #{loginController.getLoggedAccount().profile.lastName}">
 		</p:menuitem>
-		<p:menuitem value="Mon planning" icon="pi pi-calendar" />
+		<p:menuitem value="Mon planning" icon="pi pi-calendar" outcome="crdBooking" />
 
-		<p:menuitem value="Réserver un cours" icon="pi pi-calendar-plus"
-			outcome="crdBooking" />
+
+		<p:menuitem value="Mes réservations" icon="pi pi-chevron-circle-down"
+			outcome="adherentBookings" />
 
 		<p:menuitem value="Mon abonnement" icon="pi pi-shopping-cart" />
 		<p:menuitem value="Mon compte" outcome="MonCompte" icon="pi pi-cog" />
@@ -74,6 +80,7 @@
 	<!-- 	Gym coach sidebar  -->
 	<p:menu styleClass="dashboard-sidebar"
 		rendered="#{loginController.getLoggedAccount().role eq 'COACH'}">
+
 		<p:menuitem >
 			<p:avatar styleClass="mr-2" size="xlarge" shape="circle">
 				<p:graphicImage library="images"
@@ -86,7 +93,8 @@
 		</p:menuitem>
 		<p:menuitem value="Tableau de bord" outcome="spaceCoachDashboard"
 			icon="pi pi-chart-line" />
-		<p:menuitem value="Mon planning" icon="pi pi-calendar" />
+		<p:menuitem value="Mon planning" icon="pi pi-calendar" outcome="generalPlanning"/>
+
 		<p:menuitem value="Adhérents" icon="pi pi-users"
 			outcome="ListeAdherent" />
 		<p:menuitem value="Mon profil professionel" icon="pi pi-user" />

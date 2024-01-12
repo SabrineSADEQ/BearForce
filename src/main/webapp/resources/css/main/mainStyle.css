@@ -168,6 +168,8 @@ html body .ui-fileupload .ui-fileupload-content {
 	100% {
 		background-position: 0% 50%;
 	}
+	
+	
 }
 
 /*PrimeFaces color picker*/
@@ -186,3 +188,4 @@ html body .ui-fileupload .ui-fileupload-content {
 .circle .clr-field button {
     border-radius: 50%;
 }
+
