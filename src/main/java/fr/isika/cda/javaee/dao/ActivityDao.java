@@ -1,15 +1,16 @@
 package fr.isika.cda.javaee.dao;
 
 import java.util.List;
-
+import java.util.Map;
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import fr.isika.cda.javaee.account.controller.LoginController;
 import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.accounts.Profile;
+import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
 import fr.isika.cda.javaee.presentation.viewmodel.ActivityViewModel;
@@ -22,6 +23,9 @@ public class ActivityDao {
 
 	@Inject
 	private EquipmentDao equipmentDao;
+	
+	@Inject
+	private SpaceDao spaceDao;
 
 	public Long persist(Activity activity) {
 		entityManager.persist(activity);
@@ -108,5 +112,39 @@ public class ActivityDao {
 				.createQuery("SELECT prof FROM Profile prof WHERE prof.account.role = 'COACH'", Profile.class)
 				.getResultList();
 	}
+	
+	public List<Activity> getAllActivitiesOfGymId() throws Exception {
+		Long currentGymId = getLoadedSpaceId();	
+		return entityManager
+				.createQuery("SELECT a FROM Activity a WHERE a.attachedGymId = :gymIdParam"
+						, Activity.class)
+				.setParameter("gymIdParam", currentGymId)
+				.getResultList();
+	}
+	
+	//GET CURRENT GYMSPACEID
+		private Long getLoadedSpaceId() throws Exception {
+			Long currentGymId = getLoadedSpace().getId();
+			return currentGymId;	
+		}
+
+		//GET CURRENT GYMSPACE
+		private Space getLoadedSpace() throws Exception {
+
+			// Get param from url
+			Map<String, String> parameterMap = FacesContext.getCurrentInstance().getExternalContext()
+					.getRequestParameterMap();
+			String spaceIdParam = parameterMap.get("spaceId");
+
+			if (spaceIdParam != null) {
+				Space space = spaceDao.getSpaceById(Long.valueOf(spaceIdParam));
+				return space;
+			}
+			else {
+				LoginController loginController = new LoginController();
+				Space space = spaceDao.getSpaceById(loginController.getLoggedAccount().getGymId());
+				return space;
+			}
+		}
 
 }

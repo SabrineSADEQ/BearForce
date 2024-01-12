@@ -55,6 +55,11 @@ public class BookingController implements Serializable {
 	public List<Booking> displayBookingList(){
 		return bookingDao.getAllBookings();
 	}
+	
+	public List<Booking> displayBookingListForCoach(){
+		return bookingDao.getAllBookingsForCoach();
+	}
+	
 	public List<Booking> displayBookingListForAdherent(){
 		return bookingDao.getAllBookingsForAdherent();
 	}

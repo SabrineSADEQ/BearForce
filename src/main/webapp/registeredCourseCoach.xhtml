@@ -5,17 +5,19 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+<ui:composition
+	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
 	<ui:define name="titleValue">Gestion des réservations</ui:define>
 	<ui:define name="content">
 		<div>
 			<div class="card crud-demo">
 				<h:form id="form">
 					<p:growl id="messages" showDetail="true" />
+
 					<p:dataTable id="d-booking" widgetVar="dtbookings" var="boo"
-						value="#{bookingController.displayBookingListForAdherent()}"
-						reflow="true" styleClass="products-table" paginator="true"
-						rows="10" rowSelectMode="add" paginatorPosition="bottom">
+						value="#{bookingController.displayBookingListForCoach()}" reflow="true"
+						styleClass="products-table" paginator="true" rows="10"
+						rowSelectMode="add" paginatorPosition="bottom">
 
 						<f:facet name="header">
 							<div class="products-table-header">
@@ -26,17 +28,13 @@
 								</span>
 							</div>
 						</f:facet>
-						
-						<p:column headerText="Activité" sortBy="#{boo.course.activity.name}"
-							filterBy="#{boo.course.activity.name}">
-							<p:outputLabel>#{boo.course.activity.name}</p:outputLabel>
+
+						<p:column headerText="Adhérent"
+							sortBy="#{boo.account.profile.lastName}"
+							filterBy="#{boo.account.profile.lastName}">
+							<p:outputLabel>#{boo.account.profile.lastName} #{boo.account.profile.firstName}</p:outputLabel>
 						</p:column>
-						
-						<p:column headerText="Coach" sortBy="#{boo.course.trainer.lastName}"
-							filterBy="#{boo.course.trainer.lastName}">
-							<p:outputLabel>#{boo.course.trainer.firstName} #{boo.course.trainer.lastName}</p:outputLabel>
-						</p:column>
-						
+
 						<p:column headerText="Début" sortBy="#{boo.course.startDate}"
 							filterBy="#{boo.course.startDate}">
 							<p:outputLabel>#{boo.course.startDate}</p:outputLabel>

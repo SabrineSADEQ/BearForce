@@ -47,7 +47,7 @@
 			alt="profile-picture" styleClass="profile-image" />
 		<p:menuitem value="Mon planning" icon="pi pi-calendar" outcome="crdBooking"/>
 
-		<p:menuitem value="Mes réservations" icon="pi-chevron-circle-down"
+		<p:menuitem value="Mes réservations" icon="pi pi-chevron-circle-down"
 			outcome="adherentBookings" />
 
 		<p:menuitem value="Mon abonnement" icon="pi pi-shopping-cart" />
@@ -60,8 +60,8 @@
 		rendered="#{loginController.getLoggedAccount().role eq 'COACH'}">
 		<p:graphicImage library="images" name="bear_user_image.jpg"
 			alt="profile-picture" styleClass="profile-image" />
-		<p:menuitem value="Tableau de bord" outcome="spaceCoachDashboard"
-			icon="pi pi-chart-line" />
+		<p:menuitem value="Mes cours" outcome="registeredCourseCoach"
+			icon="pi pi-user-edit" />
 		<p:menuitem value="Mon planning" icon="pi pi-calendar" outcome="generalPlanning" />
 		<p:menuitem value="Adhérents" icon="pi pi-users"
 			outcome="ListeAdherent" />

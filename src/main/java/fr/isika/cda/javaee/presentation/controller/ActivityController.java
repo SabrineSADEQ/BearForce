@@ -54,6 +54,12 @@ public class ActivityController implements Serializable{
 	public List<Activity> displayActivitiesList(){
 		return activityDao.getAllActivities();
 	}
+	
+	public List<Activity> displayActivitiesListByGimId() throws Exception{
+		return activityDao.getAllActivitiesOfGymId();
+	}
+	
+	
 
 	//DELETE ACTIVITY FROM DATABASE
 	public void deleteSelectedActivity() {
