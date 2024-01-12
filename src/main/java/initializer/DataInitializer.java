@@ -92,9 +92,9 @@ public class DataInitializer {
 		AccountViewModel Adherent = new AccountViewModel();
 		Adherent.setEmail("adherent@gmail.com");
 		Adherent.setPassword("adherent");
-		Adherent.setGymId((long) 46);
+		Adherent.setGymId((long) 61);
 		Adherent.setRole(Role.ADHERENT);
-		Adherent.setGymId((long) 46);
+		Adherent.setGymId((long) 61);
 		Profile profileAdherent = new Profile();
 		profileAdherent.setFirstName("Yoann");
 		profileAdherent.setLastName("François");
@@ -115,7 +115,7 @@ public class DataInitializer {
 		gestionnaire.setPassword("gestionnaire");
 		gestionnaire.setRole(Role.GESTIONNAIRE);
 
-		gestionnaire.setGymId((long) 46);
+		gestionnaire.setGymId((long) 61);
 
 		Profile profileGestionnaire = new Profile();
 		profileGestionnaire.setFirstName("Jean");
@@ -142,7 +142,7 @@ public class DataInitializer {
 		coach.setEmail("coach@gmail.com");
 		coach.setPassword("coach");
 		coach.setRole(Role.COACH);
-		coach.setGymId((long) 46);
+		coach.setGymId((long) 61);
 		Goal goal2 = new Goal();
 		goal2.setGoalName("Perte de poids");
 		goal2.setGoalDate(LocalDate.of(2024, Month.FEBRUARY, 28));
@@ -191,7 +191,7 @@ public class DataInitializer {
 		Activity activity = new Activity();
 		activity.setName("Cardio vélo");
 		activity.setDescription("cours de judo avec les meilleurs coachs de la region");
-		activity.setAttachedGymId(Long.valueOf(46));
+		activity.setAttachedGymId(Long.valueOf(61));
 		activity.setActivityCategory(ActivityCategory.CARDIO);
 		activityDao.persist(activity);
 		
@@ -358,9 +358,9 @@ public class DataInitializer {
 		AccountViewModel anotherAdherent = new AccountViewModel();
 		anotherAdherent.setEmail("alice@example.com");
 		anotherAdherent.setPassword("securePassword123");
-		anotherAdherent.setGymId((long) 46);
+		anotherAdherent.setGymId((long) 61);
 		anotherAdherent.setRole(Role.ADHERENT);
-		anotherAdherent.setGymId((long) 46);
+		anotherAdherent.setGymId((long) 61);
 
 		Profile anotherProfileAdherent = new Profile();
 		anotherProfileAdherent.setFirstName("Alice");
@@ -384,7 +384,7 @@ public class DataInitializer {
 		AccountViewModel newMember = new AccountViewModel();
 		newMember.setEmail("emma@example.com");
 		newMember.setPassword("strongPassword456");
-		newMember.setGymId((long) 46);
+		newMember.setGymId((long) 61);
 		newMember.setRole(Role.ADHERENT);
 
 		Profile newMemberProfile = new Profile();
@@ -409,7 +409,7 @@ public class DataInitializer {
 		AccountViewModel guestUser = new AccountViewModel();
 		guestUser.setEmail("alex@example.com");
 		guestUser.setPassword("temporaryPass789");
-		guestUser.setGymId((long) 46);
+		guestUser.setGymId((long) 61);
 		guestUser.setRole(Role.ADHERENT);
 
 		Profile guestProfile = new Profile();
@@ -434,7 +434,7 @@ public class DataInitializer {
 		AccountViewModel premiumMember = new AccountViewModel();
 		premiumMember.setEmail("sophia@example.com");
 		premiumMember.setPassword("strongPass789");
-		premiumMember.setGymId((long) 46);
+		premiumMember.setGymId((long) 61);
 		premiumMember.setRole(Role.COACH);
 
 		Profile premiumMemberProfile = new Profile();
@@ -592,7 +592,7 @@ public class DataInitializer {
 		coach.setEmail("coach.lambert@gmail.com");
 		coach.setPassword("coach");
 		coach.setRole(Role.COACH);
-		coach.setGymId((long) 46);
+		coach.setGymId((long) 61);
 		
 		Goal goal2 = new Goal();
 		goal2.setGoalName("Perte de poids");
@@ -639,7 +639,7 @@ public class DataInitializer {
 		coach3.setEmail("emma26@gmail.com");
 		coach3.setPassword("coach124");
 		coach3.setRole(Role.COACH);
-		coach3.setGymId((long) 46);
+		coach3.setGymId((long) 61);
 		
 		Goal goal3 = new Goal();
 		goal3.setGoalName(" Yoga");
