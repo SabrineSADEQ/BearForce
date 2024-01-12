@@ -178,11 +178,17 @@ public class SpaceController implements Serializable {
 	}
 
 	@Transactional
-	public void createSpace() {
+	public String createSpace() {
 
 		Long spaceId = spaceDao.createSpace(spaceViewModel).getId();
 		injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(spaceId);
 		spaceViewModel = new SpaceViewModel();
+
+		
+		return "index.xhtml?faces-redirect=true";
+		
+		
+
 		// Construct the URL with the specific spaceId
 		String url = "http://127.0.0.1:8080/BearForce/spaceAdminDashboard.xhtml?spaceId=" + spaceId;
 
@@ -199,6 +205,7 @@ public class SpaceController implements Serializable {
 		}
 
 		facesContext.responseComplete();
+
 
 	}
 
