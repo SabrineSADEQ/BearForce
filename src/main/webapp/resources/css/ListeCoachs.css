@@ -2,32 +2,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 *{
-  margin: 0;
-  padding: 0;
+  margin: 1px;
+  padding: 1px;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
 body{
-  min-height: 100vh;
+  min-height: 200vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #EFEFEF;
 }
+
+.container {
+  display: flex;
+  width: 1040px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
 .slide-container{
-  max-width: 1120px;
+  max-width: 300px;
   width: 100%;
   padding: 40px 0;
+ 
 }
 .slide-content{
   margin: 0 40px;
   overflow: hidden;
   border-radius: 25px;
+
 }
-.card{
-  border-radius: 25px;
-  background-color: #FFF;
+
+  .card {
+  margin: 10px;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 320px;
 }
+
+
 .image-content,
 .card-content{
   display: flex;
@@ -46,7 +64,7 @@ body{
   top: 0;
   height: 100%;
   width: 100%;
-  background-color: #4070F4;
+ background: linear-gradient(to top, #2ecc71, #27ae60);
   border-radius: 25px 25px 0 25px;
 }
 .overlay::before,
@@ -57,7 +75,7 @@ body{
   bottom: -40px;
   height: 40px;
   width: 40px;
-  background-color: #4070F4;
+  background-color: linear-gradient(to top, #2ecc71, #27ae60);
 }
 .overlay::after{
   border-radius: 0 25px 0 0;
@@ -81,12 +99,12 @@ body{
 }
 
 .name{
-  font-size: 18px;
+font-size: 22px;
   font-weight: 500;
   color: #333;
 }
 .description{
-  font-size: 14px;
+  font-size: 22px;
   color: #707070;
   text-align: center;
 }
@@ -97,7 +115,7 @@ body{
   padding: 8px 16px;
   background-color: #4070F4;
   border-radius: 6px;
-  margin: 14px;
+  margin: 40px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -143,4 +161,44 @@ body{
     border: 2px solid #ccc; /* Add a border for visual separation */
     overflow: hidden; /* Ensure the image stays within the borders */
 }
+
+/* Style de la boîte de dialogue pop-up */
+.ui-dialog .ui-dialog-titlebar {
+    background-color: #4070F4; /* Couleur de fond de la barre de titre */
+    color: #fff; /* Couleur du texte de la barre de titre */
+    border: none; /* Supprimer la bordure de la barre de titre */
+}
+
+.ui-dialog .ui-dialog-content {
+    padding: 20px; /* Marge intérieure du contenu */
+}
+
+.ui-dialog .ui-dialog-footer {
+    border: none; /* Supprimer la bordure du pied de page */
+    text-align: right; /* Aligner le texte du pied de page à droite */
+    padding: 10px 20px; /* Marge intérieure du pied de page */
+}
+
+.ui-dialog .ui-button {
+    margin-left: 8px; /* Marge à gauche entre les boutons */
+    background-color: #4070F4; /* Couleur de fond des boutons */
+    color: #fff; /* Couleur du texte des boutons */
+}
+
+.ui-dialog .ui-button:hover {
+    background-color: #265DF2; /* Couleur de fond des boutons au survol */
+}
+
+/* Style du fond obscurci lors de l'affichage de la boîte de dialogue */
+.ui-widget-overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur et opacité du fond obscurci */
+}
+
+/* Style de la boîte de dialogue pop-up */
+.ui-dialog {
+    width: 400px; /* Largeur de la boîte de dialogue */
+    border-radius: 8px; /* Bordure arrondie de la boîte de dialogue */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre de la boîte de dialogue */
+}
+
 }
