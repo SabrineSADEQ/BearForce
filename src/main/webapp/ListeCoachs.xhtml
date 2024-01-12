@@ -25,7 +25,7 @@
     
       <p:carousel value="#{profilesManagementController.profiles}" var="tempProfile"
                 numVisible="3" numScroll="3">
-                <p:column>
+                <p:column rendered="#{tempProfile.account.gymId eq spaceController.loadedSpace.id}">
         <div class="swiper-slide">
           <div class="card">
             <!-- Le contenu de votre carte -->
