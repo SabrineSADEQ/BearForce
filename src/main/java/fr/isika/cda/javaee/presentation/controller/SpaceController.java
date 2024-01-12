@@ -178,14 +178,14 @@ public class SpaceController implements Serializable {
 	}
 
 	@Transactional
-	public String createSpace() {
+	public void createSpace() {
 
 		Long spaceId = spaceDao.createSpace(spaceViewModel).getId();
 		injectTheIdOfTheSpaceCreatedIntoTheAccountOfTheCreator(spaceId);
 		spaceViewModel = new SpaceViewModel();
 
 		
-		return "index.xhtml?faces-redirect=true";
+
 		
 		
 
