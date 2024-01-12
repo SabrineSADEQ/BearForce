@@ -48,12 +48,12 @@
 
 						<p:column headerText="Début" sortBy="#{cou.startDate}"
 							filterBy="#{cou.startDate}">
-							<p:outputLabel>#{cou.startDate}</p:outputLabel>
+							<p:outputLabel>Le #{cou.startDate.dayOfMonth}/#{cou.startDate.monthValue} à #{cou.startDate.hour}H#{cou.startDate.minute}</p:outputLabel>
 						</p:column>
 
 						<p:column headerText="Fin" sortBy="#{cou.endDate}"
 							filterBy="#{cou.endDate}">
-							<p:outputLabel>#{cou.endDate}</p:outputLabel>
+							<p:outputLabel>Le #{cou.endDate.dayOfMonth}/#{cou.endDate.monthValue} à #{cou.endDate.hour}H#{cou.endDate.minute}</p:outputLabel>
 						</p:column>
 
 						<p:column headerText="Nom du coach"
