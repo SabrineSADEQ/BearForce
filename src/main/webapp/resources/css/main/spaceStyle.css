@@ -7,12 +7,7 @@
 /* COLOR VARIABLES */
 :root {
 	--blanc: #ffffff;
-	/* couleurs exemple du tp de Mohamed */
-	--bleuFonce: #06375A;
-	--bleuClair: #1B5680;
-	--orange: #F5B37D;
-	--rouge: #D52056;
-	
+
 	/*Palette BearForce*/
 	--violet: #845EC2;
 	--turquoise: #00C9A7;
@@ -185,6 +180,8 @@ html body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-tex
 	flex:1;
 	float:left;
 	width:50%;
+	padding-right: 20px;
+	box-sizing: border-box;
 
 }
 
@@ -193,8 +190,24 @@ html body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-tex
 	width:40%;
 	float:left;
 	margin-left:20px;
+	box-sizing: border-box;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+.updateButton{
+	margin-right:100px;
+}
+
+.colorLabel{
+	margin-right:20px;
+}
+
+.imagesDiv{
+	margin-left:20px;
+}
 
 
 /*PrimeFaces styles for color picker*/

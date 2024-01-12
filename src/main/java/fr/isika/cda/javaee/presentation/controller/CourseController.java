@@ -60,7 +60,7 @@ public class CourseController implements Serializable{
 
 
 	public List<Course> displayCoursesList() {
-		return courseDao.getAllCourses();
+		return courseDao.getAllCoursesWithActivities();
 	}
 	
 	
