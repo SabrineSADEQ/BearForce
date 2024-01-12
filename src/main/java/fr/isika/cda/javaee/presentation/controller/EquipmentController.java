@@ -64,6 +64,11 @@ public class EquipmentController implements Serializable {
 		return equipmentDao.getAllEquipmentsWithActivities();
 	}
 
+	//DISPLAY EQUIPMENT LIST DEPENDING TO GYMID
+	public List<Equipment> displayEquipmentsListByGymId() throws Exception{
+		return equipmentDao.getAllEquipmentsOfGymId();
+	}
+
 	//RESET DATA IN TEXT AREAS
 	private void resetInputData() {
 		equipmentViewModel = new EquipmentViewModel();

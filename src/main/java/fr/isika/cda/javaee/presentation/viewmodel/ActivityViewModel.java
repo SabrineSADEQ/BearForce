@@ -2,7 +2,6 @@ package fr.isika.cda.javaee.presentation.viewmodel;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import fr.isika.cda.javaee.entity.gymspace.business.ActivityCategory;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
 
@@ -13,6 +12,7 @@ public class ActivityViewModel {
 	private String description;
 	private ActivityCategory activityCategory;
 	private List<Course> courseList = new ArrayList<>() ;
+	private String activityPicturePath;
 	
 	//***************GETTERS & SETTERS***************
 	public String getName() {
@@ -42,6 +42,12 @@ public class ActivityViewModel {
 	}
 	public void setActivityCategory(ActivityCategory activityCategory) {
 		this.activityCategory = activityCategory;
+	}
+	public String getActivityPicturePath() {
+		return activityPicturePath;
+	}
+	public void setActivityPicturePath(String activityPicturePath) {
+		this.activityPicturePath = activityPicturePath;
 	}	
 	
 }

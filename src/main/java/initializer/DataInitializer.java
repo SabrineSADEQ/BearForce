@@ -191,6 +191,7 @@ public class DataInitializer {
 		Activity activity = new Activity();
 		activity.setName("Cardio vélo");
 		activity.setDescription("cours de judo avec les meilleurs coachs de la region");
+		activity.setAttachedGymId(Long.valueOf(46));
 		activity.setActivityCategory(ActivityCategory.CARDIO);
 		activityDao.persist(activity);
 		

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -26,16 +27,18 @@ import fr.isika.cda.javaee.account.controller.LoginController;
 import fr.isika.cda.javaee.dao.ActivityDao;
 import fr.isika.cda.javaee.dao.BookingDao;
 import fr.isika.cda.javaee.dao.CourseDAO;
+import fr.isika.cda.javaee.dao.SpaceDao;
 import fr.isika.cda.javaee.dao.accounts.AccountDao;
 import fr.isika.cda.javaee.entity.accounts.Account;
 import fr.isika.cda.javaee.entity.accounts.Profile;
+import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Booking;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
 
 @Named
 @ViewScoped
-public class PlanningCourseController implements Serializable {
+public class GeneralPlanningCourseController implements Serializable {
 
 	private static final long serialVersionUID = -160397842934902381L;
 
@@ -44,18 +47,6 @@ public class PlanningCourseController implements Serializable {
 	 */
 	@Inject
 	private CourseDAO courseDao;
-
-	@Inject
-	private ActivityDao activityDao;
-
-	@Inject
-	private BookingDao bookingDao;
-
-	@Inject
-	private AccountDao accountDao;
-
-	//	@Inject
-	//	private LoginController loginController;
 
 	/*
 	 * Schedule properties
@@ -94,7 +85,6 @@ public class PlanningCourseController implements Serializable {
 	private String columnHeaderFormat = "";
 	private String view = "timeGridWeek";
 	private String height = "auto";
-	private String backgroundColor = "blue";
 
 	/*
 	 * View props
@@ -107,17 +97,17 @@ public class PlanningCourseController implements Serializable {
 
 
 	@PostConstruct
-	private void init() {
+	private void init() throws Exception {
 		refreshModel();
 	}
 
 	//******************************************************************************************
-	private void refreshModel() {
+	private void refreshModel() throws Exception {
 		eventModel = new DefaultScheduleModel();
 		loadAllCourses();
 	}
 
-	private void loadAllCourses() {	
+	private void loadAllCourses() throws Exception {	
 		List<Course> courses = getAllCourses();
 		for (Course c : courses) {
 			transformCoursetoEvent(c);
@@ -128,38 +118,22 @@ public class PlanningCourseController implements Serializable {
 	 * Get all the courses to come, of the current session space.
 	 * 
 	 * @return the courses list (:List<Course>)
+	 * @throws Exception 
 	 */
-	private List<Course> getAllCourses() {
-		String role = getCurrentConnectedRole();
-		if (role == "Coach") {
-			return courseDao.getAllCoursesOfConnectedCoach();
-		} else {
-			return courseDao.getAllCoursesWithActivities();
-		}
+	private List<Course> getAllCourses() throws Exception{	
+			return courseDao.getAllCoursesOfGymId();
 	}
-	
+
 	private DefaultScheduleEvent<?> transformCoursetoEvent(Course course) {
-		boolean booked = checkExistingBooking();
-		if (booked) {
-		DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
-				.id(String.valueOf(course.getId()))
-				.title("RESERVE : " + course.getActivity().getName())
-				.startDate(course.getStartDate())
-				.endDate(course.getEndDate())
-				.draggable(false)
-				.backgroundColor("green")
-				.build();
-		eventModel.addEvent(event);
-		return event;
-		}
 		DefaultScheduleEvent<?> event = DefaultScheduleEvent.builder()
 				.id(String.valueOf(course.getId()))
 				.title(course.getActivity().getName())
 				.startDate(course.getStartDate())
 				.endDate(course.getEndDate())
 				.draggable(false)
-				.backgroundColor("orange")
+				.borderColor("orange")
 				.build();
+
 		eventModel.addEvent(event);
 		return event;
 	}
@@ -175,118 +149,6 @@ public class PlanningCourseController implements Serializable {
 				.build();
 	}
 
-	public void addEvent() {
-		if (event.getId() == null) {
-			createNewEvent();
-		} else {
-			updateEvent();
-		}
-		refreshModel();
-		event = new DefaultScheduleEvent<>();
-	}
-
-	public void bookingEvent() {	
-		boolean booked = checkExistingBooking();
-		if (!booked) {
-			addBooking();
-			refreshModel();
-			event = new DefaultScheduleEvent<>();
-		}
-	}
-
-	private Long getCurrentConnectedId() { 
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
-		return logged.getId();
-	}
-
-	private String getCurrentConnectedRole() { 
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
-		return logged.getRole().getLibelle();
-	}
-
-	private void addBooking() {	
-		Booking bookingToCreate = new Booking();
-		Course courseToBook = courseDao.getCourseByIdJoinActivity(Long.valueOf(event.getId()));
-		Account bookingAccount = accountDao.getAccountById(getCurrentConnectedId());
-		bookingToCreate.setAccount(bookingAccount);
-		bookingToCreate.setCourse(courseToBook);		
-		bookingDao.saveBooking(bookingToCreate);	
-	}
-
-	public boolean checkExistingBooking() {
-		//Long accountId = loginController.getLoggedAccount().getId();
-		if(event.getId() != null) {
-			Course courseToBook = courseDao.getCourseByIdJoinActivity(Long.valueOf(event.getId()));
-			List<Booking> bookings = bookingDao.getBookingListByAccount();
-			List<Long> coursesIdsList = new ArrayList<Long>();
-			if (!bookings.isEmpty()) {
-				for (Booking booking : bookings) {
-					coursesIdsList.add(booking.getCourse().getId());
-				}
-
-				Long courseToBookId = courseToBook.getId();
-				if(coursesIdsList.contains(courseToBookId)) {
-					return true; 
-				} else {
-					return false;
-
-				}
-			}
-		}
-		return false;
-	}
-	
-	private void createNewEvent() {	
-		// add the event to the graphical model
-		eventModel.addEvent(event);
-
-		// save the course
-		Course courseToCreate = new Course();
-
-		Activity activity = activityDao.findActivityById(selectedActivityId);
-		courseToCreate.setActivity(activity);
-
-		Profile coach = activityDao.findTrainerById(selectedCoachProfileId);
-		courseToCreate.setTrainer(coach);
-		courseToCreate.setNbPlaces(nbPlacesCount);;
-		courseToCreate.setStartDate(event.getStartDate());
-		courseToCreate.setEndDate(event.getEndDate());
-
-		courseDao.saveCourse(courseToCreate);
-	}
-
-	private void updateEvent() {
-		Long courseId = Long.valueOf(event.getId());
-		Course courseToUpdate = courseDao.getCourseByIdJoinActivity(courseId);
-
-		// Si l'activité a changé 
-		if(courseToUpdate.getActivity().getId() != selectedActivityId) {
-			Activity activity = activityDao.findActivityById(selectedActivityId);
-			courseToUpdate.setActivity(activity);
-		}
-
-		// Si le coach a changé 
-		if(courseToUpdate.getTrainer().getId() != selectedCoachProfileId) {
-			Profile coach = activityDao.findTrainerById(selectedCoachProfileId);
-			courseToUpdate.setTrainer(coach);
-		}
-
-		// Dans tous les autres cas on modifie
-		courseToUpdate.setStartDate(event.getStartDate());
-		courseToUpdate.setEndDate(event.getEndDate());
-
-		if(nbPlacesCount != null) {
-			courseToUpdate.setNbPlaces(nbPlacesCount);
-		}
-
-		eventModel.updateEvent(event);
-
-		courseDao.mergeCourse(courseToUpdate);
-
-		refreshModel();
-	}
 
 	public void onEventMove(ScheduleEntryMoveEvent event) {
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved",
@@ -616,13 +478,7 @@ public class PlanningCourseController implements Serializable {
 		this.reservedOrNot = reservedOrNot;
 	}
 
-	public String getBackgroundColor() {
-		return backgroundColor;
-	}
 
-	public void setBackgroundColor(String backgroundColor) {
-		this.backgroundColor = backgroundColor;
-	}
 
 }
 

@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+<ui:composition
+	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
 	<ui:define name="titleValue">Gestion des activités</ui:define>
 	<ui:define name="content">
 		<div>
@@ -115,7 +116,8 @@
 									</p:selectOneMenu>
 								</div>
 								<div class="field">
-									<p:outputLabel for="add-equipments" value="Equipement(s) concerné(s) : " />
+									<p:outputLabel for="add-equipments"
+										value="Equipement(s) concerné(s) : " />
 									<p:selectManyCheckbox id="add-equipments"
 										value="#{activityController.selectedEquipments}"
 										layout="responsive" columns="2">
@@ -124,14 +126,21 @@
 											itemLabel="#{equi.equipmentName}" itemValue="#{equi.id}" />
 									</p:selectManyCheckbox>
 								</div>
+								<div class="field grid">
+									<h:outputLabel for="act-img">Image</h:outputLabel>
+									<p:fileUpload label="Ajouter" uploadLabel="Télécharger"
+										cancelLabel="Annuler"
+										listener="#{activityController.uploadFileLogo}"
+										styleClass="w-100" mode="advanced" dragDropSupport="false" />
+								</div>
 							</p:outputPanel>
 						</p:outputPanel>
 
 						<f:facet name="footer">
 							<p:commandButton value="Ajouter" icon="pi pi-check"
 								actionListener="#{activityController.addActivity()}"
-								update=":form:" process="add-activity-content @this" 
-								oncomplete="PF('addActivityDialog').hide()"/>
+								update=":form:" process="add-activity-content @this"
+								oncomplete="PF('addActivityDialog').hide()" />
 							<p:commandButton value="Annuler" icon="pi pi-times"
 								onclick="PF('addActivityDialog').hide()"
 								class="ui-button-secondary" type="button" />
@@ -163,9 +172,10 @@
 											var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
 									</p:selectOneMenu>
 								</div>
-<!-- 								!!!ATTENTION CELA NE FONCTIONNE PAS CONCERNANT LA MODIFICATION D'EQUIPEMNT -->
+								<!-- 								!!!ATTENTION CELA NE FONCTIONNE PAS CONCERNANT LA MODIFICATION D'EQUIPEMNT -->
 								<div class="field">
-									<p:outputLabel for="update-equipments" value="Equipement(s) concerné(s) : " />
+									<p:outputLabel for="update-equipments"
+										value="Equipement(s) concerné(s) : " />
 									<p:selectManyCheckbox id="update-equipments"
 										value="#{activityController.selectedEquipments}"
 										layout="responsive" columns="2">
@@ -173,6 +183,14 @@
 											value="#{equipmentController.getEquipmentsList()}" var="equi"
 											itemLabel="#{equi.equipmentName}" itemValue="#{equi.id}" />
 									</p:selectManyCheckbox>
+								</div>
+								
+								<div class="field grid">
+									<h:outputLabel for="update-act-img">Image</h:outputLabel>
+									<p:fileUpload label="Ajouter" uploadLabel="Télécharger"
+										cancelLabel="Annuler"
+										listener="#{activityController.uploadFileLogo}"
+										styleClass="w-100" mode="advanced" dragDropSupport="false" />
 								</div>
 							</p:outputPanel>
 						</p:outputPanel>

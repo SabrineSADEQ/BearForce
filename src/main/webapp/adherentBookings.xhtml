@@ -12,9 +12,8 @@
 			<div class="card crud-demo">
 				<h:form id="form">
 					<p:growl id="messages" showDetail="true" />
-
 					<p:dataTable id="d-booking" widgetVar="dtbookings" var="boo"
-						value="#{bookingController.displayBookingList()}"
+						value="#{bookingController.displayBookingListForAdherent()}"
 						reflow="true" styleClass="products-table" paginator="true"
 						rows="10" rowSelectMode="add" paginatorPosition="bottom">
 
@@ -33,14 +32,9 @@
 							<p:outputLabel>#{boo.course.activity.name}</p:outputLabel>
 						</p:column>
 						
-						<p:column headerText="Catégorie" sortBy="#{boo.course.activity.activityCategory}"
-							filterBy="#{boo.course.activity.activityCategory}">
-							<p:outputLabel>#{boo.course.activity.activityCategory}</p:outputLabel>
-						</p:column>
-						
-						<p:column headerText="Coach" sortBy="#{boo.course.trainer}"
-							filterBy="#{boo.course.trainer}">
-							<p:outputLabel>#{boo.course.trainer}</p:outputLabel>
+						<p:column headerText="Coach" sortBy="#{boo.course.trainer.lastName}"
+							filterBy="#{boo.course.trainer.lastName}">
+							<p:outputLabel>#{boo.course.trainer.firstName} #{boo.course.trainer.lastName}</p:outputLabel>
 						</p:column>
 						
 						<p:column headerText="Début" sortBy="#{boo.course.startDate}"

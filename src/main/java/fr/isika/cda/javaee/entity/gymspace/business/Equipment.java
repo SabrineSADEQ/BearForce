@@ -20,7 +20,8 @@ public class Equipment {
 	// Eviter le mot clé "condition" apparemment dans mysql
 	@Column(name = "usageCondition")
 	private String condition ;	
-	private int quantity ;	
+	private int quantity ;
+	private Long attachedGymId;
 	@Column(name="equipment_name")
 	private String equipmentName;
 	private String details ;	
@@ -69,6 +70,14 @@ public class Equipment {
 
 	public void setActivity(Activity activity) {
 		this.activity = activity;
+	}
+
+	public Long getAttachedGymId() {
+		return attachedGymId;
+	}
+
+	public void setAttachedGymId(Long attachedGymId) {
+		this.attachedGymId = attachedGymId;
 	}
 	
 }
