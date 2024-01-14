@@ -36,12 +36,8 @@
 			icon="pi pi-calendar" />
 		<p:menuitem value="Planning" outcome="crudPlanning"
 			icon="pi pi-calendar-plus" />
-
-		<p:menuitem value="Equipements" outcome="crudEquipment"
-			icon="pi pi-wrench" />
 		<p:menuitem value="Réservations" outcome="allBookings"
 			icon="pi pi-chevron-circle-down" />
-
 		<p:menuitem value="Abonnements" outcome="CreateMembership"
 			icon="pi pi-shopping-cart" />
 			<p:menuitem value="Ajouter coach/adherent" outcome="CreationDeCompte"
@@ -93,7 +89,7 @@
 		<p:menuitem 
 			value="#{loginController.getLoggedAccount().profile.firstName} #{loginController.getLoggedAccount().profile.lastName}">
 		</p:menuitem>
-		<p:menuitem value="Tableau de bord" outcome="spaceCoachDashboard"
+		<p:menuitem value="Les réservations" outcome="registeredCourseCoach"
 			icon="pi pi-chart-line" />
 		<p:menuitem value="Mon planning" icon="pi pi-calendar" outcome="generalPlanning"/>
 

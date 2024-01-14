@@ -12,7 +12,7 @@
 		<div>
 			<div class="card crud-demo">
 				<h:form id="form">
-					<p:growl id="messages" showDetail="false" rendered="false" />
+					<p:growl id="messages" showDetail="true"/>
 
 					<p:toolbar>
 						<p:toolbarGroup>
@@ -92,7 +92,7 @@
 					<p:dialog header="Programmer un nouveau cours" showEffect="fade"
 						modal="true" widgetVar="addCourseDialog" responsive="true">
 						<p:outputPanel id="add-course-content" class="ui-fluid">
-							<p:outputPanel>
+							<p:outputPanel rendered="#{not empty courseController.selectedCourse}">
 
 								<div class="field">
 									<p:outputLabel for="add-activity" value="Activité : " />

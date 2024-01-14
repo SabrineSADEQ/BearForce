@@ -11,7 +11,7 @@
 		<div>
 			<div class="card crud-demo">
 				<h:form id="form">
-					<p:growl id="messages" showDetail="true" rendered="false" />
+					<p:growl id="messages" showDetail="true"/>
 
 					<p:toolbar>
 						<p:toolbarGroup>
@@ -91,7 +91,7 @@
 						showEffect="fade" modal="true" widgetVar="addEquipmentDialog"
 						responsive="true">
 						<p:outputPanel id="add-equipment-content" class="ui-fluid">
-							<p:outputPanel>
+							<p:outputPanel rendered="#{not empty equipmentController.selectedEquipment}">
 								<div class="field">
 									<p:outputLabel for="add-name" value="Dénomination : " />
 									<p:inputText id="add-name"

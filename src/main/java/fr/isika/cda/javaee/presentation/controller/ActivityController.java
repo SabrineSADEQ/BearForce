@@ -65,7 +65,6 @@ public class ActivityController implements Serializable{
 	}
 	
 	
-
 	//DELETE ACTIVITY FROM DATABASE
 	public void deleteSelectedActivity() {
 		activityDao.deleteActivity(selectedActivity.getId());

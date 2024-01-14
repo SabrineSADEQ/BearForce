@@ -62,8 +62,8 @@ public class ActivityDao {
 		existingActivity.setName(updateActivity.getName());
 		existingActivity.setDescription(updateActivity.getDescription());
 		existingActivity.setActivityCategory(updateActivity.getActivityCategory());
-		existingActivity.setAttachedGymId(getCurrentConnectedGymId());
 		existingActivity.setActivityPicturePath(updateActivity.getActivityPicturePath());
+		existingActivity.setAttachedGymId(getCurrentConnectedGymId());
 		entityManager.merge(existingActivity);
 	}
 

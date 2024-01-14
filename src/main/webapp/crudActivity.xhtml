@@ -12,7 +12,7 @@
 		<div>
 			<div class="card crud-demo">
 				<h:form id="form">
-					<p:growl id="messages" showDetail="true" rendered="false" />
+					<p:growl id="messages" showDetail="false"/>
 
 					<p:toolbar>
 						<p:toolbarGroup>
@@ -40,6 +40,7 @@
 								</span>
 							</div>
 						</f:facet>
+						
 
 						<p:column headerText="Activité" sortBy="#{act.name}"
 							filterBy="#{act.activityCategory}">
@@ -63,6 +64,13 @@
 									<li><p:outputLabel>#{equi.equipmentName}</p:outputLabel></li>
 								</ui:repeat>
 							</ul>
+						</p:column>
+
+						<p:column headerText="Image">
+							<div>
+								<h:graphicImage library="images"
+									name="#{act.activityPicturePath}" height="50px" />
+							</div>
 						</p:column>
 
 						<p:column exportable="false">
@@ -91,7 +99,7 @@
 						showEffect="fade" modal="true" widgetVar="addActivityDialog"
 						responsive="true">
 						<p:outputPanel id="add-activity-content" class="ui-fluid">
-							<p:outputPanel>
+							<p:outputPanel rendered="#{not empty activityController.selectedActivity}">
 								<div class="field">
 									<p:outputLabel for="add-name" value="Nom : " />
 									<p:inputText id="add-name"
@@ -128,6 +136,7 @@
 								</div>
 								<div class="field grid">
 									<h:outputLabel for="act-img">Image</h:outputLabel>
+									<br/>
 									<p:fileUpload label="Ajouter" uploadLabel="Télécharger"
 										cancelLabel="Annuler"
 										listener="#{activityController.uploadFileLogo}"
@@ -153,18 +162,18 @@
 							<p:outputPanel
 								rendered="#{not empty activityController.selectedActivity}">
 								<div class="field">
-									<p:outputLabel for="update-name">Name</p:outputLabel>
+									<p:outputLabel for="update-name">Nom</p:outputLabel>
 									<p:inputText id="update-name"
 										value="#{activityController.selectedActivity.name}"
 										required="true" />
 								</div>
 								<div class="field">
-									<p:outputLabel for="update-description">Description</p:outputLabel>
+									<p:outputLabel for="update-description">Déscription</p:outputLabel>
 									<p:inputTextarea id="update-description"
 										value="#{activityController.selectedActivity.description}" />
 								</div>
 								<div class="field">
-									<p:outputLabel for="update-category">Categorie</p:outputLabel>
+									<p:outputLabel for="update-category">Catégorie</p:outputLabel>
 									<p:selectOneMenu id="update-category"
 										value="#{activityController.selectedActivity.activityCategory}">
 										<f:selectItems
@@ -172,7 +181,7 @@
 											var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
 									</p:selectOneMenu>
 								</div>
-								<!-- 								!!!ATTENTION CELA NE FONCTIONNE PAS CONCERNANT LA MODIFICATION D'EQUIPEMNT -->
+								<!-- !!!ATTENTION CELA NE FONCTIONNE PAS CONCERNANT LA MODIFICATION D'EQUIPEMNT -->
 								<div class="field">
 									<p:outputLabel for="update-equipments"
 										value="Equipement(s) concerné(s) : " />
@@ -184,10 +193,10 @@
 											itemLabel="#{equi.equipmentName}" itemValue="#{equi.id}" />
 									</p:selectManyCheckbox>
 								</div>
-								
+
 								<div class="field grid">
 									<h:outputLabel for="update-act-img">Image</h:outputLabel>
-									<p:fileUpload label="Ajouter" uploadLabel="Télécharger"
+									<p:fileUpload label="Modifier" uploadLabel="Télécharger"
 										cancelLabel="Annuler"
 										listener="#{activityController.uploadFileLogo}"
 										styleClass="w-100" mode="advanced" dragDropSupport="false" />
