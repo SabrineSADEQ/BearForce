@@ -12,38 +12,31 @@
 		<div>
 			<div class="card crud-demo">
 				<h:form id="form">
-					<p:growl id="messages" showDetail="false"/>
+					<p:growl id="messages" showDetail="false" />
 
 					<p:toolbar>
 						<p:toolbarGroup>
-							<p:commandButton value="Ajouter une activité" icon="pi pi-plus"
+							<b><h:outputLabel value="LES ACTIVITES" /></b>
+							<p:spacer width="50" />
+							<p:commandButton value="Ajouter une nouvelle activité"
+								icon="pi pi-plus"
+								actionListener="#{activityController.openNewActivity}"
+								update=":dialogsAdd:add-activity-content"
 								oncomplete="PF('addActivityDialog').show()"
-								styleClass="ui-button-success" style="margin-right: .5rem"
-								update=":dialogs:add-activity-content">
-								<p:resetInput target=":dialogs:add-activity-content" />
+								styleClass="ui-button-success" style="margin-right: .5rem">
+								<p:resetInput target=":dialogsAdd:add-activity-content" />
 							</p:commandButton>
 						</p:toolbarGroup>
 					</p:toolbar>
-
 
 					<p:dataTable id="rud-activity" widgetVar="dtActivities" var="act"
 						value="#{activityController.displayActivitiesList()}"
 						reflow="true" styleClass="products-table" paginator="true"
 						rows="10" rowSelectMode="add" paginatorPosition="bottom">
 
-						<f:facet name="header">
-							<div class="products-table-header">
-								<span style="font-weight: bold">LES ACTIVITES</span> <span
-									class="filter-container ui-input-icon-left"> <i
-									class="pi pi-search"></i> <p:inputText id="globalFilter"
-										onkeyup="PF('dtActivities').filter()" placeholder="Recherche" />
-								</span>
-							</div>
-						</f:facet>
-						
 
 						<p:column headerText="Activité" sortBy="#{act.name}"
-							filterBy="#{act.activityCategory}">
+							filterBy="#{act.name}">
 							<p:outputLabel>#{act.name}</p:outputLabel>
 						</p:column>
 
@@ -58,7 +51,8 @@
 							<p:outputLabel>#{act.activityCategory}</p:outputLabel>
 						</p:column>
 
-						<p:column headerText="Equipement">
+						<p:column headerText="Equipement" sortBy="#{act.equipmentList}"
+							filterBy="#{act.equipmentList}">
 							<ul>
 								<ui:repeat value="#{act.equipmentList}" var="equi">
 									<li><p:outputLabel>#{equi.equipmentName}</p:outputLabel></li>
@@ -66,7 +60,8 @@
 							</ul>
 						</p:column>
 
-						<p:column headerText="Image">
+						<p:column headerText="Image" sortBy="#{act.name}"
+							filterBy="#{act.name}">
 							<div>
 								<h:graphicImage library="images"
 									name="#{act.activityPicturePath}" height="50px" />
@@ -75,13 +70,13 @@
 
 						<p:column exportable="false">
 							<p:commandButton icon="pi pi-pencil"
-								update=":dialogs:manage-activity-content"
+								update=":dialogsManage:manage-activity-content"
 								oncomplete="PF('manageActivityDialog').show()"
 								styleClass="edit-button rounded-button ui-button-success"
 								process="@this">
 								<f:setPropertyActionListener value="#{act}"
 									target="#{activityController.selectedActivity}" />
-								<p:resetInput target=":dialogs:manage-activity-content" />
+								<p:resetInput target=":dialogsManage:manage-activity-content" />
 							</p:commandButton>
 							<p:commandButton class="ui-button-warning rounded-button"
 								icon="pi pi-trash" process="@this"
@@ -94,12 +89,14 @@
 					</p:dataTable>
 				</h:form>
 
-				<h:form id="dialogs">
+				<h:form id="dialogsAdd">
+
 					<p:dialog header="Enregister une nouvelle activité"
 						showEffect="fade" modal="true" widgetVar="addActivityDialog"
 						responsive="true">
 						<p:outputPanel id="add-activity-content" class="ui-fluid">
-							<p:outputPanel rendered="#{not empty activityController.selectedActivity}">
+							<p:outputPanel
+								rendered="#{not empty activityController.selectedActivity}">
 								<div class="field">
 									<p:outputLabel for="add-name" value="Nom : " />
 									<p:inputText id="add-name"
@@ -134,9 +131,9 @@
 											itemLabel="#{equi.equipmentName}" itemValue="#{equi.id}" />
 									</p:selectManyCheckbox>
 								</div>
-								<div class="field grid">
-									<h:outputLabel for="act-img">Image</h:outputLabel>
-									<br/>
+								<div>
+									<h:outputLabel for="act-img">Télécharger une image :</h:outputLabel>
+									<br />
 									<p:fileUpload label="Ajouter" uploadLabel="Télécharger"
 										cancelLabel="Annuler"
 										listener="#{activityController.uploadFileLogo}"
@@ -155,7 +152,9 @@
 								class="ui-button-secondary" type="button" />
 						</f:facet>
 					</p:dialog>
+				</h:form>
 
+				<h:form id="dialogsManage">
 					<p:dialog header="Détails de l'activité" showEffect="fade"
 						modal="true" widgetVar="manageActivityDialog" responsive="true">
 						<p:outputPanel id="manage-activity-content" class="ui-fluid">
@@ -194,8 +193,9 @@
 									</p:selectManyCheckbox>
 								</div>
 
-								<div class="field grid">
-									<h:outputLabel for="update-act-img">Image</h:outputLabel>
+								<div>
+									<h:outputLabel for="update-act-img">Modifier l'image :</h:outputLabel>
+									<br />
 									<p:fileUpload label="Modifier" uploadLabel="Télécharger"
 										cancelLabel="Annuler"
 										listener="#{activityController.uploadFileLogo}"
@@ -215,11 +215,12 @@
 					</p:dialog>
 
 					<p:confirmDialog widgetVar="deleteActivityDialog" showEffect="fade"
-						width="300" message="Supprimer l'activité ?" header="Confirm"
+						width="300" message="Supprimer l'activité ?" header="Confirmation"
 						severity="warn">
 						<p:commandButton value="Oui" icon="pi pi-check"
 							actionListener="#{activityController.deleteSelectedActivity()}"
-							oncomplete="PF('deleteActivityDialog').hide()" update=":form:" />
+							process="@this" oncomplete="PF('deleteActivityDialog').hide()"
+							update=":form:" />
 						<p:commandButton value="Non" type="button"
 							styleClass="ui-button-secondary" icon="pi pi-times"
 							onclick="PF('deleteActivityDialog').hide()" />

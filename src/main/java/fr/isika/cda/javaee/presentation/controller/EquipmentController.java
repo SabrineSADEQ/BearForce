@@ -37,7 +37,8 @@ public class EquipmentController implements Serializable {
 	public void init() {
 		System.out.println("EquipementController bean initialized!");
 	}
-	//***************METHODS***************
+	
+	
 	//SAVE EQUIPMENT IN DATABASE
 	public void addEquipement() {
 		equipmentDao.createEquipment(equipmentViewModel, selectedActivity);
@@ -84,7 +85,9 @@ public class EquipmentController implements Serializable {
 		return equipmentDao.getAllUnavailableEquipmentsWithActivities();
 	}
 
-
+	public void openNewEquipment() {
+		this.selectedEquipment = new Equipment();
+	}
 	//***************GETTERS & SETTERS***************
 	public EquipmentViewModel getEquipmentViewModel() {
 		return equipmentViewModel;

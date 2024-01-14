@@ -12,34 +12,26 @@
 		<div>
 			<div class="card crud-demo">
 				<h:form id="form">
-					<p:growl id="messages" showDetail="true"/>
+					<p:growl id="messages" showDetail="false" />
 
 					<p:toolbar>
 						<p:toolbarGroup>
-							<p:commandButton value="Programmer un cours" icon="pi pi-plus"
+							<b><h:outputLabel value="LES COURS" /></b>
+							<p:spacer width="50" />
+							<p:commandButton value="Programmer un nouveau cours" icon="pi pi-plus"
+								actionListener="#{courseController.openNewCourse}"
+								update=":dialogsAdd:add-course-content"
 								oncomplete="PF('addCourseDialog').show()"
-								styleClass="ui-button-success" style="margin-right: .5rem"
-								update=":dialogs:add-course-content">
-								<p:resetInput target=":dialogs:add-course-content" />
+								styleClass="ui-button-success" style="margin-right: .5rem">
+								<p:resetInput target=":dialogsAdd:add-course-content" />
 							</p:commandButton>
 						</p:toolbarGroup>
 					</p:toolbar>
-
 
 					<p:dataTable id="crud-cours" widgetVar="dtCourses" var="cou"
 						value="#{courseController.displayCoursesList()}" reflow="true"
 						styleClass="products-table" paginator="true" rows="10"
 						rowSelectMode="add" paginatorPosition="bottom">
-
-						<f:facet name="header">
-							<div class="products-table-header">
-								<span style="font-weight: bold">LES COURS</span> <span
-									class="filter-container ui-input-icon-left"> <i
-									class="pi pi-search"></i> <p:inputText id="globalFilter"
-										onkeyup="PF('dtCourses').filter()" placeholder="Recherche" />
-								</span>
-							</div>
-						</f:facet>
 
 						<p:column headerText="Cours" sortBy="#{cou.activity.name}"
 							filterBy="#{cou.activity.name}">
@@ -69,13 +61,13 @@
 
 						<p:column exportable="false">
 							<p:commandButton icon="pi pi-pencil"
-								update=":dialogs:manage-course-content"
+								update=":dialogsManage:manage-course-content"
 								oncomplete="PF('manageCourseDialog').show()"
 								styleClass="edit-button rounded-button ui-button-success"
 								process="@this">
 								<f:setPropertyActionListener value="#{cou}"
 									target="#{courseController.selectedCourse}" />
-								<p:resetInput target=":dialogs:manage-course-content" />
+								<p:resetInput target=":dialogsManage:manage-course-content" />
 							</p:commandButton>
 							<p:commandButton class="ui-button-warning rounded-button"
 								icon="pi pi-trash" process="@this"
@@ -88,11 +80,12 @@
 					</p:dataTable>
 				</h:form>
 
-				<h:form id="dialogs">
+				<h:form id="dialogsAdd">
 					<p:dialog header="Programmer un nouveau cours" showEffect="fade"
 						modal="true" widgetVar="addCourseDialog" responsive="true">
 						<p:outputPanel id="add-course-content" class="ui-fluid">
-							<p:outputPanel rendered="#{not empty courseController.selectedCourse}">
+							<p:outputPanel
+								rendered="#{not empty courseController.selectedCourse}">
 
 								<div class="field">
 									<p:outputLabel for="add-activity" value="Activité : " />
@@ -155,6 +148,9 @@
 								class="ui-button-secondary" type="button" />
 						</f:facet>
 					</p:dialog>
+				</h:form>
+
+				<h:form id="dialogsManage">
 
 					<p:dialog header="Détails du cours" showEffect="fade" modal="true"
 						widgetVar="manageCourseDialog" responsive="true">
@@ -221,7 +217,7 @@
 					</p:dialog>
 
 					<p:confirmDialog widgetVar="deleteCourseDialog" showEffect="fade"
-						width="300" message="Annuler le cours ?" header="Confirm"
+						width="300" message="Annuler le cours ?" header="Confirmation"
 						severity="warn">
 						<p:commandButton value="Oui" icon="pi pi-check"
 							actionListener="#{courseController.deleteSelectedCourse()}"

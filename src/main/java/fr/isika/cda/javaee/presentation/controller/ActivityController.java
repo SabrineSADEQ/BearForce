@@ -64,6 +64,9 @@ public class ActivityController implements Serializable{
 		return activityDao.getAllActivitiesOfGymId();
 	}
 	
+	public void openNewActivity() {
+		this.selectedActivity = new Activity();
+	}
 	
 	//DELETE ACTIVITY FROM DATABASE
 	public void deleteSelectedActivity() {
@@ -89,6 +92,7 @@ public class ActivityController implements Serializable{
 
 		FileUploadUtils.uploadFileToApp(uploadedFile, fileName);
 	}
+	
 
 	//***************GETTERS & SETTERS***************
 	public ActivityViewModel getActivityViewModel() {

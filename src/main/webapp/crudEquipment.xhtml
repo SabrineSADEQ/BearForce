@@ -5,25 +5,29 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+<ui:composition
+	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
 	<ui:define name="titleValue">Gestion des équipements</ui:define>
 	<ui:define name="content">
 		<div>
 			<div class="card crud-demo">
 				<h:form id="form">
-					<p:growl id="messages" showDetail="true"/>
+					<p:growl id="messages" showDetail="false" />
 
 					<p:toolbar>
 						<p:toolbarGroup>
-							<p:commandButton value="Ajouter un équipement" icon="pi pi-plus"
+							<b><h:outputLabel value="LES EQUIPEMENTS" /></b>
+							<p:spacer width="50" />
+							<p:commandButton value="Ajouter un nouvel équipement"
+								icon="pi pi-plus"
+								actionListener="#{equipmentController.openNewEquipment()}"
+								update=":dialogsAdd:add-equipment-content"
 								oncomplete="PF('addEquipmentDialog').show()"
-								styleClass="ui-button-success" style="margin-right: .5rem"
-								update=":dialogs:add-equipment-content">
-								<p:resetInput target=":dialogs:add-equipment-content" />
+								styleClass="ui-button-success" style="margin-right: .5rem">
+								<p:resetInput target=":dialogsAdd:add-equipment-content" />
 							</p:commandButton>
 						</p:toolbarGroup>
 					</p:toolbar>
-
 
 					<p:dataTable id="crud-equipment" widgetVar="dtEquipments"
 						var="equi" value="#{equipmentController.displayEquipmentsList()}"
@@ -67,13 +71,13 @@
 
 						<p:column exportable="false">
 							<p:commandButton icon="pi pi-pencil"
-								update=":dialogs:manage-equipment-content"
+								update=":dialogsManage:manage-equipment-content"
 								oncomplete="PF('manageEquipmentDialog').show()"
 								styleClass="edit-button rounded-button ui-button-success"
 								process="@this">
 								<f:setPropertyActionListener value="#{equi}"
 									target="#{equipmentController.selectedEquipment}" />
-								<p:resetInput target=":dialogs:manage-equipment-content" />
+								<p:resetInput target=":dialogsManage:manage-equipment-content" />
 							</p:commandButton>
 							<p:commandButton class="ui-button-warning rounded-button"
 								icon="pi pi-trash" process="@this"
@@ -86,12 +90,13 @@
 					</p:dataTable>
 				</h:form>
 
-				<h:form id="dialogs">
+				<h:form id="dialogsAdd">
 					<p:dialog header="Enregister un nouvel équipement"
 						showEffect="fade" modal="true" widgetVar="addEquipmentDialog"
 						responsive="true">
 						<p:outputPanel id="add-equipment-content" class="ui-fluid">
-							<p:outputPanel rendered="#{not empty equipmentController.selectedEquipment}">
+							<p:outputPanel
+								rendered="#{not empty equipmentController.selectedEquipment}">
 								<div class="field">
 									<p:outputLabel for="add-name" value="Dénomination : " />
 									<p:inputText id="add-name"
@@ -101,7 +106,7 @@
 								<div class="field">
 									<p:outputLabel for="add-details" value="Description : " />
 									<p:inputText id="add-details"
-										value="#{equipmentController.equipmentViewModel.details}"/>
+										value="#{equipmentController.equipmentViewModel.details}" />
 								</div>
 								<div class="field">
 									<p:outputLabel for="add-quantity" value="Quantité : " />
@@ -141,7 +146,8 @@
 								class="ui-button-secondary" type="button" />
 						</f:facet>
 					</p:dialog>
-
+				</h:form>
+				<h:form id="dialogsManage">
 					<p:dialog header="Détails de l'équipement" showEffect="fade"
 						modal="true" widgetVar="manageEquipmentDialog" responsive="true">
 						<p:outputPanel id="manage-equipment-content" class="ui-fluid">
@@ -195,7 +201,7 @@
 
 					<p:confirmDialog widgetVar="deleteEquipmentDialog"
 						showEffect="fade" width="300" message="Supprimer l'équipement ?"
-						header="Confirm" severity="warn">
+						header="Confirmation" severity="warn">
 						<p:commandButton value="Oui" icon="pi pi-check"
 							actionListener="#{equipmentController.deleteSelectedEquipment()}"
 							oncomplete="PF('deleteEquipmentDialog').hide()" update=":form:" />
