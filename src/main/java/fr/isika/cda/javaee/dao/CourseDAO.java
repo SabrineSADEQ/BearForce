@@ -85,8 +85,6 @@ public class CourseDAO {
 
 	public List<Course> getAllCoursesWithActivities() {
 		Account logged = SessionUtils.getAccount();
-//		LoginController controller = new LoginController();
-//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountGymId = logged.getGymId();	
 		return entityManager
 				.createQuery("SELECT c FROM Course c LEFT JOIN FETCH c.activity WHERE c.activity.attachedGymId = :gymIdParam"
@@ -97,8 +95,6 @@ public class CourseDAO {
 
 	public List<Course> getAllCoursesOfConnectedCoach() {
 		Account logged = SessionUtils.getAccount();
-//		LoginController controller = new LoginController();
-//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountId = logged.getId();	
 		return entityManager
 				.createQuery("SELECT c FROM Course c WHERE c.trainer.account.id = :accountIdParam"

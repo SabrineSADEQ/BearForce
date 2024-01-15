@@ -56,8 +56,6 @@ public class BookingDao {
 
 	public List<Booking> getAllBookings() {
 		Account logged = SessionUtils.getAccount();
-//		LoginController controller = new LoginController();
-//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountGymId = logged.getGymId();
 		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.account.gymId = :gymIdParam", Booking.class)
 				.setParameter("gymIdParam", loggedAccountGymId)
@@ -66,8 +64,6 @@ public class BookingDao {
 
 	public List<Booking> getAllBookingsForAdherent() {
 		Account logged = SessionUtils.getAccount();
-//		LoginController controller = new LoginController();
-//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountId = logged.getId();
 		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.account.id = :accountIdParam", Booking.class)
 				.setParameter("accountIdParam", loggedAccountId)
@@ -76,8 +72,6 @@ public class BookingDao {
 
 	public List<Booking> getAllBookingsForCoach() {
 		Account logged = SessionUtils.getAccount();
-//		LoginController controller = new LoginController();
-//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountId = logged.getId();
 		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.course.trainer.account.id = :accountIdParam", Booking.class)
 				.setParameter("accountIdParam", loggedAccountId)
@@ -87,8 +81,6 @@ public class BookingDao {
 
 	public List<Booking> getBookingListByAccount(){
 		Account logged = SessionUtils.getAccount();
-//		LoginController controller = new LoginController();
-//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountId = logged.getId();
 		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.account.id = :bookingIdParam", Booking.class)
 				.setParameter("bookingIdParam", loggedAccountId)

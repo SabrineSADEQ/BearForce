@@ -83,8 +83,6 @@ public class EquipmentDao {
 
 	public List<Equipment> getAllEquipmentsWithActivities() {
 		Account logged = SessionUtils.getAccount();
-//		LoginController controller = new LoginController();
-//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountGymId = logged.getGymId();
 		return entityManager.createQuery("SELECT e FROM Equipment e LEFT JOIN FETCH e.activity WHERE e.attachedGymId = :gymIdParam", Equipment.class)
 				.setParameter("gymIdParam", loggedAccountGymId)

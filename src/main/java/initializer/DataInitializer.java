@@ -710,7 +710,7 @@ public class DataInitializer {
 		equipmentDao.persist(equipmentEightB);
 		
 		Equipment equipmentEightC = new Equipment();
-		equipmentEightC.setEquipmentName("Série d'altères");
+		equipmentEightC.setEquipmentName("Set d'altères");
 		equipmentEightC.setEquipmentPicturePath("Serie_poids.png");
 		equipmentEightC.setAttachedGymId(Long.valueOf(61));
 		equipmentEightC.setQuantity(2);
@@ -735,7 +735,7 @@ public class DataInitializer {
 		equipmentTen.setDetails("xplorez de nouvelles dimensions de force, d'agilité et de performance avec le Set de Sangles de Suspension TRX Ultimate. Pour des résultats qui surpassent vos attentes.");
 		equipmentTen.setActivity(activityTen);
 		equipmentDao.persist(equipmentTen);
-
+		
 	}
 
 	private void createFakeProfiles() {
