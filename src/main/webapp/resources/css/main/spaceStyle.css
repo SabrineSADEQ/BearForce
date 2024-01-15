@@ -7,20 +7,20 @@
 }
 
 /* COLOR VARIABLES */
-:root { -
-	-blanc: #ffffff;
-	/*Palette BearForce*/ -
-	-violet: #845EC2; -
-	-turquoise: #00C9A7; -
-	-veryPalePink: #FBEAFF; -
-	-dark: #0E0F19; -
-	-grey: #131B23; -
-	-lighterGrey: #272727; -
-	-accentRed: #DB2955;
-	/*Space color palette that is getting customized*/ -
-	-firstColor: #00C9A7; -
-	-secondColor: #845EC2; -
-	-thirdColor: #ffffff;
+:root { 
+	--blanc: #ffffff;
+	/*Palette BearForce*/ 
+	--violet: #845EC2; 
+	--turquoise: #00C9A7; 
+	--veryPalePink: #FBEAFF; 
+	--dark: #0E0F19; 
+	--grey: #131B23; 
+	--lighterGrey: #272727; 
+	--accentRed: #DB2955;
+	/*Space color palette that is getting customized*/ 
+	--firstColor: #00C9A7; 
+	--secondColor: #845EC2; 
+	--thirdColor: #ffffff;
 }
 
 /* BODY */
