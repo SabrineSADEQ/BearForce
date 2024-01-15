@@ -8,73 +8,65 @@
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
 	<ui:define name="titleValue">Nos coachs</ui:define>
 	<ui:define name="content">
+		<h:outputStylesheet library="css" name="ListeCoachs.css" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-
-		
-			<h:outputStylesheet library="css" name="ListeCoachs.css" />
-			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-			
-
-	
-
-		
-  <div class="container">
-      <p:carousel value="#{profilesManagementController.profiles}" var="tempProfile" numVisible="3" numScroll="3">
+		<div class="container">
+			<p:carousel value="#{profilesManagementController.profiles}"
+				var="tempProfile" numVisible="3" numScroll="3">
 				<p:column>
 					<div class="swiper-slide">
 						<div class="card">
 							<h:form id="coachDetailsForm">
-							<!-- Le contenu de votre carte -->
-							<div class="image-content">
-								<span class="overlay"></span>
-								<div class="card-image">
-									<h:graphicImage name="#{tempProfile.pictureUrl}"
-										library="images" />
+								<div class="image-content">
+									<span class="overlay"></span>
+									<div class="card-image">
+										<h:graphicImage name="#{tempProfile.pictureUrl}" library="images" />
+									</div>
 								</div>
-							</div>
-							<div class="card-content">
-								<h2 class="name">
+								<div class="card-content">
+									<h2 class="name">
+										<h:outputText value="#{tempProfile.firstName}" />
+									</h2>
+									<p class="description">
+										<h:outputText value="#{tempProfile.lastName}" />
+									</p>
 
-									<h:outputText value="#{tempProfile.firstName}" />
-								</h2>
-								<p class="description">
-									<h:outputText value="#{tempProfile.lastName}" />
-								</p>
-								<p:commandButton value="Contacter"
-									action="#{profilesManagementController.setSelectedProfile(tempProfile)}"
-									oncomplete="PF('contactDialog').show()" styleClass="button" />
-							</div>
+									<p:commandButton icon="pi pi-envelope" value="Contacter"
+										update=":dialogs:contact-panel"
+										oncomplete="PF('contactDialog').show()"
+										styleClass="edit-button rounded-button ui-button-success"
+										process="@this">
+										<f:setPropertyActionListener value="#{tempProfile}" target="#{profilesManagementController.selectedProfile}" />
+										<p:resetInput target=":dialogs:contact-panel" />
+									</p:commandButton>
+								</div>
 							</h:form>
 						</div>
 					</div>
 				</p:column>
 			</p:carousel>
-    </div>
+		</div>
 
 		<div class="swiper-button-next swiper-navBtn"></div>
 		<div class="swiper-button-prev swiper-navBtn"></div>
 		<div class="swiper-pagination"></div>
-
-
-		<p:dialog id="contactDialog" header="Contact Information"
-			widgetVar="contactDialog" resizable="false" modal="true"
-			showEffect="fade" hideEffect="fade">
-			<h:panelGrid columns="2">
-				<h:outputText value="E-mail:" />
-				<h:outputText
-					value="#{profilesManagementController.getSelectedProfile().contact.email}" />
-
-				<h:outputText value="Phone:" />
-				<h:outputText
-					value="#{profilesManagementController.getSelectedProfile().contact.phone}" />
-			</h:panelGrid>
-
-			<p:commandButton value="Fermer" onclick="PF('contactDialog').hide()" />
-		</p:dialog>
-
-
-
+	
+		<h:form id="dialogs">
+			<p:dialog id="contactDialog" header="Contact Information"
+				widgetVar="contactDialog" resizable="false" modal="true"
+				showEffect="fade" hideEffect="fade">
+				<p:outputPanel id="contact-panel">
+					<h:panelGrid columns="2">
+						<h:outputText value="E-mail:" />
+						<h:outputText value="#{profilesManagementController.selectedProfile.contact.email}" />
+						<h:outputText value="Phone:" />
+						<h:outputText value="#{profilesManagementController.selectedProfile.contact.phone}" />
+					</h:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
 
 	</ui:define>
 
