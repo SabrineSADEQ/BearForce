@@ -59,14 +59,17 @@
 							<p:outputLabel>#{equi.quantity}</p:outputLabel>
 						</p:column>
 
-						<p:column headerText="Etat" sortBy="#{equi.condition}"
-							filterBy="#{equi.condition}">
-							<p:outputLabel>#{equi.condition}</p:outputLabel>
-						</p:column>
-
 						<p:column headerText="Activité liée"
 							sortBy="#{equi.activity.name}" filterBy="#{equi.activity.name}">
 							<p:outputLabel>#{equi.activity.name}</p:outputLabel>
+						</p:column>
+						
+							<p:column headerText="Image" sortBy="#{equi.equipmentName}"
+							filterBy="#{equi.equipmentName}">
+							<div>
+								<h:graphicImage library="images"
+									name="#{equi.equipmentPicturePath}" height="50px" />
+							</div>
 						</p:column>
 
 						<p:column exportable="false">
@@ -115,12 +118,7 @@
 										required="true">
 										<f:validateLongRange minimum="1" />
 									</p:inputText>
-								</div>
-								<div class="field">
-									<p:outputLabel for="add-condition" value="Etat : " />
-									<p:inputText id="add-condition"
-										value="#{equipmentController.equipmentViewModel.condition}" />
-								</div>
+								</div>								
 								<div class="field">
 									<p:outputLabel for="add-activity" value="Activité concernée : " />
 									<p:selectOneMenu id="add-activity"
@@ -132,6 +130,15 @@
 											value="#{activityController.displayActivitiesList()}"
 											var="act" itemLabel="#{act.name}" itemValue="#{act.id}" />
 									</p:selectOneMenu>
+								</div>
+								
+								<div>
+									<h:outputLabel for="act-img">Télécharger une image :</h:outputLabel>
+									<br />
+									<p:fileUpload label="Ajouter" uploadLabel="Télécharger"
+										cancelLabel="Annuler"
+										listener="#{equipmentController.uploadFileLogo}"
+										styleClass="w-100" mode="advanced" dragDropSupport="false" />
 								</div>
 							</p:outputPanel>
 						</p:outputPanel>
@@ -168,12 +175,7 @@
 									<p:outputLabel for="update-quantity">Quantité</p:outputLabel>
 									<p:inputText id="update-quantity"
 										value="#{equipmentController.selectedEquipment.quantity}" />
-								</div>
-								<div class="field">
-									<p:outputLabel for="update-condition">Etat</p:outputLabel>
-									<p:inputText id="update-condition"
-										value="#{equipmentController.selectedEquipment.condition}" />
-								</div>
+								</div>							
 
 								<p:outputLabel for="update-activity"
 									value="Activité concernée : " />
@@ -186,8 +188,19 @@
 										value="#{activityController.displayActivitiesList()}"
 										var="act" itemLabel="#{act.name}" itemValue="#{act.id}" />
 								</p:selectOneMenu>
+								
+								<div>
+									<h:outputLabel for="update-act-img">Modifier l'image :</h:outputLabel>
+									<br />
+									<p:fileUpload label="Modifier" uploadLabel="Télécharger"
+										cancelLabel="Annuler"
+										listener="#{equipmentController.uploadFileLogo}"
+										styleClass="w-100" mode="advanced" dragDropSupport="false" />
+								</div>
 							</p:outputPanel>
 						</p:outputPanel>
+						
+						
 
 						<f:facet name="footer">
 							<p:commandButton value="Mettre à jour" icon="pi pi-check"

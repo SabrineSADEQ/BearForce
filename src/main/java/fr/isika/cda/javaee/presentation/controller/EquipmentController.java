@@ -1,6 +1,8 @@
 package fr.isika.cda.javaee.presentation.controller;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -10,11 +12,14 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.PrimeFaces;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.file.UploadedFile;
 import fr.isika.cda.javaee.dao.ActivityDao;
 import fr.isika.cda.javaee.dao.EquipmentDao;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
 import fr.isika.cda.javaee.presentation.viewmodel.EquipmentViewModel;
+import fr.isika.cda.javaee.utils.FileUploadUtils;
 
 @Named
 @ViewScoped
@@ -88,6 +93,19 @@ public class EquipmentController implements Serializable {
 	public void openNewEquipment() {
 		this.selectedEquipment = new Equipment();
 	}
+	
+	//FOR PICTURES
+		public void uploadFileLogo(FileUploadEvent event) throws Exception {
+			String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("ddMMyyyyHHmmss"));
+
+			UploadedFile uploadedFile = event.getFile();
+			String fileName = String.join("_", timestamp, uploadedFile.getFileName());
+
+			equipmentViewModel.setEquipmentPicturePath(fileName);
+
+			FileUploadUtils.uploadFileToApp(uploadedFile, fileName);
+		}
+		
 	//***************GETTERS & SETTERS***************
 	public EquipmentViewModel getEquipmentViewModel() {
 		return equipmentViewModel;

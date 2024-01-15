@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -31,7 +32,8 @@ public class Activity {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
 	private List<Course> courseList = new ArrayList<>() ;	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "activity")
-	private List<Equipment> equipmentList = new ArrayList<>() ;
+	private List<Equipment> equipmentList = new ArrayList<>();
+	@Column(name = "activity_picture_path")
 	private String activityPicturePath;
 
 	//***************GETTERS & SETTERS***************

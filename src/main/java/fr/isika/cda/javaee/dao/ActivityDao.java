@@ -14,6 +14,7 @@ import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
 import fr.isika.cda.javaee.presentation.viewmodel.ActivityViewModel;
+import fr.isika.cda.javaee.utils.SessionUtils;
 
 @Stateless
 public class ActivityDao {
@@ -82,8 +83,9 @@ public class ActivityDao {
 
 	// SEAK IN DATABASE ALL ACTIVITIES
 	public List<Activity> getAllActivities() {
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
+		Account logged = SessionUtils.getAccount();
+//		LoginController controller = new LoginController();
+//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountGymId = logged.getGymId();	
 		return entityManager.createQuery("SELECT a FROM Activity a LEFT JOIN FETCH a.equipmentList WHERE a.attachedGymId = :gymIdParam", Activity.class)
 				.setParameter("gymIdParam", loggedAccountGymId)

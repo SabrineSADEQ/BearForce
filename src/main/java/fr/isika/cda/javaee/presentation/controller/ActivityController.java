@@ -26,7 +26,6 @@ import fr.isika.cda.javaee.utils.FileUploadUtils;
 public class ActivityController implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
 	private ActivityViewModel activityViewModel = new ActivityViewModel();
 	private List<Long> selectedEquipments = new ArrayList<>();
 	private Activity selectedActivity;
@@ -93,7 +92,11 @@ public class ActivityController implements Serializable{
 		FileUploadUtils.uploadFileToApp(uploadedFile, fileName);
 	}
 	
-
+	//***************FOR ENUM VALUES***************
+		public ActivityCategory[] getActivityCategories() {
+			return ActivityCategory.values();
+		}
+	
 	//***************GETTERS & SETTERS***************
 	public ActivityViewModel getActivityViewModel() {
 		return activityViewModel;
@@ -118,11 +121,5 @@ public class ActivityController implements Serializable{
 	public void setSelectedActivity(Activity selectedActivity) {
 		this.selectedActivity = selectedActivity;
 	}
-
-	//***************FOR ENUM VALUES***************
-	public ActivityCategory[] getActivityCategories() {
-		return ActivityCategory.values();
-	}
-	
 
 }
