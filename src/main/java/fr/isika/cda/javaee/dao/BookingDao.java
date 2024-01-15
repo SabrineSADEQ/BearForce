@@ -24,7 +24,6 @@ public class BookingDao {
 	public Booking createBooking (BookingViewModel bookingViewModel) {
 		Booking bookingBean = new Booking();
 		Account acnt = findAccountById(1);
-		//Account acnt = findAccountById(bookingViewModel.getAccountId());
 		bookingBean.setAccount(acnt);
 		Course crs = findCourseById(bookingViewModel.getCourseId());
 		bookingBean.setCourse(crs);
@@ -56,8 +55,9 @@ public class BookingDao {
 	}
 
 	public List<Booking> getAllBookings() {
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
+		Account logged = SessionUtils.getAccount();
+//		LoginController controller = new LoginController();
+//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountGymId = logged.getGymId();
 		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.account.gymId = :gymIdParam", Booking.class)
 				.setParameter("gymIdParam", loggedAccountGymId)
@@ -65,8 +65,9 @@ public class BookingDao {
 	}
 
 	public List<Booking> getAllBookingsForAdherent() {
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
+		Account logged = SessionUtils.getAccount();
+//		LoginController controller = new LoginController();
+//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountId = logged.getId();
 		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.account.id = :accountIdParam", Booking.class)
 				.setParameter("accountIdParam", loggedAccountId)
@@ -74,8 +75,9 @@ public class BookingDao {
 	}
 
 	public List<Booking> getAllBookingsForCoach() {
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
+		Account logged = SessionUtils.getAccount();
+//		LoginController controller = new LoginController();
+//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountId = logged.getId();
 		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.course.trainer.account.id = :accountIdParam", Booking.class)
 				.setParameter("accountIdParam", loggedAccountId)
@@ -84,8 +86,9 @@ public class BookingDao {
 
 
 	public List<Booking> getBookingListByAccount(){
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
+		Account logged = SessionUtils.getAccount();
+//		LoginController controller = new LoginController();
+//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountId = logged.getId();
 		return entityManager.createQuery("SELECT b FROM Booking b WHERE b.account.id = :bookingIdParam", Booking.class)
 				.setParameter("bookingIdParam", loggedAccountId)
