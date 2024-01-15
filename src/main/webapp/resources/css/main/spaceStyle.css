@@ -239,6 +239,8 @@ html body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-tex
     border-radius: 50%;
 }
 
+/*Override PrimeFaces upload file button style*/
+
 html body .ui-fileupload .ui-fileupload-buttonbar {
 	 background-color: transparent;
 	  border-color:transparent;
@@ -249,6 +251,60 @@ html body .ui-fileupload .ui-fileupload-content {
 	 border-color:transparent;
 	 
 }
+
+
+/*Override PrimeFaces form style*/
+html body .ui-inputfield.ui-inputtextarea.ui-widget.ui-state-default.ui-corner-all.ui-inputtextarea-resizable.ui-state-filled.ui-state-focus{
+	border-color:var(--secondColor);
+	box-shadow: 0 0 0 0.1em var(--secondColor);
+}
+
+html body .ui-inputfield.ui-inputtext.ui-widget.ui-state-default.ui-corner-all.ui-state-filled.ui-state-focus{
+	border-color:var(--secondColor) ;
+	box-shadow: 0 0 0 0.1em var(--secondColor);
+}
+
+html body .ui-inputfield.ui-inputtext.ui-widget.ui-state-default.ui-corner-all.ui-state-focus{
+	border-color:var(--secondColor);
+	box-shadow: 0 0 0 0.1em var(--secondColor);
+}
+
+html body p-datepicker.ui-calendar.ui-inputwrapper-filled.ui-inputwrapper-focus{
+	border-color:var(--secondColor);
+	box-shadow: 0 0 0 0.1em var(--secondColor);
+}
+
+html body .ui-inputfield.ui-state-focus {
+	border-color:var(--secondColor);
+	box-shadow: 0 0 0 0.1em var(--secondColor);
+}
+
+html body .ui-inputfield.ui-state-hover {
+    border-color:var(--secondColor);
+}
+
+html body .ui-selectonemenu.ui-state-hover {
+    border-color: var(--secondColor);
+}
+
+html body .ui-selectonemenu.ui-state-focus {
+    border-color: var(--secondColor);
+    outline: 0 none;
+    box-shadow: 0 0 0 .1em var(--secondColor);
+}
+
+/* Coach profressional details page*/
+.containerDetails {
+	z-index: 2;
+	max-width: 1100px;
+	text-align: left;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/*Charts style for the manager dashboard */
 
 .parent {
   width: 100%;

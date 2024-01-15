@@ -1,6 +1,7 @@
 package fr.isika.cda.javaee.viewModel;
 
 import fr.isika.cda.javaee.entity.accounts.Goal;
+import fr.isika.cda.javaee.entity.accounts.ProfessionalDetails;
 import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.accounts.Role;
 
@@ -13,8 +14,11 @@ public class AccountViewModel {
 	private Goal goal = new Goal();
 	private boolean connected;
 
-	 private int wizardStep;
-	 private Profile profile = new Profile();
+	private int wizardStep;
+	private Profile profile = new Profile();
+	
+	private ProfessionalDetails professionalDetails = new ProfessionalDetails();
+
 	private Long gymId;
 
 	public Long getId() {
@@ -75,27 +79,37 @@ public class AccountViewModel {
 		return builder.toString();
 	}
 
+	public int getWizardStep() {
+		return wizardStep;
+	}
+
+	public void setWizardStep(int wizardStep) {
+		this.wizardStep = wizardStep;
+	}
+
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
+	public Long getGymId() {
+		return gymId;
+	}
+
+	public void setGymId(Long gymId) {
+		this.gymId = gymId;
+	}
+
+
+	public ProfessionalDetails getProfessionalDetails() {
+		return professionalDetails;
+	}
+
+	public void setProfessionalDetails(ProfessionalDetails professionalDetails) {
+		this.professionalDetails = professionalDetails;
+	}
 	
-	 public int getWizardStep() {
-	        return wizardStep;
-	    }
-
-	    public void setWizardStep(int wizardStep) {
-	        this.wizardStep = wizardStep;
-	    }
-		public Profile getProfile() {
-			return profile;
-		}
-		public void setProfile(Profile profile) {
-			this.profile = profile;
-		}
-		
-		
-		public Long getGymId() {
-			return gymId;
-		}
-		public void setGymId(Long gymId) {
-			this.gymId = gymId;
-		}
-
 }

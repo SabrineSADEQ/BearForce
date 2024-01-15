@@ -89,13 +89,13 @@
 		<p:menuitem 
 			value="#{loginController.getLoggedAccount().profile.firstName} #{loginController.getLoggedAccount().profile.lastName}">
 		</p:menuitem>
-		<p:menuitem value="Les réservations" outcome="registeredCourseCoach"
+		<p:menuitem value="Réservations" outcome="registeredCourseCoach"
 			icon="pi pi-chart-line" />
 		<p:menuitem value="Mon planning" icon="pi pi-calendar" outcome="generalPlanning"/>
 
 		<p:menuitem value="Adhérents" icon="pi pi-users"
 			outcome="ListeAdherent" />
-		<p:menuitem value="Mon profil professionel" icon="pi pi-user" />
+		<p:menuitem value="Mon profil professionnel" icon="pi pi-user"  outcome="coachProfessionalDetails" />
 		<p:menuitem value="Mon compte" outcome="MonCompte" icon="pi pi-cog" />
 		<p:menuitem class="logout-button" value="Déconnexion"
 			action="#{loginController.logout()}" icon="pi pi-sign-out" />
