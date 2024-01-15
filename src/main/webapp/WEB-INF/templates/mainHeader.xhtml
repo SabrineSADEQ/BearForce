@@ -19,9 +19,6 @@
 				<p:graphicImage library="platformImages"
 					name="logo_with_text_V8.png" />
 			</div>
-			<!-- Burger Menu Button for small screens 
-        <p:commandButton id="burgerMenu" icon="pi pi-bars"
-            styleClass="burger-menu p-d-md-none" />-->
 
 			<div id="navLinks">
 				<p:menubar id="spaceMenuBar">
@@ -34,8 +31,6 @@
 					<p:menuitem class="link-menu" value="Nos offres"
 						outcome="Souscription" />
 
-					<p:menuitem class="link-menu" value="Créer un espace"
-						outcome="spaceCreation" />
 					<p:menuitem class="link-menu" value="Contact" outcome="Contact" />
 					<p:submenu class="link-menu" label="Administration plateforme"
 						rendered="#{loginController.getLoggedAccount().role eq 'SUPER_ADMIN'}">

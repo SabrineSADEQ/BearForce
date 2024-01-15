@@ -17,6 +17,7 @@
 		</h1>
 
 		<div class="slide-content" >
+		<h:form>
 			<ui:repeat value="#{subscriptionManagementController.listePacks()}" var="pack">
 				<div class="card swiper-slide">
 					<div class="card-content" >
@@ -27,6 +28,7 @@
 							<h:outputText value="#{pack.price}" />
 							<h:outputText value=" €/mois " />
 						</p>
+
 
 						<div class="image-content">
 							<span class="overlay"></span>
@@ -42,6 +44,7 @@
 					</div>
 				</div>
 			</ui:repeat>
+			</h:form>
 		</div>
 
 	</ui:define>

@@ -61,21 +61,6 @@ public class SpaceController implements Serializable {
 	public void init() {
 		System.out.println("SpaceController bean initialized!");
 
-//		// Check if user is in session
-//		HttpSession session = SessionUtils.getSession();
-//		Account account = (Account) session.getAttribute("loggedInUser");
-//		if (account != null) {
-//			if (account.getGymId() != null) {
-//				// get space id from account session
-//				Long spaceId = SessionUtils.getAccount().getGymId();
-//				// get space from spaceId if spaceId not null
-//				if (spaceId != null) {
-//					Space space = spaceDao.getSpaceById(spaceId);
-//					chargeSpaceIntoSpaceViewModel(space);
-//				}
-//			}
-//		} else {
-//			System.out.println("Attention ! pas de compte dans la session");
 		try {
 			Space space = getLoadedSpace();
 			chargeSpaceIntoSpaceViewModel(space);
@@ -86,7 +71,6 @@ public class SpaceController implements Serializable {
 		}
 	}
 
-	// }
 
 	public Space getLoadedSpace() throws Exception {
 
@@ -99,9 +83,6 @@ public class SpaceController implements Serializable {
 			Space space = spaceDao.getSpaceById(Long.valueOf(spaceIdParam));
 			return space;
 		} else {
-//			LoginController loginController = new LoginController();
-//			Space space = spaceDao.getSpaceById(loginController.getLoggedAccount().getGymId());
-//			return space;
 			HttpSession session = SessionUtils.getSession();
 			Account account = (Account) session.getAttribute("loggedInUser");
 			if (account.getGymId() != null) {
@@ -116,39 +97,6 @@ public class SpaceController implements Serializable {
 		}
 		return null;
 	}
-
-//	public Space getLoadedSpaceDependingOnLoginStatus() throws Exception {
-//
-//		// If user is not logged in,
-//		// Get spaceId param from url
-//		HttpSession session = SessionUtils.getSession();
-//		Account account = (Account) session.getAttribute("loggedInUser");
-//		if (account == null) {
-//
-//			Map<String, String> parameterMap = FacesContext.getCurrentInstance().getExternalContext()
-//					.getRequestParameterMap();
-//			String spaceIdParam = parameterMap.get("spaceId");
-//
-//			if (spaceIdParam != null) {
-//				Space space = spaceDao.getSpaceById(Long.valueOf(spaceIdParam));
-//				return space;
-//			}
-//			throw new Exception("No space id specified");
-//		}
-//		// if user is logged in , get spaceId from account stored in session
-//		else {
-//			if (account.getGymId() != null) {
-//				// get space id from account session
-//				Long spaceId = SessionUtils.getAccount().getGymId();
-//				// get space from spaceId if spaceId not null
-//				if (spaceId != null) {
-//					Space space = spaceDao.getSpaceById(spaceId);
-//					return space;
-//				}
-//			}
-//		}
-//		return null;
-//	}
 
 	public void chargeSpaceIntoSpaceViewModel(Space space) {
 		// load the view model with the space informations
@@ -198,7 +146,7 @@ public class SpaceController implements Serializable {
 
 
 		// Construct the URL with the specific spaceId
-		String url = "http://127.0.0.1:8080/BearForce/spaceAdminDashboard.xhtml?spaceId=" + spaceId;
+		String url = "http://127.0.0.1:8080/BearForce/accueil.xhtml?spaceId=" + spaceId;
 
 		// Get the FacesContext and ExternalContext
 		FacesContext facesContext = FacesContext.getCurrentInstance();
