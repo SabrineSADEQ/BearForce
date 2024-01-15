@@ -10,6 +10,7 @@
 
 	<ui:define name="titleValue">Activités</ui:define>
 	<ui:define name="content">
+			<div class="subcontent">
 		<div class="body-platform">
 			<div class="content">
 				<div class="card">
@@ -20,20 +21,21 @@
 							<h1 class="titleH1">Nos activités sportives</h1>
 						</f:facet>
 						<div class="product-item grow">
-							<div class="product-item-content">
+							<div class="product-item-content" style="border: none; margin: 1rem;">
 								<div>
 									<h:graphicImage library="images"
 										name="#{act.activityPicturePath}" height="250px" />
 								</div>
 								<h2>#{act.name}</h2>
 								<div class="mt-5">
-									<h5>#{act.description}</h5>
+									<p>#{act.description}</p>
 								</div>
 							</div>
 						</div>
 					</p:carousel>
 				</div>
 			</div>
+		</div>
 		</div>
 	</ui:define>
 

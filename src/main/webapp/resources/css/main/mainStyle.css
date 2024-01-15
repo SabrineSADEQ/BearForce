@@ -190,3 +190,10 @@ html body .ui-fileupload .ui-fileupload-content {
     border-radius: 50%;
 }
 
+.carouGeneral { .product-item-content { 
+	border-radius:3px !important;
+	margin: 1.3rem !important;
+	text-align: center !important;
+	padding: 2rem 0 !important;
+	height: 500px !important;
+}}
