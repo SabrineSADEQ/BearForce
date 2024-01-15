@@ -150,4 +150,9 @@ public class ActivityDao {
 			}
 		}
 
+		public void updateActivityPicture(Long activityId, String activityPicturePath) {
+			Activity activity = findActivityById(activityId);
+			activity.setActivityPicturePath(activityPicturePath);
+		}
+
 }

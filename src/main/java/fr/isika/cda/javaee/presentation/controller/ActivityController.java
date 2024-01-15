@@ -76,6 +76,8 @@ public class ActivityController implements Serializable{
 	//MODIFIE ACTIVITY IN DATABASE
 	public void modifieSelectedActivity() {
 		activityDao.updateActivity(selectedActivity);
+		activityDao.updateActivityPicture(selectedActivity.getId(), activityViewModel.getActivityPicturePath());
+		
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Activité mise à jour"));
 		PrimeFaces.current().executeScript("PF('manageActivityDialog').hide()");
 	}

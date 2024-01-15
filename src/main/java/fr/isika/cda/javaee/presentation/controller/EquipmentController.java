@@ -55,6 +55,7 @@ public class EquipmentController implements Serializable {
 	//MODIFIE EQUIPMENT IN DATABASE
 	public void modifieSelectedEquipment() {
 		equipmentDao.updateEquipment(selectedEquipment, selectedActivity);
+		equipmentDao.updateEquipmentPicture(selectedEquipment.getId(), equipmentViewModel.getEquipmentPicturePath());
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Equipement mise à jour"));
 		PrimeFaces.current().executeScript("PF('manageEquipmentDialog').hide()");
 	}
