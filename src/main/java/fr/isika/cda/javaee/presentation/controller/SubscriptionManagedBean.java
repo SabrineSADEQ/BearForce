@@ -55,39 +55,28 @@ public class SubscriptionManagedBean implements Serializable {
 		Membership membership = membershipDao.getMembershipByIdWithSubscriptions(selectedMembershipId);
 		Account account = SessionUtils.getAccount();
 		if (membership != null && account != null) {
-			
 			Subscription subscription = new Subscription();
 			subscription.setAutoRenewal(subscriptionViewModel.isAutorenewal());
-			// TODO : faire un petit calcul intelligent pour déduire la duration à partir de la end date et start date
-			
-			// Calcul de la durée à partir des dates de début et de fin
-            LocalDate startDate = subscriptionViewModel.getStartDate();
-            LocalDate endDate = subscriptionViewModel.getEndDate();
-            Duration duration = Duration.between(startDate.atStartOfDay(), endDate.atStartOfDay());
-            long days = duration.toDays();
-            
-			subscription.setDuration(subscriptionViewModel.getDuration());
+			subscription.setDuration( computeDurationInDays(subscriptionViewModel.getStartDate(), subscriptionViewModel.getEndDate()) );
 			subscription.setStartDate(subscriptionViewModel.getStartDate().atStartOfDay());
 			subscription.setEndDate(subscriptionViewModel.getEndDate().atStartOfDay());
 			subscription.setMembership(membership);
-			
 			membership.getSubscriptions().add(subscription);
-
 			account.setSubscription(subscription);
-			
 			subscription = subscriptionDao.createSubscriptionAndUpdateRelations(subscription, membership, account);
-			
-			
 			return redirectToPaymentSubscription(subscription.getId());
-			
 		}
-		
 		System.err.println("Ceci ne doit pas arriver mais au cas où ça veut dire que account == null ou membership == null");
 		return "";
 	}
+
+	private long computeDurationInDays(LocalDate startDate, LocalDate endDate) {
+		Duration duration = Duration.between(startDate.atStartOfDay(), endDate.atStartOfDay());
+		long days = duration.toDays();
+		return days;
+	}
 	
 	public List<Subscription> subscriptionList() {
-		
 		return subscriptionDao.getAllSubscriptions();
 	}
 	

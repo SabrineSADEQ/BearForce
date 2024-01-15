@@ -84,10 +84,8 @@ public class ActivityDao {
 	// SEAK IN DATABASE ALL ACTIVITIES
 	public List<Activity> getAllActivities() {
 		Account logged = SessionUtils.getAccount();
-//		LoginController controller = new LoginController();
-//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountGymId = logged.getGymId();	
-		return entityManager.createQuery("SELECT a FROM Activity a LEFT JOIN FETCH a.equipmentList WHERE a.attachedGymId = :gymIdParam", Activity.class)
+		return entityManager.createQuery("SELECT DISTINCT a FROM Activity a LEFT JOIN FETCH a.equipmentList WHERE a.attachedGymId = :gymIdParam", Activity.class)
 				.setParameter("gymIdParam", loggedAccountGymId)
 				.getResultList();
 	}
