@@ -8,70 +8,69 @@
 <ui:composition template="WEB-INF/templates/spaceGeneralViewsTemplate.xhtml">
 	<ui:define name="titleValue">Nos coachs</ui:define>
 	<ui:define name="content">
+		<h:outputStylesheet library="css" name="ListeCoachs.css" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<div class="container">
+			<p:carousel value="#{profilesManagementController.profiles}"
+				var="tempProfile" numVisible="3" numScroll="3">
+				<p:column>
+					<div class="swiper-slide">
+						<div class="card">
+							<h:form id="coachDetailsForm">
+								<div class="image-content">
+									<span class="overlay"></span>
+									<div class="card-image">
+										<h:graphicImage name="#{tempProfile.pictureUrl}" library="images" />
+									</div>
+								</div>
+								<div class="card-content">
+									<h2 class="name">
+										<h:outputText value="#{tempProfile.firstName}" />
+									</h2>
+									<p class="description">
+										<h:outputText value="#{tempProfile.lastName}" />
+									</p>
 
 
-		
-			<h:outputStylesheet library="css" name="ListeCoachs.css" />
-			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-			
-<div class="subcontent">
+									<p:commandButton icon="pi pi-envelope" value="Contacter"
+										update=":dialogs:contact-panel"
+										oncomplete="PF('contactDialog').show()"
+										styleClass="edit-button rounded-button ui-button-success"
+										process="@this">
+										<f:setPropertyActionListener value="#{tempProfile}" target="#{profilesManagementController.selectedProfile}" />
+										<p:resetInput target=":dialogs:contact-panel" />
+									</p:commandButton>
+								</div>
+							</h:form>
+						</div>
+					</div>
+				</p:column>
+			</p:carousel>
+		</div>
+
+		<div class="swiper-button-next swiper-navBtn"></div>
+		<div class="swiper-button-prev swiper-navBtn"></div>
+		<div class="swiper-pagination"></div>
+
 	
+		<h:form id="dialogs">
+			<p:dialog id="contactDialog" header="Contact Information"
+				widgetVar="contactDialog" resizable="false" modal="true"
+				showEffect="fade" hideEffect="fade">
+				<p:outputPanel id="contact-panel">
+					<h:panelGrid columns="2">
+						<h:outputText value="E-mail:" />
+						<h:outputText value="#{profilesManagementController.selectedProfile.contact.email}" />
+						<h:outputText value="Phone:" />
+						<h:outputText value="#{profilesManagementController.selectedProfile.contact.phone}" />
+					</h:panelGrid>
+				</p:outputPanel>
+			</p:dialog>
+		</h:form>
 
 
-
-  <div class="container">
-    
-      <p:carousel value="#{profilesManagementController.profiles}" var="tempProfile"
-                numVisible="3" numScroll="3">
-                <p:column rendered="#{tempProfile.account.gymId eq spaceController.loadedSpace.id}">
-        <div class="swiper-slide">
-          <div class="card">
-            <!-- Le contenu de votre carte -->
-            <div class="image-content">
-              <span class="overlay"></span>
-              <div class="card-image">
-                <h:graphicImage name="#{tempProfile.pictureUrl}" library="images" />
-              </div>
-            </div>
-            <div class="card-content">
-              <h2 class="name">
-              
-                <h:outputText value="#{tempProfile.firstName}" />
-              </h2>
-              <p class="description">
-                <h:outputText value="#{tempProfile.lastName}" />
-              </p>
-              <p:commandButton value="Contacter"
-                                             oncomplete="PF('contactDialog').show()"
-                                             styleClass="button" />
-            </div>
-          </div>
-        </div>
-        </p:column>
-       </p:carousel>
-    </div>
-    
-    <div class="swiper-button-next swiper-navBtn"></div>
-        <div class="swiper-button-prev swiper-navBtn"></div>
-        <div class="swiper-pagination"></div>
-
-   
-<p:dialog id="contactDialog" header="Contact Information" widgetVar="contactDialog" resizable="false"
-              modal="true" showEffect="fade" hideEffect="fade">
-        <h:panelGrid columns="2">
-            <h:outputText value="E-mail:" />
-            <h:outputText value="contact@example.com" />
-
-            <h:outputText value="Phone:" />
-            <h:outputText value="+123456789" />
-        </h:panelGrid>
-
-        <p:commandButton value="Fermer" onclick="PF('contactDialog').hide()" />
-    </p:dialog>
-
-</div>
-		
 	</ui:define>
 
 </ui:composition>
