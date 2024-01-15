@@ -5,11 +5,10 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition
-	template="/WEB-INF/templates/spaceDashboardTemplate.xhtml">
+<ui:composition template="/WEB-INF/templates/spaceDashboardTemplate.xhtml">
 	<ui:define name="titleValue">Mon Abonnement</ui:define>
 	<ui:define name="content">
-		
+		<div class="subcontent">
 		<ui:fragment rendered="#{not myMembershipBean.hasSubscription()}">
 			<h3>Vous n'avez pas d'abonnement actif</h3>
 		</ui:fragment>
@@ -18,97 +17,73 @@
 	
 			<h:form id="myMembershipForm">
 				<div class="card">
-					<h5>Mon abonnement</h5>
+					<h5 style="color: #0066cc; font-weight: bold;">Mon abonnement</h5>
 	
 					<div class="field grid">
-						<p:outputLabel for="membershipName" styleClass="col-fixed"
-							style="width:100px" value="Nom de l'abonnement : " />
+						<p:outputLabel for="membershipName" styleClass="col-fixed" style="width:100px" value="Nom de l'abonnement: " />
 						<div class="col">
-							<p:inputText id="membershipName"
-								value="#{myMembershipBean.membershipViewModel.name}" disabled="true"/>
+							<p:inputText id="membershipName" value="#{myMembershipBean.membershipViewModel.name}" disabled="true" styleClass="input-field"/>
 						</div>
 					</div>
-					<br />
 	
 					<div class="field grid">
-						<p:outputLabel for="nbrOfActivities" styleClass="col-fixed"
-							style="width:100px" value="Nombre d'activités par semaine: " />
+						<p:outputLabel for="nbrOfActivities" styleClass="col-fixed" style="width:100px" value="Nombre d'activités par semaine: " />
 						<div class="col">
-							<p:inputText id="nbrOfActivities"
-								value="#{myMembershipBean.membershipViewModel.nbrOfActivities}">
+							<p:inputText id="nbrOfActivities" value="#{myMembershipBean.membershipViewModel.nbrOfActivities}" styleClass="input-field">
 								<f:validateLongRange minimum="1" />
 							</p:inputText>
 						</div>
 					</div>
-					<br />
 	
 					<div class="field grid">
-						<p:outputLabel for="price" styleClass="col-fixed"
-							style="width:100px" value="Prix : " />
+						<p:outputLabel for="price" styleClass="col-fixed" style="width:100px" value="Prix: " />
 						<div class="col">
-							<p:inputText id="price"
-								value="#{myMembershipBean.membershipViewModel.price}" />
+							<p:inputText id="price" value="#{myMembershipBean.membershipViewModel.price}" styleClass="input-field"/>
 						</div>
 					</div>
-					<br />
 	
 					<div class="field grid">
-						<p:outputLabel for="description" styleClass="col-fixed"
-							style="width:100px" value="Description : " />
+						<p:outputLabel for="description" styleClass="col-fixed" style="width:100px" value="Description: " />
 						<div class="col">
-							<p:inputTextarea id="description"
-								value="#{myMembershipBean.membershipViewModel.description}">
-							</p:inputTextarea>
+							<p:inputTextarea id="description" value="#{myMembershipBean.membershipViewModel.description}" styleClass="input-field" rows="4"/>
 						</div>
 					</div>
-					<br />
 					
 					<div class="field grid">
-						<p:outputLabel for="startDate" styleClass="col-fixed"
-							style="width:100px" value="Date de début : " />
+						<p:outputLabel for="startDate" styleClass="col-fixed" style="width:100px" value="Date de début: " />
 						<div class="col">
-							<p:inputText id="startDate"
-								value="#{myMembershipBean.startDate}">
-								<f:convertDateTime type="localDateTime" 
-									pattern="dd/MM/yyyy" />
+							<p:inputText id="startDate" value="#{myMembershipBean.startDate}" styleClass="input-field">
+								<f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy" />
 							</p:inputText>
 						</div>
 					</div>
-					<br />
+					
 					<div class="field grid">
-						<p:outputLabel for="endDate" styleClass="col-fixed"
-							style="width:100px" value="Date de Fin : " />
+						<p:outputLabel for="endDate" styleClass="col-fixed" style="width:100px" value="Date de Fin: " />
 						<div class="col">
-							<p:inputText id="endDate"
-								value="#{myMembershipBean.endDate}">
-								<f:convertDateTime type="localDateTime" 
-									pattern="dd/MM/yyyy" />
+							<p:inputText id="endDate" value="#{myMembershipBean.endDate}" styleClass="input-field">
+								<f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy" />
 							</p:inputText>
 						</div>
 					</div>
-					<br />
 					
 					<div class="field grid">
-						<p:outputLabel for="duration" styleClass="col-fixed"
-							style="width:100px" value="Durée : " />
+						<p:outputLabel for="duration" styleClass="col-fixed" style="width:100px" value="Durée: " />
 						<div class="col">
-							<p:inputText id="duration" value="#{myMembershipBean.duration}">
-							</p:inputText>
+							<p:inputText id="duration" value="#{myMembershipBean.duration}" styleClass="input-field"/>
 						</div>
 					</div>
-					<br />
 					
 					<div class="field grid">
-						<p:outputLabel for="autoRenewal" styleClass="col-fixed"
-							style="width:100px" value="Renouvellement automatique : " />
+						<p:outputLabel for="autoRenewal" styleClass="col-fixed" style="width:100px" value="Renouvellement automatique: " />
 						<div class="col">
-							<p:selectBooleanCheckbox id="autoRenewal" value="#{myMembershipBean.autorenewal}" />
+							<p:selectBooleanCheckbox id="autoRenewal" value="#{myMembershipBean.autorenewal}" styleClass="input-field" />
 						</div>
 					</div>
-					<br />
 				</div>
 			</h:form>
 		</ui:fragment>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>
