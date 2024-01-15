@@ -56,5 +56,12 @@ import javax.persistence.Table;
 	public Long getId() {
 		return id;
 	}
+	@Override
+	public String toString() {
+		return "ProfessionalDetails [id=" + id + ", coachCertification=" + coachCertification + ", coachForm="
+				+ coachForm + ", coachCV=" + coachCV + ", profile=" + profile + "]";
+	}
+	
+	
 	
 }

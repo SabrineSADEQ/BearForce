@@ -7,20 +7,21 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Poppins', sans-serif;
 }
 
 
 .slide-container {
 	display: flex;
-	width: 1040px;
+
 	margin-top: 60px;
 	position: relative;
-	margin-left: 20%;
-	margin-right :25%;
 	justify-content: space-evenly;
 	flex-wrap: wrap;
-	background-color: #3AF76A;
+	
+}
+
+#subscriptionForm:renewal{
+	width:100%;
 }
 
 .card {
@@ -31,6 +32,8 @@
 	box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
 	overflow: hidden;
 	width: 320px;
+	height: 400px;
+	
 }
 
 .image-content, .card-content {
@@ -73,12 +76,23 @@
 	object-fit: cover;
 	border-radius: 50%;
 	border: 4px solid #4070F4;
+	
 }
 
 .name {
-	font-size: 75px;
+	font-size: 40px;
 	font-weight: 500;
-	color: #FA863A;
+	color: var(--secondColor);
+	text-align: center;
+	margin-bottom:20px;
+}
+
+.price{
+	font-size: 25px;
+	font-weight: 300;
+	color: var(--secondColor);
+	text-align: center;
+	margin-bottom:20px;
 }
 
 .description {
@@ -97,6 +111,12 @@
 	border-radius: 6px;
 	margin: 14px;
 	cursor: pointer;
+}
+
+.card-footer{
+	display:flex;
+	justify-content: center;
+	margin-top:auto;
 }
 
 .button:hover {

@@ -8,38 +8,7 @@
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
 	<ui:define name="titleValue">Créer un compte</ui:define>
 	<ui:define name="content">
-		<style>
-.form-step {
-	margin: 20px;
-	border: 1px solid #ccc; /* Add a border to the form */
-	padding: 25px; /* Add padding inside the form */
-}
-
-.step-label {
-	font-size: 24px; /* Increase the font size for the step label */
-	margin-bottom: 15px;
-	display: block;
-	font-weight: bold; /* Optionally, make the text bold */
-}
-
-.form-grid {
-	margin-bottom: 10px;
-}
-
-.role-radio {
-	margin-bottom: 15px;
-}
-
-.next-button {
-	margin-top: 10px;
-	font-size: 16px; /* Adjust the font size as needed */
-	padding: 10px 20px; /* Adjust the padding as needed */
-}
-
-.field-label {
-	margin-bottom: 15px; /* Increase the margin between field labels */
-}
-</style>
+<h:outputStylesheet library="css" name="main/accountCreation.css" />
 
 
 		<!-- Step 1: Collect Email and Password -->
@@ -209,63 +178,49 @@
 		</h:form>
 
 		<h:form rendered="#{accountController.wizardStep == 3}">
+    <div class="card">
+        <p:carousel value="#{spaceController.getAllSpaces()}" var="space" numVisible="3" numScroll="3">
+            <f:facet name="header">
+                <h4 style="font-size: 1.5em;">Nos clients</h4>
+            </f:facet>
+            <div class="product-item">
+                <div class="product-item-content">
+                    <div class="mb-3">
+                        <h:graphicImage library="images" name="#{space.visualIdentity.gymLogoPath}" styleClass="product-image" />
+                    </div>
+                    <div>
+                        <h4 class="mb-1">#{space.idGym.gymName}</h4>
+                        <h6 class="mt-0 mb-3">
+                            <h:outputText value="#{space.visualIdentity.spaceTextContent.motto}" />
+                        </h6>
+                        <span>#{space.visualIdentity.spaceTextContent.description}</span>
+                    </div>
+                </div>
+            </div>
+        </p:carousel>
+    </div>
 
-			<div class="card">
-				<p:carousel value="#{spaceController.getAllSpaces()}" var="space"
-					numVisible="3" numScroll="3">
-					<f:facet name="header">
-						<h5>Nos clients</h5>
-					</f:facet>
-					<div class="product-item">
-						<div class="product-item-content">
-							<div class="mb-3">
-								<!-- 									<p:graphicImage name="demo/images/product/#{product.image}" -->
-								<!-- 										styleClass="product-image" /> -->
-							</div>
-							<div>
-								<h4 class="mb-1">#{space.idGym.gymName}</h4>
-								<h6 class="mt-0 mb-3">
-									<h:outputText
-										value="#{space.visualIdentity.spaceTextContent.motto}">
-									</h:outputText>
-								</h6>
-								<span>
-									#{space.visualIdentity.spaceTextContent.description}</span>
+    <h:outputLabel value="Votre salle de sport" style="margin-left: 10px; font-size: 1.2em;" />
+    <br/><br></br>
+    <div class="form-group">
+        <h:outputLabel for="gymId2" styleClass="form-label" style="margin-left: 10px; font-size: 1.2em;">Choisir: </h:outputLabel>
+        <h:selectOneMenu id="gymId2" value="#{accountController.accountVM.gymId}" required="true" styleClass="form-input">
+            <f:selectItems value="#{spaceController.allSpaces}" var="space" itemLabel="#{space.idGym.gymName}" itemValue="#{space.id}" />
+        </h:selectOneMenu>
+    </div>
+<br></br>
+    <div class="button-group">
+        <h:commandButton value="Retour" action="#{accountController.previousWizardStep}"
+            styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only prev-button"
+            style="margin-left: 10px; font-size: 1em; padding: 10px 20px;" />
+        <h:commandButton value="Valider" action="#{accountController.finishWizard}"
+            styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only finish-button"
+            style="margin-left: 10px; font-size: 1em; padding: 10px 20px;" />
+    </div>
 
-							</div>
-						</div>
-					</div>
-				</p:carousel>
-			</div>
-			<h:outputLabel value="Votre salle de sport"
-				style="margin-left: 10px;" />
+    <h:messages globalOnly="true" />
+</h:form>
 
-			<div class="form-group">
-				<h:outputLabel for="gymId2" styleClass="form-label"
-					style="margin-left: 10px;">Choisir: </h:outputLabel>
-				<h:selectOneMenu id="gymId2"
-					value="#{accountController.accountVM.gymId}" required="true"
-					styleClass="form-input">
-					<f:selectItems value="#{spaceController.allSpaces}" var="space"
-						itemLabel="#{space.idGym.gymName}" itemValue="#{space.id}" />
-				</h:selectOneMenu>
-			</div>
-
-			<div class="button-group">
-				<h:commandButton value="Retour"
-					action="#{accountController.previousWizardStep}"
-					styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only prev-button"
-					style="margin-left: 10px; font-size: 15px; padding: 10px 20px;" />
-				<h:commandButton value="Valider"
-					action="#{accountController.finishWizard}"
-					styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only finish-button"
-					style="margin-left: 10px; font-size: 15px; padding: 10px 20px;" />
-			</div>
-
-			<h:messages globalOnly="true" />
-
-
-		</h:form>
 
 	</ui:define>
 

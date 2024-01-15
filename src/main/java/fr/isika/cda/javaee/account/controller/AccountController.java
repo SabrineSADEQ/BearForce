@@ -51,11 +51,23 @@ public class AccountController implements Serializable {
 		HttpSession session = SessionUtils.getSession();
 		Account account = (Account) session.getAttribute("loggedInUser");
 		if(account != null) {
-			// TODO : charger toutes les infos du compte connecté et les copier dans le accountVM, coimme ci-dessous
+			// TODO : charger toutes les infos du compte connecté et les copier dans le accountVM, comme ci-dessous
 			accountVM.getProfile().setFirstName(account.getProfile().getFirstName());
 			accountVM.getProfile().setPictureUrl(account.getProfile().getPictureUrl());
+			
+			
+			//Filling the viewmodel for the "Professional details" view
+			if (account.getProfile().getProfesionalDetails() != null) {
+				accountVM.getProfessionalDetails().setCoachCertification(account.getProfile().getProfesionalDetails().getCoachCertification());
+				accountVM.getProfessionalDetails().setCoachForm(account.getProfile().getProfesionalDetails().getCoachForm());
+				accountVM.getProfessionalDetails().setCoachCV(account.getProfile().getProfesionalDetails().getCoachCV());
+				
+				//DEBUG : 
+				System.out.println(accountVM.getProfessionalDetails());
+			}
+			
 		} else {
-			System.out.println("Attention ! pas de compte dans la session");
+			System.out.println("Attention ! Pas de compte dans la session");
 		}
 		
 	}
@@ -75,18 +87,17 @@ public class AccountController implements Serializable {
     }
 
     public void nextWizardStep() {
-        // Perform any necessary validations before proceeding to the next step
+       
         wizardStep++;
     }
 
     public void previousWizardStep() {
-        // Perform any necessary validations before going back to the previous step
+
         wizardStep--;
     }
 
     public void finishWizard() {
-        // Perform any necessary validations before finishing the wizard
-        // You can save the account details here as well
+
         addAccount();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Compte créer !s", "Account creation successful!"));
@@ -157,7 +168,30 @@ public class AccountController implements Serializable {
             System.out.println("L'utilisateur n'est pas connecté.");
         }
     }
+    
+    public void updateCoachProfessionalDetails(){
+    	Account account = SessionUtils.getAccount();
+        // Vérifier si l'utilisateur est connecté (authentifié)
+        Long accountId = account.getId();
 
+        if (accountId != null) {
+            // Retrieve the existing account from the database
+            Account existingAccount = accountDao.getAccountById(accountId);
+
+            if (existingAccount != null) {
+                // Update the professional details attributes
+    			existingAccount.getProfile().setProfesionalDetails(accountVM.getProfile().getProfesionalDetails());
+
+                // Appeler la méthode de mise à jour dans le DAO pour mettre à jour le compte
+                accountDao.update(existingAccount);
+            } else {
+                System.out.println("Compte introuvable pour l'ID : " + accountId);
+            }
+        } else {
+            System.out.println("L'utilisateur n'est pas connecté.");
+        }
+    }
+    
 
     public AccountViewModel getAccountVM() {
         return accountVM;

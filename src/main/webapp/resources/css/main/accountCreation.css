@@ -1,0 +1,31 @@
+@charset "UTF-8";
+.form-step {
+	margin: 20px;
+	border: 1px solid #ccc; /* Add a border to the form */
+	padding: 25px; /* Add padding inside the form */
+}
+
+.step-label {
+	font-size: 24px; /* Increase the font size for the step label */
+	margin-bottom: 15px;
+	display: block;
+	font-weight: bold; /* Optionally, make the text bold */
+}
+
+.form-grid {
+	margin-bottom: 10px;
+}
+
+.role-radio {
+	margin-bottom: 15px;
+}
+
+.next-button {
+	margin-top: 10px;
+	font-size: 16px; /* Adjust the font size as needed */
+	padding: 10px 20px; /* Adjust the padding as needed */
+}
+
+.field-label {
+	margin-bottom: 15px; /* Increase the margin between field labels */
+}

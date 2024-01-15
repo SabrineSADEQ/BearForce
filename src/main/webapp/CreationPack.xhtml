@@ -9,10 +9,16 @@
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
 	<ui:define name="titleValue">Créer un pack</ui:define>
 	<ui:define name="content">
+	
+	
+	<h:outputStylesheet library="css" name="cssPageSuperAdmin.css" />
+	
+	
+	<div class="containerPack">
 		<h:form enctype="multipart/form-data">
-		
-            <h2>Creation Pack</h2>
-       <h:panelGrid columns="2">
+
+      <h1>Créer un pack</h1> 
+      <h:panelGrid columns="2" cellpadding="10">
     <h:outputLabel for="description">Description:</h:outputLabel>
     <h:inputText id="description" value="#{packController.pack.description}" />
 
@@ -23,10 +29,12 @@
     <h:inputText id="price" value="#{packController.pack.price}" />
    
 </h:panelGrid>
-       		
-	 <h:commandButton value="Create" action="#{packController.createPack}" />
+      		<div class="espace"></div> 
+      		<div class="bouttonCreate">
+	 <h:commandButton value="Créer" action="#{packController.createPack}" />
+	 </div>
 		</h:form> 
-	
+	 </div>
 	</ui:define>
 
 </ui:composition>

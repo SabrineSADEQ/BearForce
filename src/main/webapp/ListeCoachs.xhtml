@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+<ui:composition template="WEB-INF/templates/spaceGeneralViewsTemplate.xhtml">
 	<ui:define name="titleValue">Nos coachs</ui:define>
 	<ui:define name="content">
 		<h:outputStylesheet library="css" name="ListeCoachs.css" />
@@ -33,6 +33,7 @@
 										<h:outputText value="#{tempProfile.lastName}" />
 									</p>
 
+
 									<p:commandButton icon="pi pi-envelope" value="Contacter"
 										update=":dialogs:contact-panel"
 										oncomplete="PF('contactDialog').show()"
@@ -52,6 +53,7 @@
 		<div class="swiper-button-next swiper-navBtn"></div>
 		<div class="swiper-button-prev swiper-navBtn"></div>
 		<div class="swiper-pagination"></div>
+
 	
 		<h:form id="dialogs">
 			<p:dialog id="contactDialog" header="Contact Information"
@@ -67,6 +69,7 @@
 				</p:outputPanel>
 			</p:dialog>
 		</h:form>
+
 
 	</ui:define>
 

@@ -49,41 +49,38 @@
 										required="true"
 										placeholder="#{loginController.getLoggedAccount().profile.firstName}" />
 
-									<h:outputLabel for="birthDate">Date de naissance </h:outputLabel>
-									<input type="datetime-local" id="birthDateStep2"
-										name="birthDate"
-										value="#{accountController.accountVM.profile.birthDate}"
-										required="true" />
-
+									<h:outputLabel for="birthDateStep2">Date de naissance </h:outputLabel>
+									<p:datePicker id="birthDateStep2" value="#{accountController.accountVM.profile.birthDate}" />
+								
 									<h:outputLabel for="phone">Téléphone </h:outputLabel>
 									<p:inputText id="phoneStep2"
 										value="#{accountController.accountVM.profile.contact.phone}"
 										required="true"
 										placeholder="#{loginController.getLoggedAccount().profile.contact.phone}" />
 
-									<h:outputLabel for="typeContact">Type de Contact </h:outputLabel>
+									<h:outputLabel for="typeContact">Type de contact </h:outputLabel>
 
-									<h:selectOneMenu id="typeContactStep2"
+									<p:selectOneMenu id="typeContactStep2"
 										value="#{accountController.accountVM.profile.contact.type}">
 										<f:selectItem itemValue="PERSO" itemLabel="Personnel" />
 										<f:selectItem itemValue="PRO" itemLabel="Professionnel" />
-									</h:selectOneMenu>
+									</p:selectOneMenu>
 
 
 
-									<h:outputLabel for="streetNumber">Numéro de Rue </h:outputLabel>
+									<h:outputLabel for="streetNumber">Numéro de rue </h:outputLabel>
 									<p:inputText id="streetNumberStep2"
 										value="#{accountController.accountVM.profile.address.streetNumber}"
 										required="true"
 										placeholder="#{loginController.getLoggedAccount().profile.address.streetNumber}" />
 
-									<h:outputLabel for="streetName">Nom de Rue </h:outputLabel>
+									<h:outputLabel for="streetName">Nom de rue </h:outputLabel>
 									<p:inputText id="streetNameStep2"
 										value="#{accountController.accountVM.profile.address.streetName}"
 										required="true"
 										placeholder="#{loginController.getLoggedAccount().profile.address.streetName}" />
 
-									<h:outputLabel for="postalCode">Code Postal </h:outputLabel>
+									<h:outputLabel for="postalCode">Code postal </h:outputLabel>
 									<p:inputText id="postalCodeStep2"
 										value="#{accountController.accountVM.profile.address.postalCode}"
 										required="true"
@@ -99,7 +96,7 @@
 
 								</h:panelGrid>
 								<br />
-								<h:commandButton value="Mettre à jour"
+								<p:commandButton value="Mettre à jour"
 									action="#{accountController.updateAccount}" />
 							</p:panel>
 						</div>

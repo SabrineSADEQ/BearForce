@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+ 
+  
+}
+
+.container {
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 5px;
+  background: linear-gradient(to bottom, #ffffff, #87ceeb);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top:100px;
+    margin-bottom:150px;
+    border: 2px solid #e75480;
+    align-items: center;
+   
+}
+
+.containerPack{
+	
+	max-width: 400px;
+    padding: 10px;
+ background: linear-gradient(to right, #c8a2c8, #ff77a9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top:100px;
+    margin-bottom:100px;
+    border: 2px solid #e75480;
+    color: #ffffff;
+    align-items: center;
+   
+}
+
+
+h2 {
+    text-align: center;
+    color:#e75480;
+    margin-bottom: 50px;
+    font-family:'Playfair Display', serif;
+}
+
+h1{
+	
+	text-align: center;
+    color:#ffffff;
+    margin-bottom: 50px;
+    font-family:'Playfair Display', serif;
+}
+
+
+
+h:form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.panelGrid {
+        margin-bottom: 30px; /* Ajoute un espace de 10 pixels entre chaque élément du panelGrid */
+    }
+
+
+
+.bouttonCreate {
+        text-align: center; 
+        margin-top: 10px; 
+        color: #e75480;
+        padding: 10px 20px; 
+        font-size: 18px; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer; 
+        
+       
+    }
+   
+   
+
+    
+.espace {
+        margin-top: 30px; /* Ajustez la valeur selon vos besoins */
+    }
+    

@@ -4,9 +4,11 @@ public enum ActivityCategory {
 	CARDIO ("Cardio"), 
 	FITNESS ("Fitness"), 
 	FORCE ("Force musculaire"), 
-	PISCINE ("Natation"), 
-	DETENTE ("Détante"), 
-	RELAXATION ("Relax");
+	NATATION ("Natation"), 
+	COMBAT ("Combat"),
+	ART_MARTIAL ("Art martial"),
+	DANCE ("Danse"),
+	RELAXATION ("Relaxation");
 	
 	private String libelle;
 	

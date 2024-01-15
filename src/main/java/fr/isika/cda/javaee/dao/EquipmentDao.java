@@ -15,6 +15,7 @@ import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
 import fr.isika.cda.javaee.presentation.viewmodel.EquipmentViewModel;
+import fr.isika.cda.javaee.utils.SessionUtils;
 
 @Stateless
 public class EquipmentDao {
@@ -43,7 +44,7 @@ public class EquipmentDao {
 		Equipment equipmentBean = new Equipment();
 		equipmentBean.setEquipmentName(equipmentViewModel.getEquipmentName());
 		equipmentBean.setQuantity(equipmentViewModel.getQuantity());
-		equipmentBean.setCondition(equipmentViewModel.getCondition());
+		equipmentBean.setEquipmentPicturePath(equipmentViewModel.getEquipmentPicturePath());
 		equipmentBean.setDetails(equipmentViewModel.getDetails());
 		equipmentBean.setAttachedGymId(getCurrentConnectedGymId());
 		Activity activity = activityDao.findActivityById(selectedActivity);
@@ -58,7 +59,7 @@ public class EquipmentDao {
 		existingEquipment.setEquipmentName(updateEquipment.getEquipmentName());
 		existingEquipment.setDetails(updateEquipment.getDetails());
 		existingEquipment.setQuantity(updateEquipment.getQuantity());
-		existingEquipment.setCondition(updateEquipment.getCondition());
+		existingEquipment.setEquipmentPicturePath(updateEquipment.getEquipmentPicturePath());
 		existingEquipment.setAttachedGymId(getCurrentConnectedGymId());
 		Activity activity = activityDao.findActivityById(selectedActivity);
 		existingEquipment.setActivity(activity);
@@ -81,8 +82,9 @@ public class EquipmentDao {
 	}
 
 	public List<Equipment> getAllEquipmentsWithActivities() {
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
+		Account logged = SessionUtils.getAccount();
+//		LoginController controller = new LoginController();
+//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountGymId = logged.getGymId();
 		return entityManager.createQuery("SELECT e FROM Equipment e LEFT JOIN FETCH e.activity WHERE e.attachedGymId = :gymIdParam", Equipment.class)
 				.setParameter("gymIdParam", loggedAccountGymId)
@@ -128,6 +130,11 @@ public class EquipmentDao {
 				Space space = spaceDao.getSpaceById(loginController.getLoggedAccount().getGymId());
 				return space;
 			}
+		}
+		
+		public void updateEquipmentPicture(Long equipmentId, String equipmentPicturePath) {
+			Equipment equipment = findEquipmentById(equipmentId);
+			equipment.setEquipmentPicturePath(equipmentPicturePath);
 		}
 
 

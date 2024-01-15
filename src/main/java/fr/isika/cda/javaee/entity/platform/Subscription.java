@@ -34,7 +34,7 @@ public class Subscription {
 	@Column(name = "auto_Renewal")
 	private boolean autoRenewal;
 	@Column(name = "duration")
-	private int duration;
+	private long duration;
 
 	@ManyToOne
 	private Membership membership = new Membership ();
@@ -87,12 +87,12 @@ public class Subscription {
 		this.autoRenewal = autoRenewal;
 	}
 
-	public int getDuration() {
+	public long getDuration() {
 		return duration;
 	}
 
-	public void setDuration(int duration) {
-		this.duration = duration;
+	public void setDuration(long days) {
+		this.duration = days;
 	}
 
 	public void setMembership(Membership membershipChoisi) {
@@ -119,7 +119,7 @@ public class Subscription {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
+
+
 
 }

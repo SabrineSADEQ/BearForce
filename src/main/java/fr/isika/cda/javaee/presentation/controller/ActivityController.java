@@ -26,7 +26,6 @@ import fr.isika.cda.javaee.utils.FileUploadUtils;
 public class ActivityController implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
 	private ActivityViewModel activityViewModel = new ActivityViewModel();
 	private List<Long> selectedEquipments = new ArrayList<>();
 	private Activity selectedActivity;
@@ -64,8 +63,10 @@ public class ActivityController implements Serializable{
 		return activityDao.getAllActivitiesOfGymId();
 	}
 	
+	public void openNewActivity() {
+		this.selectedActivity = new Activity();
+	}
 	
-
 	//DELETE ACTIVITY FROM DATABASE
 	public void deleteSelectedActivity() {
 		activityDao.deleteActivity(selectedActivity.getId());
@@ -75,6 +76,8 @@ public class ActivityController implements Serializable{
 	//MODIFIE ACTIVITY IN DATABASE
 	public void modifieSelectedActivity() {
 		activityDao.updateActivity(selectedActivity);
+		activityDao.updateActivityPicture(selectedActivity.getId(), activityViewModel.getActivityPicturePath());
+		
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Activité mise à jour"));
 		PrimeFaces.current().executeScript("PF('manageActivityDialog').hide()");
 	}
@@ -90,7 +93,12 @@ public class ActivityController implements Serializable{
 
 		FileUploadUtils.uploadFileToApp(uploadedFile, fileName);
 	}
-
+	
+	//***************FOR ENUM VALUES***************
+		public ActivityCategory[] getActivityCategories() {
+			return ActivityCategory.values();
+		}
+	
 	//***************GETTERS & SETTERS***************
 	public ActivityViewModel getActivityViewModel() {
 		return activityViewModel;
@@ -115,11 +123,5 @@ public class ActivityController implements Serializable{
 	public void setSelectedActivity(Activity selectedActivity) {
 		this.selectedActivity = selectedActivity;
 	}
-
-	//***************FOR ENUM VALUES***************
-	public ActivityCategory[] getActivityCategories() {
-		return ActivityCategory.values();
-	}
-	
 
 }

@@ -16,6 +16,7 @@ import fr.isika.cda.javaee.entity.gymspace.Space;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
 import fr.isika.cda.javaee.presentation.viewmodel.CourseViewModel;
+import fr.isika.cda.javaee.utils.SessionUtils;
 
 @Stateless
 public class CourseDAO {
@@ -36,7 +37,6 @@ public class CourseDAO {
 		courseBean.setStartDate(courseViewModel.getStartDate());
 		courseBean.setEndDate(courseViewModel.getEndDate());
 		courseBean.setNbPlaces(courseViewModel.getNbPlaces());
-
 		Profile trainer = activityDao.findTrainerById(courseViewModel.getTrainerId());
 		courseBean.setTrainer(trainer);
 		entityManager.persist(courseBean);
@@ -84,8 +84,9 @@ public class CourseDAO {
 	}
 
 	public List<Course> getAllCoursesWithActivities() {
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
+		Account logged = SessionUtils.getAccount();
+//		LoginController controller = new LoginController();
+//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountGymId = logged.getGymId();	
 		return entityManager
 				.createQuery("SELECT c FROM Course c LEFT JOIN FETCH c.activity WHERE c.activity.attachedGymId = :gymIdParam"
@@ -95,8 +96,9 @@ public class CourseDAO {
 	}
 
 	public List<Course> getAllCoursesOfConnectedCoach() {
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
+		Account logged = SessionUtils.getAccount();
+//		LoginController controller = new LoginController();
+//		Account logged = controller.getLoggedAccount();
 		Long loggedAccountId = logged.getId();	
 		return entityManager
 				.createQuery("SELECT c FROM Course c WHERE c.trainer.account.id = :accountIdParam"

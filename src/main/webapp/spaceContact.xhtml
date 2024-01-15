@@ -12,18 +12,23 @@
 	<ui:define name="titleValue">Contactez-nous</ui:define>
 	<ui:define name="content">
 		<h:outputStylesheet library="css" name="spaceStyle.css" />
-		<div class="content">
-			<!-- Main content goes here -->
-			<h1>Contactez-nous</h1>
-
-			<p>Par email : #{spaceController.spaceViewModel.contactInfo.email}</p>
-			<p>Téléphone : #{spaceController.spaceViewModel.contactInfo.phone}</p>
 	
-			<p>Adresse de la salle : #{spaceController.spaceViewModel.location.streetNumber} 
-								#{spaceController.spaceViewModel.location.streetName} 
-								#{spaceController.spaceViewModel.location.postalCode} 
-								#{spaceController.spaceViewModel.location.city}</p>
-		
+			<!-- Main content goes here -->
+			<div class="contactUs">
+				<h1 id="mainTitle">Contactez-nous</h1>
+
+				<p>Par email :
+					#{spaceController.spaceViewModel.contactInfo.email}</p>
+				<p>Téléphone :
+					#{spaceController.spaceViewModel.contactInfo.phone}</p>
+
+				<p>Adresse de la salle :
+					#{spaceController.spaceViewModel.location.streetNumber}
+					#{spaceController.spaceViewModel.location.streetName}
+					#{spaceController.spaceViewModel.location.postalCode}
+					#{spaceController.spaceViewModel.location.city}</p>
+
+			
 		</div>
 
 	</ui:define>
