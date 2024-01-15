@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+	<ui:define name="titleValue">Créer un compte</ui:define>
+	<ui:define name="content">
+		<style>
+.form-step {
+	margin: 20px;
+	border: 1px solid #ccc; /* Add a border to the form */
+	padding: 25px; /* Add padding inside the form */
+}
+
+.step-label {
+	font-size: 24px; /* Increase the font size for the step label */
+	margin-bottom: 15px;
+	display: block;
+	font-weight: bold; /* Optionally, make the text bold */
+}
+
+.form-grid {
+	margin-bottom: 10px;
+}
+
+.role-radio {
+	margin-bottom: 15px;
+}
+
+.next-button {
+	margin-top: 10px;
+	font-size: 16px; /* Adjust the font size as needed */
+	padding: 10px 20px; /* Adjust the padding as needed */
+}
+
+.field-label {
+	margin-bottom: 15px; /* Increase the margin between field labels */
+}
+</style>
+
+
+		<!-- Step 1: Collect Email and Password -->
+
+		<h:form rendered="#{accountController.wizardStep == 1}"
+			styleClass="form-step">
+			<h:outputLabel value="Créer votre compte" styleClass="step-label" />
+
+			<h:panelGrid columns="2" styleClass="ui-g form-grid">
+				<h:outputLabel for="email" value="Email :"
+					style="display: block; margin-bottom: 25px;" />
+				<p:inputText id="email" value="#{accountController.accountVM.email}"
+					required="true" styleClass="ui-inputfield input-field"
+					style="margin-bottom: 25px" />
+
+
+				<h:outputLabel for="password" value="Mot de passe :"
+					style="display: block; margin-bottom: 25px;" />
+				<p:password id="password"
+					value="#{accountController.accountVM.password}" required="true"
+					styleClass="ui-inputfield input-field" style="margin-bottom: 25px" />
+
+				<h:panelGroup
+					rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}">
+					<h:outputLabel for="role1" value="Role:" />
+					<p:selectOneRadio id="role1"
+						value="#{accountController.accountVM.role}" required="true"
+						styleClass="role-radio">
+						<f:selectItem itemValue="GESTIONNAIRE" itemLabel="Professionnel" />
+						<f:selectItem itemValue="ADHERENT" itemLabel="Particulier" />
+						<f:selectItem itemValue="COACH" itemLabel="Coach" />
+					</p:selectOneRadio>
+				</h:panelGroup>
+
+				<h:panelGroup
+					rendered="#{loginController.getLoggedAccount().role ne 'GESTIONNAIRE'}">
+					<h:outputLabel for="role2" value="Role:" rendered="false" />
+					<p:selectOneRadio id="role2"
+						value="#{accountController.accountVM.role}" required="true"
+						styleClass="role-radio">
+						<f:selectItem itemValue="GESTIONNAIRE" itemLabel="Professionnel" />
+						<f:selectItem itemValue="ADHERENT" itemLabel="Particulier" />
+					</p:selectOneRadio>
+				</h:panelGroup>
+
+			</h:panelGrid>
+
+			<p:spacer height="20" />
+
+			<h:commandButton value="Suite"
+				action="#{accountController.nextWizardStep}"
+				styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only next-button" />
+		</h:form>
+
+
+
+
+		<h:form rendered="#{accountController.wizardStep == 2}"
+			styleClass="form-step">
+			<h:outputLabel value="Votre profil" styleClass="step-label" />
+			<h:panelGrid columns="2" styleClass="ui-g form-grid">
+
+				<h:outputLabel for="nameStep2" value="Prénom :"
+					styleClass="field-label" />
+				<h:inputText id="nameStep2"
+					value="#{accountController.accountVM.profile.firstName}"
+					styleClass="ui-inputfield input-field" />
+
+
+				<h:outputLabel for="firstnameStep2" value="Nom:"
+					styleClass="field-label" />
+				<h:inputText id="firstnameStep2"
+					value="#{accountController.accountVM.profile.lastName}"
+					styleClass="ui-inputfield input-field" />
+
+				<h:outputLabel for="birthDateStep2" value="Date de naissance:"
+					styleClass="field-label" />
+				<input type="date" id="birthDateStep2" name="birthDate"
+					value="#{accountController.accountVM.profile.birthDate}"
+					styleClass="ui-inputfield input-field" />
+
+
+				<h:outputLabel for="phoneStep2" value="Telephone :"
+					styleClass="field-label" />
+				<h:inputText id="phoneStep2"
+					value="#{accountController.accountVM.profile.contact.phone}"
+					styleClass="ui-inputfield input-field" />
+
+
+				<h:outputLabel for="emailStep2" value="Email:"
+					styleClass="field-label" />
+				<h:inputText id="emailStep2"
+					value="#{accountController.accountVM.profile.contact.email}"
+					styleClass="ui-inputfield input-field" />
+
+
+				<h:outputLabel for="typeContactStep2" value="Preference de contact:"
+					styleClass="field-label" />
+				<h:selectOneMenu id="typeContactStep2"
+					value="#{accountController.accountVM.profile.contact.type}"
+					styleClass="ui-inputfield input-field">
+					<f:selectItem itemValue="PERSO" itemLabel="Email" />
+					<f:selectItem itemValue="PRO" itemLabel="Telephone" />
+				</h:selectOneMenu>
+
+
+				<h:outputLabel for="streetNumber" value="Numéro de rue:"
+					styleClass="field-label" />
+				<h:inputText id="streetNumberStep2"
+					value="#{accountController.accountVM.profile.address.streetNumber}"
+					styleClass="ui-inputfield input-field" />
+
+				<h:outputLabel for="streetName" value="Nom de rue:"
+					styleClass="field-label" />
+				<h:inputText id="streetNameStep2"
+					value="#{accountController.accountVM.profile.address.streetName}"
+					styleClass="ui-inputfield input-field" />
+
+				<h:outputLabel for="postalCode" value="Code postal:"
+					styleClass="field-label" />
+				<h:inputText id="postalCodeStep2"
+					value="#{accountController.accountVM.profile.address.postalCode}"
+					styleClass="ui-inputfield input-field" />
+
+				<h:outputLabel for="city" value="Ville:" styleClass="field-label" />
+				<h:inputText id="city"
+					value="#{accountController.accountVM.profile.address.city}"
+					styleClass="ui-inputfield input-field" />
+
+
+				<h:outputLabel for="profilePicture">Photo de profil</h:outputLabel>
+				<!-- Composant graphique pour le fichier -->
+				<p:fileUpload label="Ajouter" uploadLabel="Télécharger" cancelLabel="Annuler" id="profilePicture"
+					listener="#{accountController.uploadFileLogo}" styleClass="w-100"
+					mode="advanced" dragDropSupport="false" />
+
+
+				<h:panelGroup
+					rendered="#{accountController.accountVM.role eq 'COACH'}">
+					<h:outputLabel for="coachCertification" value="Certifications :"
+						styleClass="field-label" />
+					<h:inputText id="coachCertification"
+						value="#{accountController.accountVM.profile.profesionalDetails.coachCertification}"
+						styleClass="ui-inputfield input-field" />
+
+					<h:outputLabel for="coachForm" value="Formations :"
+						styleClass="field-label" />
+					<h:inputText id="coachForm"
+						value="#{accountController.accountVM.profile.profesionalDetails.coachForm}"
+						styleClass="ui-inputfield input-field" />
+
+					<h:outputLabel for="coachCV" value="Résumé du CV :"
+						styleClass="field-label" />
+					<h:inputText id="coachCV"
+						value="#{accountController.accountVM.profile.profesionalDetails.coachCV}"
+						styleClass="ui-inputfield input-field" />
+				</h:panelGroup>
+			</h:panelGrid>
+
+			 <h:commandButton value="Retour" action="#{accountController.previousWizardStep}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only next-button" />
+         <h:commandButton value="Valider" action="#{accountController.finishWizard}" rendered="#{accountController.accountVM.role eq 'GESTIONNAIRE'}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only finish-button" style="margin-left: 10px; font-size: 15px; padding: 10px 20px;" />
+        
+        <h:commandButton value="Suite" action="#{accountController.nextWizardStep}" rendered="#{accountController.accountVM.role ne 'GESTIONNAIRE'}" styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only next-button" />
+       
+        <h:messages globalOnly="true" />
+
+		</h:form>
+
+		<h:form rendered="#{accountController.wizardStep == 3}">
+
+			<div class="card">
+				<p:carousel value="#{spaceController.getAllSpaces()}" var="space"
+					numVisible="3" numScroll="3">
+					<f:facet name="header">
+						<h5>Nos clients</h5>
+					</f:facet>
+					<div class="product-item">
+						<div class="product-item-content">
+							<div class="mb-3">
+								<!-- 									<p:graphicImage name="demo/images/product/#{product.image}" -->
+								<!-- 										styleClass="product-image" /> -->
+							</div>
+							<div>
+								<h4 class="mb-1">#{space.idGym.gymName}</h4>
+								<h6 class="mt-0 mb-3">
+									<h:outputText
+										value="#{space.visualIdentity.spaceTextContent.motto}">
+									</h:outputText>
+								</h6>
+								<span>
+									#{space.visualIdentity.spaceTextContent.description}</span>
+
+							</div>
+						</div>
+					</div>
+				</p:carousel>
+			</div>
+			<h:outputLabel value="Votre salle de sport"
+				style="margin-left: 10px;" />
+
+			<div class="form-group">
+				<h:outputLabel for="gymId2" styleClass="form-label"
+					style="margin-left: 10px;">Choisir: </h:outputLabel>
+				<h:selectOneMenu id="gymId2"
+					value="#{accountController.accountVM.gymId}" required="true"
+					styleClass="form-input">
+					<f:selectItems value="#{spaceController.allSpaces}" var="space"
+						itemLabel="#{space.idGym.gymName}" itemValue="#{space.id}" />
+				</h:selectOneMenu>
+			</div>
+
+			<div class="button-group">
+				<h:commandButton value="Retour"
+					action="#{accountController.previousWizardStep}"
+					styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only prev-button"
+					style="margin-left: 10px; font-size: 15px; padding: 10px 20px;" />
+				<h:commandButton value="Valider"
+					action="#{accountController.finishWizard}"
+					styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only finish-button"
+					style="margin-left: 10px; font-size: 15px; padding: 10px 20px;" />
+			</div>
+
+			<h:messages globalOnly="true" />
+
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

@@ -5,18 +5,19 @@ import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 public class EquipmentViewModel {
 	private long id ;
 	private long activityId;
-	private String condition ;
+	private String equipmentPicturePath ;
 	private int quantity ;
 	private String equipmentName;
 	private String details ;
 	private Activity activity;
 	
+	
 	//***************GETTERS & SETTERS***************
-	public String getCondition() {
-		return condition;
+	public String getEquipmentPicturePath() {
+		return equipmentPicturePath;
 	}
-	public void setCondition(String type) {
-		this.condition = type;
+	public void setEquipmentPicturePath(String equipmentPicturePath) {
+		this.equipmentPicturePath = equipmentPicturePath;
 	}
 	public int getQuantity() {
 		return quantity;

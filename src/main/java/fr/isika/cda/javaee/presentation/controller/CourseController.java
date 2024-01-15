@@ -13,6 +13,7 @@ import javax.inject.Named;
 import org.primefaces.PrimeFaces;
 
 import fr.isika.cda.javaee.dao.CourseDAO;
+import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
 import fr.isika.cda.javaee.entity.gymspace.business.Equipment;
 import fr.isika.cda.javaee.entity.platform.PlatformConfiguration;
@@ -63,9 +64,9 @@ public class CourseController implements Serializable{
 		return courseDao.getAllCoursesWithActivities();
 	}
 	
-	
-	
-	
+	public void openNewCourse() {
+		this.selectedCourse = new Course();
+	}
 
 	//***************GETTERS & SETTERS***************
 	public CourseViewModel getCourseViewModel() {

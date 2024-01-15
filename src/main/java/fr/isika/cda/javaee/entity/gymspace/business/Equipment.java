@@ -17,9 +17,8 @@ public class Equipment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id ;	
-	// Eviter le mot clé "condition" apparemment dans mysql
-	@Column(name = "usageCondition")
-	private String condition ;	
+	@Column(name = "equipment_picture_path")
+	private String equipmentPicturePath ;	
 	private int quantity ;
 	private Long attachedGymId;
 	@Column(name="equipment_name")
@@ -28,12 +27,12 @@ public class Equipment {
 	@ManyToOne
 	private Activity activity;
 	
-	public String getCondition() {
-		return condition;
+	public String getEquipmentPicturePath() {
+		return equipmentPicturePath;
 	}
 
-	public void setCondition(String condition) {
-		this.condition = condition;
+	public void setEquipmentPicturePath(String equipmentPicturePath) {
+		this.equipmentPicturePath = equipmentPicturePath;
 	}
 
 	public int getQuantity() {

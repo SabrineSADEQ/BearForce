@@ -207,7 +207,7 @@ public class DataInitializer {
 		 */
 
 		EquipmentViewModel equipment = new EquipmentViewModel();
-		equipment.setCondition("bonne");
+		equipment.setEquipmentPicturePath(null);
 		equipment.setQuantity(10);
 		equipment.setEquipmentName("barre de traction");
 		equipment.setDetails("barre de traction montée sur support métallique, poids max de 120kg");
