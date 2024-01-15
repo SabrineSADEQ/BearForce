@@ -69,6 +69,14 @@ html body .ui-button #logout-button, #login-button {
 	color: var(--firstColor);
 }
 
+html ui-menuitem ui-widget ui-corner-all .ui-menuitem-active {
+	border-color:transparent;
+	border-radius:20px;
+	background-color: var(--thirdColor);
+	
+	
+}
+
 
 .rightButton{
 	margin-left:10px;

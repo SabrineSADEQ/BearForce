@@ -166,7 +166,7 @@ public class DataInitializer {
 
 		profileCoach.setAddress(addressCoach);
 		profileCoach.setContact(contactCoach);
-		
+
 		ProfessionalDetails coachDetails = new ProfessionalDetails();
 		coachDetails.setCoachCertification("Certifiée en Zumba, 4ème niveau et en Yoga");
 		coachDetails.setCoachForm("Advanced Coaching");
@@ -178,13 +178,12 @@ public class DataInitializer {
 		coach.setProfile(profileCoach);
 
 		Account savedAccount = accountDao.createAccount(coach);
-		
-		
+
 		/*
-		 * Do not delete this 
+		 * Do not delete this
 		 */
 		createFakeProfiles();
-		
+
 		/*
 		 * Prépa données cours par défaut + activité + coach
 		 */
@@ -194,7 +193,7 @@ public class DataInitializer {
 		activity.setAttachedGymId(Long.valueOf(61));
 		activity.setActivityCategory(ActivityCategory.CARDIO);
 		activityDao.persist(activity);
-		
+
 		Course course = new Course();
 		course.setActivity(activity);
 		course.setTrainer(savedAccount.getProfile());
@@ -202,7 +201,7 @@ public class DataInitializer {
 		course.setEndDate(LocalDateTime.now().plusHours(2));
 		course.setNbPlaces(10);
 		courseDao.saveCourse(course);
-		
+
 		/*
 		 * Fin données cours
 		 */
@@ -212,61 +211,60 @@ public class DataInitializer {
 		equipment.setQuantity(10);
 		equipment.setEquipmentName("barre de traction");
 		equipment.setDetails("barre de traction montée sur support métallique, poids max de 120kg");
-    		//equipmentDao.createEquipment(equipment, null);
+		// equipmentDao.createEquipment(equipment, null);
 
 		// Packs for the BearForce platform
 		Pack basicPack = new Pack();
 		basicPack.setName("Ourson");
 		basicPack.setPrice(99);
-		packDao. deletePack(basicPack);
+		packDao.deletePack(basicPack);
 
 		Pack premiumPack = new Pack();
 		premiumPack.setName("Grizzly");
 		premiumPack.setPrice(199);
-		packDao. deletePack(premiumPack);
-		
-		
+		packDao.deletePack(premiumPack);
+
 		Pack basicPack1 = new Pack();
 		basicPack1.setName("Basic");
 		basicPack1.setPrice(200);
-		basicPack1.setDescription("Offre une solution économique, idéale pour les petites salles de sport , en facilitant la gestion des membres, le suivi des paiements, et en fournissant des rapports de base pour une gestion transparente.");
+		basicPack1.setDescription(
+				"Offre une solution économique, idéale pour les petites salles de sport , en facilitant la gestion des membres, le suivi des paiements, et en fournissant des rapports de base pour une gestion transparente.");
 		packDao.createPack(basicPack1);
-		
+
 		Pack avancePack = new Pack();
 		avancePack.setName("Avancé");
 		avancePack.setPrice(250);
-		avancePack.setDescription("Le package Avancé élève votre salle de sport en offrant, au-delà des fonctionnalités essentielles, la planification de cours, la gestion des réservations, et une analyse approfondie des performances.");
+		avancePack.setDescription(
+				"Le package Avancé élève votre salle de sport en offrant, au-delà des fonctionnalités essentielles, la planification de cours, la gestion des réservations, et une analyse approfondie des performances.");
 		packDao.createPack(avancePack);
-		
+
 		Pack premiumPack1 = new Pack();
 		premiumPack1.setName("Premium");
 		premiumPack1.setPrice(400);
-		premiumPack1.setDescription("Le package Premium offre une expérience exceptionnelle avec des fonctionnalités avancées, un support prioritaire, idéal pour les salles de sport visant l'excellence et la satisfaction maximale des membres");
+		premiumPack1.setDescription(
+				"Le package Premium offre une expérience exceptionnelle avec des fonctionnalités avancées, un support prioritaire, idéal pour les salles de sport visant l'excellence et la satisfaction maximale des membres");
 		packDao.createPack(premiumPack1);
-		
+
 		// Memberships for the example spaces
-		
+
 		Membership membership2 = new Membership();
 		membership2.setName("Bronze");
-		membership2.setPrice(20);
+		membership2.setPrice(19.99);
 		membership2.setNbrOfActivities(2);
 		membership2.setDescription("2 cours par semaine, pour une remise en forme en douceur, "
 				+ "un accès à l'espace détente par semaine");
 		membershipDao.saveMembership(membership2);
-		
 
 		Membership membership3 = new Membership();
 		membership3.setName("Silver");
-		membership3.setPrice(45);
+		membership3.setPrice(45.99);
 		membership3.setNbrOfActivities(7);
 		membership3.setDescription("7 cours par semaine, accès illimité aux équipements en accès libre");
-		
-		
-		
+
 		membershipDao.saveMembership(membership3);
 		Membership membership = new Membership();
 		membership.setName("Gold");
-		membership.setPrice(99);
+		membership.setPrice(99.99);
 		membership.setNbrOfActivities(20);
 		membership.setDescription("Jusqu'à 20 cours par semaine pour les plus grands sportifs,"
 				+ " encadrement personnalisé par le coach de votre choix et accès illimité à l'espace détente");
@@ -276,10 +274,10 @@ public class DataInitializer {
 		membershipList.add(membership);
 		membershipList.add(membership2);
 		membershipList.add(membership3);
-		
+
 		IdGym idGym = new IdGym();
 		idGym.setMemberships(membershipList);
-		
+
 		SpaceViewModel spaceViewModel = new SpaceViewModel();
 		spaceViewModel.setFirstColor("845EC2");
 		spaceViewModel.setSecondColor("00C9A7");
@@ -311,7 +309,7 @@ public class DataInitializer {
 		contactGym.setEmail("contact@gogym.com");
 		contactGym.setType(TypeContact.PRO);
 		spaceViewModel.setContactInfo(contactGym);
-		
+
 		spaceViewModel.setIdGym(idGym);
 
 		spaceDao.createSpace(spaceViewModel);
@@ -323,7 +321,6 @@ public class DataInitializer {
 		subscription.setDuration(6);
 		subscription.setMembership(membership);
 		subscriptionDao.CreateSubscription(subscription);
-
 
 		AccountViewModel Adherent2 = new AccountViewModel();
 		Adherent2.setEmail("leroymerlin@gmail.com");
@@ -354,7 +351,7 @@ public class DataInitializer {
 		profileAdherent3.setContact(contact3);
 		Adherent3.setProfile(profileAdherent3);
 		accountDao.createAccount(Adherent3);
-		
+
 		AccountViewModel anotherAdherent = new AccountViewModel();
 		anotherAdherent.setEmail("alice@example.com");
 		anotherAdherent.setPassword("securePassword123");
@@ -378,9 +375,9 @@ public class DataInitializer {
 		anotherProfileAdherent.setAddress(anotherAddressAdherent);
 		anotherProfileAdherent.setContact(anotherContact);
 
-		anotherAdherent.setProfile(anotherProfileAdherent);	
+		anotherAdherent.setProfile(anotherProfileAdherent);
 		accountDao.createAccount(anotherAdherent);
-		
+
 		AccountViewModel newMember = new AccountViewModel();
 		newMember.setEmail("emma@example.com");
 		newMember.setPassword("strongPassword456");
@@ -405,7 +402,7 @@ public class DataInitializer {
 
 		newMember.setProfile(newMemberProfile);
 		accountDao.createAccount(newMember);
-		
+
 		AccountViewModel guestUser = new AccountViewModel();
 		guestUser.setEmail("alex@example.com");
 		guestUser.setPassword("temporaryPass789");
@@ -430,7 +427,7 @@ public class DataInitializer {
 
 		guestUser.setProfile(guestProfile);
 		accountDao.createAccount(guestUser);
-		
+
 		AccountViewModel premiumMember = new AccountViewModel();
 		premiumMember.setEmail("sophia@example.com");
 		premiumMember.setPassword("strongPass789");
@@ -471,7 +468,7 @@ public class DataInitializer {
 		yogaCourse.setEndDate(LocalDateTime.now().plusDays(1).plusHours(1)); // Duration: 1 hour
 		yogaCourse.setNbPlaces(15); // Maximum number of participants
 		courseDao.saveCourse(yogaCourse);
-		
+
 		// Create an Activity
 		Activity newActivity2 = new Activity();
 		newActivity2.setName("HIIT Training");
@@ -487,8 +484,7 @@ public class DataInitializer {
 		hiitCourse.setEndDate(LocalDateTime.now().plusDays(2).plusHours(1)); // Duration: 1 hour
 		hiitCourse.setNbPlaces(20); // Maximum number of participants
 		courseDao.saveCourse(hiitCourse);
-		
-		
+
 		SpaceViewModel newSpace = new SpaceViewModel();
 		newSpace.setFirstColor("FF5733");
 		newSpace.setSecondColor("33FF57");
@@ -498,7 +494,9 @@ public class DataInitializer {
 		newSpace.setMotto("No pain, no gain");
 		newSpace.setSpaceName("Forklift");
 		newSpace.setDescription(
-		        "Plus qu'une salle de sport, une salle ou les corps s'activent");
+				"Entrez dans un monde de bien-être dans notre salle de sport moderne, où chaque séance d'entraînement devient une aventure."
+						+ " Avec une variété de cours adaptés à tous les niveaux et des équipements de pointe, vous atteindrez vos objectifs "
+						+ "tout en repoussant vos limites.");
 		newSpace.setFreeAccess(false); // No free access
 		newSpace.setLockerRoom(true);
 
@@ -518,10 +516,8 @@ public class DataInitializer {
 		contactGym2.setType(TypeContact.PERSO);
 		newSpace.setContactInfo(contactGym2);
 
-		
-
 		spaceDao.createSpace(newSpace);
-		
+
 		SpaceViewModel fitnessCenter = new SpaceViewModel();
 		fitnessCenter.setFirstColor("4285F4");
 		fitnessCenter.setSecondColor("DB4437");
@@ -529,9 +525,11 @@ public class DataInitializer {
 		fitnessCenter.setGymLogoPath("fitness_logo.png");
 		fitnessCenter.setGymBannerPath("banner_fitness.jpg");
 		fitnessCenter.setMotto("Toujours plus forts");
-		fitnessCenter.setSpaceName("FitnessBonhomme");
+		fitnessCenter.setSpaceName("Fit&Meet");
 		fitnessCenter.setDescription(
-		        "Ici, c'est jusqu'à plus envie");
+				"Rejoignez notre communauté de passionnés de fitness dans notre salle de sport. "
+						+ "Des cours captivants, des équipements de pointe et une atmosphère motivante font de notre espace "
+						+ "le choix parfait pour quiconque cherche à élever son niveau de forme physique.");
 		fitnessCenter.setFreeAccess(false);
 		fitnessCenter.setLockerRoom(true);
 
@@ -542,7 +540,7 @@ public class DataInitializer {
 		gymAddress.setStreetNumber("123");
 		gymAddress.setStreetName("Main Street");
 		gymAddress.setPostalCode("90210");
-		gymAddress.setCity("Potier");
+		gymAddress.setCity("Mulhouse");
 		fitnessCenter.setLocation(gymAddress);
 
 		Contact gymContact = new Contact();
@@ -552,8 +550,6 @@ public class DataInitializer {
 		fitnessCenter.setContactInfo(gymContact);
 
 		spaceDao.createSpace(fitnessCenter);
-
-
 
 	}
 
@@ -566,7 +562,7 @@ public class DataInitializer {
 		profileCoach2.setLastName("Simon");
 		profileCoach2.setPictureUrl("profil2.jpg");
 
-		Address addressCoach2= new Address();
+		Address addressCoach2 = new Address();
 		addressCoach2.setCity("Paris");
 		addressCoach2.setStreetName("rue de Générale Leclerc");
 		addressCoach2.setStreetNumber("4");
@@ -578,7 +574,7 @@ public class DataInitializer {
 
 		profileCoach2.setAddress(addressCoach2);
 		profileCoach2.setContact(contactCoach2);
-		
+
 		ProfessionalDetails coachDetails1 = new ProfessionalDetails();
 		coachDetails1.setCoachCertification("Certifiée en Zumba, 4ème niveau et en Yoga");
 		coachDetails1.setCoachForm("Advanced Coaching");
@@ -587,13 +583,12 @@ public class DataInitializer {
 
 		profileCoach2.setProfesionalDetails(coachDetails1);
 
-		
 		AccountViewModel coach = new AccountViewModel();
 		coach.setEmail("coach.lambert@gmail.com");
 		coach.setPassword("coach");
 		coach.setRole(Role.COACH);
 		coach.setGymId((long) 61);
-		
+
 		Goal goal2 = new Goal();
 		goal2.setGoalName("Perte de poids");
 		goal2.setGoalDate(LocalDate.of(2024, Month.FEBRUARY, 28));
@@ -602,9 +597,9 @@ public class DataInitializer {
 		coach.setProfile(profileCoach2);
 
 		Account savedAccount = accountDao.createAccount(coach);
-		
-		//***************************************************************************************************************
-		
+
+		// ***************************************************************************************************************
+
 		/*
 		 * 2er profile fake
 		 */
@@ -613,7 +608,7 @@ public class DataInitializer {
 		profileCoach3.setLastName("Cai");
 		profileCoach3.setPictureUrl("profil3.png");
 
-		Address addressCoach3= new Address();
+		Address addressCoach3 = new Address();
 		addressCoach3.setCity("Créteil");
 		addressCoach3.setStreetName("rue Charles de Gaulle");
 		addressCoach3.setStreetNumber("14");
@@ -625,7 +620,7 @@ public class DataInitializer {
 
 		profileCoach3.setAddress(addressCoach3);
 		profileCoach3.setContact(contactCoach3);
-		
+
 		ProfessionalDetails coachDetails3 = new ProfessionalDetails();
 		coachDetails3.setCoachCertification("Certifiée en Zumba, 4ème niveau et en Yoga");
 		coachDetails3.setCoachForm("Advanced Yoga");
@@ -634,20 +629,19 @@ public class DataInitializer {
 
 		profileCoach3.setProfesionalDetails(coachDetails3);
 
-		
 		AccountViewModel coach3 = new AccountViewModel();
 		coach3.setEmail("emma26@gmail.com");
 		coach3.setPassword("coach124");
 		coach3.setRole(Role.COACH);
 		coach3.setGymId((long) 61);
-		
+
 		Goal goal3 = new Goal();
 		goal3.setGoalName(" Yoga");
 		goal3.setGoalDate(LocalDate.of(2023, Month.FEBRUARY, 28));
 
 		coach3.setGoal(goal3);
 		coach3.setProfile(profileCoach3);
-		
+
 		Account savedAccount3 = accountDao.createAccount(coach3);
 //		Profile profileCoach2 = new Profile();
 //		profileCoach2.setFirstName("Rayan");

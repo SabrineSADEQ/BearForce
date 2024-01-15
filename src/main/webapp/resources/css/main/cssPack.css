@@ -5,10 +5,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+ 
 }
 body{
-  min-height: 100vh;
+  max-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,12 +19,16 @@ body{
   color: #10182f;
 }
 .slide-container{
- 
+   font-family: 'Poppins', sans-serif;
   display: flex;
   width: 1040px;
   justify-content: space-evenly;
   flex-wrap: wrap;
 
+}
+
+.slide-content{
+	  margin-bottom:10px;
 }
 
 .card{
@@ -58,7 +62,9 @@ body{
   
 }
 
-
+.titre{
+	margin:25px;
+}
 
 .card-image {
   position: relative;

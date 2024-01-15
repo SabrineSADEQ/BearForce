@@ -165,6 +165,18 @@ html body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-tex
 	color:var(--firstColor) !important;
 }
 
+.contactUs{
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	margin:100px;
+	padding:20px;
+	border-radius: 10px;
+	box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+	overflow: hidden;
+
+}
+
 
 
 
@@ -237,5 +249,21 @@ html body .ui-fileupload .ui-fileupload-content {
 	 border-color:transparent;
 	 
 }
+
+.parent {
+  width: 100%;
+  height: 100vh;
+  background: transparent;
+  overflow: hidden
+}
+.magicpattern { 
+  width: 50%;
+  height: 50%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: repeat;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg height=%22auto%22 viewBox=%220 0 2000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath d=%22M0 1000h123.077v-3.587q0-2-2-2H2q-2 0-2 2ZM153.846 1000h123.077v-43.577q0-2-2-2H155.846q-2 0-2 2ZM307.692 1000H430.77v-86.745q0-2-2-2H309.692q-2 0-2 2ZM461.538 1000h123.077V865.339q0-2-2-2H463.538q-2 0-2 2ZM615.385 1000h123.077V757.015q0-2-2-2H617.385q-2 0-2 2ZM769.23 1000h123.078V670.617q0-2-2-2H771.23q-2 0-2 2ZM923.077 1000h123.077V512.036q0-2-2-2H925.077q-2 0-2 2ZM1076.923 1000H1200V485.812q0-2-2-2h-119.077q-2 0-2 2ZM1230.77 1000h123.076V413.543q0-2-2-2H1232.77q-2 0-2 2ZM1384.615 1000h123.077V362.947q0-2-2-2h-119.077q-2 0-2 2ZM1538.462 1000h123.076V403.843q0-2-2-2h-119.076q-2 0-2 2ZM1692.308 1000h123.077V160.614q0-2-2-2h-119.077q-2 0-2 2ZM1846.154 1000h123.077V326.123q0-2-2-2h-119.077q-2 0-2 2Z%22 fill=%22%233edeb8%22%2F%3E%3C%2Fsvg%3E");
+}
+
 
 
