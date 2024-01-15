@@ -48,17 +48,13 @@
 				<h:panelGrid class="panelsub" columns="2">
 					<label for="startDate">Date de début :</label>
 					<p:datePicker id="startDate"
-						value="#{subscriptionManagedBean.subscriptionViewModel.startDate}" />
+						value="#{subscriptionManagedBean.subscriptionViewModel.startDate}" showIcon="true" />
 
 					<label for="endDate">Date de fin :</label>
 
 					<p:datePicker id="endDate"
-						value="#{subscriptionManagedBean.subscriptionViewModel.endDate}" />
+						value="#{subscriptionManagedBean.subscriptionViewModel.endDate}" showIcon="true" />
 					
-					<label for="duration">Durée :</label>
-					<p:datePicker id="duration" value="#{subscriptionManagedBean.subscriptionViewModel.duration}" />
-
-
 					<p:selectBooleanCheckbox id="renewal"
 						value="#{subscriptionManagedBean.subscriptionViewModel.autorenewal}">
                         Renouvellement automatique

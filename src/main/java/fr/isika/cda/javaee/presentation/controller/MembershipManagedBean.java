@@ -1,7 +1,6 @@
 package fr.isika.cda.javaee.presentation.controller;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -61,10 +60,8 @@ public class MembershipManagedBean implements Serializable {
 	}
 
 	public List<Membership> getMemberships() {
-
 		memberships = membershipDao.getAllMemberships();
 		return memberships;
-
 	}
 
 	public Membership getSelectedMembership() {
@@ -80,7 +77,7 @@ public class MembershipManagedBean implements Serializable {
 		newMembership.setName(membershipViewModel.getName());
 		newMembership.setNbrOfActivities(membershipViewModel.getNbrOfActivities());
 		newMembership.setPrice(membershipViewModel.getPrice());
-
+		newMembership.setDescription(membershipViewModel.getDescription());
 		membershipDao.addMembership(newMembership);
 
 		// Réinitialise le viewModel après la création
