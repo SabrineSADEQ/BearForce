@@ -15,7 +15,7 @@
 
 		<h:form rendered="#{accountController.wizardStep == 1}"
 			styleClass="form-step">
-			<h:outputLabel value="Créer votre compte" styleClass="step-label" />
+			<h:outputLabel value="Créer un compte" styleClass="step-label" />
 
 			<h:panelGrid columns="2" styleClass="ui-g form-grid">
 				<h:outputLabel for="email" value="Email :"
@@ -37,8 +37,8 @@
 					<p:selectOneRadio id="role1"
 						value="#{accountController.accountVM.role}" required="true"
 						styleClass="role-radio">
-						<f:selectItem itemValue="GESTIONNAIRE" itemLabel="Professionnel" />
-						<f:selectItem itemValue="ADHERENT" itemLabel="Particulier" />
+						<f:selectItem itemValue="GESTIONNAIRE" itemLabel="gestionnaire" />
+						<f:selectItem itemValue="ADHERENT" itemLabel="adherent" />
 						<f:selectItem itemValue="COACH" itemLabel="Coach" />
 					</p:selectOneRadio>
 				</h:panelGroup>
@@ -68,7 +68,7 @@
 
 		<h:form rendered="#{accountController.wizardStep == 2}"
 			styleClass="form-step">
-			<h:outputLabel value="Votre profil" styleClass="step-label" />
+			<h:outputLabel value=" profil" styleClass="step-label" />
 			<h:panelGrid columns="2" styleClass="ui-g form-grid">
 
 				<h:outputLabel for="nameStep2" value="Prénom :"
