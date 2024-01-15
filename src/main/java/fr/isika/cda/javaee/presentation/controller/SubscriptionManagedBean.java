@@ -32,9 +32,6 @@ import fr.isika.cda.javaee.utils.SessionUtils;
 @ViewScoped
 public class SubscriptionManagedBean implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -324909137916793277L;
 
 	private SubscriptionViewModel subscriptionViewModel = new SubscriptionViewModel();
@@ -81,8 +78,8 @@ public class SubscriptionManagedBean implements Serializable {
 	}
 	
 	public String redirectToPaymentSubscription(Long subscriptionId) {
-	
-		return "pagePayment.xhtml?faces-redirect=true&amp;spaceId=" 
+		
+		return "membershipPayment.xhtml?faces-redirect=true&amp;spaceId=" 
 				+ SessionUtils.getAccount().getGymId()
 				+ "&amp;subscriptionId=" + subscriptionId;
 	}

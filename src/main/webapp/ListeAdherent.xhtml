@@ -11,34 +11,35 @@
 
     <ui:define name="content">
    <h:outputStylesheet library="css" name="main/tableListq.css" />
-<div class="subcontent">
-      <h1>Liste des adhérents</h1>
+		<div class="subcontent">
+			<h1>Liste des adhérents</h1>
 
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Mail</th>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Téléphone</th>
-          </tr>
-        </thead>
-        <tbody>
-          <ui:repeat value="#{accountController.AllAccounts()}" var="account">
-            <ui:fragment rendered="#{account.gymId eq loginController.loggedAccount.gymId and account.role eq 'ADHERENT'}">
-              <tr>
-                <td>#{account.email}</td>
-                <td>#{account.profile.firstName}</td>
-                <td>#{account.profile.lastName}</td>
-                <td>#{account.profile.contact.phone}</td>
-              </tr>
-            </ui:fragment>
-          </ui:repeat>
-        </tbody>
-      </table>
-      </div>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>Mail</th>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Téléphone</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat value="#{accountController.AllAccounts()}" var="account">
+						<ui:fragment
+							rendered="#{account.gymId eq loginController.loggedAccount.gymId and account.role eq 'ADHERENT'}">
+							<tr>
+								<td>#{account.email}</td>
+								<td>#{account.profile.firstName}</td>
+								<td>#{account.profile.lastName}</td>
+								<td>#{account.profile.contact.phone}</td>
+							</tr>
+						</ui:fragment>
+					</ui:repeat>
+				</tbody>
+			</table>
+		</div>
 
-    </ui:define>
+	</ui:define>
 
   </ui:composition>
 

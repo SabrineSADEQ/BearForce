@@ -59,10 +59,10 @@
 					<p:graphicImage library="images" name="paymentSuccessful.png" />
 				</div>
 				<br />
-				
-				<p:commandButton value=" Créer votre espace" rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}"
-					action="#{subscriptionManagementController.dirigeVersSpaceCreation()}" />
 			
+				<p:button value="Retourner sur mon espace" rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}"
+					outcome="accueil.xhtml" />
+
 			</h:form>
 
 		</p:dialog>

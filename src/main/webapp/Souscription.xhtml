@@ -18,40 +18,41 @@
 		<h:body>
 
 			<h1 class="titre">
-				<h:outputText value="Nos Packs" style="color: #0066cc; font-weight: bold; "/>
+				<h:outputText value="Nos Packs"
+					style="color: #0066cc; font-weight: bold; " />
 			</h1>
-			
-		
-				<div class="slide-content">
-					
-						<ui:repeat
-							value="#{subscriptionManagementController.listePacks()}"
-							var="pack">
-							<div class="card swiper-slide">
-								<div class="card-content">
-									<h2 class="name">
-										<h:outputText value="#{pack.name}" />
-									</h2>
-									<p class="description">
-										<h:outputText value="#{pack.price}" />
-										<h:outputText value="€" />
-									</p>
 
-									<div class="image-content">
-										<span class="overlay"></span>
-										<div class="card-image">
-											<h:outputText value="#{pack.description}" />
-										</div>
+
+			<div class="slide-content">
+				<h:form>
+					<ui:repeat value="#{subscriptionManagementController.listePacks()}"
+						var="pack">
+						<div class="card swiper-slide">
+							<div class="card-content">
+								<h2 class="name">
+									<h:outputText value="#{pack.name}" />
+								</h2>
+								<p class="description">
+									<h:outputText value="#{pack.price}" />
+									<h:outputText value="€" />
+								</p>
+
+								<div class="image-content">
+									<span class="overlay"></span>
+									<div class="card-image">
+										<h:outputText value="#{pack.description}" />
 									</div>
-
-									<h:commandButton value="Acheter"
-										action="#{subscriptionManagementController.paymentPack()}"
-										styleClass="button" />
 								</div>
+
+								<h:commandButton value="Acheter"
+									action="#{subscriptionManagementController.paymentPack()}"
+									styleClass="button" />
 							</div>
-						</ui:repeat>
-					</div>
-				
+						</div>
+					</ui:repeat>
+				</h:form>
+			</div>
+
 		</h:body>
 	</ui:define>
 </ui:composition>
