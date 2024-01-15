@@ -131,6 +131,11 @@ public class EquipmentDao {
 				return space;
 			}
 		}
+		
+		public void updateEquipmentPicture(Long equipmentId, String equipmentPicturePath) {
+			Equipment equipment = findEquipmentById(equipmentId);
+			equipment.setEquipmentPicturePath(equipmentPicturePath);
+		}
 
 
 }
