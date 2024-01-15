@@ -9,17 +9,18 @@
 	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
 	<ui:define name="titleValue">Planning</ui:define>
 	<ui:define name="content">
-
-		<div class="card">
-			<h:form>
-				<p:growl id="messages" showDetail="true" />
-
-				<p:schedule id="schedule"				
-					value="#{generalPlanningCourseController.eventModel}"
-					widgetVar="myschedule">
-				</p:schedule>		
-
-			</h:form>
+		<div class="subcontent" style="height: 100%; width: 66.3%">
+			<div class="card">
+				<h:form>
+					<p:growl id="messages" showDetail="true" />
+					<h:panelGrid style="width: 1100px">
+						<p:schedule id="schedule"
+							value="#{generalPlanningCourseController.eventModel}"
+							widgetVar="myschedule">
+						</p:schedule>
+					</h:panelGrid>
+				</h:form>
+			</div>
 		</div>
 	</ui:define>
 </ui:composition>

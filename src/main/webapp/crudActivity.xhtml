@@ -9,224 +9,228 @@
 	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
 	<ui:define name="titleValue">Gestion des activités</ui:define>
 	<ui:define name="content">
-		<div>
-			<div class="card crud-demo">
-				<h:form id="form">
-					<p:growl id="messages" showDetail="false" />
+		<div class="subcontent">
+			<div>
+				<div class="card crud-demo">
+					<h:form id="form">
+						<p:growl id="messages" showDetail="false" />
 
-					<p:toolbar>
-						<p:toolbarGroup>
-							<b><h:outputLabel value="LES ACTIVITES" /></b>
-							<p:spacer width="50" />
-							<p:commandButton value="Ajouter une nouvelle activité"
-								icon="pi pi-plus"
-								actionListener="#{activityController.openNewActivity}"
-								update=":dialogsAdd:add-activity-content"
-								oncomplete="PF('addActivityDialog').show()"
-								styleClass="ui-button-success" style="margin-right: .5rem">
-								<p:resetInput target=":dialogsAdd:add-activity-content" />
-							</p:commandButton>
-						</p:toolbarGroup>
-					</p:toolbar>
+						<p:toolbar>
+							<p:toolbarGroup>
+								<b><h:outputLabel value="LES ACTIVITES" /></b>
+								<p:spacer width="50" />
+								<p:commandButton value="Ajouter une nouvelle activité"
+									icon="pi pi-plus"
+									actionListener="#{activityController.openNewActivity}"
+									update=":dialogsAdd:add-activity-content"
+									oncomplete="PF('addActivityDialog').show()"
+									styleClass="ui-button-success" style="margin-right: .5rem">
+									<p:resetInput target=":dialogsAdd:add-activity-content" />
+								</p:commandButton>
+							</p:toolbarGroup>
+						</p:toolbar>
 
-					<p:dataTable id="rud-activity" widgetVar="dtActivities" var="act"
-						value="#{activityController.displayActivitiesList()}"
-						reflow="true" styleClass="products-table" paginator="true"
-						rows="10" rowSelectMode="add" paginatorPosition="bottom">
+						<p:dataTable id="rud-activity" widgetVar="dtActivities" var="act"
+							value="#{activityController.displayActivitiesList()}"
+							reflow="true" styleClass="products-table" paginator="true"
+							rows="3" rowSelectMode="add" paginatorPosition="bottom">
 
 
-						<p:column headerText="Activité" sortBy="#{act.name}"
-							filterBy="#{act.name}">
-							<p:outputLabel>#{act.name}</p:outputLabel>
-						</p:column>
+							<p:column headerText="Activité" sortBy="#{act.name}"
+								filterBy="#{act.name}">
+								<p:outputLabel>#{act.name}</p:outputLabel>
+							</p:column>
 
-						<p:column headerText="Détails" sortBy="#{act.description}"
-							filterBy="#{act.description}">
-							<p:outputLabel>#{act.description}</p:outputLabel>
-						</p:column>
+							<p:column headerText="Détails" sortBy="#{act.description}"
+								filterBy="#{act.description}">
+								<p:outputLabel>#{act.description}</p:outputLabel>
+							</p:column>
 
-						<p:column headerText="Catégorie" sortBy="#{act.activityCategory}"
-							filterBy="#{act.activityCategory.libelle}">
-							<f:facet name="header">Catégorie</f:facet>
-							<p:outputLabel>#{act.activityCategory.libelle}</p:outputLabel>
-						</p:column>
+							<p:column headerText="Catégorie" sortBy="#{act.activityCategory}"
+								filterBy="#{act.activityCategory.libelle}">
+								<f:facet name="header">Catégorie</f:facet>
+								<p:outputLabel>#{act.activityCategory.libelle}</p:outputLabel>
+							</p:column>
 
-						<p:column headerText="Equipement" sortBy="#{act.equipmentList}"
-							filterBy="#{act.equipmentList}">
-							<ul>
-								<ui:repeat value="#{act.equipmentList}" var="equi">
-									<li><p:outputLabel>#{equi.equipmentName}</p:outputLabel></li>
-								</ui:repeat>
-							</ul>
-						</p:column>
+							<p:column headerText="Equipement" sortBy="#{act.equipmentList}"
+								filterBy="#{act.equipmentList}">
+								<ul>
+									<ui:repeat value="#{act.equipmentList}" var="equi">
+										<li><p:outputLabel>#{equi.equipmentName}</p:outputLabel></li>
+									</ui:repeat>
+								</ul>
+							</p:column>
 
-						<p:column headerText="Image" sortBy="#{act.name}"
-							filterBy="#{act.name}">
-							<div>
-								<h:graphicImage library="images"
-									name="#{act.activityPicturePath}" height="50px" />
-							</div>
-						</p:column>
-
-						<p:column exportable="false">
-							<p:commandButton icon="pi pi-pencil"
-								update=":dialogsManage:manage-activity-content"
-								oncomplete="PF('manageActivityDialog').show()"
-								styleClass="edit-button rounded-button ui-button-success"
-								process="@this">
-								<f:setPropertyActionListener value="#{act}"
-									target="#{activityController.selectedActivity}" />
-								<p:resetInput target=":dialogsManage:manage-activity-content" />
-							</p:commandButton>
-							<p:commandButton class="ui-button-warning rounded-button"
-								icon="pi pi-trash" process="@this"
-								oncomplete="PF('deleteActivityDialog').show()">
-								<f:setPropertyActionListener value="#{act}"
-									target="#{activityController.selectedActivity}" />
-							</p:commandButton>
-						</p:column>
-
-					</p:dataTable>
-				</h:form>
-
-				<h:form id="dialogsAdd">
-
-					<p:dialog header="Enregister une nouvelle activité"
-						showEffect="fade" modal="true" widgetVar="addActivityDialog"
-						responsive="true">
-						<p:outputPanel id="add-activity-content" class="ui-fluid">
-							<p:outputPanel
-								rendered="#{not empty activityController.selectedActivity}">
-								<div class="field">
-									<p:outputLabel for="add-name" value="Nom : " />
-									<p:inputText id="add-name"
-										value="#{activityController.activityViewModel.name}"
-										required="true" />
-								</div>
-								<div class="field">
-									<p:outputLabel for="add-description" value="Description : " />
-									<p:inputText id="add-description"
-										value="#{activityController.activityViewModel.description}" />
-								</div>
-								<div class="field">
-									<p:outputLabel for="add-activityCategory" value="Catégorie : " />
-									<p:selectOneMenu id="add-activityCategory"
-										value="#{activityController.activityViewModel.activityCategory}"
-										style="min-width: 14rem">
-										<f:selectItem itemLabel="Sélectionnez une catégorie"
-											itemValue="null" noSelectionOption="true" />
-										<f:selectItems
-											value="#{activityController.getActivityCategories()}"
-											var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
-									</p:selectOneMenu>
-								</div>
-								<div class="field">
-									<p:outputLabel for="add-equipments"
-										value="Equipement(s) concerné(s) : " />
-									<p:selectManyCheckbox id="add-equipments"
-										value="#{activityController.selectedEquipments}"
-										layout="responsive" columns="2">
-										<f:selectItems
-											value="#{equipmentController.getEquipmentsList()}" var="equi"
-											itemLabel="#{equi.equipmentName}" itemValue="#{equi.id}" />
-									</p:selectManyCheckbox>
-								</div>
+							<p:column headerText="Image" sortBy="#{act.name}"
+								filterBy="#{act.name}">
 								<div>
-									<h:outputLabel for="act-img">Télécharger une image :</h:outputLabel>
-									<br />
-									<p:fileUpload label="Ajouter" uploadLabel="Télécharger"
-										cancelLabel="Annuler"
-										listener="#{activityController.uploadFileLogo}"
-										styleClass="w-100" mode="advanced" dragDropSupport="false" />
+									<h:graphicImage library="images"
+										name="#{act.activityPicturePath}" height="50px" />
 								</div>
+							</p:column>
+
+							<p:column exportable="false">
+								<p:commandButton icon="pi pi-pencil"
+									update=":dialogsManage:manage-activity-content"
+									oncomplete="PF('manageActivityDialog').show()"
+									styleClass="edit-button rounded-button ui-button-success"
+									process="@this">
+									<f:setPropertyActionListener value="#{act}"
+										target="#{activityController.selectedActivity}" />
+									<p:resetInput target=":dialogsManage:manage-activity-content" />
+								</p:commandButton>
+								<p:commandButton class="ui-button-warning rounded-button"
+									icon="pi pi-trash" process="@this"
+									oncomplete="PF('deleteActivityDialog').show()">
+									<f:setPropertyActionListener value="#{act}"
+										target="#{activityController.selectedActivity}" />
+								</p:commandButton>
+							</p:column>
+
+						</p:dataTable>
+					</h:form>
+
+					<h:form id="dialogsAdd">
+
+						<p:dialog header="Enregister une nouvelle activité"
+							showEffect="fade" modal="true" widgetVar="addActivityDialog"
+							responsive="true">
+							<p:outputPanel id="add-activity-content" class="ui-fluid">
+								<p:outputPanel
+									rendered="#{not empty activityController.selectedActivity}">
+									<div class="field">
+										<p:outputLabel for="add-name" value="Nom : " />
+										<p:inputText id="add-name"
+											value="#{activityController.activityViewModel.name}"
+											required="true" />
+									</div>
+									<div class="field">
+										<p:outputLabel for="add-description" value="Description : " />
+										<p:inputText id="add-description"
+											value="#{activityController.activityViewModel.description}" />
+									</div>
+									<div class="field">
+										<p:outputLabel for="add-activityCategory" value="Catégorie : " />
+										<p:selectOneMenu id="add-activityCategory"
+											value="#{activityController.activityViewModel.activityCategory}"
+											style="min-width: 14rem">
+											<f:selectItem itemLabel="Sélectionnez une catégorie"
+												itemValue="null" noSelectionOption="true" />
+											<f:selectItems
+												value="#{activityController.getActivityCategories()}"
+												var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
+										</p:selectOneMenu>
+									</div>
+									<div class="field">
+										<p:outputLabel for="add-equipments"
+											value="Equipement(s) concerné(s) : " />
+										<p:selectManyCheckbox id="add-equipments"
+											value="#{activityController.selectedEquipments}"
+											layout="responsive" columns="2">
+											<f:selectItems
+												value="#{equipmentController.getEquipmentsList()}"
+												var="equi" itemLabel="#{equi.equipmentName}"
+												itemValue="#{equi.id}" />
+										</p:selectManyCheckbox>
+									</div>
+									<div>
+										<h:outputLabel for="act-img">Télécharger une image :</h:outputLabel>
+										<br />
+										<p:fileUpload label="Ajouter" uploadLabel="Télécharger"
+											cancelLabel="Annuler"
+											listener="#{activityController.uploadFileLogo}"
+											styleClass="w-100" mode="advanced" dragDropSupport="false" />
+									</div>
+								</p:outputPanel>
 							</p:outputPanel>
-						</p:outputPanel>
 
-						<f:facet name="footer">
-							<p:commandButton value="Ajouter" icon="pi pi-check"
-								actionListener="#{activityController.addActivity()}"
-								update=":form:" process="add-activity-content @this"
-								oncomplete="PF('addActivityDialog').hide()" />
-							<p:commandButton value="Annuler" icon="pi pi-times"
-								onclick="PF('addActivityDialog').hide()"
-								class="ui-button-secondary" type="button" />
-						</f:facet>
-					</p:dialog>
-				</h:form>
+							<f:facet name="footer">
+								<p:commandButton value="Ajouter" icon="pi pi-check"
+									actionListener="#{activityController.addActivity()}"
+									update=":form:" process="add-activity-content @this"
+									oncomplete="PF('addActivityDialog').hide()" />
+								<p:commandButton value="Annuler" icon="pi pi-times"
+									onclick="PF('addActivityDialog').hide()"
+									class="ui-button-secondary" type="button" />
+							</f:facet>
+						</p:dialog>
+					</h:form>
 
-				<h:form id="dialogsManage">
-					<p:dialog header="Détails de l'activité" showEffect="fade"
-						modal="true" widgetVar="manageActivityDialog" responsive="true">
-						<p:outputPanel id="manage-activity-content" class="ui-fluid">
-							<p:outputPanel
-								rendered="#{not empty activityController.selectedActivity}">
-								<div class="field">
-									<p:outputLabel for="update-name">Nom</p:outputLabel>
-									<p:inputText id="update-name"
-										value="#{activityController.selectedActivity.name}"
-										required="true" />
-								</div>
-								<div class="field">
-									<p:outputLabel for="update-description">Déscription</p:outputLabel>
-									<p:inputTextarea id="update-description"
-										value="#{activityController.selectedActivity.description}" />
-								</div>
-								<div class="field">
-									<p:outputLabel for="update-category">Catégorie</p:outputLabel>
-									<p:selectOneMenu id="update-category"
-										value="#{activityController.selectedActivity.activityCategory}">
-										<f:selectItems
-											value="#{activityController.getActivityCategories()}"
-											var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
-									</p:selectOneMenu>
-								</div>
-								<!-- !!!ATTENTION CELA NE FONCTIONNE PAS CONCERNANT LA MODIFICATION D'EQUIPEMNT -->
-								<div class="field">
-									<p:outputLabel for="update-equipments"
-										value="Equipement(s) concerné(s) : " />
-									<p:selectManyCheckbox id="update-equipments"
-										value="#{activityController.selectedEquipments}"
-										layout="responsive" columns="2">
-										<f:selectItems
-											value="#{equipmentController.getEquipmentsList()}" var="equi"
-											itemLabel="#{equi.equipmentName}" itemValue="#{equi.id}" />
-									</p:selectManyCheckbox>
-								</div>
+					<h:form id="dialogsManage">
+						<p:dialog header="Détails de l'activité" showEffect="fade"
+							modal="true" widgetVar="manageActivityDialog" responsive="true">
+							<p:outputPanel id="manage-activity-content" class="ui-fluid">
+								<p:outputPanel
+									rendered="#{not empty activityController.selectedActivity}">
+									<div class="field">
+										<p:outputLabel for="update-name">Nom</p:outputLabel>
+										<p:inputText id="update-name"
+											value="#{activityController.selectedActivity.name}"
+											required="true" />
+									</div>
+									<div class="field">
+										<p:outputLabel for="update-description">Déscription</p:outputLabel>
+										<p:inputTextarea id="update-description"
+											value="#{activityController.selectedActivity.description}" />
+									</div>
+									<div class="field">
+										<p:outputLabel for="update-category">Catégorie</p:outputLabel>
+										<p:selectOneMenu id="update-category"
+											value="#{activityController.selectedActivity.activityCategory}">
+											<f:selectItems
+												value="#{activityController.getActivityCategories()}"
+												var="cat" itemLabel="#{cat.libelle}" itemValue="#{cat}" />
+										</p:selectOneMenu>
+									</div>
+									<!-- !!!ATTENTION CELA NE FONCTIONNE PAS CONCERNANT LA MODIFICATION D'EQUIPEMNT -->
+									<div class="field">
+										<p:outputLabel for="update-equipments"
+											value="Equipement(s) concerné(s) : " />
+										<p:selectManyCheckbox id="update-equipments"
+											value="#{activityController.selectedEquipments}"
+											layout="responsive" columns="2">
+											<f:selectItems
+												value="#{equipmentController.getEquipmentsList()}"
+												var="equi" itemLabel="#{equi.equipmentName}"
+												itemValue="#{equi.id}" />
+										</p:selectManyCheckbox>
+									</div>
 
-								<div>
-									<h:outputLabel for="update-act-img">Modifier l'image :</h:outputLabel>
-									<br />
-									<p:fileUpload label="Modifier" uploadLabel="Télécharger"
-										cancelLabel="Annuler"
-										listener="#{activityController.uploadFileLogo}"
-										styleClass="w-100" mode="advanced" dragDropSupport="false" />
-								</div>
+									<div>
+										<h:outputLabel for="update-act-img">Modifier l'image :</h:outputLabel>
+										<br />
+										<p:fileUpload label="Modifier" uploadLabel="Télécharger"
+											cancelLabel="Annuler"
+											listener="#{activityController.uploadFileLogo}"
+											styleClass="w-100" mode="advanced" dragDropSupport="false" />
+									</div>
+								</p:outputPanel>
 							</p:outputPanel>
-						</p:outputPanel>
 
-						<f:facet name="footer">
-							<p:commandButton value="Mettre à jour" icon="pi pi-check"
-								actionListener="#{activityController.modifieSelectedActivity()}"
-								update=":form:" process="manage-activity-content @this" />
-							<p:commandButton value="Annuler" icon="pi pi-times"
-								onclick="PF('manageActivityDialog').hide()"
-								class="ui-button-secondary" type="button" />
-						</f:facet>
-					</p:dialog>
+							<f:facet name="footer">
+								<p:commandButton value="Mettre à jour" icon="pi pi-check"
+									actionListener="#{activityController.modifieSelectedActivity()}"
+									update=":form:" process="manage-activity-content @this" />
+								<p:commandButton value="Annuler" icon="pi pi-times"
+									onclick="PF('manageActivityDialog').hide()"
+									class="ui-button-secondary" type="button" />
+							</f:facet>
+						</p:dialog>
 
-					<p:confirmDialog widgetVar="deleteActivityDialog" showEffect="fade"
-						width="300" message="Supprimer l'activité ?" header="Confirmation"
-						severity="warn">
-						<p:commandButton value="Oui" icon="pi pi-check"
-							actionListener="#{activityController.deleteSelectedActivity()}"
-							process="@this" oncomplete="PF('deleteActivityDialog').hide()"
-							update=":form:" />
-						<p:commandButton value="Non" type="button"
-							styleClass="ui-button-secondary" icon="pi pi-times"
-							onclick="PF('deleteActivityDialog').hide()" />
-					</p:confirmDialog>
-				</h:form>
-				<br />
+						<p:confirmDialog widgetVar="deleteActivityDialog"
+							showEffect="fade" width="300" message="Supprimer l'activité ?"
+							header="Confirmation" severity="warn">
+							<p:commandButton value="Oui" icon="pi pi-check"
+								actionListener="#{activityController.deleteSelectedActivity()}"
+								process="@this" oncomplete="PF('deleteActivityDialog').hide()"
+								update=":form:" />
+							<p:commandButton value="Non" type="button"
+								styleClass="ui-button-secondary" icon="pi pi-times"
+								onclick="PF('deleteActivityDialog').hide()" />
+						</p:confirmDialog>
+					</h:form>
+					<br />
+				</div>
 			</div>
 		</div>
 	</ui:define>

@@ -9,6 +9,7 @@
 	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
 	<ui:define name="titleValue">Gestion des cours</ui:define>
 	<ui:define name="content">
+	<div class="subcontent">
 		<div>
 			<div class="card crud-demo">
 				<h:form id="form">
@@ -30,7 +31,7 @@
 
 					<p:dataTable id="crud-cours" widgetVar="dtCourses" var="cou"
 						value="#{courseController.displayCoursesList()}" reflow="true"
-						styleClass="products-table" paginator="true" rows="10"
+						styleClass="products-table" paginator="true" rows="7"
 						rowSelectMode="add" paginatorPosition="bottom">
 
 						<p:column headerText="Cours" sortBy="#{cou.activity.name}"
@@ -229,6 +230,7 @@
 				</h:form>
 				<br />
 			</div>
+		</div>
 		</div>
 	</ui:define>
 </ui:composition>

@@ -20,17 +20,21 @@
 			<div
 				class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
 				<section>
-					<span class="block text-6xl font-bold mb-1" >#{spaceController.getLoadedSpace().visualIdentity.spaceTextContent.spaceName}
+					<span class="block text-6xl font-bold mb-1">#{spaceController.getLoadedSpace().visualIdentity.spaceTextContent.spaceName}
 					</span>
 					<div class="text-6xl text-primary font-bold mb-3" id="mainTitle">#{spaceController.getLoadedSpace().visualIdentity.spaceTextContent.motto}</div>
 					<p class="mt-0 mb-4 text-700 line-height-3">#{spaceController.getLoadedSpace().visualIdentity.spaceTextContent.description}</p>
-
-					<p:commandButton value="Nos cours" type="button"
-						class="mr-3 ui-button-raised" />
-					<p:commandButton value="Nos coachs" type="button"
-						class="mr-3 ui-button-raised" />
-					<p:commandButton value="Nos équipements" type="button"
-						class="mr-3 ui-button-raised" />
+					<h:form>
+						<p:button value="Nos cours" type="button"
+							class="mr-3 ui-button-raised"
+							outcome="generalActivity.xhtml?faces-redirect=true&amp;spaceId=#{spaceController.loadedSpace.id}" />
+						<p:button value="Nos coachs" type="button"
+							class="mr-3 ui-button-raised"
+							outcome="ListeCoachs.xhtml?faces-redirect=true&amp;spaceId=#{spaceController.loadedSpace.id}" />
+						<p:button value="Nos équipements" type="button"
+							class="mr-3 ui-button-raised"
+							outcome="generalEquipment.xhtml?faces-redirect=true&amp;spaceId=#{spaceController.loadedSpace.id}" />
+					</h:form>
 				</section>
 			</div>
 			<div class="col-12 md:col-6 overflow-hidden">
