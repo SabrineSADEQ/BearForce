@@ -96,8 +96,8 @@ public class DataInitializer {
 		Adherent.setRole(Role.ADHERENT);
 		Adherent.setGymId((long) 61);
 		Profile profileAdherent = new Profile();
-		profileAdherent.setFirstName("Yoann");
-		profileAdherent.setLastName("François");
+		profileAdherent.setFirstName("Yann");
+		profileAdherent.setLastName("Foisant");
 		Address addressAdherent = new Address();
 		addressAdherent.setCity("Paris");
 		addressAdherent.setStreetNumber("1");
@@ -105,7 +105,7 @@ public class DataInitializer {
 		addressAdherent.setPostalCode("75008");
 		Contact contact = new Contact();
 		contact.setPhone("01 22 12 32 11");
-		profileAdherent.setPictureUrl("bear_user_image.jpg");
+		profileAdherent.setPictureUrl("profile_pic5.png");
 		profileAdherent.setAddress(addressAdherent);
 		profileAdherent.setContact(contact);
 		Adherent.setProfile(profileAdherent);
@@ -120,7 +120,7 @@ public class DataInitializer {
 		Profile profileGestionnaire = new Profile();
 		profileGestionnaire.setFirstName("Jean");
 		profileGestionnaire.setLastName("Dupont");
-		profileGestionnaire.setPictureUrl("bear_user_image.jpg");
+		profileGestionnaire.setPictureUrl("profile_pic4.jpg");
 
 		Address addressGestionnaire = new Address();
 		addressGestionnaire.setStreetNumber("5");
@@ -152,7 +152,7 @@ public class DataInitializer {
 		Profile profileCoach = new Profile();
 		profileCoach.setFirstName("Alice");
 		profileCoach.setLastName("Smith");
-		profileCoach.setPictureUrl("bear_user_image.jpg");
+		profileCoach.setPictureUrl("profile_pic1.jpg");
 
 		Address addressCoach = new Address();
 		addressCoach.setCity("Paris");
@@ -169,7 +169,7 @@ public class DataInitializer {
 
 		ProfessionalDetails coachDetails = new ProfessionalDetails();
 		coachDetails.setCoachCertification("Certifiée en Zumba, 4ème niveau et en Yoga");
-		coachDetails.setCoachForm("Advanced Coaching");
+		coachDetails.setCoachForm("Licence de Coaching avancé");
 		coachDetails.setCoachCV(
 				"Coach sportive passionnée et polyvalente, spécialisée dans l'enseignement du yoga et de la zumba, avec une expertise éprouvée dans la création de programmes holistiques favorisant le bien-être physique et mental.");
 
@@ -189,7 +189,7 @@ public class DataInitializer {
 		 */
 		Activity activity = new Activity();
 		activity.setName("Cardio vélo");
-		activity.setDescription("cours de judo avec les meilleurs coachs de la region");
+		activity.setDescription("Cours de cardio vélo avec les meilleurs coachs de la region");
 		activity.setAttachedGymId(Long.valueOf(61));
 		activity.setActivityCategory(ActivityCategory.CARDIO);
 		activityDao.persist(activity);
@@ -290,7 +290,7 @@ public class DataInitializer {
 		spaceViewModel.setSpaceName("Go Gym");
 		spaceViewModel.setDescription("Notre salle, idéalement située au coeur de Paris,"
 				+ " vous permettra d'accéder à de nombreux cours pour tous les goûts et toutes les envies."
-				+ " Nos équipements dernier cri satisferont les sportifs les plus exigeants.");
+				+ " Nos équipements dernier cri satisferont les sportifs les plus exigeants. Nos coachs de haut niveau vous aideront à atteindre vos objectifs.");
 		spaceViewModel.setFreeAccess(true);
 		spaceViewModel.setLockerRoom(true);
 
@@ -364,9 +364,9 @@ public class DataInitializer {
 		anotherProfileAdherent.setLastName("Smith");
 
 		Address anotherAddressAdherent = new Address();
-		anotherAddressAdherent.setCity("macon");
+		anotherAddressAdherent.setCity("Macon");
 		anotherAddressAdherent.setStreetNumber("123");
-		anotherAddressAdherent.setStreetName("jeanne d'arc");
+		anotherAddressAdherent.setStreetName("Jeanne d'arc");
 		anotherAddressAdherent.setPostalCode("10001");
 
 		Contact anotherContact = new Contact();
@@ -389,9 +389,9 @@ public class DataInitializer {
 		newMemberProfile.setLastName("Johnson");
 
 		Address newMemberAddress = new Address();
-		newMemberAddress.setCity("daube");
+		newMemberAddress.setCity("Daube");
 		newMemberAddress.setStreetNumber("789");
-		newMemberAddress.setStreetName("republique");
+		newMemberAddress.setStreetName("Republique");
 		newMemberAddress.setPostalCode("90001");
 
 		Contact newMemberContact = new Contact();
@@ -414,14 +414,14 @@ public class DataInitializer {
 		guestProfile.setLastName("Miller");
 
 		Address guestAddress = new Address();
-		guestAddress.setCity("fosses");
+		guestAddress.setCity("Fosses");
 		guestAddress.setStreetNumber("456");
-		guestAddress.setStreetName("leonard de vinci");
+		guestAddress.setStreetName("Leonard de vinci");
 		guestAddress.setPostalCode("94105");
 
 		Contact guestContact = new Contact();
 		guestContact.setPhone("04 59 78 45 11");
-		guestProfile.setPictureUrl("personne.png");
+		guestProfile.setPictureUrl("profile_pic3.jpg");
 		guestProfile.setAddress(guestAddress);
 		guestProfile.setContact(guestContact);
 
@@ -439,7 +439,7 @@ public class DataInitializer {
 		premiumMemberProfile.setLastName("Williams");
 
 		Address premiumMemberAddress = new Address();
-		premiumMemberAddress.setCity("versaille");
+		premiumMemberAddress.setCity("Versailles");
 		premiumMemberAddress.setStreetNumber("789");
 		premiumMemberAddress.setStreetName("rue du roi");
 		premiumMemberAddress.setPostalCode("33139");
@@ -525,7 +525,7 @@ public class DataInitializer {
 		fitnessCenter.setGymLogoPath("fitness_logo.png");
 		fitnessCenter.setGymBannerPath("banner_fitness.jpg");
 		fitnessCenter.setMotto("Toujours plus forts");
-		fitnessCenter.setSpaceName("Fit&Meet");
+		fitnessCenter.setSpaceName("FitFusion");
 		fitnessCenter.setDescription(
 				"Rejoignez notre communauté de passionnés de fitness dans notre salle de sport. "
 						+ "Des cours captivants, des équipements de pointe et une atmosphère motivante font de notre espace "
@@ -576,10 +576,10 @@ public class DataInitializer {
 		profileCoach2.setContact(contactCoach2);
 
 		ProfessionalDetails coachDetails1 = new ProfessionalDetails();
-		coachDetails1.setCoachCertification("Certifiée en Zumba, 4ème niveau et en Yoga");
-		coachDetails1.setCoachForm("Advanced Coaching");
+		coachDetails1.setCoachCertification("Certifié en Crossfit, 4ème niveau et en HIIT");
+		coachDetails1.setCoachForm("Advanced Coaching Intermediate Level");
 		coachDetails1.setCoachCV(
-				"Coach sportive passionnée et polyvalente, spécialisée dans l'enseignement du yoga et de la zumba, avec une expertise éprouvée dans la création de programmes holistiques favorisant le bien-être physique et mental.");
+				"Coach sportif passionné et pédagogique, spécialisé dans l'enseignement du crossfit");
 
 		profileCoach2.setProfesionalDetails(coachDetails1);
 
