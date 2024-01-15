@@ -46,7 +46,16 @@
 					</div>
 					<br />
 
-				
+					<div class="field grid">
+						<p:outputLabel for="description" styleClass="col-fixed"
+							style="width:100px" value="Description : " />
+						<div class="col">
+							<p:inputTextarea id="description"
+								value="#{membershipManagedBean.membershipViewModel.description}">
+							</p:inputTextarea>
+						</div>
+					</div>
+					<br />
 
 					<div class="field grid">
 						<p:commandButton value="Créer un abonnement" update="@form"
@@ -55,7 +64,24 @@
 					</div>
 				</div>
 				<br />
-			</div>
+				<ui:fragment rendered="#{loginController.isGestionnaire()}">
+					<div>
+						<p:dataTable value="#{membershipManagedBean.getMemberships()}" var="membership">
+							<p:column headerText="ID">
+								<h:outputText value="#{membership.id}" />
+							</p:column>
+	
+							<p:column headerText="Name">
+								<h:outputText value="#{membership.name}" />
+							</p:column>
+	
+							<p:column headerText="Prix">
+								<h:outputText value="#{product.price}" />
+							</p:column>
+						</p:dataTable>
+					</div>
+				</ui:fragment>
+				</div>
 		</h:form>
 	</ui:define>
 </ui:composition>

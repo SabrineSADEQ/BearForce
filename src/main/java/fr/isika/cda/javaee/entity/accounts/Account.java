@@ -140,7 +140,9 @@ public class Account {
 		this.wizardStep = wizardStep;
 	}
 
-
+	public Subscription getSubscription() {
+		return subscription;
+	}
 	public void setSubscription(Subscription subscription) {
 		this.subscription = subscription;
 	}
