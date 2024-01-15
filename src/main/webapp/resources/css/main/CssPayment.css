@@ -30,8 +30,8 @@ input[type="password"] {
 input[type="text"]:focus,
 input[type="password"]:focus {
     outline: none;
-    border-color: #4CAF50;
-    box-shadow: 0 0 5px #4CAF50;
+  /*  border-color: #4CAF50;
+    box-shadow: 0 0 5px #4CAF50;*/
 }
 
 input[type="button"] {
@@ -64,4 +64,4 @@ p {
 	border-color:transparent;
 	border-radius:20px;
 	color:var(--blanc);
-} */
+} 

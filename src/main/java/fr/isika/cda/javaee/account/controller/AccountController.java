@@ -100,7 +100,7 @@ public class AccountController implements Serializable {
 
         addAccount();
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Compte créer !s", "Account creation successful!"));
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Compte créé !", "Account creation successful!"));
 
         // Reset the wizard step and mode for the next user
         wizardStep = 1;

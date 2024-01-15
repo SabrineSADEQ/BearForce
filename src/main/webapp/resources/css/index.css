@@ -1,23 +1,15 @@
 @charset "ISO-8859-1";
 
 .background_image_index_container {
-	/* position: fixed;
-	top: 0;
-    left: 0;
-	width: 100%; 
-	max-width:100%; 
-	z-index: -1; 
-	*/
+	
 	background-color: transparent;
-	/*background-image:  url(https://assets-global.website-files.com/6026a3b1f0c5d55691a55af1/60353c79b3d11877bf7783ab_AdobeStock_137212228-black.jpg);*/
-	/*background-image:
-		url(https://i.postimg.cc/bwSPjmHF/background-image-5-resized.jpg);*/
+
 	background-image:
 		url(https://i.postimg.cc/dQf0zHzg/background-image-6.jpg);
 	background-position: 0 0;
 	background-size: cover;
 	margin-bottom: -1px;
-	/*padding-bottom: 200px;*/
+	
 	height: 500px;
 	padding-top: 50px;
     padding-bottom: 40px;
@@ -52,7 +44,6 @@ strong {
 }
 
 .computer-container {
- /* padding-right:395px;*/
   justify-content: center;
 }
 
@@ -69,7 +60,8 @@ strong {
 }
 
 .secondSection{
-	padding-top:300px;
+	padding-top:200px;
+	padding-bottom:200px;
 	z-index: 1;
 }
 

@@ -260,15 +260,15 @@ public class DataInitializer {
 		membership3.setName("Silver");
 		membership3.setPrice(45.99);
 		membership3.setNbrOfActivities(7);
-		membership3.setDescription("7 cours par semaine, accès illimité aux équipements en accès libre");
+		membership3.setDescription("7 cours par semaine dont un cours particulier, accès illimité aux équipements en accès libre");
 
 		membershipDao.saveMembership(membership3);
 		Membership membership = new Membership();
 		membership.setName("Gold");
 		membership.setPrice(99.99);
 		membership.setNbrOfActivities(20);
-		membership.setDescription("Jusqu'à 20 cours par semaine pour les plus grands sportifs,"
-				+ " encadrement personnalisé par le coach de votre choix et accès illimité à l'espace détente");
+		membership.setDescription("Jusqu'à 20 cours par semaine,"
+				+ " encadrement personnalisé par un coach et accès illimité à l'espace détente");
 		membershipDao.saveMembership(membership);
 
 		List<Membership> membershipList = new ArrayList<Membership>();
@@ -530,7 +530,7 @@ public class DataInitializer {
 		fitnessCenter.setDescription(
 				"Rejoignez notre communauté de passionnés de fitness dans notre salle de sport. "
 						+ "Des cours captivants, des équipements de pointe et une atmosphère motivante font de notre espace "
-						+ "le choix parfait pour quiconque cherche à élever son niveau de forme physique.");
+						+ "le choix parfait pour quiconque cherche à élever son niveau de forme physique en suivant des cours variés.");
 		fitnessCenter.setFreeAccess(false);
 		fitnessCenter.setLockerRoom(true);
 
