@@ -17,19 +17,21 @@ body{
 
 .container {
   display: flex;
-  width: 1040px;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+ padding:auto;
+ 
+  margin:70px;
+
+  
 }
 
 .slide-container{
-  max-width: 300px;
-  width: 100%;
-  padding: 40px 0;
+  max-width: 200px;
+  width: 80%;
+  padding: 20px 0;
  
 }
 .slide-content{
-  margin: 0 40px;
+  margin: 0 20px;
   overflow: hidden;
   border-radius: 25px;
 
@@ -200,5 +202,21 @@ font-size: 22px;
     border-radius: 8px; /* Bordure arrondie de la boîte de dialogue */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre de la boîte de dialogue */
 }
+
+    .swiper-slide {
+        margin-right: 0px; /* Ajoute une marge à droite entre les cartes */
+    }
+
+    .card {
+        box-sizing: border-box; /* Assure que les marges et les bordures sont incluses dans la taille totale de la carte */
+        margin: 0; /* Supprime la marge par défaut sur la carte */
+        border: 1px solid #ddd; /* Ajoute une bordure pour séparer les cartes (optionnel) */
+    }
+
+    .card-content {
+        padding: 10px; /* Ajoute un rembourrage à l'intérieur de la carte pour créer un espace autour du contenu */
+    }
+
+
 
 }
