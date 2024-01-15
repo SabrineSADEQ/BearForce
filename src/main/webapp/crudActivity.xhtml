@@ -46,9 +46,9 @@
 						</p:column>
 
 						<p:column headerText="Catégorie" sortBy="#{act.activityCategory}"
-							filterBy="#{act.activityCategory}">
+							filterBy="#{act.activityCategory.libelle}">
 							<f:facet name="header">Catégorie</f:facet>
-							<p:outputLabel>#{act.activityCategory}</p:outputLabel>
+							<p:outputLabel>#{act.activityCategory.libelle}</p:outputLabel>
 						</p:column>
 
 						<p:column headerText="Equipement" sortBy="#{act.equipmentList}"

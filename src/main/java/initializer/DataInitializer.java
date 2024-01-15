@@ -189,11 +189,12 @@ public class DataInitializer {
 		 */
 		Activity activity = new Activity();
 		activity.setName("Cardio vélo");
-		activity.setDescription("Cours de cardio vélo avec les meilleurs coachs de la region");
+		activity.setDescription("Pédalez au rythme de musiques entraînantes, brûlez des calories, renforcez vos jambes et améliorez votre condition physique. Rejoignez-nous pour une séance cardio pleine d'énergie et de résultats !");
 		activity.setAttachedGymId(Long.valueOf(61));
 		activity.setActivityCategory(ActivityCategory.CARDIO);
+		activity.setActivityPicturePath("Cardio_velo.png");
 		activityDao.persist(activity);
-
+		
 		Course course = new Course();
 		course.setActivity(activity);
 		course.setTrainer(savedAccount.getProfile());
@@ -210,7 +211,7 @@ public class DataInitializer {
 		equipment.setEquipmentPicturePath(null);
 		equipment.setQuantity(10);
 		equipment.setEquipmentName("barre de traction");
-		equipment.setDetails("barre de traction montée sur support métallique, poids max de 120kg");
+		equipment.setDetails("Barre de traction montée sur support métallique, poids max de 120kg");
 		// equipmentDao.createEquipment(equipment, null);
 
 		// Packs for the BearForce platform
@@ -550,6 +551,190 @@ public class DataInitializer {
 		fitnessCenter.setContactInfo(gymContact);
 
 		spaceDao.createSpace(fitnessCenter);
+		
+		//REMPLISSAGE BDD POUR DEMO YOANN
+		
+		//ACTIVITES
+		Activity activityTwo = new Activity();
+		activityTwo.setName("Yoga apaisant");
+		activityTwo.setDescription("Détendez-vous et équilibrez votre esprit avec une séance de yoga apaisante. Idéal pour libérer le stress et améliorer la flexibilité.");
+		activityTwo.setAttachedGymId(Long.valueOf(61));
+		activityTwo.setActivityCategory(ActivityCategory.RELAXATION);
+		activityTwo.setActivityPicturePath("Yoga_apaisant.png");
+		activityDao.persist(activityTwo);
+		
+		Activity activityThree = new Activity();
+		activityThree.setName("Crossfit");
+		activityThree.setDescription("Explorez le CrossFit, le secret d'une forme physique ultime. Des séances dynamiques, des résultats rapides. Joignez-vous à une communauté passionnée, brisez vos limites, devenez votre meilleure version. La révolution fitness commence ici.");
+		activityThree.setAttachedGymId(Long.valueOf(61));
+		activityThree.setActivityCategory(ActivityCategory.FORCE);
+		activityThree.setActivityPicturePath("Crossfit.png");
+		activityDao.persist(activityThree);
+		
+		Activity activityFour = new Activity();
+		activityFour.setName("Aquagym dynamique");
+		activityFour.setDescription("Plongez dans une séance d'aquagym énergisante. L'eau ajoute une résistance naturelle pour tonifier vos muscles sans impact sur les articulations.");
+		activityFour.setAttachedGymId(Long.valueOf(61));
+		activityFour.setActivityCategory(ActivityCategory.NATATION);
+		activityFour.setActivityPicturePath("Aquagym_dynamique.png");
+		activityDao.persist(activityFour);
+		
+		Activity activityFive = new Activity();
+		activityFive.setName("Pilates pour le renforcement du noyau");
+		activityFive.setDescription("Renforcez votre noyau avec des exercices de Pilates ciblés. Améliorez la posture, la stabilité et la force musculaire.");
+		activityFive.setAttachedGymId(Long.valueOf(61));
+		activityFive.setActivityCategory(ActivityCategory.FORCE);
+		activityFive.setActivityPicturePath("Pilates.png");
+		activityDao.persist(activityFive);
+		
+		Activity activitySix = new Activity();
+		activitySix.setName("Zumba Party");
+		activitySix.setDescription("Dansez au rythme de musiques entraînantes dans une ambiance de fête. Brûlez des calories tout en vous amusant avec des mouvements de danse latine.");
+		activitySix.setAttachedGymId(Long.valueOf(61));
+		activitySix.setActivityCategory(ActivityCategory.DANCE);
+		activitySix.setActivityPicturePath("Zumba.png");
+		activityDao.persist(activitySix);
+		
+		Activity activitySeven = new Activity();
+		activitySeven.setName("Entraînement de boxe");
+		activitySeven.setDescription("Libérez votre énergie avec un entraînement de boxe dynamique. Améliorez la coordination, la force et la résistance.");
+		activitySeven.setAttachedGymId(Long.valueOf(61));
+		activitySeven.setActivityCategory(ActivityCategory.COMBAT);
+		activitySeven.setActivityPicturePath("Box.png");
+		activityDao.persist(activitySeven);
+		
+		Activity activityEight = new Activity();
+		activityEight.setName("Entraînement de musculation avancé");
+		activityEight.setDescription("Développez votre force et votre masse musculaire avec un programme avancé d'entraînement en musculation. Encadrement professionnel inclus.");
+		activityEight.setAttachedGymId(Long.valueOf(61));
+		activityEight.setActivityCategory(ActivityCategory.FORCE);
+		activityEight.setActivityPicturePath("Musculation.png");
+		activityDao.persist(activityEight);
+		
+		Activity activityNine = new Activity();
+		activityNine.setName("Danse contemporaine créative");
+		activityNine.setDescription("Exprimez-vous à travers la danse contemporaine. Libérez votre créativité et améliorez votre agilité.");
+		activityNine.setAttachedGymId(Long.valueOf(61));
+		activityNine.setActivityCategory(ActivityCategory.DANCE);
+		activityNine.setActivityPicturePath("Danse_contemporaine.png");
+		activityDao.persist(activityNine);
+		
+		Activity activityTen = new Activity();
+		activityTen.setName("Entraînement TRX");
+		activityTen.setDescription("Explorez de nouvelles dimensions de fitness avec le TRX Pro Suspension Trainer. Pour des séances d'entraînement dynamiques qui dépassent toutes vos attentes.");
+		activityTen.setAttachedGymId(Long.valueOf(61));
+		activityTen.setActivityCategory(ActivityCategory.FITNESS);
+		activityTen.setActivityPicturePath("TRX.png");
+		activityDao.persist(activityTen);
+		
+		//EQUIPMENTS
+		Equipment equipmentOne = new Equipment();
+		equipmentOne.setEquipmentName("Vélo de cardio");
+		equipmentOne.setEquipmentPicturePath("Velo_d_interieur.png");
+		equipmentOne.setAttachedGymId(Long.valueOf(61));
+		equipmentOne.setQuantity(12);
+		equipmentOne.setDetails("Offrez vous une expérience de cyclisme premium pour des résultats rapides. Cardio élégant, musculation efficace. La nouvelle norme du fitness.");
+		equipmentOne.setActivity(activity);
+		equipmentDao.persist(equipmentOne);
+		
+		Equipment equipmentTwo = new Equipment();
+		equipmentTwo.setEquipmentName("Tapis de yoga");
+		equipmentTwo.setEquipmentPicturePath("Tapis_yoga.png");
+		equipmentTwo.setAttachedGymId(Long.valueOf(61));
+		equipmentTwo.setQuantity(10);
+		equipmentTwo.setDetails("Offrez-vous l'expérience ultime du yoga avec notre tapis premium. Transformez chaque séance en un voyage de bien-être et d'équilibre.");
+		equipmentTwo.setActivity(activityTwo);
+		equipmentDao.persist(equipmentTwo);
+		
+		Equipment equipmentThreeA = new Equipment();
+		equipmentThreeA.setEquipmentName("Poids");
+		equipmentThreeA.setEquipmentPicturePath("Poids.png");
+		equipmentThreeA.setAttachedGymId(Long.valueOf(61));
+		equipmentThreeA.setQuantity(30);
+		equipmentThreeA.setDetails("Découvrez l'outil essentiel pour propulser vos performances au CrossFit ! Notre poids de 5 kg, parfaitement conçu, est bien plus qu'un simple accessoire d'entraînement.");
+		equipmentThreeA.setActivity(activityThree);
+		equipmentDao.persist(equipmentThreeA);
+		
+		Equipment equipmentThreeB = new Equipment();
+		equipmentThreeB.setEquipmentName("Box jump");
+		equipmentThreeB.setEquipmentPicturePath("Box_jump.png");
+		equipmentThreeB.setAttachedGymId(Long.valueOf(61));
+		equipmentThreeB.setQuantity(15);
+		equipmentThreeB.setDetails("Une boîte robuste pour sauter, renforçant les jambes et améliorant l'explosivité.");
+		equipmentThreeB.setActivity(activityThree);
+		equipmentDao.persist(equipmentThreeB);
+		
+		Equipment equipmentFour = new Equipment();
+		equipmentFour.setEquipmentName("Poids d'aquagym");
+		equipmentFour.setEquipmentPicturePath("Poids_aquagym.png");
+		equipmentFour.setAttachedGymId(Long.valueOf(61));
+		equipmentFour.setQuantity(40);
+		equipmentFour.setDetails("Transformez votre entraînement aquatique avec style et efficacité. Nos poids Aquafit sont votre partenaire idéal pour sculpter et renforcer votre corps dans l'eau.");
+		equipmentFour.setActivity(activityFour);
+		equipmentDao.persist(equipmentFour);
+		
+		Equipment equipmentFive = new Equipment();
+		equipmentFive.setEquipmentName("Swiss ball");
+		equipmentFive.setEquipmentPicturePath("Ballon_pilates.png");
+		equipmentFive.setAttachedGymId(Long.valueOf(61));
+		equipmentFive.setQuantity(10);
+		equipmentFive.setDetails("Transformez vos séances d'entraînement avec notre Swiss Ball Premium. Une fusion parfaite de forme, fonction et style pour des résultats exceptionnels.");
+		equipmentFive.setActivity(activityFive);
+		equipmentDao.persist(equipmentFive);
+		
+		Equipment equipmentSeven = new Equipment();
+		equipmentSeven.setEquipmentName("Gants de box");
+		equipmentSeven.setEquipmentPicturePath("Gants_box.png");
+		equipmentSeven.setAttachedGymId(Long.valueOf(61));
+		equipmentSeven.setQuantity(6);
+		equipmentSeven.setDetails("Dominez chaque round avec assurance et style. Optez pour les gants de boxe ProFit pour une expérience de boxe incomparable dans notre salle de sport de renom.");
+		equipmentSeven.setActivity(activitySeven);
+		equipmentDao.persist(equipmentSeven);
+		
+		Equipment equipmentEightA = new Equipment();
+		equipmentEightA.setEquipmentName("Banc de développé couché");
+		equipmentEightA.setEquipmentPicturePath("Banc_developpe_couche.png");
+		equipmentEightA.setAttachedGymId(Long.valueOf(61));
+		equipmentEightA.setQuantity(3);
+		equipmentEightA.setDetails("Transformez votre routine de musculation avec le Banc de Développé Couché UltimaForce. La fusion parfaite de confort, de robustesse et de performance pour des résultats qui se démarquent.");
+		equipmentEightA.setActivity(activityEight);
+		equipmentDao.persist(equipmentEightA);
+		
+		Equipment equipmentEightB = new Equipment();
+		equipmentEightB.setEquipmentName("Barre à traction");
+		equipmentEightB.setEquipmentPicturePath("Barre_traction.png");
+		equipmentEightB.setAttachedGymId(Long.valueOf(61));
+		equipmentEightB.setQuantity(2);
+		equipmentEightB.setDetails("Révélez votre puissance avec la Barre de Traction ProFit-Xtreme. Pour des tractions sans compromis et des résultats qui repoussent les limites.");
+		equipmentEightB.setActivity(activityEight);
+		equipmentDao.persist(equipmentEightB);
+		
+		Equipment equipmentEightC = new Equipment();
+		equipmentEightC.setEquipmentName("Série d'altères");
+		equipmentEightC.setEquipmentPicturePath("Serie_poids.png");
+		equipmentEightC.setAttachedGymId(Long.valueOf(61));
+		equipmentEightC.setQuantity(2);
+		equipmentEightC.setDetails("Redéfinissez vos limites avec les Altères PowerFlex Pro. Pour des muscles sculptés et une performance qui repousse constamment les frontières.");
+		equipmentEightC.setActivity(activityEight);
+		equipmentDao.persist(equipmentEightC);
+		
+		Equipment equipmentNine = new Equipment();
+		equipmentNine.setEquipmentName("Barres de danse");
+		equipmentNine.setEquipmentPicturePath("Barre_danse.png");
+		equipmentNine.setAttachedGymId(Long.valueOf(61));
+		equipmentNine.setQuantity(2);
+		equipmentNine.setDetails("Révélez votre puissance avec la Barre de Traction ProFit-Xtreme. Pour des tractions sans compromis et des résultats qui repoussent les limites.");
+		equipmentNine.setActivity(activityNine);
+		equipmentDao.persist(equipmentNine);
+		
+		Equipment equipmentTen = new Equipment();
+		equipmentTen.setEquipmentName("Set de sangles TRX");
+		equipmentTen.setEquipmentPicturePath("Sangles_TRX.jpg");
+		equipmentTen.setAttachedGymId(Long.valueOf(61));
+		equipmentTen.setQuantity(13);
+		equipmentTen.setDetails("xplorez de nouvelles dimensions de force, d'agilité et de performance avec le Set de Sangles de Suspension TRX Ultimate. Pour des résultats qui surpassent vos attentes.");
+		equipmentTen.setActivity(activityTen);
+		equipmentDao.persist(equipmentTen);
 
 	}
 
@@ -651,6 +836,8 @@ public class DataInitializer {
 //		Profile profileCoach3 = new Profile();
 //		profileCoach3.setFirstName("Emma");
 //		profileCoach3.setLastName("Cai");
-//		profileCoach3.setPictureUrl("profil3.png");
+//		profileCoach3.setPictureUrl("profil3.png");			
 	}
+	
+	
 }

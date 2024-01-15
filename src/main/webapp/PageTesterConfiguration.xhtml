@@ -11,24 +11,30 @@
 	<ui:define name="titleValue">Platform configuration</ui:define>
 	<ui:define name="content">
 
-	
+	<h:outputStylesheet library="css" name="cssPageSuperAdmin.css" />
 
-
-    <h:form enctype="multipart/form-data">
-        <h2>Create Platform Configuration</h2>
+<!-- BUGFIX : pas besoin de body car le template en a déjà un ! -->
+<!-- <body> -->
+    <div class="container">
+       
+        <h:form enctype="multipart/form-data">
         
-        <h:outputLabel for="platformName">Platform Name:</h:outputLabel>
-        <h:inputText id="platformName" value="#{platformConfigurationController.platformConfiguration.platformName}" />
-        <br/>
+         <h2>Créer une configuration de plateforme</h2>
+            <h:panelGrid columns="2" cellpadding="10">
+                <h:outputLabel for="platformName">Platform Name:</h:outputLabel>
+                <h:inputText id="platformName" value="#{platformConfigurationController.platformConfiguration.platformName}" />
 
-        <h:outputLabel for="logo">Select Logo:</h:outputLabel>
-        <h:inputFile id="logo" value="#{platformConfigurationController.platformConfiguration.logoURL}" />
-        <br/>
-
-        
-        
-        <h:commandButton value="Create" action="#{platformConfigurationController.createConfiguration()}" />
-    </h:form>
+                <h:outputLabel for="logo">Select Logo:</h:outputLabel>
+                <h:inputFile id="logo" value="#{platformConfigurationController.platformConfiguration.logoURL}" />
+            </h:panelGrid>
+            
+             <div class="espace"></div> 
+            <div class="bouttonCreate">
+            <h:commandButton value="Valider" action="#{platformConfigurationController.createConfiguration()}" />
+            </div>
+        </h:form>
+    </div>
+<!-- </body> -->
 	</ui:define>
 </ui:composition>
 
