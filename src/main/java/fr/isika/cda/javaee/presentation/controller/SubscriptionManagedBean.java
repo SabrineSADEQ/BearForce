@@ -1,6 +1,8 @@
 package fr.isika.cda.javaee.presentation.controller;
 
 import java.io.Serializable;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
@@ -57,6 +59,13 @@ public class SubscriptionManagedBean implements Serializable {
 			Subscription subscription = new Subscription();
 			subscription.setAutoRenewal(subscriptionViewModel.isAutorenewal());
 			// TODO : faire un petit calcul intelligent pour déduire la duration à partir de la end date et start date
+			
+			// Calcul de la durée à partir des dates de début et de fin
+            LocalDate startDate = subscriptionViewModel.getStartDate();
+            LocalDate endDate = subscriptionViewModel.getEndDate();
+            Duration duration = Duration.between(startDate.atStartOfDay(), endDate.atStartOfDay());
+            long days = duration.toDays();
+            
 			subscription.setDuration(subscriptionViewModel.getDuration());
 			subscription.setStartDate(subscriptionViewModel.getStartDate().atStartOfDay());
 			subscription.setEndDate(subscriptionViewModel.getEndDate().atStartOfDay());
@@ -68,10 +77,9 @@ public class SubscriptionManagedBean implements Serializable {
 			
 			subscription = subscriptionDao.createSubscriptionAndUpdateRelations(subscription, membership, account);
 			
-			// TODO : réactiver quand il y aura les objets pour le paiement (meme en simulation)
+			
 			return redirectToPaymentSubscription(subscription.getId());
 			
-//			return "ListeSubscriptions.xhtml";
 		}
 		
 		System.err.println("Ceci ne doit pas arriver mais au cas où ça veut dire que account == null ou membership == null");
@@ -79,12 +87,12 @@ public class SubscriptionManagedBean implements Serializable {
 	}
 	
 	public List<Subscription> subscriptionList() {
-		// FIX : subs du user connecté et non pas toutes les subs
+		
 		return subscriptionDao.getAllSubscriptions();
 	}
 	
 	public String redirectToPaymentSubscription(Long subscriptionId) {
-		// url : pagePayment.xhtml?spaceId=xx&subscriptionId=yy
+	
 		return "pagePayment.xhtml?faces-redirect=true&amp;spaceId=" 
 				+ SessionUtils.getAccount().getGymId()
 				+ "&amp;subscriptionId=" + subscriptionId;
