@@ -37,7 +37,6 @@
 									<p:commandButton icon="pi pi-envelope" value="Contacter"
 										update=":dialogs:contact-panel"
 										oncomplete="PF('contactDialog').show()"
-										styleClass="edit-button rounded-button ui-button-success"
 										process="@this">
 										<f:setPropertyActionListener value="#{tempProfile}" target="#{profilesManagementController.selectedProfile}" />
 										<p:resetInput target=":dialogs:contact-panel" />

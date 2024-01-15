@@ -9,6 +9,7 @@
 	<ui:define name="titleValue">Nos packs</ui:define>
 	<ui:define name="content">
 
+
 		<h:outputStylesheet library="css" name="main/cssPack.css" />
 
 		<h1 class="titre">
@@ -24,13 +25,14 @@
 						</h2>
 						<p class="description" style="font-size: 1.2em; text-align: justify;">
 							<h:outputText value="#{pack.price}" />
-							<h:outputText value="€" /><span>/Mois</span>
+							<h:outputText value="€/mois" />
 						</p>
 
 						<div class="image-content">
 							<span class="overlay"></span>
 							<div class="card-image">
 								<h:outputText value="#{pack.description}" style="font-size: 1.2em; text-align: justify;" />
+
 							</div>
 						</div>
 
