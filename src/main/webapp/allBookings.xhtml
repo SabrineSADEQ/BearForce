@@ -44,12 +44,12 @@
 
 						<p:column headerText="Début" sortBy="#{boo.course.startDate}"
 							filterBy="#{boo.course.startDate}">
-							<p:outputLabel>#{boo.course.startDate}</p:outputLabel>
+							<p:outputLabel>Le #{boo.course.startDate.dayOfMonth}/#{boo.course.startDate.monthValue} à #{boo.course.startDate.hour}h#{boo.course.startDate.minute}</p:outputLabel>
 						</p:column>
 
 						<p:column headerText="Fin" sortBy="#{boo.course.endDate}"
 							filterBy="#{boo.course.endDate}">
-							<p:outputLabel>#{boo.course.startDate}</p:outputLabel>
+							<p:outputLabel>Le #{boo.course.endDate.dayOfMonth}/#{boo.course.endDate.monthValue} à #{boo.course.endDate.hour}h#{boo.course.endDate.minute}</p:outputLabel>
 						</p:column>
 
 						<p:column exportable="false">

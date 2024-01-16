@@ -32,6 +32,7 @@ import fr.isika.cda.javaee.entity.accounts.Profile;
 import fr.isika.cda.javaee.entity.gymspace.business.Activity;
 import fr.isika.cda.javaee.entity.gymspace.business.Booking;
 import fr.isika.cda.javaee.entity.gymspace.business.Course;
+import fr.isika.cda.javaee.utils.SessionUtils;
 
 @Named
 @ViewScoped
@@ -195,14 +196,12 @@ public class PlanningCourseController implements Serializable {
 	}
 
 	private Long getCurrentConnectedId() { 
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
+		Account logged = SessionUtils.getAccount();
 		return logged.getId();
 	}
 
 	private String getCurrentConnectedRole() { 
-		LoginController controller = new LoginController();
-		Account logged = controller.getLoggedAccount();
+		Account logged = SessionUtils.getAccount();
 		return logged.getRole().getLibelle();
 	}
 
