@@ -5,9 +5,8 @@
   margin: 1px;
   padding: 1px;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-  text-align: center;
 }
+
 body{
   min-height: 200vh;
   display: flex;

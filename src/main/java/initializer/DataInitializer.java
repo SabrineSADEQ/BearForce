@@ -258,15 +258,15 @@ public class DataInitializer {
 		membership3.setName("Silver");
 		membership3.setPrice(45.99);
 		membership3.setNbrOfActivities(7);
-		membership3.setDescription("7 cours par semaine, accès illimité aux équipements en accès libre");
+		membership3.setDescription("7 cours par semaine dont un cours particulier, accès illimité aux équipements en accès libre");
 
 		membershipDao.saveMembership(membership3);
 		Membership membership = new Membership();
 		membership.setName("Gold");
 		membership.setPrice(99.99);
 		membership.setNbrOfActivities(20);
-		membership.setDescription("Jusqu'à 20 cours par semaine pour les plus grands sportifs,"
-				+ " encadrement personnalisé par le coach de votre choix et accès illimité à l'espace détente");
+		membership.setDescription("Jusqu'à 20 cours par semaine,"
+				+ " encadrement personnalisé par un coach et accès illimité à l'espace détente");
 		membershipDao.saveMembership(membership);
 
 		List<Membership> membershipList = new ArrayList<Membership>();
@@ -284,7 +284,7 @@ public class DataInitializer {
 		// Ici le chemin n'est autre que le nom du fichier car
 		// le chamin est relatif en plus est géré à l'upload par JSF
 		spaceViewModel.setGymLogoPath("goGym_logo.png");
-		spaceViewModel.setGymBannerPath("banner_2.png");
+		spaceViewModel.setGymBannerPath("banner_2_3.png");
 		spaceViewModel.setMotto("Ensemble, en route vers le sport !");
 		spaceViewModel.setSpaceName("Go Gym");
 		spaceViewModel.setDescription("Notre salle, idéalement située au coeur de Paris,"
@@ -489,7 +489,7 @@ public class DataInitializer {
 		newSpace.setSecondColor("33FF57");
 		newSpace.setThirdColor("334BFF");
 		newSpace.setGymLogoPath("logo2gym.png");
-		newSpace.setGymBannerPath("banner_3.png");
+		newSpace.setGymBannerPath("banner_4.png");
 		newSpace.setMotto("No pain, no gain");
 		newSpace.setSpaceName("Forklift");
 		newSpace.setDescription(
@@ -518,17 +518,17 @@ public class DataInitializer {
 		spaceDao.createSpace(newSpace);
 
 		SpaceViewModel fitnessCenter = new SpaceViewModel();
-		fitnessCenter.setFirstColor("4285F4");
+		fitnessCenter.setFirstColor("F4B400");
 		fitnessCenter.setSecondColor("DB4437");
-		fitnessCenter.setThirdColor("F4B400");
-		fitnessCenter.setGymLogoPath("fitness_logo.png");
-		fitnessCenter.setGymBannerPath("banner_fitness.jpg");
+		fitnessCenter.setThirdColor("191A2D");
+		fitnessCenter.setGymLogoPath("fitFusion.png");
+		fitnessCenter.setGymBannerPath("banner1.jpg");
 		fitnessCenter.setMotto("Toujours plus forts");
 		fitnessCenter.setSpaceName("FitFusion");
 		fitnessCenter.setDescription(
 				"Rejoignez notre communauté de passionnés de fitness dans notre salle de sport. "
 						+ "Des cours captivants, des équipements de pointe et une atmosphère motivante font de notre espace "
-						+ "le choix parfait pour quiconque cherche à élever son niveau de forme physique.");
+						+ "le choix parfait pour quiconque cherche à élever son niveau de forme physique en suivant des cours variés.");
 		fitnessCenter.setFreeAccess(false);
 		fitnessCenter.setLockerRoom(true);
 

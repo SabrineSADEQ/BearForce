@@ -5,7 +5,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
+<ui:composition template="WEB-INF/templates/spaceGeneralViewsTemplate.xhtml">
 	<ui:define name="titleValue">Paiement de votre abonnement</ui:define>
 	<ui:define name="content">
 
@@ -13,43 +13,41 @@
 			<h:outputStylesheet library="css" name="main/CssPayment.css" />
 		</h:head>
 
-		<div class="body-platform">
-			<div class="content">
+	
 				<h:form id="subscribeForm">
 					<h2>Informations de paiement</h2>
 
 					<h:panelGrid columns="3">
 
 						<h:outputLabel for="inputNom">Nom :</h:outputLabel>
-						<h:inputText id="inputNom" required="true" />
+						<p:inputText id="inputNom" required="true" />
 						<br />
 
 						<h:outputLabel for="inputPrenom">Prénom :</h:outputLabel>
-						<h:inputText id="inputPrenom" required="true" />
+						<p:inputText id="inputPrenom" required="true" />
 						<br />
 
 						<h:outputLabel for="inputNumeroCarte">Numéro de carte bancaire :</h:outputLabel>
-						<h:inputText id="inputNumeroCarte" required="true" />
+						<p:inputText id="inputNumeroCarte" required="true" />
 						<br />
 
 						<h:outputLabel for="inputDateExpiration">Date d'expiration :</h:outputLabel>
-						<p:datePicker id="expirationDate"  />
+						<p:datePicker id="expirationDate" />
 						<br />
 
 						<h:outputLabel for="inputCode">Code CVV :</h:outputLabel>
 						<h:inputSecret id="inputCode" required="true" />
 						<br />
 					</h:panelGrid>
-					
-					<input type="button" id="validate-button" onclick="PF('dlgPaiement').show()" value="Valider" />
-
+					<div class="buttonDiv">
+						<input type="button" id="validate-button"
+							onclick="PF('dlgPaiement').show()" value="Valider" />
+					</div>
 					<br />
 					<br />
 
 				</h:form>
-			</div>
-		</div>
-
+	
 		<p:dialog header="Paiement réussi" widgetVar="dlgPaiement"
 			minHeight="40" width="350" showEffect="fade">
 			<h:form>
@@ -59,8 +57,9 @@
 					<p:graphicImage library="images" name="paymentSuccessful.png" />
 				</div>
 				<br />
-			
-				<p:button value="Retourner sur mon espace" rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}"
+
+				<p:button value="Retourner sur mon espace"
+					rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}"
 					outcome="accueil.xhtml" />
 
 			</h:form>

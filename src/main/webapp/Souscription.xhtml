@@ -11,42 +11,51 @@
 
 
 		<h:outputStylesheet library="css" name="main/cssPack.css" />
+		<div class="body-platform">
+			<div class="subcontent">
+				<h1 class="titre">
+					<h:outputText value="Nos Packs"
+						style="color: var(--violet); font-weight: bold;" />
+				</h1>
 
-		<h1 class="titre">
-			<h:outputText value="Nos Packs" style="color: #0066cc; font-weight: bold;" />
-		</h1>
+				<div class="slide-content">
+					<h:form>
+						<ui:repeat
+							value="#{subscriptionManagementController.listePacks()}"
+							var="pack">
+							<div class="card swiper-slide">
+								<div class="card-content">
+									<h2 class="name" style="font-size: 1.5em; text-align: justify; padding:20px;">
+										<h:outputText value="#{pack.name}" />
+									</h2>
+									<p class="description"
+										style="font-size: 1.2em; text-align: justify;">
+										<h:outputText value="#{pack.price}" />
+										<h:outputText value=" €/mois " />
+									</p>
 
-		<div class="slide-content" >
-		<h:form>
-			<ui:repeat value="#{subscriptionManagementController.listePacks()}" var="pack">
-				<div class="card swiper-slide">
-					<div class="card-content" >
-						<h2 class="name" style="font-size: 1.5em; text-align: justify;">
-							<h:outputText value="#{pack.name}" />
-						</h2>
-						<p class="description" style="font-size: 1.2em; text-align: justify;">
-							<h:outputText value="#{pack.price}" />
-							<h:outputText value=" €/mois " />
-						</p>
 
+									<div class="image-content">
+										<span class="overlay"></span>
+										<div class="card-image">
+											<h:outputText value="#{pack.description}"
+												style="font-size: 1.2em; text-align: justify;" />
 
-						<div class="image-content">
-							<span class="overlay"></span>
-							<div class="card-image">
-								<h:outputText value="#{pack.description}" style="font-size: 1.2em; text-align: justify;" />
+										</div>
+									</div>
 
+									<h:commandButton value="Acheter"
+										rendered="#{loginController.loggedIn}"
+										action="#{subscriptionManagementController.paymentPack()}"
+										styleClass="button" />
+								</div>
 							</div>
-						</div>
-
-						<h:commandButton value="Acheter" rendered="#{loginController.loggedIn}"
-							action="#{subscriptionManagementController.paymentPack()}"
-							styleClass="button" />
-					</div>
+						</ui:repeat>
+					</h:form>
 				</div>
-			</ui:repeat>
-			</h:form>
-		</div>
 
+			</div>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>

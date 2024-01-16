@@ -27,7 +27,7 @@
 								<div class="image-content">
 								</div>
 								<div class="card-footer">
-									<p:commandButton id="validate-button"
+									<p:commandButton id="validate-button" rendered="#{loginController.loggedIn}"
 										action="#{subscriptionManagedBean.selectMemberShip(membership.id)}"
 										oncomplete="PF('dlgMembership').show()" value="Souscrire" />
 								</div>
@@ -60,7 +60,9 @@
                     </p:selectBooleanCheckbox>
 				</h:panelGrid>
 				<br />
-				<p:commandButton value="Souscrire"
+				
+				
+				<p:commandButton value="Souscrire" 
 					action="#{subscriptionManagedBean.subscribe()}" />
 			</h:form>
 		</p:dialog>

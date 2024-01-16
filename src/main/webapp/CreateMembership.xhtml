@@ -5,83 +5,91 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/WEB-INF/templates/spaceDashboardTemplate.xhtml">
-	<ui:define name="titleValue">Créer un Abonnement</ui:define>
+<ui:composition
+	template="/WEB-INF/templates/spaceDashboardTemplate.xhtml">
+	<ui:define name="titleValue">Abonnements</ui:define>
 	<ui:define name="content">
 		<h:form>
 			<div class="subcontent">
-			
-				<div class="card">
-					<h5>Créer un nouvel abonnement</h5>
 
-					<div class="field grid">
-						<p:outputLabel for="membershipName" styleClass="col-fixed"
-							style="width:100px" value="Nom de l'abonnement : " />
-						<div class="col">
-							<p:inputText id="membershipName"
-								value="#{membershipManagedBean.membershipViewModel.name}" />
-						</div>
-					</div>
-					<br />
+				<h1>Abonnements</h1>
 
-					<div class="field grid">
-						<p:outputLabel for="nbrOfActivities" styleClass="col-fixed"
-							style="width:100px" value="Nombre d'activités par semaine: " />
-						<div class="col">
-							<p:inputText id="nbrOfActivities"
-								value="#{membershipManagedBean.membershipViewModel.nbrOfActivities}">
-								<f:validateLongRange minimum="1" />
-							</p:inputText>
-						</div>
-					</div>
-					<br />
-
-					<div class="field grid">
-						<p:outputLabel for="price" styleClass="col-fixed"
-							style="width:100px" value="Prix : " />
-						<div class="col">
-							<p:inputText id="price"
-								value="#{membershipManagedBean.membershipViewModel.price}" />
-						</div>
-					</div>
-					<br />
-
-					<div class="field grid">
-						<p:outputLabel for="description" styleClass="col-fixed"
-							style="width:100px" value="Description : " />
-						<div class="col">
-							<p:inputTextarea id="description"
-								value="#{membershipManagedBean.membershipViewModel.description}">
-							</p:inputTextarea>
-						</div>
-					</div>
-					<br />
-
-					<div class="field grid">
-						<p:commandButton value="Créer un abonnement" update="@form"
-							action="#{membershipManagedBean.createMembership}"
-							icon="pi pi-check" styleClass="rounded-button ui-button-primary" />
-					</div>
-				</div>
-				<br />
 				<ui:fragment rendered="#{loginController.isGestionnaire()}">
 					<div>
-						<p:dataTable value="#{membershipManagedBean.getMemberships()}" var="membership">
-							<p:column headerText="ID">
-								<h:outputText value="#{membership.id}" />
-							</p:column>
-	
-							<p:column headerText="Name">
+						<p:dataTable value="#{membershipManagedBean.getMemberships()}"
+							var="membership">
+
+							<p:column headerText="Nom">
 								<h:outputText value="#{membership.name}" />
 							</p:column>
-	
-							<p:column headerText="Prix">
-								<h:outputText value="#{product.price}" />
+
+							<p:column headerText="Prix mensuel">
+								<h:outputText value="#{membership.price} €" />
+							</p:column>
+
+							<p:column headerText="Description">
+								<h:outputText value="#{membership.description}" />
+							</p:column>
+
+							<p:column exportable="false">
+								<p:commandButton icon="pi pi-pencil"
+									styleClass="edit-button rounded-button ui-button-success"
+									process="@this">
+
+								</p:commandButton>
+								<p:commandButton class="ui-button-warning rounded-button"
+									icon="pi pi-trash" process="@this">
+								</p:commandButton>
 							</p:column>
 						</p:dataTable>
 					</div>
 				</ui:fragment>
+
+				<h3>Créer un nouvel abonnement</h3>
+				<div class="field grid">
+					<p:outputLabel for="membershipName" styleClass="col-fixed"
+						value="Nom de l'abonnement : " />
+
+					<p:inputText id="membershipName"
+						value="#{membershipManagedBean.membershipViewModel.name}" />
+
 				</div>
+		
+				<div class="field grid">
+					<p:outputLabel for="nbrOfActivities" styleClass="col-fixed"
+						value="Nombre d'activités par semaine : " />
+
+					<p:inputText id="nbrOfActivities"
+						value="#{membershipManagedBean.membershipViewModel.nbrOfActivities}">
+						<f:validateLongRange minimum="1" />
+					</p:inputText>
+
+				</div>
+
+				<div class="field grid">
+					<p:outputLabel for="price" styleClass="col-fixed"
+						value="Prix mensuel : " />
+
+					<p:inputText id="price"
+						value="#{membershipManagedBean.membershipViewModel.price}" />
+
+				</div>
+
+				<div class="field grid">
+					<p:outputLabel for="description" styleClass="col-fixed"
+						value="Description : " />
+
+					<p:inputTextarea id="description" cols="45" rows="3"
+						value="#{membershipManagedBean.membershipViewModel.description}">
+					</p:inputTextarea>
+
+				</div>
+				<div class="field grid">
+					<p:commandButton value="Créer un abonnement" update="@form"
+						action="#{membershipManagedBean.createMembership}"
+						icon="pi pi-check" styleClass="rounded-button ui-button-primary" />
+				</div>
+			</div>
 		</h:form>
 	</ui:define>
 </ui:composition>

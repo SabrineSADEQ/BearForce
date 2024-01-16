@@ -7,9 +7,10 @@
 
 <ui:composition template="WEB-INF/templates/mainTemplate.xhtml">
 	<ui:define name="titleValue">Créer un compte</ui:define>
+  
 	<ui:define name="content">
 		<h:outputStylesheet library="css" name="main/accountCreation.css" />
-
+<div class="subcontent">
 
 		<!-- Step 1: Collect Email and Password -->
 		<h:form rendered="#{accountController.wizardStep == 1}"
@@ -169,7 +170,7 @@
 				<p:carousel value="#{spaceController.getAllSpaces()}" var="space"
 					numVisible="3" numScroll="3">
 					<f:facet name="header">
-						<h4 style="font-size: 1.5em;">Nos clients</h4>
+						<h4 style="font-size: 1.5em;">Salles de sport disponibles :</h4>
 					</f:facet>
 					<div class="product-item">
 						<div class="product-item-content">
@@ -198,12 +199,12 @@
 			<div class="form-group">
 				<h:outputLabel for="gymId2" styleClass="form-label"
 					style="margin-left: 10px; font-size: 1.2em;">Choisir: </h:outputLabel>
-				<h:selectOneMenu id="gymId2"
+				<p:selectOneMenu id="gymId2"
 					value="#{accountController.accountVM.gymId}" required="true"
 					styleClass="form-input">
 					<f:selectItems value="#{spaceController.allSpaces}" var="space"
 						itemLabel="#{space.idGym.gymName}" itemValue="#{space.id}" />
-				</h:selectOneMenu>
+				</p:selectOneMenu>
 			</div>
 			<br></br>
 			<div class="button-group">
@@ -220,7 +221,7 @@
 			<h:messages globalOnly="true" />
 		</h:form>
 
-
+  </div>
 	</ui:define>
 
 </ui:composition>

@@ -15,41 +15,46 @@
 
 		<div class="body-platform">
 			<div class="content">
-				<h:form id="subscribeForm">
-					<h2>Informations de paiement</h2>
+				<div class="subcontent">
+					<h:form id="subscribeForm">
+						<h2>Informations de paiement</h2>
 
-					<h:panelGrid columns="3">
+						<h:panelGrid columns="3">
 
-						<h:outputLabel for="inputNom">Nom :</h:outputLabel>
-						<h:inputText id="inputNom" required="true" />
+							<h:outputLabel for="inputNom">Nom :</h:outputLabel>
+							<p:inputText id="inputNom" required="true" />
+							<br />
+
+							<h:outputLabel for="inputPrenom">Prénom :</h:outputLabel>
+							<p:inputText id="inputPrenom" required="true" />
+							<br />
+
+							<h:outputLabel for="inputNumeroCarte">Numéro de carte bancaire :</h:outputLabel>
+							<p:inputText id="inputNumeroCarte" required="true" />
+							<br />
+
+							<h:outputLabel for="inputDateExpiration">Date d'expiration :</h:outputLabel>
+							<p:datePicker id="expirationDate" />
+							<br />
+
+							<h:outputLabel for="inputCode">Code CVV :</h:outputLabel>
+							<h:inputSecret id="inputCode" required="true" />
+							<br />
+
+						</h:panelGrid>
+						<div class="buttonDiv">
+							<input type="button" id="validate-button"
+								onclick="PF('dlgPaiement').show()" value="Valider" />
+						</div>
+
+						<br />
 						<br />
 
-						<h:outputLabel for="inputPrenom">Prénom :</h:outputLabel>
-						<h:inputText id="inputPrenom" required="true" />
-						<br />
-
-						<h:outputLabel for="inputNumeroCarte">Numéro de carte bancaire :</h:outputLabel>
-						<h:inputText id="inputNumeroCarte" required="true" />
-						<br />
-
-						<h:outputLabel for="inputDateExpiration">Date d'expiration :</h:outputLabel>
-						<h:inputText id="inputDateExpiration" required="true" />
-						<br />
-
-						<h:outputLabel for="inputCode">Code CVV :</h:outputLabel>
-						<h:inputSecret id="inputCode" required="true" />
-						<br />
-					</h:panelGrid>
-					
-					<input type="button" id="validate-button" onclick="PF('dlgPaiement').show()" value="Valider" />
-
-					<br />
-					<br />
-
-				</h:form>
+					</h:form>
+				</div>
 			</div>
+			<div class="secondPart"></div>
 		</div>
-
 		<p:dialog header="Paiement réussi" widgetVar="dlgPaiement"
 			minHeight="40" width="350" showEffect="fade">
 			<h:form>
@@ -59,10 +64,11 @@
 					<p:graphicImage library="images" name="paymentSuccessful.png" />
 				</div>
 				<br />
-				
-				<p:commandButton value=" Créer votre espace" rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}"
+
+				<p:commandButton value=" Créer votre espace"
+					rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}"
 					action="#{subscriptionManagementController.dirigeVersSpaceCreation()}" />
-			
+
 			</h:form>
 
 		</p:dialog>

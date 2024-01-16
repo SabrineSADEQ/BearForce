@@ -3,7 +3,6 @@
 
 :root {
 	--blanc: #ffffff;
-	/* couleurs exemple du tp de Mohamed */
 	--bleuFonce: #06375A;
 	--bleuClair: #1B5680;
 	--orange: #F5B37D;
@@ -61,9 +60,9 @@ body {
 
 /* style for carrousel of clients*/
  .product-item .product-item-content {
-        border: 1px solid var(--surface-d);
+      /*  border: 1px solid var(--surface-d);*/
         border-radius: 3px;
-        margin: .3rem;
+        margin: 1.3rem;
         text-align: center;
         padding: 2rem 0;
         height:500px;
@@ -92,6 +91,15 @@ transform: scale(1.02);
 	display:flex;
 	justify-content:center;
 	color:var(--violet);
+}
+
+html body .ui-carousel .ui-carousel-indicators .ui-carousel-indicator.ui-state-highlight button {
+   /* background: #2196f3;*/
+    color: #fff;
+}
+
+html body .ui-carousel .ui-carousel-indicators .ui-carousel-indicator button {
+	width:0px;
 }
 
 /* overrides Primefaces buttons default style*/
@@ -190,10 +198,10 @@ html body .ui-fileupload .ui-fileupload-content {
     border-radius: 50%;
 }
 
-.carouGeneral { .product-item-content { 
+.carouGeneral .product-item-content { 
 	border-radius:3px !important;
 	margin: 1.3rem !important;
 	text-align: center !important;
 	padding: 2rem 0 !important;
 	height: 500px !important;
-}}
+}

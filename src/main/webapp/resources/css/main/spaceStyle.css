@@ -175,6 +175,7 @@ html body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-tex
 	display: flex;
 	flex-direction: row;
 	width: 100%;
+	margin-top:25px;
 }
 
 .update-text-content {
@@ -189,25 +190,23 @@ html body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-tex
 	flex: 1;
 	width: 40%;
 	float: left;
-	margin-left: 20px;
+	
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+
 }
 
 .updateButton {
 	margin-right: 100px;
+	margin-top:20px;
 }
 
 .colorLabel {
 	margin-right: 20px;
 }
 
-.imagesDiv {
-	margin-left: 20px;
-}
+
 
 /*PrimeFaces styles for color picker*/
 .square .clr-field button, .circle .clr-field button {

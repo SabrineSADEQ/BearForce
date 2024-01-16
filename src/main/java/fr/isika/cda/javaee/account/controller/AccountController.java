@@ -61,9 +61,7 @@ public class AccountController implements Serializable {
 				accountVM.getProfessionalDetails().setCoachCertification(account.getProfile().getProfesionalDetails().getCoachCertification());
 				accountVM.getProfessionalDetails().setCoachForm(account.getProfile().getProfesionalDetails().getCoachForm());
 				accountVM.getProfessionalDetails().setCoachCV(account.getProfile().getProfesionalDetails().getCoachCV());
-				
-				//DEBUG : 
-				System.out.println(accountVM.getProfessionalDetails());
+			
 			}
 			
 		} else {
@@ -100,7 +98,7 @@ public class AccountController implements Serializable {
 
         addAccount();
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Compte créer !s", "Account creation successful!"));
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Compte créé !", "Account creation successful!"));
 
         // Reset the wizard step and mode for the next user
         wizardStep = 1;

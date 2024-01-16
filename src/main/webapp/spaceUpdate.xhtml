@@ -14,8 +14,9 @@
 		<h:outputStylesheet library="css" name="spaceStyle.css" />
 		<div class="subcontent">
 			<h1 class="titleH1">Modifier mon espace</h1>
-			<div class="update-space-container">
-				<h:form>
+			<h:form>
+				<div class="update-space-container">
+
 					<div class="update-text-content">
 						<div class="field grid">
 
@@ -80,7 +81,7 @@
 								clearButton="true" closeButton="true" alpha="false">
 							</p:colorPicker>
 						</div>
-
+						<br/>
 						<div>
 							<h:outputLabel class="colorLabel">Deuxième couleur</h:outputLabel>
 							<p:colorPicker id="secondColor" theme="polaroid"
@@ -90,8 +91,9 @@
 								forceAlpha="true">
 							</p:colorPicker>
 						</div>
+						<br/>
 						<div>
-							<h:outputLabel class="colorLabel">Troisième couleur</h:outputLabel>
+							<h:outputLabel class="colorLabel">Troisième couleur </h:outputLabel>
 							<p:colorPicker id="thirdColor" theme="polaroid"
 								formatToggle="true"
 								value="#{spaceController.spaceViewModel.thirdColor}"
@@ -99,6 +101,7 @@
 								forceAlpha="true">
 							</p:colorPicker>
 						</div>
+						<br/>
 						<div class="imagesDiv">
 							<div>
 								<h:outputLabel>Logo :</h:outputLabel>
@@ -117,12 +120,14 @@
 						</div>
 
 					</div>
-					<div class="updateButton">
-						<p:commandButton value="Modifier mon espace"
-							action="#{spaceController.updateSpace}" />
-					</div>
-				</h:form>
-			</div>
+
+
+
+
+				</div>
+				<p:commandButton value="Modifier mon espace" class="updateButton"
+					action="#{spaceController.updateSpace}" />
+			</h:form>
 		</div>
 
 	</ui:define>

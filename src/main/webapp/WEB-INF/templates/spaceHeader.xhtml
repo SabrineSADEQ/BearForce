@@ -53,11 +53,11 @@
 						iconPos="right"
 						rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
 					<p:button class="rightButton" value="Tableau de bord"
-						outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
+						outcome="generalPlanning" icon="pi pi-chevron-right"
 						iconPos="right"
 						rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
 					<p:button class="rightButton" value="Mon espace personnel"
-						outcome="#{spaceController.redirectToSpace(loginController.loggedAccount.gymId)}"
+						outcome="crdBooking"
 						icon="pi pi-chevron-right" iconPos="right"
 						rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
 				</h:form>
@@ -73,12 +73,14 @@
 						action="#{loginController.logout()}" />
 				</ui:fragment>
 				<ui:fragment rendered="#{not loginController.loggedIn}">
-					<p:commandButton value="Connexion" type="button"
+					<p:commandButton value="Connexion" type="button" 
 						onclick="PF('dlg3').show()" />
 				</ui:fragment>
 			</h:form>
-			<p:button id="BF-button" icon="pi pi-chevron-right" iconPos="right"
+			<p:button id="BF-button" icon="pi pi-chevron-right" iconPos="right" rendered="#{loginController.loggedIn}"
 				value="BearForce" outcome="index" />
+			<p:button id="BF-button2" icon="pi pi-chevron-right" iconPos="right" rendered="#{not loginController.loggedIn}"
+				value="BearForce" outcome="spacesList" />
 
 			<!-- Login pop up -->
 			<h:form>
