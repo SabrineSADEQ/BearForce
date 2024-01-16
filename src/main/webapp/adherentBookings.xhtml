@@ -5,76 +5,81 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+<ui:composition
+	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
 	<ui:define name="titleValue">Gestion des réservations</ui:define>
 	<ui:define name="content">
-		<div>
-			<div class="card crud-demo">
-				<h:form id="form">
-					<p:growl id="messages" showDetail="false" rendered="false" />
+		<div class="subcontent">
+			<div>
+				<div class="card crud-demo">
+					<h:form id="form">
+						<p:growl id="messages" showDetail="false" rendered="false" />
 
-					<p:dataTable id="d-booking" widgetVar="dtbookings" var="boo"
-						value="#{bookingController.displayBookingListForAdherent()}"
-						reflow="true" styleClass="products-table" paginator="true"
-						rows="10" rowSelectMode="add" paginatorPosition="bottom">
+						<p:dataTable id="d-booking" widgetVar="dtbookings" var="boo"
+							value="#{bookingController.displayBookingListForAdherent()}"
+							reflow="true" styleClass="products-table" paginator="true"
+							rows="7" rowSelectMode="add" paginatorPosition="bottom">
 
-						<f:facet name="header">
-							<div class="products-table-header">
-								<span style="font-weight: bold">LES COURS RESERVES</span> <span
-									class="filter-container ui-input-icon-left"> <i
-									class="pi pi-search"></i> <p:inputText id="globalFilter"
-										onkeyup="PF('dtBookings').filter()" placeholder="Recherche" />
-								</span>
-							</div>
-						</f:facet>
-						
-						<p:column headerText="Activité" sortBy="#{boo.course.activity.name}"
-							filterBy="#{boo.course.activity.name}">
-							<p:outputLabel>#{boo.course.activity.name}</p:outputLabel>
-						</p:column>
-						
-						<p:column headerText="Coach" sortBy="#{boo.course.trainer.lastName}"
-							filterBy="#{boo.course.trainer.lastName}">
-							<p:outputLabel>#{boo.course.trainer.firstName} #{boo.course.trainer.lastName}</p:outputLabel>
-						</p:column>
-						
-						<p:column headerText="Début" sortBy="#{boo.course.startDate}"
-							filterBy="#{boo.course.startDate}">
-							<p:outputLabel>#{boo.course.startDate}</p:outputLabel>
-						</p:column>
+							<f:facet name="header">
+								<div class="products-table-header">
+									<span style="font-weight: bold">LES COURS RESERVES</span> <span
+										class="filter-container ui-input-icon-left"> <i
+										class="pi pi-search"></i> <p:inputText id="globalFilter"
+											onkeyup="PF('dtBookings').filter()" placeholder="Recherche" />
+									</span>
+								</div>
+							</f:facet>
 
-						<p:column headerText="Fin" sortBy="#{boo.course.endDate}"
-							filterBy="#{boo.course.endDate}">
-							<p:outputLabel>#{boo.course.startDate}</p:outputLabel>
-						</p:column>
+							<p:column headerText="Activité"
+								sortBy="#{boo.course.activity.name}"
+								filterBy="#{boo.course.activity.name}">
+								<p:outputLabel>#{boo.course.activity.name}</p:outputLabel>
+							</p:column>
 
-						<p:column exportable="false">
+							<p:column headerText="Coach"
+								sortBy="#{boo.course.trainer.lastName}"
+								filterBy="#{boo.course.trainer.lastName}">
+								<p:outputLabel>#{boo.course.trainer.firstName} #{boo.course.trainer.lastName}</p:outputLabel>
+							</p:column>
 
-							<p:commandButton class="ui-button-warning rounded-button"
-								icon="pi pi-trash" process="@this"
-								oncomplete="PF('deleteBookingDialog').show()">
-								<f:setPropertyActionListener value="#{boo}"
-									target="#{bookingController.selectedBooking}" />
-							</p:commandButton>
-						</p:column>
+							<p:column headerText="Début" sortBy="#{boo.course.startDate}"
+								filterBy="#{boo.course.startDate}">
+								<p:outputLabel>Le #{boo.course.startDate.dayOfMonth}/#{boo.course.startDate.monthValue} à #{boo.course.startDate.hour}h#{boo.course.startDate.minute}</p:outputLabel>
+							</p:column>
 
-					</p:dataTable>
-				</h:form>
+							<p:column headerText="Fin" sortBy="#{boo.course.endDate}"
+								filterBy="#{boo.course.endDate}">
+								<p:outputLabel>Le #{boo.course.endDate.dayOfMonth}/#{boo.course.endDate.monthValue} à #{boo.course.endDate.hour}h#{boo.course.endDate.minute}</p:outputLabel>
+							</p:column>
 
-				<h:form id="dialogs">
+							<p:column exportable="false">
 
-					<p:confirmDialog widgetVar="deleteBookingDialog" showEffect="fade"
-						width="300" message="Annuler la réservation ?" header="Confirm"
-						severity="warn">
-						<p:commandButton value="Oui" icon="pi pi-check"
-							actionListener="#{bookingController.deleteSelectedBooking()}"
-							oncomplete="PF('deleteBookingDialog').hide()" update=":form:" />
-						<p:commandButton value="Non" type="button"
-							styleClass="ui-button-secondary" icon="pi pi-times"
-							onclick="PF('deleteBookingDialog').hide()" />
-					</p:confirmDialog>
-				</h:form>
-				<br />
+								<p:commandButton class="ui-button-warning rounded-button"
+									icon="pi pi-trash" process="@this"
+									oncomplete="PF('deleteBookingDialog').show()">
+									<f:setPropertyActionListener value="#{boo}"
+										target="#{bookingController.selectedBooking}" />
+								</p:commandButton>
+							</p:column>
+
+						</p:dataTable>
+					</h:form>
+
+					<h:form id="dialogs">
+
+						<p:confirmDialog widgetVar="deleteBookingDialog" showEffect="fade"
+							width="300" message="Annuler la réservation ?" header="Confirm"
+							severity="warn">
+							<p:commandButton value="Oui" icon="pi pi-check"
+								actionListener="#{bookingController.deleteSelectedBooking()}"
+								oncomplete="PF('deleteBookingDialog').hide()" update=":form:" />
+							<p:commandButton value="Non" type="button"
+								styleClass="ui-button-secondary" icon="pi pi-times"
+								onclick="PF('deleteBookingDialog').hide()" />
+						</p:confirmDialog>
+					</h:form>
+					<br />
+				</div>
 			</div>
 		</div>
 	</ui:define>

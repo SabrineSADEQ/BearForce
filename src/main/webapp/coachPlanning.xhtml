@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition
+	template="WEB-INF/templates/spaceDashboardTemplate.xhtml">
+	<ui:define name="titleValue">Planning</ui:define>
+	<ui:define name="content">
+		<div class="subcontent" style="height: 100%; width: 66.3%">
+			<div class="card">
+				<h:form>
+					<p:growl id="messages" showDetail="true" />
+					<h:panelGrid style="width: 1100px">
+						<p:schedule id="schedule"
+							value="#{planningCourseController.eventModel}"
+							widgetVar="myschedule">
+						</p:schedule>
+					</h:panelGrid>
+				</h:form>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</html>
