@@ -108,7 +108,8 @@
 										value="#{spaceController.spaceViewModel.firstColor}"
 										clearButton="true" closeButton="true" alpha="false">
 									</p:colorPicker>
-
+									 <p:tooltip for="firstColorPicker" value="Couleur de fond des boutons et des titres principaux" position="right"/>
+									<br/>
 									<h:outputLabel for="secondColor">Couleur secondaire</h:outputLabel>
 									<p:colorPicker id="secondColor" theme="polaroid"
 										formatToggle="true"
@@ -116,7 +117,8 @@
 										clearButton="true" closeButton="true" alpha="false"
 										forceAlpha="true">
 									</p:colorPicker>
-
+									<p:tooltip for="secondColor" value="Couleur de fond des boutons survolés" position="right"/>
+									<br/>
 									<h:outputLabel for="thirdColor">Couleur tertiaire</h:outputLabel>
 									<p:colorPicker id="thirdColor" theme="polaroid"
 										formatToggle="true"
@@ -124,6 +126,8 @@
 										clearButton="true" closeButton="true" alpha="false"
 										forceAlpha="true">
 									</p:colorPicker>
+									<p:tooltip for="thirdColor" value="Couleur de fond du menu horizontal de l'espace (header)" position="right"/>
+								
 								</h:panelGrid>
 								
 							</p:panel>
