@@ -47,7 +47,7 @@
 									<p:outputLabel value="Email" />
 									<p:inputText value="#{accountController.accountVM.email}"
 										required="true"
-										placeholder="#{loginController.getLoggedAccount().profile.firstName}" />
+										placeholder="#{loginController.getLoggedAccount().email}" />
 
 									<h:outputLabel for="birthDateStep2">Date de naissance </h:outputLabel>
 									<p:datePicker id="birthDateStep2" value="#{accountController.accountVM.profile.birthDate}" />

@@ -8,18 +8,29 @@
  
 }
 body{
-  max-height: 100vh;
+  max-height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #EFEFEF;
   justify-content: center;
   background-color: #f7f8fc;
-  font-family: "Roboto", sans-serif;
   color: #10182f;
 }
+
+.body-platform{
+	background-color: #f7f8fc;
+	color: var(--dark);
+	padding-bottom:5rem;
+	width:100%;
+	min-height:80%;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .slide-container{
-   font-family: 'Poppins', sans-serif;
+ 
   display: flex;
   width: 1040px;
   justify-content: space-evenly;
@@ -58,21 +69,26 @@ body{
   top: 0;
   height: 100%;
   width: 100%;
-background: linear-gradient(to right, #ff7e5f, #feb47b);
+  /*background: linear-gradient(to right, #ff7e5f, #feb47b);*/
+  /*background: linear-gradient(to right, var(--violet), var(--turquoise));*/
+  background-image: linear-gradient(to right top, #9575c6, #877ac6, #7a7ec4, #6f81c1, #6684bc);
+  padding:20px;
 }
 
 .titre{
 	margin:25px;
+	text-align: center;
 }
 
 .card-image {
   position: relative;
-  height: 190px;
+  height: 150px;
   width: 300px;
   text-align: center;
   color:white;
   overflow: hidden;
-  font-size:14px; /* Ensure the image stays within the rounded borders */
+  font-size:14px; 
+  padding: 15px;
 }
 
 .card-image img {
@@ -87,12 +103,14 @@ background: linear-gradient(to right, #ff7e5f, #feb47b);
   font-size: 22px;
   font-weight: 500;
   color: #333;
+  margin:10px;
 }
 .description{
   font-size: 22px;
   color: #707070;
   text-align: center;
   font-weight: bold;
+  margin:25px;
   
 }
 .button{

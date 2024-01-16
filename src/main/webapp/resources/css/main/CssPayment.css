@@ -7,6 +7,10 @@ h2 {
     margin-bottom: 20px;
 }
 
+.secondPart{
+	margin-bottom:175px;
+}
+
 #subscribeForm {
     width: 600px;
     margin: 0 auto;
@@ -59,9 +63,16 @@ p {
     font-size: 16px;
 }
 
+.buttonDiv{
+	display:flex;
+	justify-content:center;
+}
+
 #validate-button{
 	background-color: var(--turquoise);
 	border-color:transparent;
 	border-radius:20px;
 	color:var(--blanc);
+	align-content: center;
+	width:75px;
 } 

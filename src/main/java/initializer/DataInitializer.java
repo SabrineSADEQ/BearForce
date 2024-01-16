@@ -286,7 +286,7 @@ public class DataInitializer {
 		// Ici le chemin n'est autre que le nom du fichier car
 		// le chamin est relatif en plus est géré à l'upload par JSF
 		spaceViewModel.setGymLogoPath("goGym_logo.png");
-		spaceViewModel.setGymBannerPath("banner_2.png");
+		spaceViewModel.setGymBannerPath("banner_2_3.png");
 		spaceViewModel.setMotto("Ensemble, en route vers le sport !");
 		spaceViewModel.setSpaceName("Go Gym");
 		spaceViewModel.setDescription("Notre salle, idéalement située au coeur de Paris,"
@@ -491,7 +491,7 @@ public class DataInitializer {
 		newSpace.setSecondColor("33FF57");
 		newSpace.setThirdColor("334BFF");
 		newSpace.setGymLogoPath("logo2gym.png");
-		newSpace.setGymBannerPath("banner_3.png");
+		newSpace.setGymBannerPath("banner_4.png");
 		newSpace.setMotto("No pain, no gain");
 		newSpace.setSpaceName("Forklift");
 		newSpace.setDescription(
@@ -523,10 +523,10 @@ public class DataInitializer {
 		fitnessCenter.setFirstColor("4285F4");
 		fitnessCenter.setSecondColor("DB4437");
 		fitnessCenter.setThirdColor("F4B400");
-		fitnessCenter.setGymLogoPath("fitness_logo.png");
-		fitnessCenter.setGymBannerPath("banner_fitness.jpg");
+		fitnessCenter.setGymLogoPath("SportiFit.png");
+		fitnessCenter.setGymBannerPath("banner1.jpg");
 		fitnessCenter.setMotto("Toujours plus forts");
-		fitnessCenter.setSpaceName("FitFusion");
+		fitnessCenter.setSpaceName("SportiFit");
 		fitnessCenter.setDescription(
 				"Rejoignez notre communauté de passionnés de fitness dans notre salle de sport. "
 						+ "Des cours captivants, des équipements de pointe et une atmosphère motivante font de notre espace "

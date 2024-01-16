@@ -48,7 +48,7 @@
 
 		<!-- Login and logout buttons depending on the connection status of the user -->
 		<div class="right-container">
-			<!-- Login and logout buttons depending on the connection status of the user -->
+	
 			<h:form>
 
 				<ui:fragment rendered="#{not loginController.loggedIn}">
@@ -60,23 +60,17 @@
 						action="#{loginController.logout()}" />
 				</ui:fragment>
 
-				<!-- 				<ui:fragment rendered="#{not loginController.loggedIn}"> -->
-				<!-- 					<p:button id="login-button" value="Créer un compte" -->
-				<!-- 						outcome="CreationDeCompte" /> -->
-				<!-- 				</ui:fragment> -->
-
-
 				<p:button class="rightButton" value="Tableau de bord"
 					outcome="spaceAdminDashboard" icon="pi pi-chevron-right"
 					iconPos="right"
 					rendered="#{loginController.getLoggedAccount().role eq 'GESTIONNAIRE'}" />
 				<p:button class="rightButton" value="Tableau de bord"
-					outcome="spaceCoachDashboard" icon="pi pi-chevron-right"
+					outcome="generalPlanning" icon="pi pi-chevron-right"
 					iconPos="right"
 					rendered="#{loginController.getLoggedAccount().role eq 'COACH'}" />
 
 				<p:button class="rightButton" value="Mon espace personnel"
-					outcome="spaceAdherentDashboard"
+					outcome="crdBooking"
 					icon="pi pi-chevron-right" iconPos="right"
 					rendered="#{loginController.getLoggedAccount().role eq 'ADHERENT'}" />
 
