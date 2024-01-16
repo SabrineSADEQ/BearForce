@@ -92,9 +92,9 @@ public class DataInitializer {
 		AccountViewModel Adherent = new AccountViewModel();
 		Adherent.setEmail("adherent@gmail.com");
 		Adherent.setPassword("adherent");
-		Adherent.setGymId((long) 61);
+		Adherent.setGymId((long) 60);
 		Adherent.setRole(Role.ADHERENT);
-		Adherent.setGymId((long) 61);
+		Adherent.setGymId((long) 60);
 		Profile profileAdherent = new Profile();
 		profileAdherent.setFirstName("Yann");
 		profileAdherent.setLastName("Foisant");
@@ -115,7 +115,7 @@ public class DataInitializer {
 		gestionnaire.setPassword("gestionnaire");
 		gestionnaire.setRole(Role.GESTIONNAIRE);
 
-		gestionnaire.setGymId((long) 61);
+		gestionnaire.setGymId((long) 60);
 
 		Profile profileGestionnaire = new Profile();
 		profileGestionnaire.setFirstName("Jean");
@@ -142,7 +142,7 @@ public class DataInitializer {
 		coach.setEmail("coach@gmail.com");
 		coach.setPassword("coach");
 		coach.setRole(Role.COACH);
-		coach.setGymId((long) 61);
+		coach.setGymId((long) 60);
 		Goal goal2 = new Goal();
 		goal2.setGoalName("Perte de poids");
 		goal2.setGoalDate(LocalDate.of(2024, Month.FEBRUARY, 28));
@@ -188,18 +188,18 @@ public class DataInitializer {
 		Activity activity = new Activity();
 		activity.setName("Cardio vélo");
 		activity.setDescription("Pédalez au rythme de musiques entraînantes, brûlez des calories, renforcez vos jambes et améliorez votre condition physique. Rejoignez-nous pour une séance cardio pleine d'énergie et de résultats !");
-		activity.setAttachedGymId(Long.valueOf(61));
+		activity.setAttachedGymId(Long.valueOf(60));
 		activity.setActivityCategory(ActivityCategory.CARDIO);
 		activity.setActivityPicturePath("Cardio_velo.png");
 		activityDao.persist(activity);
 		
-		Course course = new Course();
-		course.setActivity(activity);
-		course.setTrainer(savedAccount.getProfile());
-		course.setStartDate(LocalDateTime.now());
-		course.setEndDate(LocalDateTime.now().plusHours(2));
-		course.setNbPlaces(10);
-		courseDao.saveCourse(course);
+//		Course course = new Course();
+//		course.setActivity(activity);
+//		course.setTrainer(savedAccount.getProfile());
+//		course.setStartDate(LocalDateTime.now());
+//		course.setEndDate(LocalDateTime.now().plusHours(2));
+//		course.setNbPlaces(10);
+//		courseDao.saveCourse(course);
 
 		/*
 		 * Fin données cours
@@ -354,9 +354,9 @@ public class DataInitializer {
 		AccountViewModel anotherAdherent = new AccountViewModel();
 		anotherAdherent.setEmail("alice@example.com");
 		anotherAdherent.setPassword("securePassword123");
-		anotherAdherent.setGymId((long) 61);
+		anotherAdherent.setGymId((long) 60);
 		anotherAdherent.setRole(Role.ADHERENT);
-		anotherAdherent.setGymId((long) 61);
+		anotherAdherent.setGymId((long) 60);
 
 		Profile anotherProfileAdherent = new Profile();
 		anotherProfileAdherent.setFirstName("Alice");
@@ -380,7 +380,7 @@ public class DataInitializer {
 		AccountViewModel newMember = new AccountViewModel();
 		newMember.setEmail("emma@example.com");
 		newMember.setPassword("strongPassword456");
-		newMember.setGymId((long) 61);
+		newMember.setGymId((long) 60);
 		newMember.setRole(Role.ADHERENT);
 
 		Profile newMemberProfile = new Profile();
@@ -405,7 +405,7 @@ public class DataInitializer {
 		AccountViewModel guestUser = new AccountViewModel();
 		guestUser.setEmail("alex@example.com");
 		guestUser.setPassword("temporaryPass789");
-		guestUser.setGymId((long) 61);
+		guestUser.setGymId((long) 60);
 		guestUser.setRole(Role.ADHERENT);
 
 		Profile guestProfile = new Profile();
@@ -430,7 +430,7 @@ public class DataInitializer {
 		AccountViewModel premiumMember = new AccountViewModel();
 		premiumMember.setEmail("sophia@example.com");
 		premiumMember.setPassword("strongPass789");
-		premiumMember.setGymId((long) 61);
+		premiumMember.setGymId((long) 60);
 		premiumMember.setRole(Role.ADHERENT);
 
 		Profile premiumMemberProfile = new Profile();
@@ -460,13 +460,13 @@ public class DataInitializer {
 		activityDao.persist(newActivity);
 
 		// Create a Course for the Activity
-		Course yogaCourse = new Course();
-		yogaCourse.setActivity(newActivity);
-		yogaCourse.setTrainer(savedAccount.getProfile()); // Assuming savedAccount is the instructor's account
-		yogaCourse.setStartDate(LocalDateTime.now().plusDays(1)); // Start the course tomorrow
-		yogaCourse.setEndDate(LocalDateTime.now().plusDays(1).plusHours(1)); // Duration: 1 hour
-		yogaCourse.setNbPlaces(15); // Maximum number of participants
-		courseDao.saveCourse(yogaCourse);
+//		Course yogaCourse = new Course();
+//		yogaCourse.setActivity(newActivity);
+//		yogaCourse.setTrainer(savedAccount.getProfile()); // Assuming savedAccount is the instructor's account
+//		yogaCourse.setStartDate(LocalDateTime.now().plusDays(1)); // Start the course tomorrow
+//		yogaCourse.setEndDate(LocalDateTime.now().plusDays(1).plusHours(1)); // Duration: 1 hour
+//		yogaCourse.setNbPlaces(15); // Maximum number of participants
+//		courseDao.saveCourse(yogaCourse);
 
 		// Create an Activity
 		Activity newActivity2 = new Activity();
@@ -477,12 +477,12 @@ public class DataInitializer {
 
 		// Create a Course for the Activity
 		Course hiitCourse = new Course();
-		hiitCourse.setActivity(newActivity2);
-		hiitCourse.setTrainer(savedAccount.getProfile()); // Assuming savedAccount is the instructor's account
-		hiitCourse.setStartDate(LocalDateTime.now().plusDays(2)); // Start the course in two days
-		hiitCourse.setEndDate(LocalDateTime.now().plusDays(2).plusHours(1)); // Duration: 1 hour
-		hiitCourse.setNbPlaces(20); // Maximum number of participants
-		courseDao.saveCourse(hiitCourse);
+//		hiitCourse.setActivity(newActivity2);
+//		hiitCourse.setTrainer(savedAccount.getProfile()); // Assuming savedAccount is the instructor's account
+//		hiitCourse.setStartDate(LocalDateTime.now().plusDays(2)); // Start the course in two days
+//		hiitCourse.setEndDate(LocalDateTime.now().plusDays(2).plusHours(1)); // Duration: 1 hour
+//		hiitCourse.setNbPlaces(20); // Maximum number of participants
+//		courseDao.saveCourse(hiitCourse);
 
 		SpaceViewModel newSpace = new SpaceViewModel();
 		newSpace.setFirstColor("FF5733");
@@ -556,7 +556,7 @@ public class DataInitializer {
 		Activity activityTwo = new Activity();
 		activityTwo.setName("Yoga apaisant");
 		activityTwo.setDescription("Détendez-vous et équilibrez votre esprit avec une séance de yoga apaisante. Idéal pour libérer le stress et améliorer la flexibilité.");
-		activityTwo.setAttachedGymId(Long.valueOf(61));
+		activityTwo.setAttachedGymId(Long.valueOf(60));
 		activityTwo.setActivityCategory(ActivityCategory.RELAXATION);
 		activityTwo.setActivityPicturePath("Yoga_apaisant.png");
 		activityDao.persist(activityTwo);
@@ -564,7 +564,7 @@ public class DataInitializer {
 		Activity activityThree = new Activity();
 		activityThree.setName("Crossfit");
 		activityThree.setDescription("Explorez le CrossFit, le secret d'une forme physique ultime. Des séances dynamiques, des résultats rapides. Joignez-vous à une communauté passionnée, brisez vos limites, devenez votre meilleure version. La révolution fitness commence ici.");
-		activityThree.setAttachedGymId(Long.valueOf(61));
+		activityThree.setAttachedGymId(Long.valueOf(60));
 		activityThree.setActivityCategory(ActivityCategory.FORCE);
 		activityThree.setActivityPicturePath("Crossfit.png");
 		activityDao.persist(activityThree);
@@ -572,7 +572,7 @@ public class DataInitializer {
 		Activity activityFour = new Activity();
 		activityFour.setName("Aquagym dynamique");
 		activityFour.setDescription("Plongez dans une séance d'aquagym énergisante. L'eau ajoute une résistance naturelle pour tonifier vos muscles sans impact sur les articulations.");
-		activityFour.setAttachedGymId(Long.valueOf(61));
+		activityFour.setAttachedGymId(Long.valueOf(60));
 		activityFour.setActivityCategory(ActivityCategory.NATATION);
 		activityFour.setActivityPicturePath("Aquagym_dynamique.png");
 		activityDao.persist(activityFour);
@@ -580,7 +580,7 @@ public class DataInitializer {
 		Activity activityFive = new Activity();
 		activityFive.setName("Pilates pour le renforcement du noyau");
 		activityFive.setDescription("Renforcez votre noyau avec des exercices de Pilates ciblés. Améliorez la posture, la stabilité et la force musculaire.");
-		activityFive.setAttachedGymId(Long.valueOf(61));
+		activityFive.setAttachedGymId(Long.valueOf(60));
 		activityFive.setActivityCategory(ActivityCategory.FORCE);
 		activityFive.setActivityPicturePath("Pilates.png");
 		activityDao.persist(activityFive);
@@ -588,7 +588,7 @@ public class DataInitializer {
 		Activity activitySix = new Activity();
 		activitySix.setName("Zumba Party");
 		activitySix.setDescription("Dansez au rythme de musiques entraînantes dans une ambiance de fête. Brûlez des calories tout en vous amusant avec des mouvements de danse latine.");
-		activitySix.setAttachedGymId(Long.valueOf(61));
+		activitySix.setAttachedGymId(Long.valueOf(60));
 		activitySix.setActivityCategory(ActivityCategory.DANCE);
 		activitySix.setActivityPicturePath("Zumba.png");
 		activityDao.persist(activitySix);
@@ -596,7 +596,7 @@ public class DataInitializer {
 		Activity activitySeven = new Activity();
 		activitySeven.setName("Entraînement de boxe");
 		activitySeven.setDescription("Libérez votre énergie avec un entraînement de boxe dynamique. Améliorez la coordination, la force et la résistance.");
-		activitySeven.setAttachedGymId(Long.valueOf(61));
+		activitySeven.setAttachedGymId(Long.valueOf(60));
 		activitySeven.setActivityCategory(ActivityCategory.COMBAT);
 		activitySeven.setActivityPicturePath("Box.png");
 		activityDao.persist(activitySeven);
@@ -604,7 +604,7 @@ public class DataInitializer {
 		Activity activityEight = new Activity();
 		activityEight.setName("Entraînement de musculation avancé");
 		activityEight.setDescription("Développez votre force et votre masse musculaire avec un programme avancé d'entraînement en musculation. Encadrement professionnel inclus.");
-		activityEight.setAttachedGymId(Long.valueOf(61));
+		activityEight.setAttachedGymId(Long.valueOf(60));
 		activityEight.setActivityCategory(ActivityCategory.FORCE);
 		activityEight.setActivityPicturePath("Musculation.png");
 		activityDao.persist(activityEight);
@@ -612,7 +612,7 @@ public class DataInitializer {
 		Activity activityNine = new Activity();
 		activityNine.setName("Danse contemporaine créative");
 		activityNine.setDescription("Exprimez-vous à travers la danse contemporaine. Libérez votre créativité et améliorez votre agilité.");
-		activityNine.setAttachedGymId(Long.valueOf(61));
+		activityNine.setAttachedGymId(Long.valueOf(60));
 		activityNine.setActivityCategory(ActivityCategory.DANCE);
 		activityNine.setActivityPicturePath("Danse_contemporaine.png");
 		activityDao.persist(activityNine);
@@ -620,7 +620,7 @@ public class DataInitializer {
 		Activity activityTen = new Activity();
 		activityTen.setName("Entraînement TRX");
 		activityTen.setDescription("Explorez de nouvelles dimensions de fitness avec le TRX Pro Suspension Trainer. Pour des séances d'entraînement dynamiques qui dépassent toutes vos attentes.");
-		activityTen.setAttachedGymId(Long.valueOf(61));
+		activityTen.setAttachedGymId(Long.valueOf(60));
 		activityTen.setActivityCategory(ActivityCategory.FITNESS);
 		activityTen.setActivityPicturePath("TRX.png");
 		activityDao.persist(activityTen);
@@ -629,7 +629,7 @@ public class DataInitializer {
 		Equipment equipmentOne = new Equipment();
 		equipmentOne.setEquipmentName("Vélo de cardio");
 		equipmentOne.setEquipmentPicturePath("Velo_d_interieur.png");
-		equipmentOne.setAttachedGymId(Long.valueOf(61));
+		equipmentOne.setAttachedGymId(Long.valueOf(60));
 		equipmentOne.setQuantity(12);
 		equipmentOne.setDetails("Offrez vous une expérience de cyclisme premium pour des résultats rapides. Cardio élégant, musculation efficace. La nouvelle norme du fitness.");
 		equipmentOne.setActivity(activity);
@@ -638,7 +638,7 @@ public class DataInitializer {
 		Equipment equipmentTwo = new Equipment();
 		equipmentTwo.setEquipmentName("Tapis de yoga");
 		equipmentTwo.setEquipmentPicturePath("Tapis_yoga.png");
-		equipmentTwo.setAttachedGymId(Long.valueOf(61));
+		equipmentTwo.setAttachedGymId(Long.valueOf(60));
 		equipmentTwo.setQuantity(10);
 		equipmentTwo.setDetails("Offrez-vous l'expérience ultime du yoga avec notre tapis premium. Transformez chaque séance en un voyage de bien-être et d'équilibre.");
 		equipmentTwo.setActivity(activityTwo);
@@ -647,7 +647,7 @@ public class DataInitializer {
 		Equipment equipmentThreeA = new Equipment();
 		equipmentThreeA.setEquipmentName("Poids");
 		equipmentThreeA.setEquipmentPicturePath("Poids.png");
-		equipmentThreeA.setAttachedGymId(Long.valueOf(61));
+		equipmentThreeA.setAttachedGymId(Long.valueOf(60));
 		equipmentThreeA.setQuantity(30);
 		equipmentThreeA.setDetails("Découvrez l'outil essentiel pour propulser vos performances au CrossFit ! Notre poids de 5 kg, parfaitement conçu, est bien plus qu'un simple accessoire d'entraînement.");
 		equipmentThreeA.setActivity(activityThree);
@@ -656,7 +656,7 @@ public class DataInitializer {
 		Equipment equipmentThreeB = new Equipment();
 		equipmentThreeB.setEquipmentName("Box jump");
 		equipmentThreeB.setEquipmentPicturePath("Box_jump.png");
-		equipmentThreeB.setAttachedGymId(Long.valueOf(61));
+		equipmentThreeB.setAttachedGymId(Long.valueOf(60));
 		equipmentThreeB.setQuantity(15);
 		equipmentThreeB.setDetails("Une boîte robuste pour sauter, renforçant les jambes et améliorant l'explosivité.");
 		equipmentThreeB.setActivity(activityThree);
@@ -665,7 +665,7 @@ public class DataInitializer {
 		Equipment equipmentFour = new Equipment();
 		equipmentFour.setEquipmentName("Poids d'aquagym");
 		equipmentFour.setEquipmentPicturePath("Poids_aquagym.png");
-		equipmentFour.setAttachedGymId(Long.valueOf(61));
+		equipmentFour.setAttachedGymId(Long.valueOf(60));
 		equipmentFour.setQuantity(40);
 		equipmentFour.setDetails("Transformez votre entraînement aquatique avec style et efficacité. Nos poids Aquafit sont votre partenaire idéal pour sculpter et renforcer votre corps dans l'eau.");
 		equipmentFour.setActivity(activityFour);
@@ -674,7 +674,7 @@ public class DataInitializer {
 		Equipment equipmentFive = new Equipment();
 		equipmentFive.setEquipmentName("Swiss ball");
 		equipmentFive.setEquipmentPicturePath("Ballon_pilates.png");
-		equipmentFive.setAttachedGymId(Long.valueOf(61));
+		equipmentFive.setAttachedGymId(Long.valueOf(60));
 		equipmentFive.setQuantity(10);
 		equipmentFive.setDetails("Transformez vos séances d'entraînement avec notre Swiss Ball Premium. Une fusion parfaite de forme, fonction et style pour des résultats exceptionnels.");
 		equipmentFive.setActivity(activityFive);
@@ -683,7 +683,7 @@ public class DataInitializer {
 		Equipment equipmentSeven = new Equipment();
 		equipmentSeven.setEquipmentName("Gants de box");
 		equipmentSeven.setEquipmentPicturePath("Gants_box.png");
-		equipmentSeven.setAttachedGymId(Long.valueOf(61));
+		equipmentSeven.setAttachedGymId(Long.valueOf(60));
 		equipmentSeven.setQuantity(6);
 		equipmentSeven.setDetails("Dominez chaque round avec assurance et style. Optez pour les gants de boxe ProFit pour une expérience de boxe incomparable dans notre salle de sport de renom.");
 		equipmentSeven.setActivity(activitySeven);
@@ -692,7 +692,7 @@ public class DataInitializer {
 		Equipment equipmentEightA = new Equipment();
 		equipmentEightA.setEquipmentName("Banc de développé couché");
 		equipmentEightA.setEquipmentPicturePath("Banc_developpe_couche.png");
-		equipmentEightA.setAttachedGymId(Long.valueOf(61));
+		equipmentEightA.setAttachedGymId(Long.valueOf(60));
 		equipmentEightA.setQuantity(3);
 		equipmentEightA.setDetails("Transformez votre routine de musculation avec le Banc de Développé Couché UltimaForce. La fusion parfaite de confort, de robustesse et de performance pour des résultats qui se démarquent.");
 		equipmentEightA.setActivity(activityEight);
@@ -701,7 +701,7 @@ public class DataInitializer {
 		Equipment equipmentEightB = new Equipment();
 		equipmentEightB.setEquipmentName("Barre à traction");
 		equipmentEightB.setEquipmentPicturePath("Barre_traction.png");
-		equipmentEightB.setAttachedGymId(Long.valueOf(61));
+		equipmentEightB.setAttachedGymId(Long.valueOf(60));
 		equipmentEightB.setQuantity(2);
 		equipmentEightB.setDetails("Révélez votre puissance avec la Barre de Traction ProFit-Xtreme. Pour des tractions sans compromis et des résultats qui repoussent les limites.");
 		equipmentEightB.setActivity(activityEight);
@@ -710,7 +710,7 @@ public class DataInitializer {
 		Equipment equipmentEightC = new Equipment();
 		equipmentEightC.setEquipmentName("Set d'altères");
 		equipmentEightC.setEquipmentPicturePath("Serie_poids.png");
-		equipmentEightC.setAttachedGymId(Long.valueOf(61));
+		equipmentEightC.setAttachedGymId(Long.valueOf(60));
 		equipmentEightC.setQuantity(2);
 		equipmentEightC.setDetails("Redéfinissez vos limites avec les Altères PowerFlex Pro. Pour des muscles sculptés et une performance qui repousse constamment les frontières.");
 		equipmentEightC.setActivity(activityEight);
@@ -719,7 +719,7 @@ public class DataInitializer {
 		Equipment equipmentNine = new Equipment();
 		equipmentNine.setEquipmentName("Barres de danse");
 		equipmentNine.setEquipmentPicturePath("Barre_danse.png");
-		equipmentNine.setAttachedGymId(Long.valueOf(61));
+		equipmentNine.setAttachedGymId(Long.valueOf(60));
 		equipmentNine.setQuantity(2);
 		equipmentNine.setDetails("Révélez votre puissance avec la Barre de Traction ProFit-Xtreme. Pour des tractions sans compromis et des résultats qui repoussent les limites.");
 		equipmentNine.setActivity(activityNine);
@@ -728,7 +728,7 @@ public class DataInitializer {
 		Equipment equipmentTen = new Equipment();
 		equipmentTen.setEquipmentName("Set de sangles TRX");
 		equipmentTen.setEquipmentPicturePath("Sangles_TRX.jpg");
-		equipmentTen.setAttachedGymId(Long.valueOf(61));
+		equipmentTen.setAttachedGymId(Long.valueOf(60));
 		equipmentTen.setQuantity(13);
 		equipmentTen.setDetails("xplorez de nouvelles dimensions de force, d'agilité et de performance avec le Set de Sangles de Suspension TRX Ultimate. Pour des résultats qui surpassent vos attentes.");
 		equipmentTen.setActivity(activityTen);
@@ -739,7 +739,7 @@ public class DataInitializer {
 		coachBeta.setEmail("e.durand@gmail.com");
 		coachBeta.setPassword("coach");
 		coachBeta.setRole(Role.COACH);
-		coachBeta.setGymId((long) 61);
+		coachBeta.setGymId((long) 60);
 		Goal goalBeta = new Goal();
 		goalBeta.setGoalName("Perte de poids");
 		goalBeta.setGoalDate(LocalDate.of(2024, Month.FEBRUARY, 28));
@@ -810,7 +810,7 @@ public class DataInitializer {
 		coach.setEmail("coach.lambert@gmail.com");
 		coach.setPassword("coach");
 		coach.setRole(Role.COACH);
-		coach.setGymId((long) 61);
+		coach.setGymId((long) 60);
 
 		Goal goal2 = new Goal();
 		goal2.setGoalName("Perte de poids");
@@ -854,7 +854,7 @@ public class DataInitializer {
 		coach3.setEmail("emma26@gmail.com");
 		coach3.setPassword("coach124");
 		coach3.setRole(Role.COACH);
-		coach3.setGymId((long) 61);
+		coach3.setGymId((long) 60);
 
 		Goal goal3 = new Goal();
 		goal3.setGoalName(" Yoga");
