@@ -520,13 +520,13 @@ public class DataInitializer {
 		spaceDao.createSpace(newSpace);
 
 		SpaceViewModel fitnessCenter = new SpaceViewModel();
-		fitnessCenter.setFirstColor("4285F4");
+		fitnessCenter.setFirstColor("F4B400");
 		fitnessCenter.setSecondColor("DB4437");
-		fitnessCenter.setThirdColor("F4B400");
-		fitnessCenter.setGymLogoPath("SportiFit.png");
+		fitnessCenter.setThirdColor("191A2D");
+		fitnessCenter.setGymLogoPath("fitFusion.png");
 		fitnessCenter.setGymBannerPath("banner1.jpg");
 		fitnessCenter.setMotto("Toujours plus forts");
-		fitnessCenter.setSpaceName("SportiFit");
+		fitnessCenter.setSpaceName("FitFusion");
 		fitnessCenter.setDescription(
 				"Rejoignez notre communauté de passionnés de fitness dans notre salle de sport. "
 						+ "Des cours captivants, des équipements de pointe et une atmosphère motivante font de notre espace "

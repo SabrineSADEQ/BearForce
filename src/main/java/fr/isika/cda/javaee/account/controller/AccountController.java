@@ -61,9 +61,7 @@ public class AccountController implements Serializable {
 				accountVM.getProfessionalDetails().setCoachCertification(account.getProfile().getProfesionalDetails().getCoachCertification());
 				accountVM.getProfessionalDetails().setCoachForm(account.getProfile().getProfesionalDetails().getCoachForm());
 				accountVM.getProfessionalDetails().setCoachCV(account.getProfile().getProfesionalDetails().getCoachCV());
-				
-				//DEBUG : 
-				System.out.println(accountVM.getProfessionalDetails());
+			
 			}
 			
 		} else {
