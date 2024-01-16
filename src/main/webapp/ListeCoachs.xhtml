@@ -25,19 +25,27 @@
 										<h:graphicImage name="#{tempProfile.pictureUrl}" library="images" />
 									</div>
 								</div>
-								<div class="card-content">
-									<h2 class="name">
+								<div class="card-content" style="height: 500px">
+									<h1 class="name">
 										<h:outputText value="#{tempProfile.firstName}" />
-									</h2>
-									<p class="description">
+									</h1>
+									<h2 class="description">
 										<h:outputText value="#{tempProfile.lastName}" />
+									</h2>
+									 <h:graphicImage library="images" name="About_me_icon.png" height="35px"/> 									
+									<p>
+										<h:outputText value="#{tempProfile.profesionalDetails.coachCV}" />
 									</p>
-
-
+									 <h:graphicImage library="images" name="Certification_icon.jpg" height="30px"/> 
+									<p>
+										<h:outputText value="#{tempProfile.profesionalDetails.coachCertification}" />
+									</p>
+									
 									<p:commandButton icon="pi pi-envelope" value="Contacter"
 										update=":dialogs:contact-panel"
 										oncomplete="PF('contactDialog').show()"
-										process="@this">
+										process="@this"
+										style="position: absolute; bottom: 0;">
 										<f:setPropertyActionListener value="#{tempProfile}" target="#{profilesManagementController.selectedProfile}" />
 										<p:resetInput target=":dialogs:contact-panel" />
 									</p:commandButton>
@@ -55,15 +63,16 @@
 
 	
 		<h:form id="dialogs">
-			<p:dialog id="contactDialog" header="Contact Information"
+			<p:dialog id="contactDialog" header="Vous avez des questions ? "
 				widgetVar="contactDialog" resizable="false" modal="true"
 				showEffect="fade" hideEffect="fade">
 				<p:outputPanel id="contact-panel">
 					<h:panelGrid columns="2">
-						<h:outputText value="E-mail:" />
-						<h:outputText value="#{profilesManagementController.selectedProfile.contact.email}" />
-						<h:outputText value="Phone:" />
-						<h:outputText value="#{profilesManagementController.selectedProfile.contact.phone}" />
+					<h:outputText value="#{profilesManagementController.selectedProfile.firstName} #{profilesManagementController.selectedProfile.lastName}" />
+						<br/>
+						<h:outputText value="Courriel : #{profilesManagementController.selectedProfile.contact.email}"/>
+						<br/>
+						<h:outputText value="Tel : #{profilesManagementController.selectedProfile.contact.phone}"/>
 					</h:panelGrid>
 				</p:outputPanel>
 			</p:dialog>

@@ -1,0 +1,13 @@
+.grid2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Deux colonnes égales */
+        gap: 20px; /* Espace entre les colonnes */
+    }
+
+    /* Style de base pour les panels */
+    .grid2 p:panel {
+        border: 1px solid #ddd;
+        padding: 20px;
+        text-align: center;
+        height: 150px; /* Hauteur fixe pour tous les panels */
+    }

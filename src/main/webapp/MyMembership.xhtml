@@ -5,77 +5,83 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="/WEB-INF/templates/spaceDashboardTemplate.xhtml">
+<ui:composition
+	template="/WEB-INF/templates/spaceDashboardTemplate.xhtml">
 	<ui:define name="titleValue">Mon Abonnement</ui:define>
 	<ui:define name="content">
+	<h:outputStylesheet library="css" name="main/MyMembership.css" />
+	
 		<div class="subcontent">
-		<ui:fragment rendered="#{not myMembershipBean.hasSubscription()}">
-			<h3>Vous n'avez pas d'abonnement actif</h3>
-		</ui:fragment>
-		
-		<ui:fragment rendered="#{myMembershipBean.hasSubscription()}">
-	
-			<h:form id="myMembershipForm">
-				<div class="card">
-					<h5 style="color: #0066cc; font-weight: bold;">Mon abonnement</h5>
-	
-					<div class="field grid">
-						<p:outputLabel for="membershipName" styleClass="col-fixed" style="width:100px" value="Nom de l'abonnement: " />
-						<div class="col">
-							<p:inputText id="membershipName" value="#{myMembershipBean.membershipViewModel.name}" disabled="true" styleClass="input-field"/>
-						</div>
-					</div>
-	
-					<div class="field grid">
-						<p:outputLabel for="nbrOfActivities" styleClass="col-fixed" style="width:100px" value="Nombre d'activités par semaine: " />
-						<div class="col">
-							<p:inputText id="nbrOfActivities" value="#{myMembershipBean.membershipViewModel.nbrOfActivities}" styleClass="input-field">
-								<f:validateLongRange minimum="1" />
-							</p:inputText>
-						</div>
-					</div>
-	
-					<div class="field grid">
-						<p:outputLabel for="price" styleClass="col-fixed" style="width:100px" value="Prix: " />
-						<div class="col">
-							<p:inputText id="price" value="#{myMembershipBean.membershipViewModel.price}" styleClass="input-field"/>
-						</div>
-					</div>
-	
-					<div class="field grid">
-						<p:outputLabel for="description" styleClass="col-fixed" style="width:100px" value="Description: " />
-						<div class="col">
-							<p:inputTextarea id="description" value="#{myMembershipBean.membershipViewModel.description}" styleClass="input-field" rows="4"/>
-						</div>
-					</div>
-					
-					<div class="field grid">
-						<p:outputLabel for="startDate" styleClass="col-fixed" style="width:100px" value="Date de début: " />
-						<div class="col">
-							<p:inputText id="startDate" value="#{myMembershipBean.startDate}" styleClass="input-field">
-								<f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy" />
-							</p:inputText>
-						</div>
-					</div>
-					
-					<div class="field grid">
-						<p:outputLabel for="endDate" styleClass="col-fixed" style="width:100px" value="Date de Fin: " />
-						<div class="col">
-							<p:inputText id="endDate" value="#{myMembershipBean.endDate}" styleClass="input-field">
-								<f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy" />
-							</p:inputText>
-						</div>
-					</div>
-				
-					<div class="field grid">
-						<p:outputLabel for="autoRenewal" styleClass="col-fixed" style="width:100px" value="Renouvellement automatique: " />
-						<div class="col">
-							<p:selectBooleanCheckbox id="autoRenewal" value="#{myMembershipBean.autorenewal}" styleClass="input-field" />
-						</div>
+			<ui:fragment rendered="#{not myMembershipBean.hasSubscription()}">
+				<h2>Vous n'avez pas d'abonnement actif !</h2>
+			</ui:fragment>
+
+			<ui:fragment rendered="#{myMembershipBean.hasSubscription()}">
+				<div class="container2">
+					<div class="grid2">
+						<p:panel header="Abonnement">
+							<h:panelGrid columns="1">
+								<p:outputLabel
+									value="#{myMembershipBean.membershipViewModel.name}" />
+							</h:panelGrid>
+						</p:panel>
+
+						<p:panel header="Nombre d'activités par semaine: ">
+							<h:panelGrid columns="1">
+								<p:outputLabel
+									value="#{myMembershipBean.membershipViewModel.nbrOfActivities}" />
+							</h:panelGrid>
+						</p:panel>
+
+						<p:panel header="Prix mensuel">
+							<h:panelGrid columns="1">
+								<p:outputLabel
+									value="#{myMembershipBean.membershipViewModel.price} €" />
+							</h:panelGrid>
+						</p:panel>
+
+						<p:panel header="Description">
+							<h:panelGrid columns="1">
+								<p:outputLabel
+									value="#{myMembershipBean.membershipViewModel.description}" />
+							</h:panelGrid>
+						</p:panel>
+
+						<p:panel header="Date de souscription">
+							<h:panelGrid columns="1">
+								<p:outputLabel
+									value="Le #{myMembershipBean.startDate.dayOfMonth}/#{myMembershipBean.startDate.monthValue}/#{myMembershipBean.startDate.year}" />
+							</h:panelGrid>
+						</p:panel>
+
+						<p:panel header="Date de fin d'engagement">
+							<h:panelGrid columns="1">
+								<p:outputLabel
+									value="Le #{myMembershipBean.endDate.dayOfMonth}/#{myMembershipBean.endDate.monthValue}/#{myMembershipBean.endDate.year}" />
+							</h:panelGrid>
+						</p:panel>
+
+						<p:panel header="Durée de l'engagement">
+							<h:panelGrid columns="1">
+								<p:outputLabel value="#{myMembershipBean.duration} jours" />
+							</h:panelGrid>
+						</p:panel>
+
+						<p:panel header="Renouvellement automatique">
+							<h:panelGrid columns="1">
+								<ui:fragment rendered="#{not myMembershipBean.autorenewal}">
+									<p:outputLabel value="Oui" />
+								</ui:fragment>
+								<ui:fragment rendered="#{myMembershipBean.autorenewal}">
+									<p:outputLabel value="Non" />
+								</ui:fragment>
+							</h:panelGrid>
+						</p:panel>
+
 					</div>
 				</div>
-			</h:form>
-		</ui:fragment>
+
+			</ui:fragment>
 		</div>
 	</ui:define>
 </ui:composition>

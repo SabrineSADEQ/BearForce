@@ -168,11 +168,9 @@ public class DataInitializer {
 		profileCoach.setContact(contactCoach);
 
 		ProfessionalDetails coachDetails = new ProfessionalDetails();
-		coachDetails.setCoachCertification("Certifiée en Zumba, 4ème niveau et en Yoga");
+		coachDetails.setCoachCertification("Certificat d'Instructrice de Natation, membre des Dauphins de Toulouse OEC arrivé en première position au classement de la saison 2023-2024.");
 		coachDetails.setCoachForm("Licence de Coaching avancé");
-		coachDetails.setCoachCV(
-				"Coach sportive passionnée et polyvalente, spécialisée dans l'enseignement du yoga et de la zumba, avec une expertise éprouvée dans la création de programmes holistiques favorisant le bien-être physique et mental.");
-
+		coachDetails.setCoachCV("Découvrez le plaisir de nager avec mes cours personnalisés ! De l'apprentissage des bases à la maîtrise des techniques avancées, plongez dans une aventure aquatique. Nageons vers le succès ensemble !");
 		profileCoach.setProfesionalDetails(coachDetails);
 
 		coach.setProfile(profileCoach);
@@ -433,7 +431,7 @@ public class DataInitializer {
 		premiumMember.setEmail("sophia@example.com");
 		premiumMember.setPassword("strongPass789");
 		premiumMember.setGymId((long) 61);
-		premiumMember.setRole(Role.COACH);
+		premiumMember.setRole(Role.ADHERENT);
 
 		Profile premiumMemberProfile = new Profile();
 		premiumMemberProfile.setFirstName("Sophia");
@@ -736,6 +734,46 @@ public class DataInitializer {
 		equipmentTen.setActivity(activityTen);
 		equipmentDao.persist(equipmentTen);
 		
+		//CREATION D'UN COACH
+		AccountViewModel coachBeta = new AccountViewModel();
+		coachBeta.setEmail("e.durand@gmail.com");
+		coachBeta.setPassword("coach");
+		coachBeta.setRole(Role.COACH);
+		coachBeta.setGymId((long) 61);
+		Goal goalBeta = new Goal();
+		goalBeta.setGoalName("Perte de poids");
+		goalBeta.setGoalDate(LocalDate.of(2024, Month.FEBRUARY, 28));
+
+		coachBeta.setGoal(goalBeta);
+
+		Profile profileCoachBeta = new Profile();
+		profileCoachBeta.setFirstName("Eustache");
+		profileCoachBeta.setLastName("Durand");
+		profileCoachBeta.setPictureUrl("Eustache_Durand_box.jpg");
+
+		Address addressCoachBeta = new Address();
+		addressCoachBeta.setCity("Paris");
+		addressCoachBeta.setStreetName("avenue du Général Leclerc");
+		addressCoachBeta.setStreetNumber("34");
+		addressCoachBeta.setPostalCode("75016");
+
+		Contact contactCoachBeta = new Contact();
+		contactCoachBeta.setPhone("06 32 98 91 44");
+		contactCoachBeta.setEmail("e.durand@gmail.com");
+
+		profileCoachBeta.setAddress(addressCoachBeta);
+		profileCoachBeta.setContact(contactCoachBeta);
+
+		ProfessionalDetails coachDetailsBeta = new ProfessionalDetails();
+		coachDetailsBeta.setCoachCertification("Compétiteur professionnel de box, 1ère place au championnat de France elites 1 de janvier 2024, acrédité coach professionel par la FFB.");
+		coachDetailsBeta.setCoachForm("Licence de Coaching avancé");
+		coachDetailsBeta.setCoachCV("Révélez votre force intérieure avec mes cours de boxe sur mesure ! De la technique de base à la stratégie avancée. Prêt à devenir le champion de votre propre histoire ? Entraînons-nous ensemble vers la victoire !");
+		profileCoachBeta.setProfesionalDetails(coachDetailsBeta);
+
+		coachBeta.setProfile(profileCoachBeta);
+
+		Account savedAccountBeta = accountDao.createAccount(coachBeta);
+		
 	}
 
 	private void createFakeProfiles() {
@@ -761,10 +799,10 @@ public class DataInitializer {
 		profileCoach2.setContact(contactCoach2);
 
 		ProfessionalDetails coachDetails1 = new ProfessionalDetails();
-		coachDetails1.setCoachCertification("Certifié en Crossfit, 4ème niveau et en HIIT");
+		coachDetails1.setCoachCertification("Niveau avancé en Crossfit, première place au Lacanau Contest Winter Edition de 2023.");
 		coachDetails1.setCoachForm("Advanced Coaching Intermediate Level");
 		coachDetails1.setCoachCV(
-				"Coach sportif passionné et pédagogique, spécialisé dans l'enseignement du crossfit");
+				"Ensemble, nous repousserons vos limites, écrirons une nouvelle histoire de force et de persévérance. Prêt à embrasser le changement et à devenir la meilleure version de vous-même ? Let's CrossFit together !");
 
 		profileCoach2.setProfesionalDetails(coachDetails1);
 
@@ -807,11 +845,9 @@ public class DataInitializer {
 		profileCoach3.setContact(contactCoach3);
 
 		ProfessionalDetails coachDetails3 = new ProfessionalDetails();
-		coachDetails3.setCoachCertification("Certifiée en Zumba, 4ème niveau et en Yoga");
+		coachDetails3.setCoachCertification("Certification enseigante Zumba universidade de São Paulo et niveau expert (maître) en yoga.");
 		coachDetails3.setCoachForm("Advanced Yoga");
-		coachDetails3.setCoachCV(
-				"Coach sportive passionnée et polyvalente, spécialisée dans l'enseignement du yoga et de la zumba, avec une expertise éprouvée dans la création de programmes holistiques favorisant le bien-être physique et mental.");
-
+		coachDetails3.setCoachCV("Coach sportive passionnée et polyvalente, spécialisée dans l'enseignement du yoga et de la zumba, avec une expertise éprouvée dans la création de programmes holistiques favorisant le bien-être physique et mental.");
 		profileCoach3.setProfesionalDetails(coachDetails3);
 
 		AccountViewModel coach3 = new AccountViewModel();
@@ -828,16 +864,7 @@ public class DataInitializer {
 		coach3.setProfile(profileCoach3);
 
 		Account savedAccount3 = accountDao.createAccount(coach3);
-//		Profile profileCoach2 = new Profile();
-//		profileCoach2.setFirstName("Rayan");
-//		profileCoach2.setLastName("Simon");
-//		profileCoach2.setPictureUrl("profil2.jpg");
-//
-//		Profile profileCoach3 = new Profile();
-//		profileCoach3.setFirstName("Emma");
-//		profileCoach3.setLastName("Cai");
-//		profileCoach3.setPictureUrl("profil3.png");			
+			
 	}
-	
 	
 }
