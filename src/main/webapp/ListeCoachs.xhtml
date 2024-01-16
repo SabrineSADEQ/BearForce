@@ -11,12 +11,13 @@
 		<h:outputStylesheet library="css" name="ListeCoachs.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
 <div class="subcontent">
 		<div class="container">
 			<p:carousel value="#{profilesManagementController.profiles}"
-				var="tempProfile" numVisible="3" numScroll="3">
-				<p:column>
-					<div class="swiper-slide">
+				var="tempProfile" numVisible="3" numScroll="3" >
+				<p:column rendered="#{tempProfile.account.gymId eq spaceController.loadedSpace.id}">
+					<div class="swiper-slide" >
 						<div class="card">
 							<h:form id="coachDetailsForm">
 								<div class="image-content">
